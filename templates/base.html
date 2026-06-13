@@ -3,6 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {# Theme init: set data-theme before first paint to avoid a flash (dark default). #}
+    <script>
+        (function () {
+            var THEME_COLORS = { dark: '#1A1B24', light: '#F7F8FC' };
+            function apply(t) {
+                document.documentElement.dataset.theme = t;
+                var m = document.querySelector('meta[name="theme-color"]');
+                if (m) { m.setAttribute('content', THEME_COLORS[t] || THEME_COLORS.dark); }
+            }
+            var t;
+            try {
+                t = localStorage.getItem('bidatia-theme');
+                if (t !== 'light' && t !== 'dark') { t = 'dark'; }
+            } catch (e) { t = 'dark'; }
+            apply(t);
+            window.toggleTheme = function () {
+                var next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+                apply(next);
+                try { localStorage.setItem('bidatia-theme', next); } catch (e) {}
+            };
+        })();
+    </script>
     <title>{% block title %}{{ SITE_NAME }} — {{ SITE_TAGLINE }}{% endblock %}</title>
     <meta name="description" content="{% block meta_description %}{{ meta_description|default:SITE_TAGLINE }}{% endblock %}">
     <link rel="canonical" href="{{ canonical_url }}">
@@ -39,7 +61,7 @@
     <link rel="icon" type="image/png" sizes="96x96" href="{% static 'icons/favicon-96x96.png' %}">
     <link rel="apple-touch-icon" href="{% static 'icons/apple-touch-icon.png' %}">
     <link rel="manifest" href="{% static 'site.webmanifest' %}">
-    <meta name="theme-color" content="#0A0A0F">
+    <meta name="theme-color" content="#1A1B24">
 
     {# Feed auto-discovery — lets crawlers/readers find new content fast. #}
     <link rel="alternate" type="application/rss+xml" title="{{ SITE_NAME }} — Insights" href="{% url 'insights_feed' %}">
@@ -57,13 +79,15 @@
             theme: {
                 extend: {
                     colors: {
-                        ink:    '#ECECF1',       // PRIMARY TEXT (light) — text-ink*
-                        ink2:   '#15151D',       // lifted dark surface
-                        canvas: '#0A0A0F',       // near-black — page background
-                        canvas2:'#101017',       // alternating dark band
-                        paper:  '#15151D',       // dark card surface
-                        line:   '#2A2A37',       // hairline on dark
-                        brand: {                 // electric INDIGO
+                        // Neutrals are CSS-var driven so they flip with the theme
+                        // (the /<alpha-value> form keeps opacity utilities working).
+                        ink:    'rgb(var(--ink-rgb) / <alpha-value>)',     // primary text
+                        ink2:   'rgb(var(--paper-rgb) / <alpha-value>)',  // lifted surface
+                        canvas: 'rgb(var(--canvas-rgb) / <alpha-value>)', // page background
+                        canvas2:'rgb(var(--canvas2-rgb) / <alpha-value>)',// alternating band
+                        paper:  'rgb(var(--paper-rgb) / <alpha-value>)',  // card surface
+                        line:   'rgb(var(--line-rgb) / <alpha-value>)',   // hairline
+                        brand: {                 // electric INDIGO (same in both themes)
                             50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe', 300: '#a5b4fc',
                             400: '#818cf8', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca',
                             800: '#3730a3', 900: '#312e81',
@@ -98,43 +122,86 @@
             --font-sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
             --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, monospace;
             --font-arabic: 'Readex Pro', 'Inter', Arial, sans-serif;
-            --bg: #0A0A0F; --surface: #15151D; --surface2: #101017; --panel: #0C0C12;
-            --text: #ECECF1; --muted: #93939F; --line: #26262F;
-            --indigo: #6366f1; --indigo-lt: #818cf8; --fuchsia: #d946ef; --fuchsia-lt: #e879f9;
+
+            /* ── DARK (default) — comfortable dim charcoal ───────────────── */
+            --canvas-rgb: 26 27 36;     /* page #1A1B24 */
+            --canvas2-rgb: 31 32 42;    /* band  #1F202A */
+            --paper-rgb: 36 37 47;      /* card  #24252F */
+            --ink-rgb: 236 236 242;     /* text  #ECECF2 */
+            --line-rgb: 51 52 70;       /* line  #333446 */
+            --muted: #AEAEC0;
+            --link: #93A0FF; --link2: #EE85FB;          /* legible indigo/fuchsia text */
+            --grad-text: linear-gradient(120deg, #93a0ff 0%, #c4a2ff 48%, #ee85fb 100%);
+            --hairline: rgba(255,255,255,.05);          /* rule-grid on the page */
+
+            /* ── Theme-invariant: always-dark accent zones + brand ───────── */
+            --panel: #14141C;                            /* footer / data board / tiles */
+            --on-dark: #ECECF2; --on-dark-muted: #B7B7C8;/* text on the dark zones */
+            --indigo: #6366f1; --fuchsia: #d946ef;
             --grad: linear-gradient(120deg, #6366f1 0%, #8b5cf6 45%, #d946ef 100%);
         }
-        html { background: var(--bg); }
-        body { font-family: var(--font-sans); background: var(--bg); color: var(--text);
+        /* ── LIGHT — creative airy theme (cool off-white + dark feature zones) */
+        :root[data-theme="light"] {
+            --canvas-rgb: 247 248 252;  /* page #F7F8FC */
+            --canvas2-rgb: 239 240 248; /* band #EFF0F8 */
+            --paper-rgb: 255 255 255;   /* card #FFFFFF */
+            --ink-rgb: 23 24 33;        /* text #171821 */
+            --line-rgb: 226 227 238;    /* line #E2E3EE */
+            --muted: #5B5C6E;
+            --link: #4f46e5; --link2: #c026d3;          /* darker for light-bg contrast */
+            --grad-text: linear-gradient(120deg, #4f46e5 0%, #7c3aed 48%, #c026d3 100%);
+            --hairline: rgba(20,20,30,.05);
+        }
+        html { background: rgb(var(--canvas-rgb)); }
+        body { font-family: var(--font-sans); background: rgb(var(--canvas-rgb)); color: rgb(var(--ink-rgb));
             -webkit-font-smoothing: antialiased; }
         h1, h2, h3, .font-display { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.02em; }
         ::selection { background: var(--fuchsia); color: #fff; }
         [x-cloak] { display: none !important; }
 
-        /* ── Global "Aurora" dark-mode overrides: repaint the whole Tailwind
-              surface for dark mode from one place. Squared corners, flat
-              (no soft drop-shadows), dark surfaces, light text, indigo/fuchsia. */
+        /* Theme toggle: show the icon/label for the theme you'd switch TO. */
+        .theme-sun { display: none; }
+        :root[data-theme="light"] .theme-moon { display: none; }
+        :root[data-theme="light"] .theme-sun { display: inline-flex; }
+
+        /* ── Global "Aurora" override layer: repaint the whole Tailwind surface
+              from one place, driven by CSS variables so it flips between the
+              DARK and LIGHT themes. Squared corners, flat (no soft drop-shadows),
+              theme-aware surfaces/text, indigo/fuchsia signature. The always-dark
+              feature zones (.mesh/.panel/footer) keep light text in both themes. */
         .rounded-3xl, .rounded-2xl, .rounded-xl { border-radius: 6px !important; }
         .rounded-lg, .rounded-md { border-radius: 5px !important; }     /* keep .rounded-full round */
         [class*="shadow-"] { box-shadow: none !important; }
 
-        .bg-white, .bg-paper { background-color: var(--surface) !important; }
-        .bg-slate-50, .bg-slate-100, .mesh-light { background-color: var(--surface2) !important; }
+        .bg-white, .bg-paper { background-color: rgb(var(--paper-rgb)) !important; }
+        .bg-slate-50, .bg-slate-100, .mesh-light { background-color: rgb(var(--canvas2-rgb)) !important; }
         .bg-ink { background-color: var(--panel) !important; }
         /* anchor/button surfaces become the signature gradient (the CTAs) */
         a.bg-ink, button.bg-ink, a.bg-white, button.bg-white,
         .hover\:bg-ink:hover { background: var(--grad) !important; color: #fff !important; border-color: transparent !important; }
-        [class*="text-canvas"] { color: var(--text) !important; }
+        [class*="text-canvas"] { color: rgb(var(--ink-rgb)) !important; }
         .text-slate-400, .text-slate-500, .text-slate-600, .text-slate-700,
         .text-slate-800, .text-slate-900, .text-slate-300 { color: var(--muted) !important; }
-        .border-slate-100, .border-slate-200, .border-slate-300 { border-color: var(--line) !important; }
+        .border-slate-100, .border-slate-200, .border-slate-300 { border-color: rgb(var(--line-rgb)) !important; }
+
+        /* Contrast: indigo/fuchsia text used as links & eyebrows needs lifting on
+           the dark theme and darkening on the light theme (var(--link) handles
+           both) — EXCEPT where it sits on a light brand/accent chip (those keep
+           the darker shade for contrast). */
+        .text-brand-500:not(.bg-brand-50):not(.bg-accent-50),
+        .text-brand-600:not(.bg-brand-50):not(.bg-accent-50),
+        .text-brand-700:not(.bg-brand-50):not(.bg-accent-50):not([class*="bg-brand-50"]) {
+            color: var(--link) !important; }
+        .hover\:text-brand-700:hover:not(.bg-brand-50) { color: var(--link) !important; }
+        .text-accent-500, .text-accent-600, .text-accent-700 { color: var(--link2) !important; }
 
         /* Section eyebrow: mono label with a gradient index square. */
         .kicker { display:inline-flex; align-items:center; gap:.6rem; font-family:var(--font-mono);
             font-size:.7rem; line-height:1; letter-spacing:.18em; text-transform:uppercase; font-weight:600; }
         .kicker::before { content:''; width:.5rem; height:.5rem; flex:none; background:var(--grad); border-radius:1px; }
 
-        /* Card: dark surface, hairline, with an indigo glow + lift on hover. */
-        .l-card, .dash-card { position:relative; background:var(--surface); border:1px solid var(--line);
+        /* Card: theme surface, hairline, with an indigo glow + lift on hover. */
+        .l-card, .dash-card { position:relative; background:rgb(var(--paper-rgb)); border:1px solid rgb(var(--line-rgb));
             transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
         .l-card:hover, .dash-card:hover { border-color:var(--indigo);
             box-shadow: 0 0 0 1px rgba(99,102,241,.5), 0 24px 60px -24px rgba(99,102,241,.55);
@@ -142,12 +209,12 @@
 
         /* Squared icon tile. */
         .tile { display:inline-flex; align-items:center; justify-content:center;
-            border:1px solid var(--line); background:var(--surface2); }
+            border:1px solid rgb(var(--line-rgb)); background:rgb(var(--canvas2-rgb)); }
         .tile-ink { border-color:transparent; background:var(--grad); color:#fff; }
 
         /* Instrument panel / dark mesh with indigo→fuchsia aurora glow. */
         .panel { background:#0C0C12; border:1px solid rgba(255,255,255,.10); }
-        .mesh { background:var(--bg); position:relative; }
+        .mesh { background:var(--panel); position:relative; }
         .mesh::before { content:''; position:absolute; inset:0; pointer-events:none;
             background:
                 radial-gradient(58rem 34rem at 84% -12%, rgba(99,102,241,.40), transparent 60%),
@@ -158,7 +225,7 @@
 
         /* Signature aurora bar / gradient text / ring. */
         .rgb-bar { background: var(--grad); }
-        .rgb-text { background: var(--grad); -webkit-background-clip:text; background-clip:text;
+        .rgb-text { background: var(--grad-text); -webkit-background-clip:text; background-clip:text;
             -webkit-text-fill-color:transparent; color:transparent; }
         .rgb-ring { position:relative; }
         .rgb-ring::before { content:''; position:absolute; inset:-1px; padding:1px; background:var(--grad);
@@ -201,7 +268,24 @@
         @keyframes pulsering { 0%{transform:scale(1);opacity:.55;} 100%{transform:scale(2.6);opacity:0;} }
 
         a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
-            outline: 2px solid var(--brand); outline-offset: 2px; }
+            outline: 2px solid var(--indigo); outline-offset: 2px; }
+
+        /* ── Always-dark feature zones (.mesh / .panel / footer) ───────────────
+           These keep their dark background in BOTH themes, so their descendant
+           text must stay LIGHT regardless of theme — re-pin the surface-text
+           overrides above (which otherwise flip to dark on the light theme). */
+        .mesh [class*="text-canvas"], .panel [class*="text-canvas"], footer [class*="text-canvas"],
+        .mesh .text-ink, .panel .text-ink, footer .text-ink {
+            color: var(--on-dark) !important; }
+        .mesh .text-slate-300, .mesh .text-slate-400, .mesh .text-slate-500, .mesh .text-slate-600,
+        .panel .text-slate-300, .panel .text-slate-400, .panel .text-slate-500, .panel .text-slate-600,
+        footer .text-slate-300, footer .text-slate-400, footer .text-slate-500, footer .text-slate-600 {
+            color: var(--on-dark-muted) !important; }
+        .mesh .bg-paper, .panel .bg-paper, footer .bg-paper,
+        .mesh .bg-white, .panel .bg-white, footer .bg-white { background-color: rgba(255,255,255,.05) !important; }
+        .mesh .border-line, .panel .border-line, footer .border-line,
+        .mesh [class*="border-slate"], .panel [class*="border-slate"], footer [class*="border-slate"] {
+            border-color: rgba(255,255,255,.12) !important; }
 
         @media (prefers-reduced-motion: reduce) {
             .reveal { opacity:1 !important; transform:none !important; transition:none !important; }

@@ -30,6 +30,11 @@
         </div>
 
         <div class="hidden lg:flex items-center gap-4">
+            <button type="button" onclick="window.toggleTheme()" class="theme-toggle inline-flex h-9 w-9 items-center justify-center border border-line text-ink/70 hover:text-ink hover:border-ink transition" aria-label="{% trans 'Toggle light / dark theme' %}">
+                {# moon shows in dark mode (tap → go light); sun shows in light mode #}
+                <svg class="theme-moon h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+                <svg class="theme-sun h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"/></svg>
+            </button>
             {% include "partials/language_switcher.html" %}
             <a href="{% url 'booking:book_consultation' %}" class="group inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em] font-semibold text-canvas bg-ink hover:bg-brand-700 transition px-4 py-2.5">
                 {% trans "Request a consultation" %}
@@ -52,6 +57,14 @@
             <a href="{% url 'core:about' %}" class="block px-3 py-3 border-b border-line hover:text-ink">{% trans "About" %}</a>
             <a href="{% url 'leads:contact' %}" class="block px-3 py-3 border-b border-line hover:text-ink">{% trans "Contact" %}</a>
             <a href="{% url 'booking:book_consultation' %}" class="block mt-3 text-center font-semibold text-canvas bg-ink px-5 py-3">{% trans "Request a consultation" %}</a>
+
+            <div class="pt-3 mt-2">
+                <p class="px-3 pb-2 text-[10px] text-ink/40">{% trans "Appearance" %}</p>
+                <button type="button" onclick="window.toggleTheme()" class="theme-toggle w-full flex items-center justify-between border border-line px-3 py-2.5 text-xs font-semibold normal-case tracking-normal hover:border-ink">
+                    <span class="theme-moon inline-flex items-center gap-2"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>{% trans "Switch to light" %}</span>
+                    <span class="theme-sun inline-flex items-center gap-2"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 2v2m0 16v2M2 12h2m16 0h2"/></svg>{% trans "Switch to dark" %}</span>
+                </button>
+            </div>
 
             <div class="pt-3 mt-2">
                 <p class="px-3 pb-2 text-[10px] text-ink/40">{% trans "Language" %}</p>
