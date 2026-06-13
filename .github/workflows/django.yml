@@ -177,6 +177,6 @@ jobs:
 
           echo "Verifying health ..."
           sleep 3
-          curl -fsS -H "Host: bidatia.xyz" -H "X-Forwarded-Proto: https" http://127.0.0.1:8020/healthz/
+          curl -fsS -H "Host: bidatia.xyz" -H "X-Forwarded-Proto: https" http://127.0.0.1:8030/healthz/
 
           REMOTE_SCRIPT
