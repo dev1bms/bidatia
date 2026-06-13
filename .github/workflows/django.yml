@@ -80,7 +80,7 @@ jobs:
       - name: Connect GitHub Actions to Tailscale
         uses: tailscale/github-action@v4
         with:
-          authkey: ${{ secrets.TS_AUTHKEY }}
+          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
 
       - name: Prepare SSH key
         run: |
