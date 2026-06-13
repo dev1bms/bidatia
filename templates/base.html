@@ -39,7 +39,7 @@
     <link rel="icon" type="image/png" sizes="96x96" href="{% static 'icons/favicon-96x96.png' %}">
     <link rel="apple-touch-icon" href="{% static 'icons/apple-touch-icon.png' %}">
     <link rel="manifest" href="{% static 'site.webmanifest' %}">
-    <meta name="theme-color" content="#0f172a">
+    <meta name="theme-color" content="#0E0E11">
 
     {# Feed auto-discovery — lets crawlers/readers find new content fast. #}
     <link rel="alternate" type="application/rss+xml" title="{{ SITE_NAME }} — Insights" href="{% url 'insights_feed' %}">
@@ -47,31 +47,36 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // Bidatia design tokens. The "RGB" brand story: a slate base, an anchor
-        // blue, and a red→green→blue gradient used for accents. Token names stay
-        // stable (ink / brand / accent) so every component recolours from here.
+        // ── Bidatia "Ledger" design system ───────────────────────────────────
+        // A data/analytics-platform identity: warm bone canvas, near-black ink,
+        // a single signature VIOLET, and electric LIME used only for live/data
+        // sparks. Token names (ink / brand / accent) stay stable so the whole
+        // codebase recolours from here. No blue, no rainbow gradients.
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        ink: '#0f172a',          // slate-900 — base
-                        brand: {                 // anchor blue (Tailwind blue scale)
-                            50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd',
-                            400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8',
-                            800: '#1e40af', 900: '#1e3a8a',
+                        ink:    '#0E0E11',       // near-black — text & dark surfaces
+                        ink2:   '#17171C',       // lifted dark surface
+                        canvas: '#F1EFE8',       // warm bone — page background
+                        canvas2:'#E7E4D9',       // deeper warm — alternating bands
+                        paper:  '#FBFAF6',       // warm near-white — card surface
+                        line:   '#0E0E11',       // hairline (used at low opacity)
+                        brand: {                 // signature VIOLET (analytics / AI)
+                            50: '#f5f3ff', 100: '#ede9fe', 200: '#ddd6fe', 300: '#c4b5fd',
+                            400: '#a78bfa', 500: '#8b5cf6', 600: '#7c3aed', 700: '#6d28d9',
+                            800: '#5b21b6', 900: '#4c1d95',
                         },
-                        accent: {                // governance green — "live / go / quality"
-                            50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac',
-                            400: '#4ade80', 500: '#22c55e', 600: '#16a34a', 700: '#15803d',
+                        accent: {                // electric LIME — live / data signal
+                            50: '#f7fee7', 100: '#ecfccb', 200: '#d9f99d', 300: '#bef264',
+                            400: '#a3e635', 500: '#84cc16', 600: '#65a30d', 700: '#4d7c0f',
                         },
-                        // RGB signal trio — red→green→blue tri-colour accents.
-                        signal: { r: '#ef4444', g: '#22c55e', b: '#3b82f6' },
                     },
                     fontFamily: {
-                        display: ['"Space Grotesk"', '"Inter"', '"Helvetica Neue"', 'Arial', 'sans-serif'],
-                        sans: ['"Inter"', '"Helvetica Neue"', 'Arial', 'sans-serif'],
-                        mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
-                        arabic: ['"Readex Pro"', '"Inter"', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+                        display: ['"Bricolage Grotesque"', 'Georgia', 'serif'],
+                        sans: ['"IBM Plex Sans"', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+                        mono: ['"IBM Plex Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+                        arabic: ['"Readex Pro"', '"IBM Plex Sans"', 'Arial', 'sans-serif'],
                     },
                 }
             }
@@ -79,7 +84,7 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     {% if LANGUAGE_BIDI %}
     {# Arabic pages: load Readex Pro — a modern, highly readable Arabic Google Font — for a natural, premium reading experience. #}
     <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -88,159 +93,132 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
         :root {
-            --font-display: 'Space Grotesk', 'Inter', 'Helvetica Neue', Arial, sans-serif;
-            --font-sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-            --font-arabic: 'Readex Pro', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            --font-display: 'Bricolage Grotesque', Georgia, serif;
+            --font-sans: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+            --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+            --font-arabic: 'Readex Pro', 'IBM Plex Sans', Arial, sans-serif;
+            --ink: #0E0E11; --ink2: #17171C;
+            --canvas: #F1EFE8; --canvas2: #E7E4D9; --paper: #FBFAF6;
+            --violet: #6d28d9; --violet-2: #7c3aed; --lime: #a3e635;
+            --line: rgba(14,14,17,.14); --line-strong: rgba(14,14,17,.28);
         }
-        body { font-family: var(--font-sans); }
-        /* Headings use the display face for a distinct, data-engineering feel. */
-        h1, h2, h3, .font-display { font-family: var(--font-display); letter-spacing: -0.01em; }
+        html { background: var(--canvas); }
+        body { font-family: var(--font-sans); background: var(--canvas); color: var(--ink);
+            -webkit-font-smoothing: antialiased; }
+        h1, h2, h3, .font-display { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.02em; }
+        ::selection { background: var(--violet); color: #fff; }
         [x-cloak] { display: none !important; }
 
-        /* Bidatia "RGB" signal accents (red → green → blue). */
-        .rgb-bar { background: linear-gradient(90deg, #ef4444 0%, #22c55e 50%, #3b82f6 100%); }
-        .rgb-text {
-            background: linear-gradient(90deg, #f87171 0%, #34d399 45%, #60a5fa 100%);
-            -webkit-background-clip: text; background-clip: text;
-            -webkit-text-fill-color: transparent; color: transparent;
-        }
-        .rgb-ring { position: relative; }
-        .rgb-ring::before {
-            content: ''; position: absolute; inset: -1px; border-radius: inherit; padding: 1px;
-            background: linear-gradient(135deg, #ef4444, #22c55e, #3b82f6);
-            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-            -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
-        }
+        /* ── Global "Ledger" overrides: flip the whole Tailwind surface language
+              site-wide — squared corners, warm paper, hairline borders, FLAT
+              (no soft drop-shadows). One place, applies everywhere. ─────────── */
+        .rounded-3xl, .rounded-2xl, .rounded-xl { border-radius: 4px !important; }
+        .rounded-lg, .rounded-md { border-radius: 3px !important; }     /* keep .rounded-full round */
+        .bg-white { background-color: var(--paper) !important; }
+        .bg-slate-50, .bg-slate-100 { background-color: var(--canvas2) !important; }
+        .border-slate-100, .border-slate-200, .border-slate-300 { border-color: var(--line) !important; }
+        [class*="shadow-"] { box-shadow: none !important; }            /* kill all soft/drop shadows */
+        .text-slate-800 { color: #26262c !important; }
 
-        /* ── Bidatia premium "data-platform" design layer ──────────────────── */
+        /* Section eyebrow: mono label with a solid violet index square. */
+        .kicker { display:inline-flex; align-items:center; gap:.6rem; font-family:var(--font-mono);
+            font-size:.7rem; line-height:1; letter-spacing:.18em; text-transform:uppercase; font-weight:600; }
+        .kicker::before { content:''; width:.5rem; height:.5rem; flex:none; background:var(--violet); }
 
-        /* Dark mesh: layered radial data-glows over the slate base. */
-        .mesh {
-            background-color: #0f172a;
-            background-image:
-                radial-gradient(42rem 30rem at 12% -12%, rgba(37,99,235,.30), transparent 60%),
-                radial-gradient(38rem 26rem at 96% 6%, rgba(34,197,94,.16), transparent 60%),
-                radial-gradient(34rem 26rem at 50% 128%, rgba(239,68,68,.12), transparent 60%);
-        }
-        /* Light section with a faint data-mesh tint. */
-        .mesh-light {
-            background-color: #fff;
-            background-image:
-                radial-gradient(40rem 26rem at 100% -10%, rgba(37,99,235,.06), transparent 60%),
-                radial-gradient(34rem 22rem at -5% 110%, rgba(34,197,94,.05), transparent 60%);
-        }
+        /* Ledger card: squared, hairline, FLAT, with a crisp hard-offset on hover. */
+        .l-card { position:relative; background:var(--paper); border:1px solid var(--line);
+            transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+        .l-card:hover { border-color:var(--ink); box-shadow: 5px 5px 0 0 var(--ink);
+            transform: translate(-2px,-2px); }
+        /* keep .dash-card working but in the new flat ledger language */
+        .dash-card { position:relative; background:var(--paper); border:1px solid var(--line);
+            transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+        .dash-card:hover { border-color:var(--ink); box-shadow: 5px 5px 0 0 var(--ink);
+            transform: translate(-2px,-2px); }
 
-        /* Kicker / section eyebrow with an RGB signal tick. */
-        .kicker { display:inline-flex; align-items:center; gap:.65rem; font-family:var(--font-mono);
-            font-size:.72rem; line-height:1; letter-spacing:.14em; text-transform:uppercase; font-weight:600; }
-        .kicker::before { content:''; width:1.75rem; height:2px; border-radius:2px; flex:none;
-            background:linear-gradient(90deg,#ef4444,#22c55e,#3b82f6); }
+        /* Squared icon tile (bordered, instrument style). */
+        .tile { display:inline-flex; align-items:center; justify-content:center;
+            border:1px solid var(--line); background:var(--canvas); }
+        .tile-ink { border-color:transparent; background:var(--ink); color:var(--lime); }
 
-        /* Dashboard card: premium surface, hover lift, RGB top-edge on hover. */
-        .dash-card { position:relative; border:1px solid rgb(226 232 240); border-radius:1rem;
-            background:#fff; overflow:hidden;
-            transition:transform .25s cubic-bezier(.4,0,.2,1), box-shadow .25s, border-color .25s; }
-        .dash-card:hover { transform:translateY(-4px); border-color:rgb(191 219 254);
-            box-shadow:0 22px 48px -22px rgba(30,58,138,.42); }
-        .dash-card::after { content:''; position:absolute; inset-inline:0; top:0; height:2px;
-            background:linear-gradient(90deg,#ef4444,#22c55e,#3b82f6);
-            transform:scaleX(0); transform-origin:left; transition:transform .35s cubic-bezier(.4,0,.2,1); }
-        .dash-card:hover::after { transform:scaleX(1); }
+        /* Dark "instrument panel" surface for data boards / dark sections. */
+        .panel { background:var(--ink2); border:1px solid rgba(255,255,255,.12); }
+        .mesh { background:var(--ink); position:relative; }
+        .mesh::before { content:''; position:absolute; inset:0; pointer-events:none;
+            background:
+                radial-gradient(60rem 32rem at 88% -10%, rgba(124,58,237,.35), transparent 60%),
+                radial-gradient(40rem 24rem at 6% 110%, rgba(163,230,53,.10), transparent 60%); }
+        .mesh-light { background: var(--canvas); }
 
-        /* Glass surface on dark backgrounds. */
-        .glass { background:rgba(255,255,255,.045); border:1px solid rgba(255,255,255,.09);
-            backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); }
+        /* Signature accent bar / text / ring — violet→lime, used sparingly. */
+        .rgb-bar { background: linear-gradient(90deg, var(--violet) 0%, var(--lime) 100%); }
+        .rgb-text { color: var(--violet); }
+        [class~="mesh"] .rgb-text, .mesh .rgb-text { color: var(--lime); }
+        .rgb-ring { position:relative; }
+        .rgb-ring::before { content:''; position:absolute; inset:-1px; padding:1px;
+            background:linear-gradient(135deg,var(--violet),var(--lime));
+            -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+            -webkit-mask-composite:xor; mask-composite:exclude; pointer-events:none; }
 
-        /* Hairline data-flow divider between sections. */
-        .flow-divider { height:1px; border:0;
-            background:linear-gradient(90deg,transparent,rgba(37,99,235,.4),rgba(34,197,94,.4),transparent); }
+        .flow-divider { height:1px; border:0; background: var(--line-strong); }
 
         /* Animated dotted pipe (data-pipeline / workflow connectors). */
         .pipe { stroke-dasharray:5 7; animation:pipeflow 1.4s linear infinite; }
         @keyframes pipeflow { to { stroke-dashoffset:-24; } }
         @media (prefers-reduced-motion: reduce) { .pipe { animation:none; } }
 
-        /* Dotted/honeycomb data texture (radial dots). */
-        .dot-grid { background-image: radial-gradient(rgba(15,23,42,.06) 1px, transparent 1px);
-            background-size: 22px 22px; }
-        .dot-grid-dark { background-image: radial-gradient(rgba(255,255,255,.08) 1px, transparent 1px);
-            background-size: 22px 22px; }
-
-        /* Technical grid background — signals "systems / engineering" */
-        .tech-grid {
-            --grid: rgba(15, 23, 42, .05);
-            background-image:
-                linear-gradient(to right, var(--grid) 1px, transparent 1px),
-                linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
-            background-size: 44px 44px;
-        }
-        .tech-grid-dark { --grid: rgba(255, 255, 255, .06); }
+        /* Blueprint rule grid (fine, ink) + dot matrix — the new background texture. */
+        .rule-grid { background-image:
+                linear-gradient(to right, var(--line) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+            background-size: 64px 64px; }
+        .rule-grid-dark { background-image:
+                linear-gradient(to right, rgba(255,255,255,.07) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,.07) 1px, transparent 1px);
+            background-size: 64px 64px; }
+        .dot-grid { background-image: radial-gradient(var(--line) 1px, transparent 1px); background-size: 22px 22px; }
+        .dot-grid-dark { background-image: radial-gradient(rgba(255,255,255,.10) 1px, transparent 1px); background-size: 22px 22px; }
+        /* legacy aliases kept so existing markup keeps working */
+        .tech-grid { background-image:
+                linear-gradient(to right, var(--line) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+            background-size: 64px 64px; }
+        .tech-grid-dark { background-image:
+                linear-gradient(to right, rgba(255,255,255,.07) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,.07) 1px, transparent 1px); }
         .grid-mask {
             -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 0%, #000 45%, transparent 100%);
-            mask-image: radial-gradient(ellipse 75% 65% at 50% 0%, #000 45%, transparent 100%);
-        }
+            mask-image: radial-gradient(ellipse 75% 65% at 50% 0%, #000 45%, transparent 100%); }
+        .glass { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.10); }
 
         /* Scroll reveal — subtle rise + fade, staggered via --d */
-        .reveal {
-            opacity: 0;
-            transform: translateY(14px);
-            transition: opacity .6s cubic-bezier(.4, 0, .2, 1), transform .6s cubic-bezier(.4, 0, .2, 1);
-            transition-delay: var(--d, 0ms);
-        }
-        .reveal.is-visible { opacity: 1; transform: none; }
+        .reveal { opacity:0; transform:translateY(14px);
+            transition:opacity .6s cubic-bezier(.4,0,.2,1), transform .6s cubic-bezier(.4,0,.2,1);
+            transition-delay:var(--d, 0ms); }
+        .reveal.is-visible { opacity:1; transform:none; }
 
         /* Pulsing "live" status dot */
-        .pulse-dot { position: relative; }
-        .pulse-dot::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 9999px;
-            background: inherit;
-            animation: pulsering 2.2s ease-out infinite;
-        }
-        @keyframes pulsering {
-            0%   { transform: scale(1);   opacity: .55; }
-            100% { transform: scale(2.6); opacity: 0; }
-        }
+        .pulse-dot { position:relative; }
+        .pulse-dot::after { content:''; position:absolute; inset:0; border-radius:9999px;
+            background:inherit; animation:pulsering 2.2s ease-out infinite; }
+        @keyframes pulsering { 0%{transform:scale(1);opacity:.55;} 100%{transform:scale(2.6);opacity:0;} }
 
         a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
-            outline: 2px solid #2563eb;
-            outline-offset: 2px;
-            border-radius: .375rem;
-        }
+            outline: 2px solid var(--violet); outline-offset: 2px; }
 
         @media (prefers-reduced-motion: reduce) {
-            .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
-            .pulse-dot::after { animation: none !important; }
-            html { scroll-behavior: auto !important; }
+            .reveal { opacity:1 !important; transform:none !important; transition:none !important; }
+            .pulse-dot::after { animation:none !important; }
+            html { scroll-behavior:auto !important; }
         }
 
-        /* RTL (Arabic): flexbox/grid honour direction automatically, but code,
-           emails, phone numbers and URLs must stay left-to-right. */
-        [dir="rtl"] body { text-align: right; font-family: var(--font-arabic); }
-
-        /* Readex Pro is tuned for Arabic but also covers Latin glyphs — code,
-           emails, phone numbers, URLs and other technical text must keep the
-           existing monospace font and LTR direction for readability. */
-        [dir="rtl"] pre,
-        [dir="rtl"] code,
-        [dir="rtl"] .force-ltr {
-            direction: ltr;
-            text-align: left;
-            unicode-bidi: embed;
-            font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
-        }
-
-        /* Arabic (RTL): the monospace UI font (JetBrains Mono) has no Arabic
-           glyphs, and the letter-spacing on these labels breaks Arabic's
-           cursive joining ("cuts" the words). So any .font-mono text that is NOT
-           an LTR technical token (code / pre / .force-ltr) uses the Arabic font
-           with natural spacing — the real code blocks and tokens stay monospace. */
+        /* RTL (Arabic) */
+        [dir="rtl"] body { text-align:right; font-family:var(--font-arabic); }
+        [dir="rtl"] pre, [dir="rtl"] code, [dir="rtl"] .force-ltr {
+            direction:ltr; text-align:left; unicode-bidi:embed;
+            font-family:'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace; }
         [dir="rtl"] .font-mono:not(.force-ltr):not(code):not(pre) {
-            font-family: var(--font-arabic);
-            letter-spacing: normal;
-        }
+            font-family:var(--font-arabic); letter-spacing:normal; }
     </style>
     {% block extra_head %}{% endblock %}
 
@@ -257,7 +235,7 @@
     </script>
     {% endif %}
 </head>
-<body class="bg-white text-slate-800 antialiased">
+<body class="bg-canvas text-ink antialiased">
     <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-3 focus:left-3 focus:bg-ink focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:font-semibold">{% trans "Skip to content" %}</a>
 
     {% include "partials/navbar.html" %}
@@ -266,7 +244,7 @@
         {% if messages %}
             <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 space-y-3">
                 {% for message in messages %}
-                    <div class="rounded-lg border border-emerald-200 bg-emerald-50 text-emerald-800 px-4 py-3 text-sm">
+                    <div class="border-l-2 border-accent-500 bg-paper px-4 py-3 text-sm text-ink ring-1 ring-line">
                         {{ message }}
                     </div>
                 {% endfor %}

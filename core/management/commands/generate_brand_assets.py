@@ -34,7 +34,7 @@ except ImportError:  # pragma: no cover - Pillow is a project dependency
 
 from blog.management.commands.generate_article_covers import (
     BRAND, BRAND_LT, H, H2, INK, SLATE, SS, TEAL_LT, W, W2, WHITE,
-    _MOTIFS, _background, _brand_furniture, _f, _rgb_rule, _rr,
+    _MOTIFS, _background, _brand_furniture, _databars, _f, _signal_rule, _rr,
 )
 
 
@@ -61,25 +61,22 @@ def _social_card(motif, title, subtitle):
 
 
 def _app_icon(size):
-    """A square Bidatia app icon: slate tile, centered 'B', RGB base bar."""
+    """A squared Bidatia app icon: ink tile with the data-bars glyph."""
     s = size * SS
     img = Image.new('RGBA', (s, s), (0, 0, 0, 0))
     d = ImageDraw.Draw(img)
-    radius = int(s * 0.22)
+    radius = int(s * 0.16)
     _rr(d, [0, 0, s - 1, s - 1], radius=radius, fill=INK + (255,))
-    # subtle inner ring
-    _rr(d, [int(s * 0.06), int(s * 0.06), int(s * 0.94), int(s * 0.94)],
-        radius=int(radius * 0.8), outline=(255, 255, 255, 30), width=max(1, int(s * 0.01)))
-    # centered "B"
-    bf = _f(size * 0.62)
-    bb = d.textbbox((0, 0), 'B', font=bf)
-    d.text(((s - (bb[2] - bb[0])) / 2 - bb[0], (s - (bb[3] - bb[1])) / 2 - bb[1] - int(s * 0.03)),
-           'B', font=bf, fill=WHITE, stroke_width=max(1, int(s * 0.012)), stroke_fill=WHITE)
-    # RGB base bar
-    bar_y = int(s * 0.80)
-    bar_x = int(s * 0.20)
-    seg = int((s - 2 * bar_x) / 3)
-    _rgb_rule(d, bar_x, bar_y, seg, int(s * 0.05))
+    # three ascending data bars (lime, lime, violet), centered.
+    base = int(s * 0.74); pad = int(s * 0.24)
+    bw = int(s * 0.13); gap = int(s * 0.095)
+    hs = [int(s * 0.26), int(s * 0.40), int(s * 0.54)]
+    cols = [TEAL_LT, TEAL_LT, BRAND_LT]
+    total = 3 * bw + 2 * gap
+    bx = int((s - total) / 2)
+    for h, c in zip(hs, cols):
+        d.rectangle([bx, base - h, bx + bw, base], fill=c + (255,))
+        bx += bw + gap
     return img.resize((size, size), Image.LANCZOS)
 
 

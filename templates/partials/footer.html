@@ -1,68 +1,70 @@
 {% load i18n %}
-<footer class="relative bg-ink text-slate-300 overflow-hidden">
-    <div class="h-[3px] rgb-bar" aria-hidden="true"></div>
-    <div class="absolute inset-0 tech-grid tech-grid-dark opacity-40" aria-hidden="true"></div>
+<footer class="relative bg-ink text-canvas/70 overflow-hidden">
+    <div class="absolute inset-0 rule-grid-dark opacity-50" aria-hidden="true"></div>
 
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-        <div class="sm:col-span-2 lg:col-span-1">
-            <div class="flex items-center gap-2.5">
-                <span class="relative flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 text-white font-display font-bold text-sm ring-1 ring-white/10 overflow-hidden">
-                    <span class="absolute inset-x-0 bottom-0 h-[3px] rgb-bar"></span>
-                    <span class="relative">B</span>
-                </span>
-                <span class="flex flex-col leading-none">
-                    <span class="font-display font-bold text-lg text-white">{{ SITE_BRAND }}</span>
-                    <span class="font-mono text-[10px] text-slate-500 tracking-wide force-ltr">{{ SITE_DIVISION }} · ERP · Data · AI</span>
-                </span>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-[1.4fr_1fr_1fr_1.1fr] gap-y-12 gap-x-10 py-16 border-b border-white/10">
+            <div>
+                <div class="flex items-center gap-3">
+                    <span class="flex h-9 w-9 items-center justify-center bg-white/5 ring-1 ring-white/10">
+                        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <rect x="3" y="13" width="4" height="8" fill="#a3e635"/>
+                            <rect x="10" y="8" width="4" height="13" fill="#a3e635"/>
+                            <rect x="17" y="4" width="4" height="17" fill="#8b5cf6"/>
+                        </svg>
+                    </span>
+                    <span class="flex flex-col leading-none">
+                        <span class="font-display font-bold text-xl text-white">{{ SITE_BRAND }}</span>
+                        <span class="font-mono text-[9px] text-canvas/40 tracking-[0.2em] uppercase force-ltr mt-0.5">{{ SITE_DIVISION }}</span>
+                    </span>
+                </div>
+                <p class="mt-5 text-sm leading-relaxed text-canvas/55 max-w-xs">
+                    {% trans "The Business Systems division of Bidatia. We implement, modernize and govern Odoo ERP — connected to your data platform, your BI and your AI agents — so your operation runs on information you can trust." %}
+                </p>
+                <p class="mt-5 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em] text-accent-400">
+                    <span class="pulse-dot inline-flex h-1.5 w-1.5 rounded-full bg-accent-400"></span>
+                    {% trans "Onboarding new clients" %}
+                </p>
             </div>
-            <p class="mt-4 text-sm leading-relaxed text-slate-400 max-w-xs">
-                {% trans "The Business Systems division of Bidatia. We implement, modernize and govern Odoo ERP — connected to your data platform, your BI and your AI agents — so your operation runs on information you can trust." %}
-            </p>
-            <p class="mt-4 inline-flex items-center gap-2 font-mono text-xs text-slate-400">
-                <span class="pulse-dot inline-flex h-2 w-2 rounded-full bg-accent-500"></span>
-                {% trans "Onboarding new clients" %}
-            </p>
+
+            <div>
+                <h2 class="font-mono text-[10px] font-semibold text-canvas/35 tracking-[0.2em] uppercase">{% trans "Services" %}</h2>
+                <ul class="mt-5 space-y-3 text-sm text-canvas/60">
+                    <li><a href="{% url 'services:service_list' %}" class="hover:text-accent-400 transition">{% trans "All services" %}</a></li>
+                    <li><a href="{% url 'booking:book_consultation' %}" class="hover:text-accent-400 transition">{% trans "Request a consultation" %}</a></li>
+                    <li><a href="{% url 'booking:book_consultation' %}?service=odoo-health-check" class="hover:text-accent-400 transition">{% trans "ERP & data assessment" %}</a></li>
+                    <li><a href="{% url 'case_studies:case_study_list' %}" class="hover:text-accent-400 transition">{% trans "Case studies" %}</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h2 class="font-mono text-[10px] font-semibold text-canvas/35 tracking-[0.2em] uppercase">{% trans "Company" %}</h2>
+                <ul class="mt-5 space-y-3 text-sm text-canvas/60">
+                    <li><a href="{% url 'core:about' %}" class="hover:text-accent-400 transition">{% trans "About Bidatia" %}</a></li>
+                    <li><a href="{% url 'blog:blog_list' %}" class="hover:text-accent-400 transition">{% trans "Insights & blog" %}</a></li>
+                    <li><a href="{% url 'glossary:index' %}" class="hover:text-accent-400 transition">{% trans "Odoo glossary" %}</a></li>
+                    <li><a href="{% url 'pages:odoo_eol_index' %}" class="hover:text-accent-400 transition">{% trans "Odoo version support" %}</a></li>
+                    <li><a href="{% url 'pages:privacy' %}" class="hover:text-accent-400 transition">{% trans "Privacy policy" %}</a></li>
+                    <li><a href="{% url 'pages:terms' %}" class="hover:text-accent-400 transition">{% trans "Terms of service" %}</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h2 class="font-mono text-[10px] font-semibold text-canvas/35 tracking-[0.2em] uppercase">{% trans "Get in touch" %}</h2>
+                <ul class="mt-5 space-y-3 text-sm text-canvas/60">
+                    <li><a href="mailto:{{ CONTACT_EMAIL }}" class="hover:text-accent-400 transition force-ltr inline-block">{{ CONTACT_EMAIL }}</a></li>
+                    <li><span class="force-ltr inline-block">{{ CONTACT_WHATSAPP }}</span> · {% trans "Phone / WhatsApp" %}</li>
+                    <li>{{ SITE_CITY }} · {% trans "Remote across Europe & MENA" %}</li>
+                    <li class="pt-1"><a href="{% url 'leads:contact' %}" class="inline-flex items-center gap-1.5 text-white font-semibold hover:text-accent-400 transition">{% trans "Contact form" %}
+                        <svg class="h-3.5 w-3.5" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                    </a></li>
+                </ul>
+            </div>
         </div>
 
-        <div>
-            <h2 class="font-mono text-xs font-semibold text-slate-500 tracking-wider uppercase">{% trans "Services" %}</h2>
-            <ul class="mt-4 space-y-2.5 text-sm text-slate-400">
-                <li><a href="{% url 'services:service_list' %}" class="hover:text-white transition">{% trans "All services" %}</a></li>
-                <li><a href="{% url 'booking:book_consultation' %}" class="hover:text-white transition">{% trans "Request a consultation" %}</a></li>
-                <li><a href="{% url 'booking:book_consultation' %}?service=odoo-health-check" class="hover:text-white transition">{% trans "ERP & data assessment" %}</a></li>
-                <li><a href="{% url 'case_studies:case_study_list' %}" class="hover:text-white transition">{% trans "Case studies" %}</a></li>
-            </ul>
-        </div>
-
-        <div>
-            <h2 class="font-mono text-xs font-semibold text-slate-500 tracking-wider uppercase">{% trans "Company" %}</h2>
-            <ul class="mt-4 space-y-2.5 text-sm text-slate-400">
-                <li><a href="{% url 'core:about' %}" class="hover:text-white transition">{% trans "About Bidatia" %}</a></li>
-                <li><a href="{% url 'blog:blog_list' %}" class="hover:text-white transition">{% trans "Insights & blog" %}</a></li>
-                <li><a href="{% url 'glossary:index' %}" class="hover:text-white transition">{% trans "Odoo glossary" %}</a></li>
-                <li><a href="{% url 'pages:odoo_eol_index' %}" class="hover:text-white transition">{% trans "Odoo version support" %}</a></li>
-                <li><a href="{% url 'pages:privacy' %}" class="hover:text-white transition">{% trans "Privacy policy" %}</a></li>
-                <li><a href="{% url 'pages:terms' %}" class="hover:text-white transition">{% trans "Terms of service" %}</a></li>
-            </ul>
-        </div>
-
-        <div>
-            <h2 class="font-mono text-xs font-semibold text-slate-500 tracking-wider uppercase">{% trans "Get in touch" %}</h2>
-            <ul class="mt-4 space-y-2.5 text-sm text-slate-400">
-                <li><a href="mailto:{{ CONTACT_EMAIL }}" class="hover:text-white transition force-ltr inline-block">{{ CONTACT_EMAIL }}</a></li>
-                <li><span class="force-ltr inline-block">{{ CONTACT_WHATSAPP }}</span> · {% trans "Phone / WhatsApp" %}</li>
-                <li>{{ SITE_CITY }} · {% trans "Remote across Europe & MENA" %}</li>
-                <li class="pt-1"><a href="{% url 'leads:contact' %}" class="inline-flex items-center gap-1.5 text-white font-semibold hover:text-brand-300 transition">{% trans "Contact form" %}
-                    <svg class="h-3.5 w-3.5" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                </a></li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="relative border-t border-white/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+        <div class="py-6 flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-[11px] text-canvas/40">
             <p>&copy; {% now "Y" %} {{ SITE_NAME }}. {% trans "All rights reserved." %}</p>
-            <p class="font-mono">{% trans "ERP · Odoo · Data governance · BI · AI — Madrid, Spain · Remote worldwide" %}</p>
+            <p class="uppercase tracking-[0.12em]">{% trans "ERP · Odoo · Data governance · BI · AI — Madrid, Spain" %}</p>
         </div>
     </div>
 </footer>

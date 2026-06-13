@@ -1,13 +1,11 @@
-<svg width="280" height="64" viewBox="0 0 280 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bidatia Business Systems">
+<svg width="260" height="60" viewBox="0 0 260 60" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bidatia Business Systems">
   <title>Bidatia Business Systems</title>
-  <!-- Logo mark: slate tile with an RGB signal bar -->
-  <rect x="2" y="12" width="40" height="40" rx="11" fill="#0f172a"/>
-  <rect x="2.5" y="12.5" width="39" height="39" rx="10.5" stroke="#ffffff" stroke-opacity="0.12"/>
-  <text x="22" y="39" text-anchor="middle" font-family="'Space Grotesk','Inter',system-ui,sans-serif" font-size="22" font-weight="700" fill="#ffffff">B</text>
-  <rect x="9"  y="44" width="8" height="3" rx="1" fill="#ef4444"/>
-  <rect x="18" y="44" width="8" height="3" rx="1" fill="#22c55e"/>
-  <rect x="27" y="44" width="8" height="3" rx="1" fill="#3b82f6"/>
+  <!-- Logo mark: squared ink tile with the data-bars glyph -->
+  <rect x="2" y="12" width="40" height="40" fill="#0E0E11"/>
+  <rect x="11" y="32" width="6" height="11" fill="#a3e635"/>
+  <rect x="19" y="26" width="6" height="17" fill="#a3e635"/>
+  <rect x="27" y="20" width="6" height="23" fill="#8b5cf6"/>
   <!-- Wordmark -->
-  <text x="54" y="34" font-family="'Space Grotesk','Inter',system-ui,sans-serif" font-size="24" font-weight="700" fill="#0f172a" letter-spacing="-0.4">Bidatia</text>
-  <text x="55" y="49" font-family="'JetBrains Mono','SFMono-Regular',monospace" font-size="9.5" letter-spacing="2" fill="#64748b">BUSINESS SYSTEMS</text>
+  <text x="54" y="35" font-family="'Bricolage Grotesque','Helvetica Neue',sans-serif" font-size="24" font-weight="700" fill="#0E0E11" letter-spacing="-0.5">Bidatia</text>
+  <text x="55" y="49" font-family="'IBM Plex Mono',monospace" font-size="9" letter-spacing="2.5" fill="#6b6b73">BUSINESS SYSTEMS</text>
 </svg>

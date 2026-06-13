@@ -14,7 +14,7 @@
         .no-print { display: none !important; }
         main { padding: 0 !important; }
         /* Dark hero sections print on white — force readable ink text. */
-        .bg-ink, .bg-ink * { background: #fff !important; color: #0f172a !important; }
+        .bg-ink, .bg-ink * { background: #fff !important; color: #0E0E11 !important; }
         .tech-grid, .grid-mask, .xray-glow { display: none !important; }
         /* Keep cards and table rows on one page where possible. */
         .rounded-2xl, .rounded-xl, tr, li { break-inside: avoid; }
@@ -118,7 +118,7 @@
                     <svg class="h-36 w-36 -rotate-90" viewBox="0 0 120 120" aria-hidden="true">
                         <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="9"/>
                         <circle cx="60" cy="60" r="52" fill="none"
-                                stroke="{% if scoring.score >= 76 %}#f87171{% elif scoring.score >= 51 %}#fb923c{% elif scoring.score >= 25 %}#fbbf24{% else %}#22c55e{% endif %}"
+                                stroke="{% if scoring.score >= 76 %}#f87171{% elif scoring.score >= 51 %}#fb923c{% elif scoring.score >= 25 %}#fbbf24{% else %}#a3e635{% endif %}"
                                 stroke-width="9" stroke-linecap="round"
                                 stroke-dasharray="{% widthratio scoring.score 100 327 %} 327"/>
                     </svg>
@@ -365,7 +365,7 @@
             </div>
 
             <div class="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-2 text-xs text-slate-600">
-                <span class="inline-flex items-center gap-1.5"><span class="h-3 w-3 shrink-0 rounded-full" style="background:#2563eb"></span>{% trans "Standard model" %}</span>
+                <span class="inline-flex items-center gap-1.5"><span class="h-3 w-3 shrink-0 rounded-full" style="background:#6d28d9"></span>{% trans "Standard model" %}</span>
                 <span class="inline-flex items-center gap-1.5"><span class="h-3 w-3 shrink-0 rounded-full" style="background:#f59e0b"></span>{% trans "Core model with custom fields" %}</span>
                 <span class="inline-flex items-center gap-1.5"><span class="h-3 w-3 shrink-0 rounded-full" style="background:#f43f5e"></span>{% trans "Custom (Studio) model" %}</span>
                 <span class="inline-flex items-center gap-1.5"><span class="h-3 w-3 shrink-0 rounded-full" style="background:#be123c"></span>{% trans "Business-critical custom model" %}</span>

@@ -17,7 +17,7 @@
     <text x="{{ axis.label_x }}" y="{{ axis.value_y }}" text-anchor="{{ axis.anchor }}" font-size="9.5" fill="#94a3b8" stroke="#ffffff" stroke-width="3" paint-order="stroke" stroke-linejoin="round">{{ axis.score }}/100</text>
     {% endfor %}
 
-    <circle cx="{{ qmap.cx }}" cy="{{ qmap.cy }}" r="{{ qmap.center_r }}" fill="#0f172a"/>
+    <circle cx="{{ qmap.cx }}" cy="{{ qmap.cy }}" r="{{ qmap.center_r }}" fill="#0E0E11"/>
     <text x="{{ qmap.cx }}" y="{{ qmap.cy }}" dy="4" text-anchor="middle" font-size="14" font-weight="800" fill="{{ qmap.score_color }}">{{ qmap.score }}</text>
 
     <text x="{{ qmap.view_w|add:'-12' }}" y="{{ qmap.view_h|add:'-10' }}" text-anchor="end" font-size="8.5" fill="#cbd5e1">Bidatia Data Risk Profiler — bidatia.xyz</text>

@@ -47,20 +47,20 @@ SS = 2                      # supersample factor (render big, downscale = antial
 W2, H2 = W * SS, H * SS
 
 # ── Brand palette (matches tailwind.config in base.html) ──────────────────
-# Bidatia "RGB" system: slate base, anchor blue, governance green accent.
-INK = (15, 23, 42)          # slate-900
-NAVY_TOP = (11, 16, 32)
-NAVY_BOT = (15, 23, 42)
-BRAND = (37, 99, 235)       # brand-600 (#2563eb)
-BRAND_LT = (96, 165, 250)   # brand-400 (#60a5fa)
-TEAL = (34, 197, 94)        # accent-500 / governance green (#22c55e)
-TEAL_LT = (74, 222, 128)    # accent-400 (#4ade80)
+# Bidatia "Ledger" system: near-black ink, signature violet, electric lime.
+INK = (14, 14, 17)          # near-black (#0E0E11)
+NAVY_TOP = (12, 12, 16)
+NAVY_BOT = (19, 19, 25)
+BRAND = (124, 58, 237)      # violet (#7c3aed)
+BRAND_LT = (167, 139, 250)  # violet-400 (#a78bfa)
+TEAL = (132, 204, 22)       # lime (#84cc16)
+TEAL_LT = (163, 230, 53)    # lime (#a3e635)
 WHITE = (255, 255, 255)
-SLATE = (148, 163, 184)
-# RGB signal trio for the brand accent rule (red → green → blue).
-SIG_R = (239, 68, 68)
-SIG_G = (34, 197, 94)
-SIG_B = (59, 130, 246)
+SLATE = (150, 150, 160)
+# Two-tone signal rule (violet → lime).
+SIG_R = (124, 58, 237)
+SIG_G = (163, 230, 53)
+SIG_B = (163, 230, 53)
 
 
 def _f(size):
@@ -103,31 +103,45 @@ def _background():
         ))
     base = base.convert('RGBA')
 
-    # Soft brand/teal glow, lower-right, for depth.
+    # Violet glow (top-right) + lime spark (lower-left) for depth.
     glow = Image.new('RGBA', (W2, H2), (0, 0, 0, 0))
     gd = ImageDraw.Draw(glow)
-    gd.ellipse([int(W2 * 0.55), int(H2 * 0.35), int(W2 * 1.15), int(H2 * 1.15)],
-               fill=BRAND + (70,))
-    gd.ellipse([int(W2 * 0.62), int(H2 * 0.5), int(W2 * 1.05), int(H2 * 1.2)],
-               fill=TEAL + (45,))
-    glow = glow.filter(ImageFilter.GaussianBlur(int(120 * SS)))
+    gd.ellipse([int(W2 * 0.58), int(-H2 * 0.3), int(W2 * 1.2), int(H2 * 0.7)],
+               fill=BRAND + (95,))
+    gd.ellipse([int(-W2 * 0.1), int(H2 * 0.6), int(W2 * 0.35), int(H2 * 1.3)],
+               fill=TEAL + (40,))
+    glow = glow.filter(ImageFilter.GaussianBlur(int(130 * SS)))
     base.alpha_composite(glow)
 
-    # Fine dot grid (subtle technical texture).
-    dots = Image.new('RGBA', (W2, H2), (0, 0, 0, 0))
-    dd = ImageDraw.Draw(dots)
-    gap, r = int(46 * SS), int(1.4 * SS)
+    # Fine ruled grid (blueprint texture) — the new instrument-panel look.
+    rule = Image.new('RGBA', (W2, H2), (0, 0, 0, 0))
+    rd = ImageDraw.Draw(rule)
+    gap = int(64 * SS)
+    for xx in range(gap, W2, gap):
+        rd.line([(xx, 0), (xx, H2)], fill=(255, 255, 255, 12), width=1)
     for yy in range(gap, H2, gap):
-        for xx in range(gap, W2, gap):
-            dd.ellipse([xx - r, yy - r, xx + r, yy + r], fill=(255, 255, 255, 14))
-    base.alpha_composite(dots)
+        rd.line([(0, yy), (W2, yy)], fill=(255, 255, 255, 12), width=1)
+    base.alpha_composite(rule)
     return base
 
 
-def _rgb_rule(d, x, y, seg, h):
-    """A short red → green → blue accent rule (the Bidatia signal)."""
-    for i, col in enumerate((SIG_R, SIG_G, SIG_B)):
-        d.rectangle([x + i * seg, y, x + (i + 1) * seg, y + h], fill=col + (235,))
+def _signal_rule(d, x, y, w, h):
+    """A short violet → lime accent rule (the Bidatia signal)."""
+    half = w // 2
+    d.rectangle([x, y, x + half, y + h], fill=BRAND + (235,))
+    d.rectangle([x + half, y, x + w, y + h], fill=TEAL_LT + (235,))
+
+
+def _databars(d, x, y, s):
+    """The Bidatia data-bars glyph (three ascending bars) inside a square."""
+    pad = int(s * 0.22); bw = int(s * 0.16); gap = int(s * 0.10)
+    base = y + s - pad
+    hs = [int(s * 0.30), int(s * 0.46), int(s * 0.62)]
+    cols = [TEAL_LT, TEAL_LT, BRAND_LT]
+    bx = x + pad
+    for h, c in zip(hs, cols):
+        d.rectangle([bx, base - h, bx + bw, base], fill=c + (255,))
+        bx += bw + gap
 
 
 def _brand_furniture(base):
@@ -135,22 +149,18 @@ def _brand_furniture(base):
     d = ImageDraw.Draw(base)
     mx, my = int(64 * SS), int(56 * SS)
 
-    # Logo mark: slate rounded square, "B", and an RGB bar along the bottom.
-    s = int(44 * SS)
-    _rr(d, [mx, my, mx + s, my + s], radius=12 * SS, fill=INK + (255,),
-        outline=(255, 255, 255, 40), width=int(SS))
-    bf = _f(26)
-    bb = d.textbbox((0, 0), 'B', font=bf)
-    d.text((mx + (s - (bb[2] - bb[0])) / 2 - bb[0], my + (s - (bb[3] - bb[1])) / 2 - bb[1]),
-           'B', font=bf, fill=WHITE, stroke_width=int(SS), stroke_fill=WHITE)
-    _rgb_rule(d, mx + int(7 * SS), my + s - int(9 * SS), int((s - 14 * SS) / 3), int(4 * SS))
+    # Logo mark: squared ink tile with the data-bars glyph.
+    s = int(46 * SS)
+    d.rectangle([mx, my, mx + s, my + s], fill=INK + (255,))
+    d.rectangle([mx, my, mx + s, my + s], outline=(255, 255, 255, 40), width=int(SS))
+    _databars(d, mx, my, s)
 
-    # Wordmark: "Bidatia" white (faux-bold via stroke).
+    # Wordmark: "Bidatia" white + a mono division label.
     wf = _f(30)
     tx = mx + s + int(16 * SS)
-    ty = my + int(4 * SS)
+    ty = my + int(3 * SS)
     d.text((tx, ty), 'Bidatia', font=wf, fill=WHITE, stroke_width=int(SS), stroke_fill=WHITE)
-    sf = _f(13)
+    sf = _f(12)
     d.text((tx + int(2 * SS), ty + int(34 * SS)), 'BUSINESS SYSTEMS', font=sf, fill=SLATE)
 
     # Neutral tech tag (product/tech terms — language-neutral), bottom-left.
@@ -158,8 +168,8 @@ def _brand_furniture(base):
     tf = _f(15)
     d.text((int(64 * SS), int(H2 - 70 * SS)), tag, font=tf, fill=SLATE)
 
-    # RGB accent rule above the tag.
-    _rgb_rule(d, int(64 * SS), int(H2 - 88 * SS), int(40 * SS), int(4 * SS))
+    # Signal accent rule above the tag.
+    _signal_rule(d, int(64 * SS), int(H2 - 88 * SS), int(120 * SS), int(4 * SS))
 
 
 # ── Per-topic motifs (drawn on a transparent overlay, then composited) ────

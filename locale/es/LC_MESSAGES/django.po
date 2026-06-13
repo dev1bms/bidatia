@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-13 16:04+0000\n"
+"POT-Creation-Date: 2026-06-13 16:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,19 +66,19 @@ msgid "Content"
 msgstr "Contenido"
 
 #: bidatia/settings.py:479 core/context_processors.py:56 services/views.py:35
-#: templates/core/home.html:213 templates/partials/footer.html:28
-#: templates/partials/navbar.html:21 templates/partials/navbar.html:51
+#: templates/core/home.html:218 templates/partials/footer.html:31
+#: templates/partials/navbar.html:24 templates/partials/navbar.html:48
 msgid "Services"
 msgstr "Servicios"
 
 #: bidatia/settings.py:481 blog/views.py:38 core/context_processors.py:57
 #: templates/blog/blog_list.html:4 templates/blog/blog_list.html:11
-#: templates/partials/navbar.html:24 templates/partials/navbar.html:54
+#: templates/partials/navbar.html:27 templates/partials/navbar.html:51
 msgid "Insights"
 msgstr "Artículos"
 
 #: bidatia/settings.py:483 core/context_processors.py:58
-#: templates/partials/footer.html:33
+#: templates/partials/footer.html:36
 msgid "Case studies"
 msgstr "Casos de éxito"
 
@@ -124,8 +124,8 @@ msgstr ""
 msgid "Edit this case study"
 msgstr ""
 
-#: blog/views.py:67 templates/partials/navbar.html:23
-#: templates/partials/navbar.html:53
+#: blog/views.py:67 templates/partials/navbar.html:26
+#: templates/partials/navbar.html:50
 msgid "Case Studies"
 msgstr "Casos de éxito"
 
@@ -157,23 +157,23 @@ msgstr ""
 msgid "e.g. Weekday afternoons, Madrid time (CET)"
 msgstr "p. ej. tardes entre semana, hora de Madrid (CET)"
 
-#: booking/forms.py:60 leads/forms.py:26 templates/core/contact.html:22
+#: booking/forms.py:60 leads/forms.py:26 templates/core/contact.html:23
 #: tool_data_risk/forms.py:58 tool_erp_rescue/forms.py:29
 #: tool_studio_xray/forms.py:72
 msgid "Full name"
 msgstr "Nombre completo"
 
-#: booking/forms.py:61 leads/forms.py:27 templates/core/contact.html:33
+#: booking/forms.py:61 leads/forms.py:27 templates/core/contact.html:34
 msgid "Company name"
 msgstr "Nombre de la empresa"
 
 #: booking/forms.py:62 templates/admin/index.html:59
-#: templates/core/contact.html:28
+#: templates/core/contact.html:29
 msgid "Email"
 msgstr "Correo electrónico"
 
-#: booking/forms.py:63 templates/core/contact.html:58
-#: templates/partials/footer.html:53
+#: booking/forms.py:63 templates/core/contact.html:59
+#: templates/partials/footer.html:56
 msgid "Phone / WhatsApp"
 msgstr "Teléfono / WhatsApp"
 
@@ -490,7 +490,7 @@ msgstr "Contabilidad y facturación"
 msgid "Sales & CRM"
 msgstr "Ventas y CRM"
 
-#: glossary/views.py:28 templates/core/home.html:333
+#: glossary/views.py:28 templates/core/home.html:338
 msgid "Inventory"
 msgstr "Inventario"
 
@@ -526,7 +526,7 @@ msgid "%(term)s — meaning in Odoo, examples and common mistakes"
 msgstr "%(term)s — significado en Odoo, ejemplos y errores comunes"
 
 #: glossary/views.py:85 templates/glossary/term.html:13
-#: templates/partials/footer.html:42
+#: templates/partials/footer.html:45
 msgid "Odoo glossary"
 msgstr "Glosario de Odoo"
 
@@ -606,7 +606,7 @@ msgstr ""
 " la política estándar de tres versiones de Odoo."
 
 #: pages/views.py:70 templates/pages/odoo_eol_detail.html:13
-#: templates/partials/footer.html:43
+#: templates/partials/footer.html:46
 msgid "Odoo version support"
 msgstr "Soporte de versiones de Odoo"
 
@@ -847,7 +847,7 @@ msgstr ""
 msgid "No contact messages yet."
 msgstr ""
 
-#: templates/base.html:261
+#: templates/base.html:239
 msgid "Skip to content"
 msgstr "Saltar al contenido"
 
@@ -856,7 +856,6 @@ msgid "All insights"
 msgstr "Todos los artículos"
 
 #: templates/blog/blog_detail.html:40
-#| msgid "Want a snapshot like this for your own system?"
 msgid "Want this kind of thinking applied to your own systems?"
 msgstr "¿Quieres aplicar esta forma de pensar a tus propios sistemas?"
 
@@ -872,16 +871,15 @@ msgstr ""
 #: templates/booking/book_consultation.html:4
 #: templates/booking/book_consultation.html:59
 #: templates/case_studies/detail.html:41 templates/core/about.html:115
-#: templates/core/contact.html:72 templates/core/home.html:31
-#: templates/core/home.html:252 templates/core/home.html:697
-#: templates/partials/cta.html:15 templates/partials/footer.html:31
-#: templates/partials/navbar.html:38 templates/partials/navbar.html:57
+#: templates/core/contact.html:73 templates/core/home.html:34
+#: templates/core/home.html:257 templates/core/home.html:702
+#: templates/partials/cta.html:15 templates/partials/footer.html:34
+#: templates/partials/navbar.html:35 templates/partials/navbar.html:54
 #: templates/services/service_list.html:20 templates/tools_core/hub.html:101
 msgid "Request a consultation"
 msgstr "Solicita una consultoría"
 
 #: templates/blog/blog_detail.html:44
-#| msgid "Explore our Odoo services"
 msgid "Explore our services"
 msgstr "Explora nuestros servicios"
 
@@ -900,7 +898,6 @@ msgid "Ideas on running a business on"
 msgstr "Ideas para llevar un negocio sobre"
 
 #: templates/blog/blog_list.html:14
-#| msgid "We make it run on data you can trust."
 msgid "data you can trust"
 msgstr "datos en los que confiar"
 
@@ -1294,11 +1291,15 @@ msgstr "Contacta con el equipo"
 msgid "Contact Bidatia Business Systems — ERP, Data & AI"
 msgstr "Contacto Bidatia Business Systems — ERP, datos e IA"
 
-#: templates/core/contact.html:9
+#: templates/core/contact.html:9 templates/partials/footer.html:53
+msgid "Get in touch"
+msgstr "Contacto"
+
+#: templates/core/contact.html:10
 msgid "Contact our team"
 msgstr "Contacta con nuestro equipo"
 
-#: templates/core/contact.html:11
+#: templates/core/contact.html:12
 msgid ""
 "Have a question before booking, or not sure which service fits your "
 "situation? Send a message and we'll point you in the right direction."
@@ -1306,27 +1307,27 @@ msgstr ""
 "¿Tienes una pregunta antes de reservar o no sabes qué servicio encaja con tu"
 " situación? Envíanos un mensaje y te orientaremos."
 
-#: templates/core/contact.html:38
+#: templates/core/contact.html:39
 msgid "Message"
 msgstr "Mensaje"
 
-#: templates/core/contact.html:43
+#: templates/core/contact.html:44
 msgid "Send Message"
 msgstr "Enviar mensaje"
 
-#: templates/core/contact.html:50
+#: templates/core/contact.html:51
 msgid "Direct contact"
 msgstr "Contacto directo"
 
-#: templates/core/contact.html:62
+#: templates/core/contact.html:63
 msgid "Remote-first"
 msgstr "En remoto"
 
-#: templates/core/contact.html:67
+#: templates/core/contact.html:68
 msgid "Ready to book a session?"
 msgstr "¿Listo para reservar una sesión?"
 
-#: templates/core/contact.html:69
+#: templates/core/contact.html:70
 msgid ""
 "If you already know you need a consultation, an ERP & data assessment, or "
 "another service, you can go straight to the booking form."
@@ -1364,19 +1365,20 @@ msgstr ""
 "con tu plataforma de datos, BI y agentes de IA. La división Business Systems"
 " de Bidatia. Madrid, España · En remoto en todo el mundo."
 
-#: templates/core/home.html:20
-msgid "The Business Systems division of Bidatia · Madrid, Spain"
-msgstr "La división Business Systems de Bidatia · Madrid, España"
+#: templates/core/home.html:24
+#| msgid "Data governance in the DNA"
+msgid "ERP · Data governance · AI"
+msgstr "ERP · Gobierno del dato · IA"
 
-#: templates/core/home.html:23
+#: templates/core/home.html:26
 msgid "Your ERP shouldn't fight you every day."
 msgstr "Tu ERP no debería pelear contigo cada día."
 
-#: templates/core/home.html:24
+#: templates/core/home.html:27
 msgid "We make it run on data you can trust."
 msgstr "Haz que funcione con datos en los que confiar."
 
-#: templates/core/home.html:27
+#: templates/core/home.html:30
 msgid ""
 "Bidatia Business Systems implements, modernizes and governs Odoo ERP for "
 "companies that take their data seriously — connecting it to your data "
@@ -1390,129 +1392,98 @@ msgstr ""
 "de ingeniería que Bidatia aplica a los datos y la IA, ahora en el núcleo de "
 "tus sistemas de negocio."
 
-#: templates/core/home.html:35 templates/partials/cta.html:19
+#: templates/core/home.html:38 templates/partials/cta.html:19
 #: templates/services/service_list.html:21
 msgid "Request an ERP & data assessment"
 msgstr "Solicita una evaluación de ERP y datos"
 
-#: templates/core/home.html:40
+#: templates/core/home.html:43
 msgid "Consultation"
 msgstr "Consultoría"
 
-#: templates/core/home.html:41
+#: templates/core/home.html:44
 msgid "from €90"
 msgstr "desde 90 €"
 
-#: templates/core/home.html:44
+#: templates/core/home.html:47
 msgid "ERP assessment"
 msgstr "Evaluación de ERP"
 
-#: templates/core/home.html:45
+#: templates/core/home.html:48
 msgid "from €690"
 msgstr "desde 690 €"
 
-#: templates/core/home.html:48
+#: templates/core/home.html:51
 msgid "First reply"
 msgstr "Primera respuesta"
 
-#: templates/core/home.html:49
+#: templates/core/home.html:52
 msgid "day"
 msgstr "día"
 
-#: templates/core/home.html:66
-msgid "SYSTEM AUDIT"
-msgstr "AUDITORÍA DEL SISTEMA"
-
-#: templates/core/home.html:67
-msgid "Odoo 17 · Production"
-msgstr "Odoo 17 · Producción"
-
-#: templates/core/home.html:70
-msgid "SCORE"
-msgstr "PUNTUACIÓN"
-
-#: templates/core/home.html:77
-msgid "Configuration"
-msgstr "Consulta"
-
-#: templates/core/home.html:81
-msgid "Performance"
+#: templates/core/home.html:74
+msgid "Throughput"
 msgstr "Rendimiento"
 
-#: templates/core/home.html:82
-msgid "2 issues"
-msgstr "2 incidencias"
-
-#: templates/core/home.html:85
-msgid "Security rules"
-msgstr "Reglas de seguridad"
-
-#: templates/core/home.html:86
-msgid "review"
-msgstr "revisar"
-
-#: templates/core/home.html:89
-msgid "Studio &amp; automations"
-msgstr "Studio y automatizaciones"
-
-#: templates/core/home.html:90
-msgid "1 risk"
-msgstr "1 riesgo"
-
-#: templates/core/home.html:93
+#: templates/core/home.html:92
 msgid "Data quality"
 msgstr "Calidad de los datos"
 
-#: templates/core/home.html:99
-msgid "prioritized fix list"
-msgstr "lista de mejoras priorizada"
+#: templates/core/home.html:96
+#| msgid "Govern"
+msgid "Governed KPIs"
+msgstr "KPIs gobernados"
 
 #: templates/core/home.html:100
-msgid "delivered in 3–5 days"
-msgstr "entregado en 3–5 días"
+msgid "Sources"
+msgstr "Fuentes"
 
-#: templates/core/home.html:104
-msgid "Illustrative Health Check summary"
-msgstr "Resumen ilustrativo de un Health Check"
+#: templates/core/home.html:105
+msgid "Single source of truth · reconciled"
+msgstr "Fuente única de verdad · conciliada"
 
-#: templates/core/home.html:117
+#: templates/core/home.html:109
+#| msgid "From operational data to"
+msgid "Illustrative operations data board"
+msgstr "Panel de datos operativos ilustrativo"
+
+#: templates/core/home.html:122
 msgid "Backed by Bidatia"
 msgstr "Respaldado por Bidatia"
 
-#: templates/core/home.html:118
+#: templates/core/home.html:123
 msgid "Data, AI &amp; governance expertise"
 msgstr "Experiencia en datos, IA y gobierno del dato"
 
-#: templates/core/home.html:124
+#: templates/core/home.html:129
 msgid "Senior team, hands-on"
 msgstr "Equipo sénior, manos a la obra"
 
-#: templates/core/home.html:125
+#: templates/core/home.html:130
 msgid "Engineers, not account managers"
 msgstr "Ingenieros, no gestores de cuentas"
 
-#: templates/core/home.html:131
+#: templates/core/home.html:136
 msgid "Fixed-scope options"
 msgstr "Opciones de alcance cerrado"
 
-#: templates/core/home.html:132
+#: templates/core/home.html:137
 msgid "Clear pricing, no open retainers"
 msgstr "Precios claros, sin igualas abiertas"
 
-#: templates/core/home.html:139
+#: templates/core/home.html:144
 msgid "Multilingual support"
 msgstr "Atención en varios idiomas"
 
-#: templates/core/home.html:151
-#| msgid "The approach"
+#: templates/core/home.html:156
 msgid "The Bidatia approach"
 msgstr "El enfoque Bidatia"
 
-#: templates/core/home.html:153
+#: templates/core/home.html:158
 msgid "From scattered data to decisions you can act on"
 msgstr "De los datos dispersos a decisiones que puedes ejecutar"
 
-#: templates/core/home.html:156
+#: templates/core/home.html:161
 msgid ""
 "Most companies try to automate or report on top of messy data — and inherit "
 "the mess. We work the pipeline end to end, in order: capture it, govern it, "
@@ -1523,11 +1494,11 @@ msgstr ""
 "orden: capturarlos, gobernarlos, operarlos y, solo entonces, decidir con "
 "ellos."
 
-#: templates/core/home.html:177
+#: templates/core/home.html:182
 msgid "Capture"
 msgstr "Capturar"
 
-#: templates/core/home.html:178
+#: templates/core/home.html:183
 msgid ""
 "Ingest and integrate data from Odoo, spreadsheets and apps into one reliable"
 " pipeline."
@@ -1535,11 +1506,11 @@ msgstr ""
 "Ingesta e integra datos de Odoo, hojas de cálculo y apps en una única "
 "tubería fiable."
 
-#: templates/core/home.html:185
+#: templates/core/home.html:190
 msgid "Govern"
 msgstr "Gobernar"
 
-#: templates/core/home.html:186
+#: templates/core/home.html:191
 msgid ""
 "Quality rules, ownership and clear definitions, so every metric means "
 "exactly one thing."
@@ -1547,12 +1518,11 @@ msgstr ""
 "Reglas de calidad, propiedad y definiciones claras, para que cada métrica "
 "signifique exactamente una cosa."
 
-#: templates/core/home.html:193
-#| msgid "Moderate"
+#: templates/core/home.html:198
 msgid "Operate"
 msgstr "Operar"
 
-#: templates/core/home.html:194
+#: templates/core/home.html:199
 msgid ""
 "A modernized Odoo ERP your team trusts to run daily operations — on clean, "
 "governed data."
@@ -1560,12 +1530,11 @@ msgstr ""
 "Un Odoo ERP modernizado en el que tu equipo confía para operar cada día, "
 "sobre datos limpios y gobernados."
 
-#: templates/core/home.html:201
+#: templates/core/home.html:206
 msgid "Decide"
 msgstr "Decidir"
 
-#: templates/core/home.html:202
-#| msgid "Dashboards leadership can trust, fed straight from operations"
+#: templates/core/home.html:207
 msgid ""
 "BI dashboards leadership can trust and AI agents that act on data, not "
 "guesses."
@@ -1573,11 +1542,11 @@ msgstr ""
 "Cuadros de mando de BI fiables para la dirección y agentes de IA que actúan "
 "sobre datos, no sobre conjeturas."
 
-#: templates/core/home.html:215
+#: templates/core/home.html:220
 msgid "ERP, data and AI services scoped around outcomes — not hours"
 msgstr "Servicios de ERP, datos e IA definidos por resultados, no por horas"
 
-#: templates/core/home.html:218
+#: templates/core/home.html:223
 msgid ""
 "From Odoo implementation and modernization to BI dashboards, data governance"
 " and AI agents, each service is designed to solve a specific business "
@@ -1588,49 +1557,49 @@ msgstr ""
 "problema de negocio concreto y deja a tu equipo un sistema que puede manejar"
 " con confianza."
 
-#: templates/core/home.html:230 templates/services/service_list.html:36
+#: templates/core/home.html:235 templates/services/service_list.html:36
 msgid "FEATURED"
 msgstr "DESTACADO"
 
-#: templates/core/home.html:240
+#: templates/core/home.html:245
 msgid "Details"
 msgstr "Ver detalles"
 
-#: templates/core/home.html:246 templates/services/service_list.html:59
+#: templates/core/home.html:251 templates/services/service_list.html:59
 msgid "Services will appear here once added in the admin."
 msgstr ""
 "Los servicios aparecerán aquí una vez añadidos en el panel de "
 "administración."
 
-#: templates/core/home.html:255
+#: templates/core/home.html:260
 msgid "View all services"
 msgstr "Ver todos los servicios"
 
-#: templates/core/home.html:272
+#: templates/core/home.html:277
 msgid "The best place to start"
 msgstr "El mejor punto de partida"
 
-#: templates/core/home.html:281
+#: templates/core/home.html:286
 msgid "Request this assessment"
 msgstr "Solicita esta evaluación"
 
-#: templates/core/home.html:284
+#: templates/core/home.html:289
 msgid "See what's included"
 msgstr "Qué incluye"
 
-#: templates/core/home.html:289
+#: templates/core/home.html:294
 msgid "Fixed price &amp; scope"
 msgstr "Precio y alcance cerrados"
 
-#: templates/core/home.html:310
+#: templates/core/home.html:315
 msgid "Odoo expertise"
 msgstr "Versión de Odoo"
 
-#: templates/core/home.html:312
+#: templates/core/home.html:317
 msgid "Deep across the entire Odoo suite"
 msgstr "Dominio de toda la suite de Odoo"
 
-#: templates/core/home.html:315
+#: templates/core/home.html:320
 msgid ""
 "From Sales to Manufacturing, our team works hands-on with the apps your "
 "business runs on — and the technical layer of models, security, automations "
@@ -1640,51 +1609,51 @@ msgstr ""
 " las que depende tu negocio, y con la capa técnica de modelos, seguridad, "
 "automatizaciones y calidad de datos que hay debajo."
 
-#: templates/core/home.html:323 templates/core/home.html:423
+#: templates/core/home.html:328 templates/core/home.html:428
 msgid "Sales"
 msgstr "Ventas"
 
-#: templates/core/home.html:328
+#: templates/core/home.html:333
 msgid "CRM"
 msgstr "CRM"
 
-#: templates/core/home.html:338
+#: templates/core/home.html:343
 msgid "Accounting"
 msgstr "Contabilidad"
 
-#: templates/core/home.html:343
+#: templates/core/home.html:348
 msgid "Manufacturing"
 msgstr "Fabricación"
 
-#: templates/core/home.html:348
+#: templates/core/home.html:353
 msgid "Purchase"
 msgstr "Compras"
 
-#: templates/core/home.html:353
+#: templates/core/home.html:358
 msgid "Project"
 msgstr "Proyectos"
 
-#: templates/core/home.html:358
+#: templates/core/home.html:363
 msgid "Employees"
 msgstr "Empleados"
 
-#: templates/core/home.html:363
+#: templates/core/home.html:368
 msgid "Point of Sale"
 msgstr "Punto de venta"
 
-#: templates/core/home.html:368
+#: templates/core/home.html:373
 msgid "eCommerce"
 msgstr "Comercio electrónico"
 
-#: templates/core/home.html:373
+#: templates/core/home.html:378
 msgid "Studio"
 msgstr "Studio"
 
-#: templates/core/home.html:378
+#: templates/core/home.html:383
 msgid "Helpdesk"
 msgstr "Soporte"
 
-#: templates/core/home.html:383
+#: templates/core/home.html:388
 msgid ""
 "…and the parts users never see: ORM models, access rights &amp; record "
 "rules, automated actions, scheduled jobs, server-side logic and external API"
@@ -1694,82 +1663,82 @@ msgstr ""
 " reglas de registro, acciones automatizadas, tareas programadas, lógica del "
 "lado del servidor y conexiones con APIs externas."
 
-#: templates/core/home.html:392
+#: templates/core/home.html:397
 msgid "How we build"
 msgstr "Cómo construimos"
 
-#: templates/core/home.html:394
+#: templates/core/home.html:399
 msgid "Real Odoo business logic, written properly"
 msgstr "Lógica de negocio de Odoo real, escrita como debe ser"
 
-#: templates/core/home.html:397
+#: templates/core/home.html:402
 msgid "Clean Python — not fragile Studio clicks. Watch a real extension of"
 msgstr ""
 "Python limpio — no clics frágiles en Studio. Observa cómo cobra vida una "
 "extensión real de"
 
-#: templates/core/home.html:399
+#: templates/core/home.html:404
 msgid "come to life, with a computed margin, an"
 msgstr "con un margen calculado automáticamente, un disparador"
 
-#: templates/core/home.html:401
+#: templates/core/home.html:406
 msgid "trigger, and a confirmation rule that protects your bottom line."
 msgstr "y una regla de confirmación que protege tu rentabilidad."
 
-#: templates/core/home.html:427
+#: templates/core/home.html:432
 msgid "Quotation"
 msgstr "Consulta"
 
-#: templates/core/home.html:428
+#: templates/core/home.html:433
 msgid "Sales Order"
 msgstr "Pedido de venta"
 
-#: templates/core/home.html:434
+#: templates/core/home.html:439
 msgid "Customer"
 msgstr "Cliente"
 
-#: templates/core/home.html:438
+#: templates/core/home.html:443
 msgid "Untaxed"
 msgstr "Base imponible"
 
-#: templates/core/home.html:445
+#: templates/core/home.html:450
 msgid "Computed margin"
 msgstr "Margen calculado"
 
-#: templates/core/home.html:448
+#: templates/core/home.html:453
 msgid "target"
 msgstr "objetivo"
 
-#: templates/core/home.html:452
+#: templates/core/home.html:457
 msgid "Confirm"
 msgstr "Confirmar"
 
-#: templates/core/home.html:453
+#: templates/core/home.html:458
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: templates/core/home.html:458
+#: templates/core/home.html:463
 #, python-format
 msgid "Margin below 5%% — approval required."
 msgstr "Margen por debajo del 5%% — requiere aprobación."
 
-#: templates/core/home.html:463
+#: templates/core/home.html:468
 msgid "A computed field, an"
 msgstr "Un campo calculado, un disparador"
 
-#: templates/core/home.html:465
+#: templates/core/home.html:470
 msgid "trigger and a guarded action — real ERP logic"
 msgstr "y una acción protegida — lógica real de ERP"
 
-#: templates/core/home.html:476
+#: templates/core/home.html:481
 msgid "Industries"
 msgstr "Sectores"
 
-#: templates/core/home.html:478
+#: templates/core/home.html:483
 msgid "Industries we help run on Odoo"
 msgstr "Sectores a los que ayudamos a funcionar con Odoo"
 
-#: templates/core/home.html:481
+#: templates/core/home.html:486
 msgid ""
 "We bring both the ERP process knowledge and the engineering to match how "
 "your sector actually works — not a generic, one-size-fits-all setup."
@@ -1778,32 +1747,32 @@ msgstr ""
 "para encajar con cómo funciona realmente tu sector, no una configuración "
 "genérica."
 
-#: templates/core/home.html:489
+#: templates/core/home.html:494
 msgid "Manufacturing &amp; MRP"
 msgstr "Fabricación y MRP"
 
-#: templates/core/home.html:490
+#: templates/core/home.html:495
 msgid ""
 "BOMs, work orders, routings and shop-floor flow that match real production."
 msgstr ""
 "Listas de materiales, órdenes de trabajo, rutas de producción y flujo de "
 "planta ajustados a tu producción real."
 
-#: templates/core/home.html:496
+#: templates/core/home.html:501
 msgid "Retail &amp; eCommerce"
 msgstr "Retail y comercio electrónico"
 
-#: templates/core/home.html:497
+#: templates/core/home.html:502
 msgid "POS, online store and stock kept perfectly in sync across channels."
 msgstr ""
 "TPV, tienda online y stock perfectamente sincronizados entre todos tus "
 "canales."
 
-#: templates/core/home.html:503
+#: templates/core/home.html:508
 msgid "Wholesale &amp; Distribution"
 msgstr "Mayoristas y distribución"
 
-#: templates/core/home.html:504
+#: templates/core/home.html:509
 msgid ""
 "Pricing tiers, multi-warehouse logistics and fast, accurate order "
 "processing."
@@ -1811,61 +1780,61 @@ msgstr ""
 "Tarifas escalonadas, logística multi-almacén y procesamiento de pedidos "
 "rápido y preciso."
 
-#: templates/core/home.html:510
+#: templates/core/home.html:515
 msgid "Professional Services"
 msgstr "Servicios profesionales"
 
-#: templates/core/home.html:511
+#: templates/core/home.html:516
 msgid "Projects, timesheets, and billing tied together so nothing leaks."
 msgstr ""
 "Proyectos, partes de horas y facturación conectados entre sí para que nada "
 "se escape."
 
-#: templates/core/home.html:517
+#: templates/core/home.html:522
 msgid "Construction &amp; Field"
 msgstr "Construcción y trabajo de campo"
 
-#: templates/core/home.html:518
+#: templates/core/home.html:523
 msgid "Project costing, purchasing and subcontractor workflows under control."
 msgstr ""
 "Costes de proyecto, compras y flujos con subcontratistas perfectamente bajo "
 "control."
 
-#: templates/core/home.html:524
+#: templates/core/home.html:529
 msgid "Food &amp; Beverage"
 msgstr "Alimentación y bebidas"
 
-#: templates/core/home.html:525
+#: templates/core/home.html:530
 msgid "Lots, traceability, expiry dates and quality control built in."
 msgstr ""
 "Lotes, trazabilidad, fechas de caducidad y control de calidad integrados de "
 "serie."
 
-#: templates/core/home.html:531
+#: templates/core/home.html:536
 msgid "Don't see your sector? Odoo is flexible —"
 msgstr "¿No ves tu sector aquí? Odoo es flexible —"
 
-#: templates/core/home.html:532
+#: templates/core/home.html:537
 msgid "request a consultation"
 msgstr "solicita una consultoría"
 
-#: templates/core/home.html:533
+#: templates/core/home.html:538
 msgid "and we'll map it to your processes."
 msgstr "y lo adaptamos juntos a tus procesos."
 
-#: templates/core/home.html:542
+#: templates/core/home.html:547
 msgid "The patterns"
 msgstr "Los patrones"
 
-#: templates/core/home.html:544
+#: templates/core/home.html:549
 msgid "Most ERP problems fall into one of these"
 msgstr "La mayoría de los problemas de ERP encajan en uno de estos"
 
-#: templates/core/home.html:550
+#: templates/core/home.html:555
 msgid "“Our Odoo is slow and messy — and nobody trusts the numbers anymore.”"
 msgstr "«Nuestro Odoo es lento y caótico, y ya nadie se fía de las cifras.»"
 
-#: templates/core/home.html:552
+#: templates/core/home.html:557
 msgid ""
 "Years of quick fixes, Studio changes and ad-hoc customizations pile up. We "
 "run a structured technical and data audit, document what's really going on, "
@@ -1877,11 +1846,11 @@ msgstr ""
 "documentamos qué ocurre realmente y te entregamos un plan priorizado, "
 "empezando por lo que más importa a tu negocio."
 
-#: templates/core/home.html:556
+#: templates/core/home.html:561
 msgid "“We need something Odoo doesn't do out of the box.”"
 msgstr "«Necesitamos algo que Odoo no hace de serie.»"
 
-#: templates/core/home.html:558
+#: templates/core/home.html:563
 msgid ""
 "Custom modules, automated workflows, BI reporting and integrations with the "
 "rest of your stack — built the right way: as maintainable code, not fragile "
@@ -1891,11 +1860,11 @@ msgstr ""
 "el resto de tu stack, construidos como es debido: código mantenible, no "
 "apaños frágiles de Studio que se rompen en la siguiente actualización."
 
-#: templates/core/home.html:562
+#: templates/core/home.html:567
 msgid "“We're thinking about migrating, but we're worried about the risk.”"
 msgstr "«Estamos pensando en migrar, pero nos preocupa el riesgo.»"
 
-#: templates/core/home.html:564
+#: templates/core/home.html:569
 msgid ""
 "Before committing budget to a migration, you get a clear-eyed assessment of "
 "the risks, the realistic effort involved, and a roadmap that protects your "
@@ -1906,11 +1875,11 @@ msgstr ""
 "protege el conocimiento de tu negocio en lugar de perderlo a mitad de "
 "proyecto."
 
-#: templates/core/home.html:568
+#: templates/core/home.html:573
 msgid "“We have no in-house ERP team and need a partner we can rely on.”"
 msgstr "«No tenemos equipo de ERP interno y necesitamos un socio fiable.»"
 
-#: templates/core/home.html:570
+#: templates/core/home.html:575
 msgid ""
 "A managed support plan gives you direct access to senior engineers for "
 "fixes, improvements and questions — with the same governance and "
@@ -1920,15 +1889,15 @@ msgstr ""
 "correcciones, mejoras y dudas, con los mismos estándares de gobierno y "
 "documentación que Bidatia aplica a sus plataformas de datos."
 
-#: templates/core/home.html:581
+#: templates/core/home.html:586
 msgid "Systems &amp; integrations"
 msgstr "Sistemas e integraciones"
 
-#: templates/core/home.html:583
+#: templates/core/home.html:588
 msgid "Your ERP, connected to your data and your AI"
 msgstr "Tu ERP, conectado con tus datos y tu IA"
 
-#: templates/core/home.html:586
+#: templates/core/home.html:591
 msgid ""
 "Your business never runs on Odoo alone. We connect the ERP to the platforms "
 "around it — your data warehouse, BI tools, payments, logistics and custom "
@@ -1941,74 +1910,74 @@ msgstr ""
 " ponemos agentes de IA a trabajar en las partes repetitivas para que tu "
 "equipo no tenga que hacerlo."
 
-#: templates/core/home.html:591
+#: templates/core/home.html:596
 msgid "Governed data flow between Odoo, your warehouse and BI"
 msgstr "Flujo de datos gobernado entre Odoo, tu almacén de datos y BI"
 
-#: templates/core/home.html:595
+#: templates/core/home.html:600
 msgid "Automations and AI agents that remove manual data entry and errors"
 msgstr ""
 "Automatizaciones y agentes de IA que eliminan la entrada manual de datos y "
 "los errores"
 
-#: templates/core/home.html:599
+#: templates/core/home.html:604
 msgid "Dashboards leadership can trust, fed straight from operations"
 msgstr ""
 "Cuadros de mando fiables para la dirección, alimentados directamente desde "
 "la operación"
 
-#: templates/core/home.html:603
+#: templates/core/home.html:608
 msgid "Explore integration services"
 msgstr "Explora los servicios de integración"
 
-#: templates/core/home.html:612
+#: templates/core/home.html:617
 msgid ""
 "Bidatia connecting Odoo to the data warehouse, BI, AI agents, payments, "
 "logistics and custom apps"
 msgstr ""
 
-#: templates/core/home.html:628
+#: templates/core/home.html:633
 msgid "Data warehouse"
 msgstr "Almacén de datos"
 
-#: templates/core/home.html:629
+#: templates/core/home.html:634
 msgid "BI / dashboards"
 msgstr "BI / cuadros de mando"
 
-#: templates/core/home.html:630
+#: templates/core/home.html:635
 msgid "Payments"
 msgstr "Pagos"
 
-#: templates/core/home.html:631
+#: templates/core/home.html:636
 msgid "Logistics"
 msgstr "Logística"
 
-#: templates/core/home.html:632
+#: templates/core/home.html:637
 msgid "AI agents"
 msgstr "Agentes de IA"
 
-#: templates/core/home.html:633
+#: templates/core/home.html:638
 msgid "Custom apps"
 msgstr "Apps a medida"
 
-#: templates/core/home.html:639
+#: templates/core/home.html:644
 msgid "core ERP"
 msgstr "núcleo ERP"
 
-#: templates/core/home.html:650
+#: templates/core/home.html:655
 msgid "Why Bidatia"
 msgstr "Por qué Bidatia"
 
-#: templates/core/home.html:652
+#: templates/core/home.html:657
 msgid "Technical depth, straight talk, and respect for your budget"
 msgstr ""
 "Profundidad técnica, conversaciones directas y respeto por tu presupuesto"
 
-#: templates/core/home.html:659
+#: templates/core/home.html:664
 msgid "Engineering, not just config"
 msgstr "Ingeniería, no solo configuración"
 
-#: templates/core/home.html:660
+#: templates/core/home.html:665
 msgid ""
 "Odoo, Python, Django, PostgreSQL, data pipelines and cloud — a real software"
 " and data background."
@@ -2016,11 +1985,11 @@ msgstr ""
 "Odoo, Python, Django, PostgreSQL, pipelines de datos y cloud: una base real "
 "de software y datos."
 
-#: templates/core/home.html:664
+#: templates/core/home.html:669
 msgid "Data governance in the DNA"
 msgstr "Gobierno del dato en el ADN"
 
-#: templates/core/home.html:665
+#: templates/core/home.html:670
 msgid ""
 "As Bidatia's Business Systems division, we treat your ERP data as a governed"
 " asset — not an afterthought."
@@ -2028,11 +1997,11 @@ msgstr ""
 "Como división Business Systems de Bidatia, tratamos los datos de tu ERP como"
 " un activo gobernado, no como algo secundario."
 
-#: templates/core/home.html:669
+#: templates/core/home.html:674
 msgid "Clear scope and price up front"
 msgstr "Alcance y precio claros desde el principio"
 
-#: templates/core/home.html:670
+#: templates/core/home.html:675
 msgid ""
 "Fixed-price packages where possible, so you know what you pay and what you "
 "get back."
@@ -2040,11 +2009,11 @@ msgstr ""
 "Paquetes a precio cerrado siempre que es posible, para que sepas exactamente"
 " qué pagas y qué recibes a cambio."
 
-#: templates/core/home.html:674
+#: templates/core/home.html:679
 msgid "Built for the long run"
 msgstr "Pensado para durar"
 
-#: templates/core/home.html:675
+#: templates/core/home.html:680
 msgid ""
 "Documented, structured solutions your team — or the next engineer — can "
 "maintain confidently."
@@ -2052,15 +2021,15 @@ msgstr ""
 "Soluciones documentadas y estructuradas que tu equipo —o el siguiente "
 "ingeniero— puede mantener con confianza."
 
-#: templates/core/home.html:685
+#: templates/core/home.html:690
 msgid "How it works"
 msgstr "Cómo funciona"
 
-#: templates/core/home.html:687
+#: templates/core/home.html:692
 msgid "From first message to delivered solution — four clear steps"
 msgstr "Del primer mensaje a la solución entregada — cuatro pasos claros"
 
-#: templates/core/home.html:698
+#: templates/core/home.html:703
 msgid ""
 "Book a session, describe your situation, and pick a time that works for your"
 " team."
@@ -2068,11 +2037,11 @@ msgstr ""
 "Reserva una sesión, describe tu situación y elige una hora que le venga bien"
 " a tu equipo."
 
-#: templates/core/home.html:702
+#: templates/core/home.html:707
 msgid "Technical &amp; data review"
 msgstr "Revisión técnica y de datos"
 
-#: templates/core/home.html:703
+#: templates/core/home.html:708
 msgid ""
 "We dig into your Odoo setup, code, configuration, workflows and data quality"
 " to find what's really happening."
@@ -2080,11 +2049,11 @@ msgstr ""
 "Analizamos tu configuración de Odoo, el código, los flujos de trabajo y la "
 "calidad de los datos para descubrir qué ocurre realmente."
 
-#: templates/core/home.html:707
+#: templates/core/home.html:712
 msgid "Clear proposal"
 msgstr "Propuesta clara"
 
-#: templates/core/home.html:708
+#: templates/core/home.html:713
 msgid ""
 "You get a written summary of findings, a recommended approach, and a fixed "
 "price or estimate."
@@ -2092,11 +2061,11 @@ msgstr ""
 "Recibes un resumen por escrito de los hallazgos, un enfoque recomendado y un"
 " precio cerrado o una estimación."
 
-#: templates/core/home.html:712
+#: templates/core/home.html:717
 msgid "Delivery &amp; support"
 msgstr "Entrega y soporte"
 
-#: templates/core/home.html:713
+#: templates/core/home.html:718
 msgid ""
 "We implement the agreed solution, test it properly, and stay available for "
 "support afterward."
@@ -2104,11 +2073,11 @@ msgstr ""
 "Implementamos la solución acordada, la probamos bien y seguimos disponibles "
 "para darte soporte después."
 
-#: templates/core/home.html:726
+#: templates/core/home.html:731
 msgid "Case study"
 msgstr "Caso de éxito"
 
-#: templates/core/home.html:731
+#: templates/core/home.html:736
 msgid "Read the full case study"
 msgstr "Leer el caso completo"
 
@@ -3076,7 +3045,7 @@ msgstr ""
 "Respondemos en un día laborable · Madrid, España · En remoto en todo el "
 "mundo"
 
-#: templates/partials/footer.html:19
+#: templates/partials/footer.html:22
 msgid ""
 "The Business Systems division of Bidatia. We implement, modernize and govern"
 " Odoo ERP — connected to your data platform, your BI and your AI agents — so"
@@ -3087,90 +3056,84 @@ msgstr ""
 "agentes de IA, para que tu operación funcione con información en la que "
 "confiar."
 
-#: templates/partials/footer.html:23 templates/partials/navbar.html:32
+#: templates/partials/footer.html:26
 msgid "Onboarding new clients"
 msgstr "Aceptando nuevos clientes"
 
-#: templates/partials/footer.html:30 templates/services/service_detail.html:12
+#: templates/partials/footer.html:33 templates/services/service_detail.html:12
 msgid "All services"
 msgstr "Todos los servicios"
 
-#: templates/partials/footer.html:32
+#: templates/partials/footer.html:35
 msgid "ERP & data assessment"
 msgstr "Evaluación de ERP y datos"
 
-#: templates/partials/footer.html:38 tool_data_risk/forms.py:62
+#: templates/partials/footer.html:41 tool_data_risk/forms.py:62
 #: tool_erp_rescue/forms.py:33 tool_studio_xray/forms.py:76
 msgid "Company"
 msgstr "Empresa"
 
-#: templates/partials/footer.html:40
+#: templates/partials/footer.html:43
 msgid "About Bidatia"
 msgstr "Sobre Bidatia"
 
-#: templates/partials/footer.html:41
+#: templates/partials/footer.html:44
 msgid "Insights & blog"
 msgstr "Artículos y blog"
 
-#: templates/partials/footer.html:44
+#: templates/partials/footer.html:47
 msgid "Privacy policy"
 msgstr "Política de privacidad"
 
-#: templates/partials/footer.html:45
+#: templates/partials/footer.html:48
 msgid "Terms of service"
 msgstr "Términos del servicio"
 
-#: templates/partials/footer.html:50
-msgid "Get in touch"
-msgstr "Contacto"
-
-#: templates/partials/footer.html:54
+#: templates/partials/footer.html:57
 msgid "Remote across Europe & MENA"
 msgstr "En remoto en Europa y MENA"
 
-#: templates/partials/footer.html:55
+#: templates/partials/footer.html:58
 msgid "Contact form"
 msgstr "Formulario de contacto"
 
-#: templates/partials/footer.html:64
+#: templates/partials/footer.html:66
 msgid "All rights reserved."
 msgstr "Todos los derechos reservados."
 
-#: templates/partials/footer.html:65
-msgid ""
-"ERP · Odoo · Data governance · BI · AI — Madrid, Spain · Remote worldwide"
-msgstr ""
-"ERP · Odoo · Gobierno del dato · BI · IA — Madrid, España · En remoto en "
-"todo el mundo"
+#: templates/partials/footer.html:67
+#| msgid ""
+#| "ERP · Odoo · Data governance · BI · AI — Madrid, Spain · Remote worldwide"
+msgid "ERP · Odoo · Data governance · BI · AI — Madrid, Spain"
+msgstr "ERP · Odoo · Gobierno del dato · BI · IA — Madrid, España"
 
 #: templates/partials/language_switcher.html:4
 msgid "Change language"
 msgstr "Cambiar idioma"
 
-#: templates/partials/navbar.html:22 templates/partials/navbar.html:52
+#: templates/partials/navbar.html:25 templates/partials/navbar.html:49
 #: templates/tools_core/hub.html:20
 msgid "Free Tools"
 msgstr "Herramientas gratuitas"
 
-#: templates/partials/navbar.html:25 templates/partials/navbar.html:55
+#: templates/partials/navbar.html:28 templates/partials/navbar.html:52
 msgid "About"
 msgstr "Sobre mí"
 
-#: templates/partials/navbar.html:26 templates/partials/navbar.html:56
+#: templates/partials/navbar.html:29 templates/partials/navbar.html:53
 msgid "Contact"
 msgstr "Contacto"
 
-#: templates/partials/navbar.html:43
+#: templates/partials/navbar.html:40
 msgid "Toggle navigation menu"
 msgstr "Abrir o cerrar el menú"
 
-#: templates/partials/navbar.html:60
+#: templates/partials/navbar.html:57
 msgid "Language"
 msgstr "Idioma"
 
 #: templates/services/service_detail.html:34
 #: templates/services/service_detail.html:98
-#| msgid "Request this assessment"
 msgid "Request this service"
 msgstr "Solicita este servicio"
 
@@ -3217,7 +3180,6 @@ msgstr ""
 "resultados de Bidatia para empresas orientadas a los datos."
 
 #: templates/services/service_list.html:11
-#| msgid "What we found"
 msgid "What we do"
 msgstr "Qué hacemos"
 
@@ -3226,7 +3188,6 @@ msgid "From operational data to"
 msgstr "De los datos operativos a"
 
 #: templates/services/service_list.html:14
-#| msgid "We make it run on data you can trust."
 msgid "decisions you can trust"
 msgstr "decisiones en las que confiar"
 
@@ -3245,7 +3206,6 @@ msgid "From"
 msgstr "Desde"
 
 #: templates/services/service_list.html:49
-#| msgid "Time"
 msgid "Timeline"
 msgstr "Plazo"
 

@@ -8,100 +8,105 @@
 {% block content %}
 
 <!-- ============ HERO ============ -->
-<section class="relative overflow-hidden mesh text-white">
-    <div class="absolute inset-0 dot-grid-dark grid-mask opacity-70" aria-hidden="true"></div>
+<section class="relative overflow-hidden bg-canvas border-b border-line">
+    <div class="absolute inset-0 rule-grid opacity-50 grid-mask" aria-hidden="true"></div>
 
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20 lg:pt-24 lg:pb-28">
-        <div class="grid lg:grid-cols-2 gap-12 lg:gap-10 items-center">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- ledger header strip -->
+        <div class="hidden sm:flex items-center justify-between border-b border-line py-2.5 font-mono text-[10px] uppercase tracking-[0.18em] text-ink/45 force-ltr">
+            <span class="inline-flex items-center gap-2"><span class="pulse-dot inline-flex h-1.5 w-1.5 rounded-full bg-accent-500"></span>{{ SITE_BRAND }} · {{ SITE_DIVISION }}</span>
+            <span>{{ SITE_CITY }} · Remote · Est. data + ERP</span>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center py-14 lg:py-20">
             <!-- Left: positioning -->
-            <div class="reveal">
-                <span class="inline-flex items-center gap-2 rounded-full bg-white/5 ring-1 ring-white/10 px-3 py-1.5 font-mono text-xs text-brand-200">
-                    <span class="pulse-dot inline-flex h-1.5 w-1.5 rounded-full bg-accent-400"></span>
-                    {% trans "The Business Systems division of Bidatia · Madrid, Spain" %}
-                </span>
-                <h1 class="mt-6 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] text-balance">
+            <div class="lg:col-span-7 reveal">
+                <p class="kicker text-ink/60">{% trans "ERP · Data governance · AI" %}</p>
+                <h1 class="mt-5 text-[2.65rem] sm:text-6xl lg:text-[4.5rem] font-bold leading-[0.98] tracking-[-0.03em] text-ink">
                     {% trans "Your ERP shouldn't fight you every day." %}
                     <span class="rgb-text">{% trans "We make it run on data you can trust." %}</span>
                 </h1>
-                <p class="mt-6 text-lg text-slate-300 max-w-xl leading-relaxed">
+                <p class="mt-7 text-lg text-ink/65 max-w-xl leading-relaxed">
                     {% trans "Bidatia Business Systems implements, modernizes and governs Odoo ERP for companies that take their data seriously — connecting it to your data platform, your BI dashboards and your AI agents. The same engineering discipline Bidatia brings to data and AI, now applied to your core business systems." %}
                 </p>
                 <div class="mt-9 flex flex-col sm:flex-row gap-3">
-                    <a href="{% url 'booking:book_consultation' %}" class="group inline-flex justify-center items-center gap-1.5 rounded-lg bg-white text-ink font-semibold px-6 py-3.5 hover:bg-brand-50 transition shadow-lg shadow-black/20">
+                    <a href="{% url 'booking:book_consultation' %}" class="group inline-flex justify-center items-center gap-2 bg-ink text-canvas font-mono text-xs uppercase tracking-[0.12em] font-semibold px-6 py-4 hover:bg-brand-700 transition">
                         {% trans "Request a consultation" %}
                         <svg class="h-4 w-4 group-hover:translate-x-0.5 transition-transform" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                     </a>
-                    <a href="{% url 'booking:book_consultation' %}?service=odoo-health-check" class="inline-flex justify-center items-center rounded-lg border border-white/20 bg-white/5 text-white font-semibold px-6 py-3.5 hover:bg-white/10 transition">
+                    <a href="{% url 'booking:book_consultation' %}?service=odoo-health-check" class="inline-flex justify-center items-center border border-ink text-ink font-mono text-xs uppercase tracking-[0.12em] font-semibold px-6 py-4 hover:bg-ink hover:text-canvas transition">
                         {% trans "Request an ERP & data assessment" %}
                     </a>
                 </div>
-                <dl class="mt-10 grid grid-cols-3 gap-6 max-w-md border-t border-white/10 pt-6">
-                    <div>
-                        <dt class="font-mono text-xs text-slate-400">{% trans "Consultation" %}</dt>
-                        <dd class="mt-1 text-xl font-bold">{% trans "from €90" %}</dd>
+                <dl class="mt-11 grid grid-cols-3 border-y border-line divide-x divide-[color:var(--line)]">
+                    <div class="py-5 pr-4">
+                        <dt class="font-mono text-[10px] uppercase tracking-[0.12em] text-ink/45">{% trans "Consultation" %}</dt>
+                        <dd class="mt-1.5 font-display text-2xl font-bold text-ink">{% trans "from €90" %}</dd>
                     </div>
-                    <div>
-                        <dt class="font-mono text-xs text-slate-400">{% trans "ERP assessment" %}</dt>
-                        <dd class="mt-1 text-xl font-bold">{% trans "from €690" %}</dd>
+                    <div class="py-5 px-4">
+                        <dt class="font-mono text-[10px] uppercase tracking-[0.12em] text-ink/45">{% trans "ERP assessment" %}</dt>
+                        <dd class="mt-1.5 font-display text-2xl font-bold text-ink">{% trans "from €690" %}</dd>
                     </div>
-                    <div>
-                        <dt class="font-mono text-xs text-slate-400">{% trans "First reply" %}</dt>
-                        <dd class="mt-1 text-xl font-bold force-ltr">&lt; 1 {% trans "day" %}</dd>
+                    <div class="py-5 pl-4">
+                        <dt class="font-mono text-[10px] uppercase tracking-[0.12em] text-ink/45">{% trans "First reply" %}</dt>
+                        <dd class="mt-1.5 font-display text-2xl font-bold text-ink force-ltr">&lt; 1 {% trans "day" %}</dd>
                     </div>
                 </dl>
             </div>
 
-            <!-- Right: live Odoo Health Check dashboard mock -->
-            <div class="reveal" style="--d: 120ms">
-                <div class="relative rounded-2xl bg-slate-900/70 ring-1 ring-white/10 backdrop-blur shadow-2xl shadow-black/40 overflow-hidden">
-                    <div class="flex items-center gap-2 px-5 py-3.5 border-b border-white/10 bg-white/[0.03]">
-                        <span class="h-2.5 w-2.5 rounded-full bg-red-400/70"></span>
-                        <span class="h-2.5 w-2.5 rounded-full bg-amber-400/70"></span>
-                        <span class="h-2.5 w-2.5 rounded-full bg-emerald-400/70"></span>
-                        <span class="ml-3 font-mono text-xs text-slate-400">erp-data-assessment · report.pdf</span>
+            <!-- Right: Bidatia operations data board (instrument panel) -->
+            <div class="lg:col-span-5 reveal" style="--d: 120ms">
+                <div class="panel text-canvas">
+                    <div class="flex items-center justify-between px-5 py-3 border-b border-white/10">
+                        <span class="font-mono text-[11px] text-canvas/55 force-ltr">bidatia://operations.board</span>
+                        <span class="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-accent-400"><span class="pulse-dot inline-flex h-1.5 w-1.5 rounded-full bg-accent-400"></span>Live</span>
                     </div>
-                    <div class="p-5 sm:p-6">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <p class="font-mono text-xs text-slate-400">{% trans "SYSTEM AUDIT" %}</p>
-                                <p class="mt-1 text-lg font-bold text-white">{% blocktrans %}Odoo 17 · Production{% endblocktrans %}</p>
+                    <!-- pipeline strip -->
+                    <div class="grid grid-cols-4 border-b border-white/10 font-mono text-[9px] uppercase tracking-[0.1em] text-center text-canvas/55">
+                        <div class="py-2.5 border-r border-white/10">Capture</div>
+                        <div class="py-2.5 border-r border-white/10">Govern</div>
+                        <div class="py-2.5 border-r border-white/10 text-accent-400">Operate</div>
+                        <div class="py-2.5">Decide</div>
+                    </div>
+                    <div class="p-5">
+                        <!-- throughput bars -->
+                        <div class="flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.1em] text-canvas/45">
+                            <span>{% trans "Throughput" %}</span><span class="force-ltr">last 12 mo</span>
+                        </div>
+                        <svg class="mt-3 w-full h-20" viewBox="0 0 240 64" preserveAspectRatio="none" aria-hidden="true">
+                            <g fill="#8b5cf6">
+                                <rect x="2" y="40" width="14" height="22"/><rect x="22" y="32" width="14" height="30"/>
+                                <rect x="42" y="36" width="14" height="26"/><rect x="62" y="24" width="14" height="38"/>
+                                <rect x="82" y="28" width="14" height="34"/><rect x="102" y="18" width="14" height="44"/>
+                            </g>
+                            <g fill="#a3e635">
+                                <rect x="122" y="22" width="14" height="40"/><rect x="142" y="14" width="14" height="48"/>
+                                <rect x="162" y="16" width="14" height="46"/><rect x="182" y="8" width="14" height="54"/>
+                                <rect x="202" y="6" width="14" height="56"/><rect x="222" y="2" width="14" height="60"/>
+                            </g>
+                        </svg>
+                        <!-- metric cells -->
+                        <div class="mt-5 grid grid-cols-3 border border-white/10 divide-x divide-white/10 text-center">
+                            <div class="py-3">
+                                <p class="font-display text-xl font-bold text-white force-ltr">98.2%</p>
+                                <p class="mt-0.5 font-mono text-[9px] uppercase tracking-[0.08em] text-canvas/45">{% trans "Data quality" %}</p>
                             </div>
-                            <div class="text-right">
-                                <p class="font-mono text-xs text-slate-400">{% trans "SCORE" %}</p>
-                                <p class="mt-1 text-2xl font-extrabold text-accent-300">82<span class="text-sm text-slate-500">/100</span></p>
+                            <div class="py-3">
+                                <p class="font-display text-xl font-bold text-white force-ltr">42</p>
+                                <p class="mt-0.5 font-mono text-[9px] uppercase tracking-[0.08em] text-canvas/45">{% trans "Governed KPIs" %}</p>
+                            </div>
+                            <div class="py-3">
+                                <p class="font-display text-xl font-bold text-white force-ltr">7</p>
+                                <p class="mt-0.5 font-mono text-[9px] uppercase tracking-[0.08em] text-canvas/45">{% trans "Sources" %}</p>
                             </div>
                         </div>
-
-                        <div class="mt-5 space-y-2.5 font-mono text-[13px]">
-                            <div class="flex items-center justify-between rounded-lg bg-white/[0.03] px-3.5 py-2.5">
-                                <span class="text-slate-300">{% trans "Configuration" %}</span>
-                                <span class="inline-flex items-center gap-1.5 text-emerald-300"><span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>OK</span>
-                            </div>
-                            <div class="flex items-center justify-between rounded-lg bg-white/[0.03] px-3.5 py-2.5">
-                                <span class="text-slate-300">{% trans "Performance" %}</span>
-                                <span class="inline-flex items-center gap-1.5 text-amber-300"><span class="h-1.5 w-1.5 rounded-full bg-amber-400"></span>{% trans "2 issues" %}</span>
-                            </div>
-                            <div class="flex items-center justify-between rounded-lg bg-white/[0.03] px-3.5 py-2.5">
-                                <span class="text-slate-300">{% trans "Security rules" %}</span>
-                                <span class="inline-flex items-center gap-1.5 text-amber-300"><span class="h-1.5 w-1.5 rounded-full bg-amber-400"></span>{% trans "review" %}</span>
-                            </div>
-                            <div class="flex items-center justify-between rounded-lg bg-white/[0.03] px-3.5 py-2.5">
-                                <span class="text-slate-300">{% trans "Studio &amp; automations" %}</span>
-                                <span class="inline-flex items-center gap-1.5 text-red-300"><span class="h-1.5 w-1.5 rounded-full bg-red-400"></span>{% trans "1 risk" %}</span>
-                            </div>
-                            <div class="flex items-center justify-between rounded-lg bg-white/[0.03] px-3.5 py-2.5">
-                                <span class="text-slate-300">{% trans "Data quality" %}</span>
-                                <span class="inline-flex items-center gap-1.5 text-emerald-300"><span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>OK</span>
-                            </div>
-                        </div>
-
-                        <div class="mt-5 flex items-center justify-between border-t border-white/10 pt-4">
-                            <span class="font-mono text-xs text-slate-400">→ {% trans "prioritized fix list" %}</span>
-                            <span class="font-mono text-xs text-slate-400">{% trans "delivered in 3–5 days" %}</span>
+                        <div class="mt-4 flex items-center gap-2 font-mono text-[10px] text-accent-400">
+                            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                            {% trans "Single source of truth · reconciled" %}
                         </div>
                     </div>
                 </div>
-                <p class="mt-3 text-center font-mono text-xs text-slate-500">{% trans "Illustrative Health Check summary" %}</p>
+                <p class="mt-3 text-center font-mono text-[10px] uppercase tracking-[0.12em] text-ink/35">{% trans "Illustrative operations data board" %}</p>
             </div>
         </div>
     </div>
@@ -162,9 +167,9 @@
             <svg class="hidden lg:block absolute left-0 right-0 top-7 w-full h-3" viewBox="0 0 1000 12" preserveAspectRatio="none" aria-hidden="true">
                 <line x1="40" y1="6" x2="960" y2="6" stroke="url(#pipeg)" stroke-width="2" class="pipe" />
                 <defs><linearGradient id="pipeg" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0%" stop-color="#ef4444" stop-opacity=".5"/>
-                    <stop offset="50%" stop-color="#22c55e" stop-opacity=".7"/>
-                    <stop offset="100%" stop-color="#3b82f6" stop-opacity=".5"/>
+                    <stop offset="0%" stop-color="#7c3aed" stop-opacity=".5"/>
+                    <stop offset="50%" stop-color="#a3e635" stop-opacity=".7"/>
+                    <stop offset="100%" stop-color="#7c3aed" stop-opacity=".5"/>
                 </linearGradient></defs>
             </svg>
 
@@ -612,9 +617,9 @@
                 <svg class="relative w-full" viewBox="0 0 400 300" role="img" aria-label='{% trans "Bidatia connecting Odoo to the data warehouse, BI, AI agents, payments, logistics and custom apps" %}'>
                     <defs>
                         <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
-                            <stop offset="0%" stop-color="#22c55e" stop-opacity="0.1" />
-                            <stop offset="50%" stop-color="#60a5fa" stop-opacity="0.7" />
-                            <stop offset="100%" stop-color="#22c55e" stop-opacity="0.1" />
+                            <stop offset="0%" stop-color="#a3e635" stop-opacity="0.1" />
+                            <stop offset="50%" stop-color="#a78bfa" stop-opacity="0.7" />
+                            <stop offset="100%" stop-color="#a3e635" stop-opacity="0.1" />
                         </linearGradient>
                     </defs>
                     <!-- spokes -->
@@ -624,19 +629,19 @@
                         <line x1="200" y1="150" x2="70" y2="240" /><line x1="200" y1="150" x2="330" y2="240" />
                     </g>
                     <!-- outer nodes -->
-                    <g font-family="'JetBrains Mono', monospace" font-size="11" fill="#cbd5e1" text-anchor="middle">
-                        <g><circle cx="70" cy="60" r="5" fill="#1e293b" stroke="#60a5fa" stroke-width="1.5" /><text x="70" y="42">{% trans "Data warehouse" %}</text></g>
-                        <g><circle cx="330" cy="60" r="5" fill="#1e293b" stroke="#60a5fa" stroke-width="1.5" /><text x="330" y="42">{% trans "BI / dashboards" %}</text></g>
-                        <g><circle cx="50" cy="150" r="5" fill="#1e293b" stroke="#ef4444" stroke-width="1.5" /><text x="50" y="172">{% trans "Payments" %}</text></g>
-                        <g><circle cx="350" cy="150" r="5" fill="#1e293b" stroke="#60a5fa" stroke-width="1.5" /><text x="350" y="172">{% trans "Logistics" %}</text></g>
-                        <g><circle cx="70" cy="240" r="5" fill="#1e293b" stroke="#22c55e" stroke-width="1.5" /><text x="70" y="262">{% trans "AI agents" %}</text></g>
-                        <g><circle cx="330" cy="240" r="5" fill="#1e293b" stroke="#60a5fa" stroke-width="1.5" /><text x="330" y="262">{% trans "Custom apps" %}</text></g>
+                    <g font-family="'IBM Plex Mono', monospace" font-size="11" fill="#cbd5e1" text-anchor="middle">
+                        <g><circle cx="70" cy="60" r="5" fill="#1e293b" stroke="#a78bfa" stroke-width="1.5" /><text x="70" y="42">{% trans "Data warehouse" %}</text></g>
+                        <g><circle cx="330" cy="60" r="5" fill="#1e293b" stroke="#a78bfa" stroke-width="1.5" /><text x="330" y="42">{% trans "BI / dashboards" %}</text></g>
+                        <g><circle cx="50" cy="150" r="5" fill="#1e293b" stroke="#7c3aed" stroke-width="1.5" /><text x="50" y="172">{% trans "Payments" %}</text></g>
+                        <g><circle cx="350" cy="150" r="5" fill="#1e293b" stroke="#a78bfa" stroke-width="1.5" /><text x="350" y="172">{% trans "Logistics" %}</text></g>
+                        <g><circle cx="70" cy="240" r="5" fill="#1e293b" stroke="#a3e635" stroke-width="1.5" /><text x="70" y="262">{% trans "AI agents" %}</text></g>
+                        <g><circle cx="330" cy="240" r="5" fill="#1e293b" stroke="#a78bfa" stroke-width="1.5" /><text x="330" y="262">{% trans "Custom apps" %}</text></g>
                     </g>
                     <!-- center node -->
-                    <circle cx="200" cy="150" r="38" fill="#0f172a" stroke="#22c55e" stroke-width="1.5" />
-                    <circle cx="200" cy="150" r="38" fill="none" stroke="#22c55e" stroke-width="6" stroke-opacity="0.12" />
-                    <text x="200" y="146" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#ffffff">Odoo</text>
-                    <text x="200" y="163" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="#86efac">{% trans "core ERP" %}</text>
+                    <circle cx="200" cy="150" r="38" fill="#0E0E11" stroke="#a3e635" stroke-width="1.5" />
+                    <circle cx="200" cy="150" r="38" fill="none" stroke="#a3e635" stroke-width="6" stroke-opacity="0.12" />
+                    <text x="200" y="146" text-anchor="middle" font-family="'Bricolage Grotesque', sans-serif" font-size="15" font-weight="700" fill="#ffffff">Odoo</text>
+                    <text x="200" y="163" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#bef264">{% trans "core ERP" %}</text>
                 </svg>
             </div>
         </div>
@@ -742,11 +747,11 @@
 <style>
     /* Syntax-highlight palette for the live-typed Odoo model */
     #build-anim .t-kw  { color: #c4b5fd; }   /* keywords  */
-    #build-anim .t-mod { color: #60a5fa; }   /* odoo/models/fields */
-    #build-anim .t-cls { color: #4ade80; }   /* class name */
-    #build-anim .t-str { color: #6ee7b7; }   /* strings   */
-    #build-anim .t-num { color: #fbbf24; }   /* numbers / booleans */
-    #build-anim .t-fn  { color: #93c5fd; }   /* function / method names */
+    #build-anim .t-mod { color: #a78bfa; }   /* odoo/models/fields */
+    #build-anim .t-cls { color: #a3e635; }   /* class name */
+    #build-anim .t-str { color: #bef264; }   /* strings   */
+    #build-anim .t-num { color: #a3e635; }   /* numbers / booleans */
+    #build-anim .t-fn  { color: #c4b5fd; }   /* function / method names */
 
     #build-anim .code-caret {
         display: inline-block;
@@ -754,7 +759,7 @@
         height: 1.05em;
         vertical-align: -2px;
         margin-left: 1px;
-        background: #22c55e;
+        background: #a3e635;
         animation: caretblink 1s steps(2, start) infinite;
     }
     @keyframes caretblink { to { visibility: hidden; } }
