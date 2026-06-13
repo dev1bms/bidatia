@@ -1,0 +1,145 @@
+name: Django CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+# Least-privilege token: this workflow only needs to read the repository.
+permissions:
+  contents: read
+
+# Cancel an in-progress run when a newer commit is pushed to the same ref.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    env:
+      DJANGO_SECRET_KEY: "ci-test-secret-key-not-for-production"
+      DJANGO_ALLOWED_HOSTS: "localhost,127.0.0.1"
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up Python 3.14
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.14"
+          cache: "pip"
+
+      - name: Install gettext (for translation compilation)
+        run: sudo apt-get update && sudo apt-get install -y gettext
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Compile translations
+        run: python manage.py compilemessages -l es -l ar
+
+      - name: Run Django checks
+        run: python manage.py check
+
+      - name: Check for missing migrations
+        run: python manage.py makemigrations --check --dry-run
+
+      - name: Run tests
+        run: python manage.py test
+
+      - name: Run production deployment checks
+        env:
+          DJANGO_DEBUG: "False"
+          DJANGO_ALLOWED_HOSTS: "bidatia.xyz,www.bidatia.xyz"
+          DJANGO_CSRF_TRUSTED_ORIGINS: "https://bidatia.xyz,https://www.bidatia.xyz"
+        run: |
+          # Generate a valid throwaway key so the deploy check validates the
+          # security settings rather than tripping on a short dummy SECRET_KEY.
+          export DJANGO_SECRET_KEY="$(python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())')"
+          python manage.py check --deploy --fail-level WARNING
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+
+    # Deploys QUEUE instead of cancelling: a new push must never kill an
+    # in-flight SSH session halfway through migrate/restart.
+    concurrency:
+      group: production-deploy
+      cancel-in-progress: false
+
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Connect GitHub Actions to Tailscale
+        uses: tailscale/github-action@v4
+        with:
+          authkey: ${{ secrets.TS_AUTHKEY }}
+
+      - name: Prepare SSH key
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/bidatia_deploy_key
+          chmod 600 ~/.ssh/bidatia_deploy_key
+          # Tailscale connectivity inside the runner can take a few seconds
+          # to settle, so a single ssh-keyscan attempt is flaky (it killed
+          # the 2026-06-13 deploy). Retry briefly before giving up.
+          ok=""
+          for attempt in 1 2 3 4 5 6; do
+            if ssh-keyscan -T 10 -p "${{ secrets.SSH_PORT }}" -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts; then
+              ok=1
+              break
+            fi
+            echo "ssh-keyscan attempt ${attempt} failed — retrying in 5s..."
+            sleep 5
+          done
+          [ -n "$ok" ]
+
+      - name: Deploy to production server
+        run: |
+          ssh -i ~/.ssh/bidatia_deploy_key \
+              -p "${{ secrets.SSH_PORT }}" \
+              "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" \
+              'bash -s' <<'REMOTE_SCRIPT'
+          set -e
+
+          cd /home/bidatia/bidatia
+
+          git fetch origin main
+          git reset --hard origin/main
+
+          source /home/bidatia/bidatia/.venv/bin/activate
+
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+          python manage.py compilemessages -l es -l ar
+          python manage.py migrate --noinput
+          # Seeded content (services, insights, case studies) — idempotent (upsert by slug).
+          python manage.py seed_demo_data
+          python manage.py collectstatic --noinput
+          
+          echo "Restarting Django..."
+          sudo -n /usr/bin/systemctl restart bidatia
+          sudo -n /usr/bin/systemctl status bidatia --no-pager -l
+          
+          echo "Restarting Celery worker..."
+          sudo -n /usr/bin/systemctl restart bidatia-celery-worker
+          sudo -n /usr/bin/systemctl status bidatia-celery-worker --no-pager -l
+          
+          echo "Restarting Celery beat..."
+          sudo -n /usr/bin/systemctl restart bidatia-celery-beat
+          sudo -n /usr/bin/systemctl status bidatia-celery-beat --no-pager -l
+
+          echo "Verifying health..."
+          sleep 3
+          curl -fsS -H "Host: bidatia.xyz" -H "X-Forwarded-Proto: https" http://127.0.0.1:8020/healthz/
+
+          REMOTE_SCRIPT

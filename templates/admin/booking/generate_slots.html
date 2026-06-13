@@ -1,0 +1,41 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="dbms-slotgen" style="max-width: 760px;">
+    <p style="margin-bottom: 1rem;">
+        <a href="{% url 'admin:booking_availabilityslot_changelist' %}">&larr; {% trans "Back to availability slots" %}</a>
+    </p>
+    <p style="margin-bottom: 1.5rem; color: #64748b;">
+        {% trans "Generate many availability slots at once across a date range, selected weekdays and a daily time window. Slots that already exist (same consultation type, date and start time) are skipped automatically." %}
+    </p>
+
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {{ form.as_div }}
+        <div style="margin-top: 1.5rem;">
+            <button type="submit"
+                    style="background:#0f172a; color:#fff; border:0; padding:.65rem 1.3rem; border-radius:.5rem; font-weight:600; cursor:pointer;">
+                {% trans "Generate slots" %}
+            </button>
+        </div>
+    </form>
+</div>
+
+<style>
+    .dbms-slotgen form > div { margin-bottom: 1rem; }
+    .dbms-slotgen label { display: block; font-weight: 600; margin-bottom: .25rem; }
+    .dbms-slotgen input[type=text],
+    .dbms-slotgen input[type=date],
+    .dbms-slotgen input[type=time],
+    .dbms-slotgen input[type=number],
+    .dbms-slotgen select {
+        padding: .45rem .6rem; border: 1px solid #cbd5e1; border-radius: .5rem; min-width: 240px;
+    }
+    .dbms-slotgen ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: .85rem; }
+    .dbms-slotgen ul li label { font-weight: 400; display: flex; align-items: center; gap: .35rem; margin: 0; }
+    .dbms-slotgen .helptext { display: block; color: #64748b; font-size: .8rem; margin-top: .25rem; }
+    .dbms-slotgen .errorlist { color: #b91c1c; list-style: none; padding: 0; margin: .25rem 0; }
+</style>
+{% endblock %}

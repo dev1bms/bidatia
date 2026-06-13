@@ -1,0 +1,368 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block og_image %}<meta property="og:image" content="{{ SITE_BASE_URL }}{% static 'img/og-studio-xray.png' %}">
+    <meta property="og:image:secure_url" content="{{ SITE_BASE_URL }}{% static 'img/og-studio-xray.png' %}">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Odoo Studio X-Ray — free customization audit and upgrade risk report">{% endblock %}
+{% block twitter_image %}<meta name="twitter:image" content="{{ SITE_BASE_URL }}{% static 'img/og-studio-xray.png' %}">{% endblock %}
+
+{% block title %}{% trans "Odoo Customization Audit & Upgrade Risk Report — Free Studio X-Ray" %} | {{ SITE_NAME }}{% endblock %}
+
+{% block content %}
+<section class="relative overflow-hidden bg-ink text-white">
+    <div class="absolute inset-0 tech-grid tech-grid-dark grid-mask" aria-hidden="true"></div>
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 text-center reveal">
+        <p class="font-mono text-xs uppercase tracking-wider text-brand-300">// {% trans "Free Tool" %}</p>
+        <h1 class="mt-4 text-4xl sm:text-5xl font-extrabold tracking-tight text-balance">{% trans "Odoo Studio X-Ray" %}</h1>
+        <p class="mt-5 text-lg text-slate-300 max-w-2xl mx-auto">
+            {% trans "An executive report on your Odoo customizations: what was really built, which custom models actually run your business, and how ready you are for the next upgrade — with an AI analyst that answers questions about your own report." %}
+        </p>
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-slate-300">
+            <span class="inline-flex items-center gap-2"><svg class="h-4 w-4 text-accent-400" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>{% trans "100% read-only" %}</span>
+            <span class="inline-flex items-center gap-2"><svg class="h-4 w-4 text-accent-400" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>{% trans "We count indicators — we don't read your business records" %}</span>
+            <span class="inline-flex items-center gap-2"><svg class="h-4 w-4 text-accent-400" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>{% trans "API key never stored" %}</span>
+            <span class="inline-flex items-center gap-2"><svg class="h-4 w-4 text-accent-400" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>{% trans "Report auto-deletes after 72 hours" %}</span>
+        </div>
+        <a href="{% url 'tool_studio_xray:demo_report' %}"
+           class="mt-8 inline-flex items-center gap-2 rounded-lg border border-white/25 bg-white/5 text-white text-sm font-semibold px-6 py-3 hover:bg-white/10 transition">
+            {% trans "View a demo report first" %}
+            <svg class="h-4 w-4 rtl:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+    </div>
+</section>
+
+<section class="py-14 lg:py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-8">
+        <div class="reveal">
+            <h2 class="text-xl font-bold text-ink">{% trans "What's inside your report" %}</h2>
+            <ul class="mt-4 space-y-3 text-sm text-slate-600">
+                <li class="flex items-start gap-3"><svg class="h-5 w-5 text-brand-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>{% trans "The full customization picture: every Studio field, custom model, view, automated action and server action — and which business areas carry them" %}</span></li>
+                <li class="flex items-start gap-3"><svg class="h-5 w-5 text-brand-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>{% trans "Custom models ranked by real usage — record counts reveal which ones are business-critical, which are in use, and which are empty experiments you can simply delete" %}</span></li>
+                <li class="flex items-start gap-3"><svg class="h-5 w-5 text-brand-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>{% trans "An operational pulse: active users in the last 30 days, attachment storage footprint, core business volumes and red flags like disabled scheduled jobs" %}</span></li>
+                <li class="flex items-start gap-3"><svg class="h-5 w-5 text-brand-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>{% trans "Upgrade readiness: your version gap, expected migration friction, and a 0–100 complexity score with a usage-aware effort estimate" %}</span></li>
+                <li class="flex items-start gap-3"><svg class="h-5 w-5 text-brand-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>{% trans "Optional comprehensive scan: the footprint your installed custom modules leave inside Odoo, aggregated per module" %}</span></li>
+                <li class="flex items-start gap-3"><svg class="h-5 w-5 text-brand-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>{% trans "An AI analyst that reads your finished report and writes a board-level summary, plus sharp questions to ask your own team" %}</span></li>
+                <li class="flex items-start gap-3"><svg class="h-5 w-5 text-brand-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>{% trans "A report chat — ask the analyst anything about your results, answered only from your scan's data" %}</span></li>
+                <li class="flex items-start gap-3"><svg class="h-5 w-5 text-brand-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>{% trans "Your company's name and logo on the report header, a professionally designed email copy, and a free 30-minute review booking pre-filled with an agenda built from your results" %}</span></li>
+            </ul>
+        </div>
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6 reveal">
+            <h2 class="text-base font-bold text-ink flex items-center gap-2">
+                <svg class="h-5 w-5 text-accent-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
+                {% trans "Our privacy promise" %}
+            </h2>
+            <ul class="mt-3 space-y-2 text-sm text-slate-600">
+                <li>{% trans "The scan uses a temporary, read-only XML-RPC connection — it cannot change anything in your Odoo, and it ends when the scan ends." %}</li>
+                <li>{% trans "Your API key is used once for this scan, in memory, and is never written to our database or logs." %}</li>
+                <li>{% trans "Operational metrics are counted, not read: the report shows structure and aggregate numbers — record counts, sizes, totals — not the contents of your business records." %}</li>
+                <li>{% trans "The AI analyst runs on our own server — your report data is never sent to a third-party AI provider." %}</li>
+                <li>{% trans "The report lives at a private link for a limited time: report data and chat messages are deleted automatically 72 hours after the scan." %}</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="pb-14">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div x-data="{ open: false }" class="rounded-2xl border border-slate-200 bg-white">
+            <button @click="open = !open" :aria-expanded="open" class="w-full flex items-center justify-between px-6 py-4 text-start">
+                <span class="font-semibold text-ink">{% trans "How to create a safe, read-only API key (2 minutes)" %}</span>
+                <svg class="h-5 w-5 text-slate-400 transition-transform" :class="open && 'rotate-180'" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div x-show="open" x-collapse x-cloak class="px-6 pb-6 text-sm text-slate-600 space-y-2">
+                <ol class="list-decimal ps-5 space-y-2">
+                    <li>{% trans "In Odoo, go to Settings → Users & Companies → Users and create a user, e.g. “Bidatia Audit”. Give it only read access groups (or Internal User and remove admin rights)." %}</li>
+                    <li>{% trans "Log in as that user (or use your own user if you prefer)." %}</li>
+                    <li>{% trans "Open My Profile → Account Security → New API Key (Odoo 14 and newer)." %}</li>
+                    <li>{% trans "Give the key a name like “Studio X-Ray”, copy it and paste it below." %}</li>
+                    <li>{% trans "After the scan you can delete the key again from the same screen." %}</li>
+                </ol>
+                <p class="text-xs text-slate-500">{% trans "Works with Odoo Online (odoo.com), Odoo.sh and self-hosted Odoo 14–19 reachable over HTTPS." %}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pb-16" id="run">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden"
+             x-data="xrayForm()">
+            <div class="border-b border-slate-100 bg-slate-50/70 px-6 sm:px-8 py-5">
+                <h2 class="text-2xl font-extrabold text-ink">{% trans "Run your Studio X-Ray" %}</h2>
+                <p class="mt-1 text-sm text-slate-500">{% trans "Two quick steps. Test the connection first — the scan only starts once it succeeds." %}</p>
+            </div>
+
+            <div class="p-6 sm:p-8">
+            {% if form.non_field_errors %}
+            <div class="mb-5 rounded-lg border border-red-200 bg-red-50 text-red-700 px-4 py-3 text-sm">
+                {{ form.non_field_errors.0 }}
+            </div>
+            {% endif %}
+
+            <form method="post" action="{% url 'tool_studio_xray:landing' %}#run" class="space-y-6" novalidate>
+                {% csrf_token %}
+                <div class="hidden" aria-hidden="true">{{ form.website }}</div>
+
+                {# Step 1 — connection #}
+                <div>
+                    <div class="flex items-center gap-2.5 mb-4">
+                        <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-ink text-white text-xs font-bold force-ltr">1</span>
+                        <h3 class="text-sm font-bold text-ink">{% trans "Connect to your Odoo" %}</h3>
+                    </div>
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div class="sm:col-span-2">
+                            <label for="{{ form.odoo_url.id_for_label }}" class="block text-sm font-semibold text-ink mb-1">{{ form.odoo_url.label }}</label>
+                            {{ form.odoo_url }}
+                            {% if form.odoo_url.errors %}<p class="mt-1 text-xs text-red-600">{{ form.odoo_url.errors.0 }}</p>{% endif %}
+                        </div>
+                        <div>
+                            <label for="{{ form.database.id_for_label }}" class="block text-sm font-semibold text-ink mb-1">{{ form.database.label }}</label>
+                            {{ form.database }}
+                            <datalist id="xray-db-options"></datalist>
+                            <p class="mt-1 text-xs" x-show="dbNote" x-cloak
+                               :class="dbState === 'ok' ? 'text-emerald-700' : 'text-slate-500'">
+                                <span x-show="dbState === 'detecting'" class="inline-block h-3 w-3 me-1 align-[-2px] animate-spin rounded-full border-2 border-slate-300 border-t-slate-500" aria-hidden="true"></span>
+                                <span x-text="dbNote"></span>
+                            </p>
+                            {% if form.database.errors %}<p class="mt-1 text-xs text-red-600">{{ form.database.errors.0 }}</p>{% endif %}
+                        </div>
+                        <div>
+                            <label for="{{ form.login.id_for_label }}" class="block text-sm font-semibold text-ink mb-1">{{ form.login.label }}</label>
+                            {{ form.login }}
+                            {% if form.login.errors %}<p class="mt-1 text-xs text-red-600">{{ form.login.errors.0 }}</p>{% endif %}
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label for="{{ form.api_key.id_for_label }}" class="block text-sm font-semibold text-ink mb-1">{{ form.api_key.label }}</label>
+                            {{ form.api_key }}
+                            <p class="mt-1 text-xs text-slate-500">{{ form.api_key.help_text }}</p>
+                            {% if form.api_key.errors %}<p class="mt-1 text-xs text-red-600">{{ form.api_key.errors.0 }}</p>{% endif %}
+                        </div>
+                    </div>
+
+                    <div class="mt-4 flex flex-wrap items-center gap-3">
+                        <button type="button" @click="testConnection" :disabled="testing"
+                                class="inline-flex items-center gap-2 rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-semibold text-ink hover:border-ink transition disabled:opacity-50">
+                            <svg x-show="!testing" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            <svg x-show="testing" x-cloak class="h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9" class="opacity-25"/><path d="M21 12a9 9 0 0 0-9-9" stroke-linecap="round"/></svg>
+                            <span x-text="state === 'ok' ? '{% trans "Connection verified" %}' : '{% trans "Test Connection" %}'">{% trans "Test Connection" %}</span>
+                        </button>
+                        <p x-show="state === 'ok'" x-cloak class="inline-flex items-center gap-1.5 text-sm font-medium text-emerald-700">
+                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                            <span x-text="okText"></span>
+                        </p>
+                        <p x-show="state === 'fail'" x-cloak class="inline-flex items-center gap-1.5 text-sm font-medium text-red-600">
+                            <svg class="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                            <span x-text="errorText"></span>
+                        </p>
+                    </div>
+                    {# Report v3 — scan scope: two selectable cards #}
+                    <div class="mt-5">
+                        <p class="text-sm font-semibold text-ink mb-2">{{ form.scan_scope.label }}</p>
+                        <div class="grid sm:grid-cols-2 gap-3">
+                            {% for choice in form.scan_scope %}
+                            <label class="flex items-start gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3.5 cursor-pointer transition hover:border-brand-300 has-[:checked]:border-brand-500 has-[:checked]:ring-2 has-[:checked]:ring-brand-100">
+                                <span class="mt-0.5">{{ choice.tag }}</span>
+                                <span class="text-sm text-slate-700 leading-snug">{{ choice.choice_label }}</span>
+                            </label>
+                            {% endfor %}
+                        </div>
+                        <p class="mt-2 text-xs text-slate-500">{% trans "Both scopes are read-only. The comprehensive scan analyzes the footprint your installed modules leave inside Odoo's own metadata — it never accesses source code. A code-level audit of the modules themselves is exactly what the free review session is for." %}</p>
+                        {% if form.scan_scope.errors %}<p class="mt-1 text-xs text-red-600">{{ form.scan_scope.errors.0 }}</p>{% endif %}
+                    </div>
+                </div>
+
+                {# Step 2 — report destination #}
+                <div class="border-t border-slate-100 pt-6">
+                    <div class="flex items-center gap-2.5 mb-4">
+                        <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-ink text-white text-xs font-bold force-ltr">2</span>
+                        <h3 class="text-sm font-bold text-ink">{% trans "Where should we send your report?" %}</h3>
+                    </div>
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div class="sm:col-span-2">
+                            <label for="{{ form.email.id_for_label }}" class="block text-sm font-semibold text-ink mb-1">{{ form.email.label }}</label>
+                            {{ form.email }}
+                            <p class="mt-1 text-xs text-slate-500">{{ form.email.help_text }}</p>
+                            {% if form.email.errors %}<p class="mt-1 text-xs text-red-600">{{ form.email.errors.0 }}</p>{% endif %}
+                        </div>
+                        <div>
+                            <label for="{{ form.full_name.id_for_label }}" class="block text-sm font-semibold text-ink mb-1">{{ form.full_name.label }} <span class="font-normal text-slate-400">({% trans "optional" %})</span></label>
+                            {{ form.full_name }}
+                        </div>
+                        <div>
+                            <label for="{{ form.company.id_for_label }}" class="block text-sm font-semibold text-ink mb-1">{{ form.company.label }} <span class="font-normal text-slate-400">({% trans "optional" %})</span></label>
+                            {{ form.company }}
+                        </div>
+                    </div>
+
+                    <label class="mt-4 flex items-start gap-3 text-sm text-slate-600">
+                        {{ form.consent }}
+                        <span>{{ form.consent.label }}</span>
+                    </label>
+                    {% if form.consent.errors %}<p class="mt-1 text-xs text-red-600">{% trans "Please accept so we can email you the report." %}</p>{% endif %}
+                </div>
+
+                <div class="border-t border-slate-100 pt-6">
+                    <button type="submit" :disabled="state !== 'ok'"
+                            class="w-full inline-flex justify-center items-center gap-2 rounded-lg bg-ink text-white font-semibold px-6 py-3.5 hover:bg-brand-700 transition disabled:opacity-40 disabled:cursor-not-allowed">
+                        {% trans "Start the scan" %}
+                        <svg class="h-4 w-4 rtl:rotate-180" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </button>
+                    <p class="mt-2 text-center text-xs text-slate-400" x-show="state !== 'ok'">
+                        <svg class="inline h-3.5 w-3.5 -mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                        {% trans "The button unlocks after a successful connection test." %}
+                    </p>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pb-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-extrabold text-ink text-center">{% trans "Frequently asked questions" %}</h2>
+        <div class="mt-6 space-y-3">
+            {% trans "Is it safe to run this against my production Odoo?" as faq_q1 %}
+            {% trans "Yes. The scan uses Odoo's standard XML-RPC API with read-only methods only — it cannot create, modify or delete anything. It reads structural metadata and aggregate counts (how many records a model holds, how many users were active), never the contents of your business records." as faq_a1 %}
+            {% trans "Do you store my API key?" as faq_q2 %}
+            {% trans "No. The key is used in memory for the duration of the scan and is never written to our database, logs or task queue. You can delete the key in Odoo right after the scan." as faq_a2 %}
+            {% trans "What's the difference between the Studio-only and the comprehensive scan?" as faq_q3 %}
+            {% trans "Studio-only covers what was built through the Odoo UI: Studio fields, custom models, views and automations. The comprehensive scan additionally maps the footprint your installed custom and third-party modules leave inside Odoo — fields, views and actions per module — using Odoo's own metadata. Neither scope accesses source code; a code-level audit is what the free review session is for." as faq_a3 %}
+            {% trans "What does the AI analyst actually do?" as faq_q4 %}
+            {% trans "After the deterministic scan finishes, a local AI model reads your finished report and writes a plain-language summary for management, suggests questions to ask your team, and powers the report chat. Every number comes from the scan — the AI only explains. It runs on our own server, so your report data never goes to a third-party AI provider." as faq_a4 %}
+            {% trans "Which Odoo versions are supported?" as faq_q5 %}
+            {% trans "Odoo 14 to 19 — Community and Enterprise — on Odoo Online (odoo.com), Odoo.sh or self-hosted servers reachable over HTTPS. API keys exist since Odoo 14." as faq_a5 %}
+            {% trans "What happens to the report afterwards?" as faq_q6 %}
+            {% trans "The report lives at a private, unguessable link that we email to you, and you can ask the analyst questions about it in the report chat. 72 hours after the scan, the report data and the chat messages are deleted automatically." as faq_a6 %}
+
+            <div x-data="{ open: false }" class="rounded-xl border border-slate-200"><button @click="open = !open" class="w-full flex items-center justify-between px-5 py-4 text-start font-semibold text-ink text-sm">{{ faq_q1 }}<svg class="h-4 w-4 text-slate-400 shrink-0 transition-transform" :class="open && 'rotate-180'" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button><div x-show="open" x-collapse x-cloak class="px-5 pb-4 text-sm text-slate-600">{{ faq_a1 }}</div></div>
+            <div x-data="{ open: false }" class="rounded-xl border border-slate-200"><button @click="open = !open" class="w-full flex items-center justify-between px-5 py-4 text-start font-semibold text-ink text-sm">{{ faq_q2 }}<svg class="h-4 w-4 text-slate-400 shrink-0 transition-transform" :class="open && 'rotate-180'" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button><div x-show="open" x-collapse x-cloak class="px-5 pb-4 text-sm text-slate-600">{{ faq_a2 }}</div></div>
+            <div x-data="{ open: false }" class="rounded-xl border border-slate-200"><button @click="open = !open" class="w-full flex items-center justify-between px-5 py-4 text-start font-semibold text-ink text-sm">{{ faq_q3 }}<svg class="h-4 w-4 text-slate-400 shrink-0 transition-transform" :class="open && 'rotate-180'" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button><div x-show="open" x-collapse x-cloak class="px-5 pb-4 text-sm text-slate-600">{{ faq_a3 }}</div></div>
+            <div x-data="{ open: false }" class="rounded-xl border border-slate-200"><button @click="open = !open" class="w-full flex items-center justify-between px-5 py-4 text-start font-semibold text-ink text-sm">{{ faq_q4 }}<svg class="h-4 w-4 text-slate-400 shrink-0 transition-transform" :class="open && 'rotate-180'" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button><div x-show="open" x-collapse x-cloak class="px-5 pb-4 text-sm text-slate-600">{{ faq_a4 }}</div></div>
+            <div x-data="{ open: false }" class="rounded-xl border border-slate-200"><button @click="open = !open" class="w-full flex items-center justify-between px-5 py-4 text-start font-semibold text-ink text-sm">{{ faq_q5 }}<svg class="h-4 w-4 text-slate-400 shrink-0 transition-transform" :class="open && 'rotate-180'" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button><div x-show="open" x-collapse x-cloak class="px-5 pb-4 text-sm text-slate-600">{{ faq_a5 }}</div></div>
+            <div x-data="{ open: false }" class="rounded-xl border border-slate-200"><button @click="open = !open" class="w-full flex items-center justify-between px-5 py-4 text-start font-semibold text-ink text-sm">{{ faq_q6 }}<svg class="h-4 w-4 text-slate-400 shrink-0 transition-transform" :class="open && 'rotate-180'" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button><div x-show="open" x-collapse x-cloak class="px-5 pb-4 text-sm text-slate-600">{{ faq_a6 }}</div></div>
+        </div>
+
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {"@type": "Question", "name": "{{ faq_q1|escapejs }}", "acceptedAnswer": {"@type": "Answer", "text": "{{ faq_a1|escapejs }}"}},
+            {"@type": "Question", "name": "{{ faq_q2|escapejs }}", "acceptedAnswer": {"@type": "Answer", "text": "{{ faq_a2|escapejs }}"}},
+            {"@type": "Question", "name": "{{ faq_q3|escapejs }}", "acceptedAnswer": {"@type": "Answer", "text": "{{ faq_a3|escapejs }}"}},
+            {"@type": "Question", "name": "{{ faq_q4|escapejs }}", "acceptedAnswer": {"@type": "Answer", "text": "{{ faq_a4|escapejs }}"}},
+            {"@type": "Question", "name": "{{ faq_q5|escapejs }}", "acceptedAnswer": {"@type": "Answer", "text": "{{ faq_a5|escapejs }}"}},
+            {"@type": "Question", "name": "{{ faq_q6|escapejs }}", "acceptedAnswer": {"@type": "Answer", "text": "{{ faq_a6|escapejs }}"}}
+          ]
+        }
+        </script>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+function xrayForm() {
+    return {
+        state: 'idle',     // idle | testing | ok | fail
+        testing: false,
+        okText: '',
+        errorText: '',
+        dbState: 'idle',   // idle | detecting | ok
+        dbNote: '',
+        dbAutoFilled: false,
+        async detectDb() {
+            const val = (name) => document.querySelector(`[name="${name}"]`).value.trim();
+            const url = val('odoo_url');
+            if (url.length < 8) return;
+            this.dbState = 'detecting';
+            this.dbNote = '{% trans "Detecting your database…" %}';
+            try {
+                const resp = await fetch('{% url "tools_core:detect_database" %}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                    },
+                    body: JSON.stringify({ url: url }),
+                });
+                const data = await resp.json();
+                const input = document.querySelector('[name="database"]');
+                const list = document.getElementById('xray-db-options');
+                list.innerHTML = '';
+                (data.databases || []).forEach((name) => {
+                    const option = document.createElement('option');
+                    option.value = name;
+                    list.appendChild(option);
+                });
+                if (data.ok && data.suggestion) {
+                    if (!input.value || this.dbAutoFilled) {
+                        input.value = data.suggestion;
+                        this.dbAutoFilled = true;
+                    }
+                    this.dbState = 'ok';
+                    this.dbNote = data.source === 'server'
+                        ? '{% trans "Database detected automatically" %}'
+                        : '{% trans "Suggested from your URL — please verify" %}';
+                } else if (data.ok && (data.databases || []).length > 1) {
+                    this.dbState = 'ok';
+                    this.dbNote = '{% trans "Multiple databases found — choose yours from the list" %}';
+                } else if (data.ok) {
+                    // server (correctly) refuses to list databases & no
+                    // hosting heuristic applies — tell the visitor plainly
+                    this.dbState = 'info';
+                    this.dbNote = '{% trans "This server keeps its database names private — please type yours manually (your administrator knows it)." %}';
+                } else if (data.error) {
+                    this.dbState = 'info';
+                    this.dbNote = data.error;
+                } else {
+                    this.dbState = 'idle';
+                    this.dbNote = '';
+                }
+            } catch (e) {
+                this.dbState = 'idle';
+                this.dbNote = '';
+            }
+        },
+        async testConnection() {
+            this.testing = true;
+            this.state = 'testing';
+            const val = (name) => document.querySelector(`[name="${name}"]`).value.trim();
+            try {
+                const resp = await fetch('{% url "tools_core:test_connection" %}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                    },
+                    body: JSON.stringify({
+                        url: val('odoo_url'), database: val('database'),
+                        login: val('login'), api_key: val('api_key'),
+                    }),
+                });
+                const data = await resp.json();
+                if (data.ok) {
+                    this.state = 'ok';
+                    this.okText = '{% trans "Connected:" %} Odoo ' + data.server_version +
+                        (data.edition ? ' (' + data.edition + ')' : '') +
+                        ' — ' + data.user_name;
+                } else {
+                    this.state = 'fail';
+                    this.errorText = data.error || '{% trans "Connection failed — please check the details." %}';
+                }
+            } catch (e) {
+                this.state = 'fail';
+                this.errorText = '{% trans "Connection failed — please check the details." %}';
+            } finally {
+                this.testing = false;
+            }
+        },
+    };
+}
+</script>
+{% endblock %}

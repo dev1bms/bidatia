@@ -1,0 +1,169 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="cal-wrap">
+
+    <div class="cal-toolbar">
+        <div class="cal-nav">
+            <a class="cal-btn" href="{{ nav.prev }}">&larr;</a>
+            <span class="cal-month">{{ label }}</span>
+            <a class="cal-btn" href="{{ nav.next }}">&rarr;</a>
+            <a class="cal-btn cal-btn-ghost" href="{{ nav.today }}">{% trans "Today" %}</a>
+        </div>
+
+        <div class="cal-toggle">
+            <a class="cal-btn {% if view != 'month' %}cal-btn-ghost{% endif %}" href="{{ toggle.month }}">{% trans "Month" %}</a>
+            <a class="cal-btn {% if view != 'week' %}cal-btn-ghost{% endif %}" href="{{ toggle.week }}">{% trans "Week" %}</a>
+        </div>
+
+        <form method="get" class="cal-filter">
+            {% for k, v in filter_params.items %}<input type="hidden" name="{{ k }}" value="{{ v }}">{% endfor %}
+            <select name="type" onchange="this.form.submit()">
+                <option value="">{% trans "All consultation types" %}</option>
+                {% for value, lbl in type_choices %}
+                <option value="{{ value }}" {% if value == type_filter %}selected{% endif %}>{{ lbl }}</option>
+                {% endfor %}
+            </select>
+            <noscript><button type="submit" class="cal-btn">{% trans "Filter" %}</button></noscript>
+        </form>
+
+        <div class="cal-links">
+            <a class="cal-btn" href="{{ generate_url }}">{% trans "Generate slots" %}</a>
+            <a class="cal-btn cal-btn-ghost" href="{{ changelist_url }}">{% trans "List view" %}</a>
+        </div>
+    </div>
+
+    <div class="cal-summary">
+        <span class="cal-pill">{% trans "Total" %}: <b>{{ counts.total }}</b></span>
+        <span class="cal-pill cal-pill-available">{% trans "Available" %}: <b>{{ counts.available }}</b></span>
+        <span class="cal-pill cal-pill-booked">{% trans "Booked" %}: <b>{{ counts.booked }}</b></span>
+        <span class="cal-pill cal-pill-past">{% trans "Past" %}: <b>{{ counts.past }}</b></span>
+        <span class="cal-pill cal-pill-inactive">{% trans "Inactive" %}: <b>{{ counts.inactive }}</b></span>
+    </div>
+
+    {% if view == 'week' %}
+    {# ── Week view: hours × days grid ── #}
+    <div class="wk-grid">
+        <div class="wk-h"></div>
+        {% for d in week_days %}
+        <div class="wk-h {% if d.is_today %}wk-today{% endif %}">
+            {{ d.label }}
+            <a class="cal-add" title="{% trans 'Add slots on this day' %}"
+               href="{{ generate_url }}?start_date={{ d.iso }}&end_date={{ d.iso }}&weekdays={{ d.weekday }}{% if type_filter %}&consultation_type={{ type_filter }}{% endif %}">+</a>
+        </div>
+        {% endfor %}
+        {% for row in rows %}
+        <div class="wk-time">{{ row.hour }}</div>
+        {% for cell in row.cells %}
+        <div class="wk-cell">
+            {% for s in cell %}
+            <a class="cal-chip cal-chip-{{ s.status }}" href="{{ s.url }}" title="{{ s.time }}–{{ s.end }} · {{ s.type }}">
+                <span dir="ltr">{{ s.time }}</span>
+            </a>
+            {% endfor %}
+        </div>
+        {% endfor %}
+        {% endfor %}
+    </div>
+
+    {% else %}
+    {# ── Month view ── #}
+    <div class="cal-grid cal-head">
+        {% for wd in weekday_headers %}<div class="cal-hcell">{{ wd }}</div>{% endfor %}
+    </div>
+    {% for week in weeks %}
+    <div class="cal-grid">
+        {% for cell in week %}
+        <div class="cal-day{% if not cell.in_month %} cal-out{% endif %}{% if cell.is_today %} cal-today{% endif %}">
+            <div class="cal-dayhead">
+                <span class="cal-daynum">{{ cell.day }}</span>
+                {% if cell.in_month %}
+                <a class="cal-add" title="{% trans 'Add slots on this day' %}"
+                   href="{{ generate_url }}?start_date={{ cell.iso }}&end_date={{ cell.iso }}&weekdays={{ cell.weekday }}{% if type_filter %}&consultation_type={{ type_filter }}{% endif %}">+</a>
+                {% endif %}
+            </div>
+            <div class="cal-slots">
+                {% for s in cell.slots %}
+                <a class="cal-chip cal-chip-{{ s.status }}" href="{{ s.url }}" title="{{ s.type }}">
+                    <span dir="ltr">{{ s.time }}–{{ s.end }}</span>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <p class="cal-legend">
+        <span class="cal-dot cal-chip-available"></span>{% trans "Available" %}
+        <span class="cal-dot cal-chip-booked"></span>{% trans "Booked" %}
+        <span class="cal-dot cal-chip-past"></span>{% trans "Past" %}
+        <span class="cal-dot cal-chip-inactive"></span>{% trans "Inactive" %}
+        — {% trans "click a slot to edit it, or “+” to add slots on a day." %}
+    </p>
+</div>
+
+<style>
+    .cal-wrap { max-width: 1100px; }
+    .cal-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+    .cal-nav { display: flex; align-items: center; gap: .5rem; }
+    .cal-month { font-size: 1.05rem; font-weight: 700; min-width: 12rem; text-align: center; }
+    .cal-toggle { display: flex; gap: .35rem; }
+    .cal-links { margin-inline-start: auto; display: flex; gap: .5rem; }
+    .cal-btn { display: inline-flex; align-items: center; padding: .4rem .8rem; border-radius: .5rem;
+        background: #0f172a; color: #fff; text-decoration: none; font-weight: 600; font-size: .85rem; }
+    .cal-btn-ghost { background: transparent; color: #0f172a; border: 1px solid #cbd5e1; }
+    .cal-filter select { padding: .4rem .6rem; border: 1px solid #cbd5e1; border-radius: .5rem; }
+
+    .cal-summary { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem; }
+    .cal-pill { font-size: .8rem; padding: .2rem .7rem; border-radius: 9999px; background: #f1f5f9; color: #334155; }
+    .cal-pill-available { background: #dcfce7; color: #166534; }
+    .cal-pill-booked { background: #dbeafe; color: #1e40af; }
+    .cal-pill-past { background: #fef3c7; color: #92400e; }
+    .cal-pill-inactive { background: #e5e7eb; color: #4b5563; }
+
+    /* Month grid */
+    .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+    .cal-head { margin-bottom: 6px; }
+    .cal-hcell { text-align: center; font-size: .72rem; font-weight: 700; text-transform: uppercase;
+        letter-spacing: .03em; color: #64748b; padding: .25rem 0; }
+    .cal-grid:not(.cal-head) { margin-bottom: 6px; }
+    .cal-day { min-height: 116px; border: 1px solid #e2e8f0; border-radius: .6rem; padding: .4rem; background: #fff;
+        display: flex; flex-direction: column; }
+    .cal-out { background: #f8fafc; opacity: .55; }
+    .cal-today { border-color: #2563eb; box-shadow: 0 0 0 1px #2563eb inset; }
+    .cal-dayhead { display: flex; align-items: center; justify-content: space-between; margin-bottom: .3rem; }
+    .cal-daynum { font-size: .8rem; font-weight: 700; color: #0f172a; }
+    .cal-add { display: inline-flex; align-items: center; justify-content: center; width: 1.2rem; height: 1.2rem;
+        border-radius: .35rem; background: #eef2f7; color: #1d4ed8; font-weight: 700; text-decoration: none; line-height: 1; }
+    .cal-add:hover { background: #1d4ed8; color: #fff; }
+    .cal-slots { display: flex; flex-direction: column; gap: 3px; overflow-y: auto; max-height: 150px; }
+    .cal-chip { font-size: .72rem; font-weight: 600; padding: .12rem .4rem; border-radius: .35rem;
+        text-decoration: none; border-inline-start: 3px solid transparent; white-space: nowrap; }
+    .cal-chip-available { background: #dcfce7; color: #166534; border-color: #22c55e; }
+    .cal-chip-booked { background: #dbeafe; color: #1e40af; border-color: #3b82f6; }
+    .cal-chip-past { background: #fef3c7; color: #92400e; border-color: #f59e0b; }
+    .cal-chip-inactive { background: #e5e7eb; color: #4b5563; border-color: #9ca3af; }
+
+    /* Week grid (hours × days) */
+    .wk-grid { display: grid; grid-template-columns: 64px repeat(7, 1fr); gap: 6px; align-items: stretch; }
+    .wk-h { font-size: .75rem; font-weight: 700; color: #334155; text-align: center; padding: .35rem .2rem;
+        display: flex; align-items: center; justify-content: center; gap: .35rem; }
+    .wk-today { color: #1d4ed8; }
+    .wk-time { font-size: .72rem; color: #64748b; text-align: end; padding-top: .35rem; padding-inline-end: .3rem; }
+    .wk-cell { min-height: 46px; border: 1px solid #e2e8f0; border-radius: .4rem; padding: .25rem; background: #fff;
+        display: flex; flex-direction: column; gap: 3px; }
+
+    .cal-legend { margin-top: 1rem; font-size: .8rem; color: #64748b; display: flex; align-items: center; gap: .4rem; flex-wrap: wrap; }
+    .cal-dot { display: inline-block; width: .8rem; height: .8rem; border-radius: 3px; margin-inline-start: .6rem; }
+
+    .dark .cal-btn-ghost { color: #e5e7eb; border-color: #3f3f46; }
+    .dark .cal-day, .dark .wk-cell { background: #18181b; border-color: #27272a; }
+    .dark .cal-out { background: #111113; }
+    .dark .cal-daynum { color: #e5e7eb; }
+    .dark .cal-month, .dark .cal-pill, .dark .wk-h { color: #e5e7eb; }
+    .dark .cal-add { background: #27272a; color: #93c5fd; }
+</style>
+{% endblock %}

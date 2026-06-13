@@ -1,0 +1,24 @@
+{% load i18n l10n %}{% localize off %}{# SVG coordinates must never be locale-formatted (Arabic/Spanish decimal separators break the drawing) #}<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {{ qmap.view_w }} {{ qmap.view_h }}" role="img" aria-label="{% trans 'Data quality map: one axis per risk category — the further from the center, the higher the risk.' %}" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif">
+    <rect x="0" y="0" width="{{ qmap.view_w }}" height="{{ qmap.view_h }}" fill="#ffffff"/>
+
+    {% for ring in qmap.rings %}
+    <circle cx="{{ qmap.cx }}" cy="{{ qmap.cy }}" r="{{ ring.r }}" fill="none" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3 5"/>
+    {% endfor %}
+
+    {% for axis in qmap.axes %}
+    <line x1="{{ qmap.cx }}" y1="{{ qmap.cy }}" x2="{{ axis.x2 }}" y2="{{ axis.y2 }}" stroke="#cbd5e1" stroke-width="1" opacity="0.5"/>
+    {% endfor %}
+
+    <polygon points="{{ qmap.polygon }}" fill="#f43f5e" fill-opacity="0.14" stroke="#f43f5e" stroke-width="2" stroke-linejoin="round"/>
+
+    {% for axis in qmap.axes %}
+    <circle cx="{{ axis.px }}" cy="{{ axis.py }}" r="5" fill="{{ axis.dot_color }}" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="{{ axis.label_x }}" y="{{ axis.label_y }}" text-anchor="{{ axis.anchor }}" font-size="10.5" font-weight="700" fill="#334155" stroke="#ffffff" stroke-width="3" paint-order="stroke" stroke-linejoin="round">{{ axis.label }}</text>
+    <text x="{{ axis.label_x }}" y="{{ axis.value_y }}" text-anchor="{{ axis.anchor }}" font-size="9.5" fill="#94a3b8" stroke="#ffffff" stroke-width="3" paint-order="stroke" stroke-linejoin="round">{{ axis.score }}/100</text>
+    {% endfor %}
+
+    <circle cx="{{ qmap.cx }}" cy="{{ qmap.cy }}" r="{{ qmap.center_r }}" fill="#0f172a"/>
+    <text x="{{ qmap.cx }}" y="{{ qmap.cy }}" dy="4" text-anchor="middle" font-size="14" font-weight="800" fill="{{ qmap.score_color }}">{{ qmap.score }}</text>
+
+    <text x="{{ qmap.view_w|add:'-12' }}" y="{{ qmap.view_h|add:'-10' }}" text-anchor="end" font-size="8.5" fill="#cbd5e1">Bidatia Data Risk Profiler — bidatia.xyz</text>
+</svg>{% endlocalize %}

@@ -1,0 +1,1111 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Studio X-Ray Report" %} — {{ SITE_NAME }}{% endblock %}
+
+{% block extra_head %}
+<style>
+    /* Print / save-as-PDF: keep the report content, drop the chrome. */
+    @media print {
+        /* Keep score-breakdown bars, severity chips and gauge colors — browsers
+           strip background colors/gradients by default when printing. */
+        * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        body > *:not(main) { display: none !important; }   /* nav, global CTA, footer */
+        .no-print { display: none !important; }
+        main { padding: 0 !important; }
+        /* Dark hero sections print on white — force readable ink text. */
+        .bg-ink, .bg-ink * { background: #fff !important; color: #0f172a !important; }
+        .tech-grid, .grid-mask, .xray-glow { display: none !important; }
+        /* Keep cards and table rows on one page where possible. */
+        .rounded-2xl, .rounded-xl, tr, li { break-inside: avoid; }
+        section { padding-top: .6rem !important; padding-bottom: .6rem !important; }
+        a[href]::after { content: none !important; }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+{% if expired %}
+<section class="py-24">
+    <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <span class="inline-flex h-14 w-14 items-center justify-center rounded-full bg-slate-100 text-slate-400">
+            <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" d="M12 8v4l2.5 2.5"/></svg>
+        </span>
+        <h1 class="mt-5 text-3xl font-extrabold text-ink">{% trans "This report has expired" %}</h1>
+        <p class="mt-4 text-slate-600">{% trans "For your privacy, report data is deleted automatically 72 hours after the scan. You can run a fresh scan anytime — it only takes a minute." %}</p>
+        <a href="{% url 'tool_studio_xray:landing' %}" class="mt-8 inline-flex items-center rounded-lg bg-ink text-white font-semibold px-6 py-3.5 hover:bg-brand-700 transition">{% trans "Run a new scan" %}</a>
+    </div>
+</section>
+{% else %}
+{# ── Hero: headline score + metric cards ──────────────────────────────────── #}
+<section class="relative overflow-hidden bg-ink text-white">
+    <div class="absolute inset-0 tech-grid tech-grid-dark grid-mask" aria-hidden="true"></div>
+    <div class="absolute -top-24 left-1/3 h-72 w-[36rem] rounded-full bg-brand-600/20 blur-3xl" aria-hidden="true"></div>
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16">
+        <p class="font-mono text-xs uppercase tracking-wider text-brand-300">// {% trans "Studio X-Ray Report" %}</p>
+
+        {% if is_demo %}
+        <div class="mt-4 flex flex-wrap items-center gap-3 rounded-xl border border-amber-400/40 bg-amber-400/10 px-4 py-3">
+            <span class="rounded-full bg-amber-400 px-3 py-1 text-xs font-extrabold text-ink">DEMO</span>
+            <p class="text-sm text-amber-100">{% trans "This is a sample report for a fictional company — every number below was generated for demonstration." %}</p>
+            <a href="{% url 'tool_studio_xray:landing' %}" class="ms-auto inline-flex items-center gap-1.5 rounded-lg bg-white text-ink text-sm font-semibold px-4 py-2 hover:bg-brand-50 transition">
+                {% trans "Run it on YOUR Odoo — free" %}
+                <svg class="h-4 w-4 rtl:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+        </div>
+        {% endif %}
+
+        {# Report v3 — client identity strip: this is THEIR report #}
+        {% if identity and identity.company_name %}
+        <div class="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3 rounded-xl bg-white/5 ring-1 ring-white/10 px-4 py-3">
+            <div class="flex items-center gap-3 min-w-0">
+                {% if identity.company_logo %}
+                <img src="data:image/png;base64,{{ identity.company_logo }}" alt="" class="h-10 w-10 rounded-lg bg-white object-contain p-0.5 shrink-0">
+                {% endif %}
+                <div class="min-w-0">
+                    <p class="text-sm font-bold text-white truncate">{{ identity.company_name }}</p>
+                    <p class="text-xs text-slate-400 truncate">
+                        {% if identity.company_location %}{{ identity.company_location }}{% endif %}
+                        {% if identity.companies_total > 1 %} · {{ identity.companies_total }} {% trans "companies" %}{% endif %}
+                    </p>
+                </div>
+            </div>
+            <div class="ms-auto">
+                <p class="text-[10px] uppercase tracking-wider text-slate-400">{% trans "Prepared at the request of" %}</p>
+                <p class="text-sm text-slate-200">
+                    {% if run.lead and run.lead.full_name %}{{ run.lead.full_name }}{% elif run.lead %}{{ run.lead.email }}{% else %}{{ identity.user_name }}{% endif %}
+                    {% if identity.user_name %}<span class="text-slate-500 text-xs"> · {% trans "Odoo user:" %} {{ identity.user_name }}</span>{% endif %}
+                </p>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="mt-4 grid lg:grid-cols-[1fr_auto] items-center gap-10">
+            <div>
+                <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-balance">{% trans "Your Studio customization picture" %}</h1>
+                <p class="mt-3 text-slate-300 text-sm flex flex-wrap items-center gap-x-2 gap-y-1">
+                    <span class="inline-flex items-center gap-1.5">
+                        <span class="h-1.5 w-1.5 rounded-full bg-accent-400"></span>
+                        <span class="force-ltr">Odoo {{ meta.server_version }}{% if meta.edition %} · {{ meta.edition }}{% endif %}</span>
+                    </span>
+                    <span class="text-slate-500">·</span>
+                    <span>{% trans "scanned" %} <span class="whitespace-nowrap">{{ run.finished_at|date:"j M Y, H:i" }} UTC</span></span>
+                </p>
+
+                <div class="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <div class="rounded-xl bg-white/5 ring-1 ring-white/10 p-4">
+                        <p class="text-3xl font-extrabold text-white tabular-nums">{{ totals.studio_fields }}</p>
+                        <p class="mt-1 text-xs text-slate-300">{% trans "Studio fields" %}</p>
+                    </div>
+                    <div class="rounded-xl bg-white/5 ring-1 ring-white/10 p-4">
+                        <p class="text-3xl font-extrabold text-white tabular-nums">{{ totals.custom_models }}</p>
+                        <p class="mt-1 text-xs text-slate-300">{% trans "Custom models" %}</p>
+                    </div>
+                    <div class="rounded-xl bg-white/5 ring-1 ring-white/10 p-4">
+                        <p class="text-3xl font-extrabold text-white tabular-nums">{{ totals.automated_actions }}</p>
+                        <p class="mt-1 text-xs text-slate-300">{% trans "Automated actions" %}</p>
+                    </div>
+                    <div class="rounded-xl bg-white/5 ring-1 ring-white/10 p-4">
+                        <p class="text-3xl font-extrabold text-white tabular-nums">{{ totals.studio_views }}</p>
+                        <p class="mt-1 text-xs text-slate-300">{% trans "Studio views" %}</p>
+                    </div>
+                </div>
+            </div>
+
+            {# score gauge #}
+            <div class="shrink-0 mx-auto lg:mx-0 text-center rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
+                <div class="relative inline-flex items-center justify-center">
+                    <svg class="h-36 w-36 -rotate-90" viewBox="0 0 120 120" aria-hidden="true">
+                        <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="9"/>
+                        <circle cx="60" cy="60" r="52" fill="none"
+                                stroke="{% if scoring.score >= 76 %}#f87171{% elif scoring.score >= 51 %}#fb923c{% elif scoring.score >= 25 %}#fbbf24{% else %}#22c55e{% endif %}"
+                                stroke-width="9" stroke-linecap="round"
+                                stroke-dasharray="{% widthratio scoring.score 100 327 %} 327"/>
+                    </svg>
+                    <div class="absolute text-center">
+                        <p class="text-4xl font-extrabold tabular-nums">{{ scoring.score }}</p>
+                        <p class="text-[10px] uppercase tracking-wider text-slate-300">{% trans "of 100" %}</p>
+                    </div>
+                </div>
+                <p class="mt-3 text-sm font-semibold
+                    {% if scoring.score >= 76 %}text-red-300{% elif scoring.score >= 51 %}text-orange-300{% elif scoring.score >= 25 %}text-amber-300{% else %}text-accent-300{% endif %}">
+                    {{ complexity_band }}
+                </p>
+                <p class="mt-1 text-xs text-slate-400">{% trans "Estimated cleanup:" %} <span class="font-semibold text-slate-200">{{ scoring.effort_estimate }}</span></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# ── Executive summary (Report v2) ────────────────────────────────────────── #}
+<section class="py-10 lg:py-12 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+            <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 bg-slate-50/70 px-6 sm:px-8 py-4">
+                <h2 class="text-lg font-extrabold text-ink flex items-center gap-2">
+                    <svg class="h-5 w-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6M9 8h6M5 4h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/></svg>
+                    {% trans "Executive summary" %}
+                </h2>
+                <button type="button" onclick="window.print()"
+                        class="no-print inline-flex items-center gap-2 rounded-lg border border-slate-300 px-3.5 py-2 text-xs font-semibold text-ink hover:border-ink transition">
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M6 9V4h12v5M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2m-12-3h12v7H6v-7z"/></svg>
+                    {% trans "Print or save as PDF" %}
+                </button>
+            </div>
+            <div class="px-6 sm:px-8 py-6 space-y-5">
+                <p class="text-sm text-slate-600">
+                    {% trans "Overall customization level:" %}
+                    <span class="font-bold text-ink">{{ complexity_band }}</span>
+                    <span class="text-slate-400">·</span>
+                    <span class="tabular-nums force-ltr">{{ scoring.score }}/100</span>
+                    <span class="text-slate-400">·</span>
+                    {% trans "estimated cleanup" %} <span class="font-semibold text-ink">{{ scoring.effort_estimate }}</span>
+                </p>
+
+                {% if risk_lines %}
+                <div>
+                    <h3 class="text-xs font-bold uppercase tracking-wide text-slate-500">{% trans "Biggest risks right now" %}</h3>
+                    <ul class="mt-2 space-y-2">
+                        {% for line in risk_lines %}
+                        <li class="flex items-start gap-2.5 text-sm text-slate-700">
+                            <svg class="h-4 w-4 mt-0.5 shrink-0 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+                            <span>{{ line }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                {% if upgrade %}
+                <p class="text-sm text-slate-700">
+                    <span class="font-semibold text-ink">{% trans "Upgrade impact:" %}</span>
+                    {% trans "expected migration friction is" %}
+                    <span class="font-bold text-ink">{{ upgrade.friction_label }}</span>{% if upgrade.gap %} —
+                    {% blocktrans with gap=upgrade.gap latest=upgrade.latest_known_major %}you are {{ gap }} major version(s) behind Odoo {{ latest }}{% endblocktrans %}{% endif %}.
+                </p>
+                {% endif %}
+
+                {% if next_step_line %}
+                <div class="rounded-xl bg-brand-50 ring-1 ring-brand-100 px-4 py-3.5 flex items-start gap-3">
+                    <svg class="h-5 w-5 mt-0.5 shrink-0 text-brand-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    <p class="text-sm text-ink"><span class="font-bold">{% trans "Recommended next step:" %}</span> {{ next_step_line }}</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{# ── System pulse + custom-data usage + code footprint (Report v3) ────────── #}
+{% if pulse or usage %}
+<section class="pb-10 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+
+        {% if pulse %}
+        <div class="rounded-2xl border border-slate-200 p-6 lg:p-8">
+            <div class="flex flex-wrap items-baseline justify-between gap-2">
+                <h2 class="text-lg font-extrabold text-ink">{% trans "System pulse" %}</h2>
+                <p class="text-xs text-slate-400">{% trans "Counts only — we never read the contents of your records." %}</p>
+            </div>
+            <div class="mt-5 grid grid-cols-2 lg:grid-cols-4 gap-3">
+                <div class="rounded-xl bg-slate-50 p-4">
+                    <p class="text-xs text-slate-500">{% trans "Active users (30 days)" %}</p>
+                    <p class="mt-1 text-2xl font-extrabold text-ink tabular-nums">
+                        {% if pulse.active_users_30d is not None %}{{ pulse.active_users_30d }}<span class="text-sm font-semibold text-slate-400"> / {{ pulse.internal_users }}</span>
+                        {% else %}{{ pulse.internal_users }}{% endif %}
+                    </p>
+                </div>
+                {% if usage %}
+                <div class="rounded-xl bg-slate-50 p-4">
+                    <p class="text-xs text-slate-500">{% trans "Records in custom models" %}</p>
+                    <p class="mt-1 text-2xl font-extrabold text-ink tabular-nums">{{ usage.total_custom_records }}</p>
+                </div>
+                {% endif %}
+                {% if pulse.attachments %}
+                <div class="rounded-xl bg-slate-50 p-4">
+                    <p class="text-xs text-slate-500">{% trans "Stored attachments" %}</p>
+                    <p class="mt-1 text-2xl font-extrabold text-ink tabular-nums force-ltr">{{ pulse.attachment_size }}</p>
+                </div>
+                {% endif %}
+                {% if usage and usage.dead_count %}
+                <div class="rounded-xl bg-amber-50 p-4">
+                    <p class="text-xs text-amber-700">{% trans "Empty custom models" %}</p>
+                    <p class="mt-1 text-2xl font-extrabold text-amber-700 tabular-nums">{{ usage.dead_count }}<span class="text-sm font-semibold text-amber-600/70"> / {{ usage.counted }}</span></p>
+                </div>
+                {% elif pulse.portal_users %}
+                <div class="rounded-xl bg-slate-50 p-4">
+                    <p class="text-xs text-slate-500">{% trans "Portal users" %}</p>
+                    <p class="mt-1 text-2xl font-extrabold text-ink tabular-nums">{{ pulse.portal_users }}</p>
+                </div>
+                {% endif %}
+            </div>
+
+            {% if pulse.business_volumes %}
+            <div class="mt-5 flex flex-wrap gap-2">
+                {% for row in pulse.business_volumes %}
+                <span class="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-3 py-1.5 text-xs text-slate-600">
+                    {{ row.label }} <span class="font-bold text-ink tabular-nums">{{ row.records }}</span>
+                </span>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if pulse.crons_disabled or pulse.stuck_mails %}
+            <div class="mt-5 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+                <span class="font-bold">{% trans "Operational flags:" %}</span>
+                {% if pulse.crons_disabled %}{{ pulse.crons_disabled }} {% trans "disabled scheduled jobs" %}{% endif %}{% if pulse.crons_disabled and pulse.stuck_mails %} · {% endif %}{% if pulse.stuck_mails %}{{ pulse.stuck_mails }} {% trans "emails stuck in the outgoing queue" %}{% endif %}
+                — {% trans "worth a look during the review." %}
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        {% if usage and usage.rows %}
+        <div class="rounded-2xl border border-slate-200 p-6 lg:p-8">
+            <h2 class="text-lg font-extrabold text-ink">{% trans "Where your custom data lives" %}</h2>
+            <p class="mt-1 text-sm text-slate-500">{% trans "Custom models ranked by record count — the ones at the top are not experiments, they run your business." %}</p>
+            <div class="mt-5 space-y-2.5">
+                {% for row in usage.rows %}
+                <div class="flex items-center gap-3">
+                    <code class="force-ltr text-xs text-slate-600 w-40 lg:w-48 truncate shrink-0">{{ row.model }}</code>
+                    <div class="flex-1 h-4 rounded bg-slate-100 overflow-hidden">
+                        <div class="h-full {% if row.tier == 'critical' %}bg-brand-600{% elif row.tier == 'active' %}bg-brand-400{% else %}bg-slate-300{% endif %}" style="width: {{ row.bar }}%"></div>
+                    </div>
+                    <span class="text-xs text-slate-500 tabular-nums w-16 text-end shrink-0">{{ row.records }}</span>
+                    <span class="shrink-0 rounded-full px-2.5 py-0.5 text-[11px] font-semibold
+                        {% if row.tier == 'critical' %}bg-red-50 text-red-700{% elif row.tier == 'active' %}bg-emerald-50 text-emerald-700{% else %}bg-slate-100 text-slate-500{% endif %}">{{ row.tier_label }}</span>
+                </div>
+                {% endfor %}
+            </div>
+            {% if usage.dead_count %}
+            <p class="mt-4 text-sm text-slate-500">
+                <span class="font-bold text-ink">{{ usage.dead_count }}</span> {% trans "custom models hold zero records — deleting them is an easy cleanup win that already reduced the effort estimate below." %}
+                <span class="force-ltr text-xs text-slate-400">{% for m in usage.dead_examples %}{{ m }}{% if not forloop.last %} · {% endif %}{% endfor %}</span>
+            </p>
+            {% endif %}
+            {% if usage.skipped %}
+            <p class="mt-2 text-xs text-slate-400">{{ usage.skipped }} {% trans "models could not be counted (restricted access) and are not shown here." %}</p>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        {% if code_summary and code_summary.modules %}
+        <div class="rounded-2xl border border-slate-200 p-6 lg:p-8">
+            <div class="flex flex-wrap items-baseline justify-between gap-2">
+                <h2 class="text-lg font-extrabold text-ink">{% trans "Code customizations (Python modules)" %}</h2>
+                <span class="rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700">{% trans "Comprehensive scan" %}</span>
+            </div>
+            <p class="mt-1 text-sm text-slate-500 max-w-3xl">{% trans "Unlike Studio customizations, these live in versioned modules — maintained code rather than database records. They are not a defect, but every module below must be re-validated (and often updated) on each Odoo upgrade." %}</p>
+            <div class="mt-5 overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr class="text-start text-xs uppercase tracking-wide text-slate-400 border-b border-slate-100">
+                            <th class="py-2 text-start font-semibold">{% trans "Module" %}</th>
+                            <th class="py-2 text-start font-semibold">{% trans "Origin" %}</th>
+                            <th class="py-2 text-end font-semibold">{% trans "Models" %}</th>
+                            <th class="py-2 text-end font-semibold">{% trans "Fields" %}</th>
+                            <th class="py-2 text-end font-semibold">{% trans "Views" %}</th>
+                            <th class="py-2 text-end font-semibold">{% trans "Actions" %}</th>
+                            <th class="py-2 text-end font-semibold">{% trans "Total" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in code_summary.modules %}
+                        <tr class="border-b border-slate-50">
+                            <td class="py-2"><code class="force-ltr text-xs text-slate-700">{{ row.module }}</code></td>
+                            <td class="py-2"><span class="rounded-full px-2 py-0.5 text-[11px] font-semibold {% if row.origin == 'custom' %}bg-brand-50 text-brand-700{% else %}bg-slate-100 text-slate-600{% endif %}">{{ row.origin_label }}</span></td>
+                            <td class="py-2 text-end tabular-nums">{{ row.models }}</td>
+                            <td class="py-2 text-end tabular-nums">{{ row.fields }}</td>
+                            <td class="py-2 text-end tabular-nums">{{ row.views }}</td>
+                            <td class="py-2 text-end tabular-nums">{{ row.server_actions|add:row.automations }}</td>
+                            <td class="py-2 text-end font-bold tabular-nums">{{ row.total }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% if code_summary.code_models %}
+            <p class="mt-5 text-sm font-bold text-ink">{% trans "Models defined by your custom modules — by record count" %}</p>
+            <div class="mt-3 space-y-2">
+                {% for row in code_summary.code_models %}
+                <div class="flex items-center gap-3">
+                    <code class="force-ltr text-xs text-slate-600 w-40 lg:w-48 truncate shrink-0">{{ row.model }}</code>
+                    <span class="text-xs text-slate-500 tabular-nums">{{ row.records }} {% trans "records" %}</span>
+                    <span class="shrink-0 rounded-full px-2.5 py-0.5 text-[11px] font-semibold
+                        {% if row.tier == 'critical' %}bg-red-50 text-red-700{% elif row.tier == 'active' %}bg-emerald-50 text-emerald-700{% else %}bg-slate-100 text-slate-500{% endif %}">{{ row.tier_label }}</span>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+
+    </div>
+</section>
+{% endif %}
+
+{# ── System Map — the report's visual signature (server-side SVG) ──────────── #}
+{% if system_map %}
+<section class="pb-10 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="rounded-2xl border border-slate-200 bg-white shadow-sm p-6 sm:p-8">
+            <h2 class="text-lg font-extrabold text-ink flex items-center gap-2">
+                <svg class="h-5 w-5 text-brand-600" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" fill="currentColor"/><path stroke-linecap="round" d="M12 3v2M12 19v2M3 12h2M19 12h2"/></svg>
+                {% trans "Your Odoo Customization Map" %}
+            </h2>
+            <p class="mt-2 text-sm text-slate-600 leading-relaxed max-w-3xl">
+                {% trans "Every circle is a model in your system. The closer to the center, the more standard it is; the warmer the color, the more custom structure it carries. Threads are automations pulling on the core." %}
+            </p>
+
+            {# overflow-x-auto + min width: on phones the map scrolls sideways instead of shrinking into an unreadable thumbnail #}
+            <div class="mt-5 rounded-xl border border-slate-100 overflow-x-auto">
+                <div class="min-w-[560px]">
+                    {% include "tool_studio_xray/_system_map.html" with map=system_map %}
+                </div>
+            </div>
+
+            <div class="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-2 text-xs text-slate-600">
+                <span class="inline-flex items-center gap-1.5"><span class="h-3 w-3 shrink-0 rounded-full" style="background:#2563eb"></span>{% trans "Standard model" %}</span>
+                <span class="inline-flex items-center gap-1.5"><span class="h-3 w-3 shrink-0 rounded-full" style="background:#f59e0b"></span>{% trans "Core model with custom fields" %}</span>
+                <span class="inline-flex items-center gap-1.5"><span class="h-3 w-3 shrink-0 rounded-full" style="background:#f43f5e"></span>{% trans "Custom (Studio) model" %}</span>
+                <span class="inline-flex items-center gap-1.5"><span class="h-3 w-3 shrink-0 rounded-full" style="background:#be123c"></span>{% trans "Business-critical custom model" %}</span>
+                <span class="inline-flex items-center gap-1.5"><span class="h-3 w-3 shrink-0 rounded-full opacity-50" style="background:#94a3b8"></span>{% trans "Empty / abandoned model" %}</span>
+                <span class="inline-flex items-center gap-1.5"><span class="h-0.5 w-4 shrink-0 rounded" style="background:#f97316"></span>{% trans "Automation thread" %}</span>
+                <span class="inline-flex items-center gap-1.5"><span class="h-3 w-3 shrink-0 rounded-full border-2" style="border-color:#f59e0b"></span>{% trans "Halo: density of custom fields" %}</span>
+                <span class="inline-flex items-center gap-1.5"><span class="inline-flex items-end gap-0.5 shrink-0"><span class="h-1.5 w-1.5 rounded-full bg-slate-400"></span><span class="h-3 w-3 rounded-full bg-slate-400"></span></span>{% trans "Size: volume of data / customization" %}</span>
+            </div>
+
+            <div class="mt-5 flex flex-col sm:flex-row gap-3 no-print">
+                {# ?v=2 busts the stale pre-fix Cloudflare cache entries for the bare URL #}
+                <a href="{{ system_map_url }}?v=2" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 text-ink text-sm font-semibold px-5 py-2.5 hover:border-ink transition">
+                    {% trans "Open full map" %}
+                    <svg class="h-4 w-4" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+                <a href="{{ system_map_url }}?download=1&v=2" class="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 text-ink text-sm font-semibold px-5 py-2.5 hover:border-ink transition">
+                    {% trans "Download SVG" %}
+                    <svg class="h-4 w-4" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/></svg>
+                </a>
+                {% if is_demo %}
+                <a href="{% url 'tool_studio_xray:landing' %}" class="inline-flex items-center justify-center gap-2 rounded-lg bg-ink text-white text-sm font-semibold px-5 py-2.5 hover:bg-brand-700 transition">
+                    {% trans "Run this on your own Odoo" %}
+                    <svg class="h-4 w-4 rtl:rotate-180" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{# ── AI analyst notes (local model interpretation — numbers stay deterministic) #}
+{% if ai_insights %}
+<section class="pb-10 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="rounded-2xl border border-brand-200 bg-gradient-to-br from-brand-50/60 to-white shadow-sm p-6 sm:p-8">
+            <h2 class="text-lg font-extrabold text-ink flex items-center gap-2">
+                <svg class="h-5 w-5 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3l1.7 4.6L18.3 9l-4.6 1.7L12 15.3l-1.7-4.6L5.7 9l4.6-1.4L12 3zM19 14l.9 2.4 2.4.9-2.4.9L19 20.6l-.9-2.4-2.4-.9 2.4-.9L19 14zM6 15l.7 1.9 1.9.7-1.9.7L6 20.2l-.7-1.9-1.9-.7 1.9-.7L6 15z"/></svg>
+                {% trans "AI analyst notes" %}
+            </h2>
+            <p class="mt-4 text-sm text-slate-700 leading-relaxed">{{ ai_insights.narrative }}</p>
+
+            {% if ai_insights.business_domains %}
+            <div class="mt-4 flex flex-wrap items-center gap-2">
+                <span class="text-xs font-semibold text-slate-500">{% trans "Business areas detected:" %}</span>
+                {% for domain in ai_insights.business_domains %}
+                <span class="inline-flex items-center rounded-full bg-white ring-1 ring-brand-200 text-brand-700 text-xs font-semibold px-3 py-1">{{ domain }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if ai_insights.priority_hint %}
+            <p class="mt-4 text-sm text-ink">
+                <span class="font-bold">{% trans "Where to start:" %}</span> {{ ai_insights.priority_hint }}
+            </p>
+            {% endif %}
+
+            {% if ai_insights.board_summary %}
+            <div class="mt-5 rounded-xl bg-white ring-1 ring-brand-200 border-s-4 border-s-brand-500 p-4 sm:p-5">
+                <h3 class="text-xs font-bold uppercase tracking-wide text-brand-700 flex items-center gap-1.5">
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 0 0-5.4-1.8M17 20H7m10 0v-2c0-.7-.1-1.3-.4-1.8M7 20H2v-2a3 3 0 0 1 5.4-1.8M7 20v-2c0-.7.1-1.3.4-1.8m0 0a5 5 0 0 1 9.2 0M15 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm6 3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM7 10a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/></svg>
+                    {% trans "Board-level summary" %}
+                </h3>
+                <p class="mt-2 text-sm text-ink leading-relaxed" dir="auto">{{ ai_insights.board_summary }}</p>
+                <p class="mt-2 text-[11px] text-slate-400">{% trans "Written in plain language — ready to forward to ownership or management as-is." %}</p>
+            </div>
+            {% endif %}
+
+            {% if ai_insights.questions_for_your_team %}
+            <div class="mt-5">
+                <h3 class="text-xs font-bold uppercase tracking-wide text-slate-500 flex items-center gap-1.5">
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M8.2 9a4 4 0 1 1 5.3 3.8c-.9.3-1.5 1.1-1.5 2v.7m0 3.5h.01"/><circle cx="12" cy="12" r="10"/></svg>
+                    {% trans "Questions to bring to your team" %}
+                </h3>
+                <ol class="mt-3 space-y-2.5">
+                    {% for question in ai_insights.questions_for_your_team %}
+                    <li class="flex items-start gap-2.5 text-sm text-slate-700 leading-relaxed">
+                        <span class="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-50 ring-1 ring-brand-100 text-brand-700 text-[11px] font-bold tabular-nums">{{ forloop.counter }}</span>
+                        <span dir="auto">{{ question }}</span>
+                    </li>
+                    {% endfor %}
+                </ol>
+            </div>
+            {% endif %}
+
+            <p class="mt-4 text-[11px] text-slate-400 flex items-start gap-1.5">
+                <svg class="h-3.5 w-3.5 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" d="M12 11v5m0-8h.01"/></svg>
+                {% trans "Interpretation generated by a local AI model running on our own server — your data never leaves it. Every number in this report comes from the deterministic scan, not from the AI." %}
+            </p>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{# ── Healthy System Badge offer (eligible low-risk reports only) ──────────── #}
+{% if badge_offer_url or badge_url %}
+<section class="pb-10 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        {% include "tools_core/_badge_offer.html" %}
+    </div>
+</section>
+{% endif %}
+
+{# ── Primary CTA strip ────────────────────────────────────────────────────── #}
+<section class="bg-brand-50 border-y border-brand-100">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-sm text-ink font-medium text-center sm:text-start">
+            {% trans "Bidatia converts Studio customizations into clean, upgrade-safe modules." %}
+        </p>
+        <a href="{% if booking_url %}{{ booking_url }}{% else %}{{ book_review_url }}{% endif %}"
+           class="shrink-0 inline-flex items-center gap-2 rounded-lg bg-ink text-white text-sm font-semibold px-5 py-3 hover:bg-brand-700 transition">
+            {% trans "Book a free 30-minute review of this report" %}
+            <svg class="h-4 w-4 rtl:rotate-180" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+    </div>
+</section>
+
+<section class="py-12 lg:py-14">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+
+        {% if upgrade or modules_display %}
+        <div class="grid lg:grid-cols-2 gap-6">
+            {% if upgrade %}
+            <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                <h3 class="text-sm font-bold uppercase tracking-wide text-slate-500 flex items-center gap-2">
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 16V8m0 0L4 11m3-3l3 3m7 5V8m0 8l3-3m-3 3l-3-3"/></svg>
+                    {% trans "Upgrade readiness" %}
+                </h3>
+                <div class="mt-4 flex items-center gap-6">
+                    <div>
+                        <p class="text-3xl font-extrabold text-ink tabular-nums force-ltr">Odoo {{ upgrade.detected_major }}</p>
+                        <p class="mt-1 text-xs text-slate-500">{% trans "your version" %}</p>
+                    </div>
+                    <svg class="h-5 w-5 text-slate-300 rtl:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    <div>
+                        <p class="text-3xl font-extrabold text-slate-400 tabular-nums force-ltr">Odoo {{ upgrade.latest_known_major }}</p>
+                        <p class="mt-1 text-xs text-slate-500">{% trans "latest major version" %}</p>
+                    </div>
+                </div>
+                <div class="mt-4 flex flex-wrap items-center gap-2 text-xs font-semibold">
+                    <span class="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 ring-1
+                        {% if upgrade.friction == 'very_high' %}bg-red-50 text-red-700 ring-red-100{% elif upgrade.friction == 'high' %}bg-orange-50 text-orange-700 ring-orange-100{% elif upgrade.friction == 'moderate' %}bg-amber-50 text-amber-700 ring-amber-100{% else %}bg-emerald-50 text-emerald-700 ring-emerald-100{% endif %}">
+                        {% trans "Migration friction:" %} {{ upgrade.friction_label }}
+                    </span>
+                    {% if not upgrade.within_support_window %}
+                    <span class="inline-flex items-center rounded-full bg-slate-100 text-slate-600 ring-1 ring-slate-200 px-3 py-1.5">{% trans "Outside the 3-newest-versions window" %}</span>
+                    {% endif %}
+                </div>
+                <p class="mt-3 text-sm text-slate-600 leading-relaxed">{{ upgrade.friction_note }}</p>
+                <p class="mt-2 text-[11px] text-slate-400">{% trans "Based on Odoo's standard policy of maintaining the three most recent major versions — verify exact support terms for your contract and hosting." %}</p>
+            </div>
+            {% endif %}
+
+            {% if modules_display %}
+            <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                <h3 class="text-sm font-bold uppercase tracking-wide text-slate-500 flex items-center gap-2">
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                    {% trans "Installed modules" %}
+                </h3>
+                <div class="mt-4 grid grid-cols-2 gap-3">
+                    <div class="rounded-xl bg-slate-50 ring-1 ring-slate-100 p-3">
+                        <p class="text-2xl font-extrabold text-ink tabular-nums">{{ modules_display.installed_total }}</p>
+                        <p class="mt-0.5 text-xs text-slate-500">{% trans "modules installed" %}</p>
+                    </div>
+                    <div class="rounded-xl bg-slate-50 ring-1 ring-slate-100 p-3">
+                        <p class="text-2xl font-extrabold {% if modules_display.non_standard_total %}text-amber-600{% else %}text-ink{% endif %} tabular-nums">{{ modules_display.non_standard_total }}</p>
+                        <p class="mt-0.5 text-xs text-slate-500">{% trans "not standard Odoo" %}</p>
+                    </div>
+                </div>
+                <div class="mt-3 flex flex-wrap gap-1.5 text-[11px] font-semibold">
+                    {% for origin in modules_display.origins %}
+                    <span class="inline-flex items-center gap-1 rounded-full bg-slate-100 text-slate-600 px-2.5 py-1">{{ origin.label }}: <span class="tabular-nums">{{ origin.count }}</span></span>
+                    {% endfor %}
+                    {% if modules_display.studio_installed %}
+                    <span class="inline-flex items-center rounded-full bg-brand-50 text-brand-700 ring-1 ring-brand-100 px-2.5 py-1">Studio</span>
+                    {% endif %}
+                </div>
+                {% if modules_display.example_names %}
+                <p class="mt-3 text-xs text-slate-500">{% trans "Examples of non-standard modules:" %}</p>
+                <div class="mt-1.5 flex flex-wrap gap-1.5">
+                    {% for name in modules_display.example_names %}<span class="text-[11px] bg-white border border-slate-200 rounded px-1.5 py-0.5 text-slate-700">{{ name }}</span>{% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        {% if action_plan %}
+        <div>
+            <h2 class="text-2xl font-extrabold text-ink">{% trans "Recommended action plan" %}</h2>
+            <div class="mt-4 grid md:grid-cols-{{ action_plan|length }} gap-4">
+                {% for group in action_plan %}
+                <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                    <h3 class="text-sm font-bold text-ink flex items-center gap-2">
+                        {% if group.key == 'quick' %}
+                        <span class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-100 text-emerald-600"><svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></span>
+                        {% elif group.key == 'structural' %}
+                        <span class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-brand-100 text-brand-700"><svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.4 3.6a1 1 0 0 1 1.2 0l7 5.2a1 1 0 0 1 .4.8V19a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9.6a1 1 0 0 1 .4-.8l7-5.2zM9 21V12h6v9"/></svg></span>
+                        {% else %}
+                        <span class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-amber-100 text-amber-600"><svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 16V8m0 0L4 11m3-3l3 3m7 5V8m0 8l3-3m-3 3l-3-3"/></svg></span>
+                        {% endif %}
+                        {{ group.label }}
+                    </h3>
+                    <ul class="mt-3 space-y-2.5">
+                        {% for item in group.items %}
+                        <li class="flex items-start gap-2 text-sm text-slate-600 leading-relaxed">
+                            <svg class="h-4 w-4 mt-0.5 shrink-0 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                            <span>{{ item }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if section_errors %}
+        <div class="rounded-xl border border-amber-200 bg-amber-50 px-5 py-4 text-sm text-amber-800 flex items-start gap-3">
+            <svg class="h-5 w-5 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+            <span>{% trans "Some sections could not be read with the provided access rights and were skipped:" %}
+            <span class="font-mono force-ltr">{{ section_errors|join:", " }}</span></span>
+        </div>
+        {% endif %}
+
+        {# ── Findings summary header ──────────────────────────────────────── #}
+        <div class="flex flex-wrap items-center justify-between gap-4">
+            <h2 class="text-2xl font-extrabold text-ink">{% trans "What we found" %}</h2>
+            <div class="flex flex-wrap items-center gap-2 text-xs font-semibold">
+                {% if findings_critical %}<span class="inline-flex items-center gap-1.5 rounded-full bg-red-50 text-red-700 ring-1 ring-red-100 px-3 py-1.5"><span class="h-2 w-2 rounded-full bg-red-500"></span>{{ findings_critical|length }} {% trans "critical" %}</span>{% endif %}
+                {% if findings_warning %}<span class="inline-flex items-center gap-1.5 rounded-full bg-amber-50 text-amber-700 ring-1 ring-amber-100 px-3 py-1.5"><span class="h-2 w-2 rounded-full bg-amber-500"></span>{{ findings_warning|length }} {% trans "warnings" %}</span>{% endif %}
+                {% if findings_info %}<span class="inline-flex items-center gap-1.5 rounded-full bg-slate-100 text-slate-600 ring-1 ring-slate-200 px-3 py-1.5"><span class="h-2 w-2 rounded-full bg-slate-400"></span>{{ findings_info|length }} {% trans "to review" %}</span>{% endif %}
+                {% if not findings_critical and not findings_warning and not findings_info %}<span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100 px-3 py-1.5"><span class="h-2 w-2 rounded-full bg-emerald-500"></span>{% trans "no risks" %}</span>{% endif %}
+            </div>
+        </div>
+
+        {% if findings_critical %}
+        <div>
+            <h3 class="text-sm font-bold uppercase tracking-wide text-red-600 flex items-center gap-2">
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+                {% trans "Critical findings" %}
+            </h3>
+            <div class="mt-4 space-y-4">
+                {% for f in findings_critical %}
+                <div class="rounded-2xl border border-red-200 bg-white p-5 shadow-sm border-s-4 border-s-red-500">
+                    <div class="flex items-start justify-between gap-3">
+                        <h4 class="font-bold text-ink">{{ f.title }}</h4>
+                        <span class="shrink-0 font-mono text-xs font-semibold text-red-700 bg-red-50 ring-1 ring-red-100 rounded-full px-2.5 py-1 tabular-nums">{{ f.count }}</span>
+                    </div>
+                    <p class="mt-2 text-sm text-slate-600 leading-relaxed">{{ f.detail }}</p>
+                    {% if f.examples %}
+                    <div class="mt-3 flex flex-wrap gap-1.5">
+                        {% for ex in f.examples %}<code class="font-mono text-[11px] bg-slate-50 border border-slate-200 rounded px-1.5 py-0.5 text-slate-700 force-ltr">{{ ex }}</code>{% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if findings_warning %}
+        <div>
+            <h3 class="text-sm font-bold uppercase tracking-wide text-amber-600 flex items-center gap-2">
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+                {% trans "Warnings" %}
+            </h3>
+            <div class="mt-4 space-y-4">
+                {% for f in findings_warning %}
+                <div class="rounded-2xl border border-amber-200 bg-white p-5 shadow-sm border-s-4 border-s-amber-400">
+                    <div class="flex items-start justify-between gap-3">
+                        <h4 class="font-bold text-ink">{{ f.title }}</h4>
+                        <span class="shrink-0 font-mono text-xs font-semibold text-amber-700 bg-amber-50 ring-1 ring-amber-100 rounded-full px-2.5 py-1 tabular-nums">{{ f.count }}</span>
+                    </div>
+                    <p class="mt-2 text-sm text-slate-600 leading-relaxed">{{ f.detail }}</p>
+                    {% if f.examples %}
+                    <div class="mt-3 flex flex-wrap gap-1.5">
+                        {% for ex in f.examples %}<code class="font-mono text-[11px] bg-slate-50 border border-slate-200 rounded px-1.5 py-0.5 text-slate-700 force-ltr">{{ ex }}</code>{% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if findings_info %}
+        <div>
+            <h3 class="text-sm font-bold uppercase tracking-wide text-slate-500">{% trans "Worth reviewing" %}</h3>
+            <div class="mt-4 space-y-4">
+                {% for f in findings_info %}
+                <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm border-s-4 border-s-slate-300">
+                    <div class="flex items-start justify-between gap-3">
+                        <h4 class="font-bold text-ink">{{ f.title }}</h4>
+                        <span class="shrink-0 font-mono text-xs font-semibold text-slate-600 bg-slate-50 ring-1 ring-slate-200 rounded-full px-2.5 py-1 tabular-nums">{{ f.count }}</span>
+                    </div>
+                    <p class="mt-2 text-sm text-slate-600 leading-relaxed">{{ f.detail }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if not findings_critical and not findings_warning and not findings_info %}
+        <div class="rounded-2xl border border-emerald-200 bg-emerald-50 px-6 py-8 text-center">
+            <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </span>
+            <p class="mt-3 text-lg font-bold text-emerald-800">{% trans "Clean bill of health" %}</p>
+            <p class="mt-1 text-sm text-emerald-700">{% trans "We found no significant Studio customization risks in this database." %}</p>
+        </div>
+        {% endif %}
+
+        {% if score_breakdown %}
+        <div>
+            <h3 class="text-sm font-bold uppercase tracking-wide text-slate-500">{% trans "Why this score" %}</h3>
+            <div class="mt-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm space-y-3">
+                {% for row in score_breakdown %}
+                <div>
+                    <div class="flex items-center justify-between text-sm">
+                        <span class="font-medium text-ink">{{ row.label }} <span class="text-slate-400 tabular-nums">× {{ row.count }}</span></span>
+                        <span class="text-xs font-semibold text-slate-500 tabular-nums">{{ row.points }} {% trans "pts" %}</span>
+                    </div>
+                    <div class="mt-1.5 h-2 w-full rounded-full bg-slate-100 overflow-hidden">
+                        <div class="h-full rounded-full bg-gradient-to-r from-brand-500 to-accent-500" style="width: {{ row.pct }}%"></div>
+                    </div>
+                </div>
+                {% endfor %}
+                <p class="pt-1 text-xs text-slate-400">{% trans "Weighted items add up to the raw score, capped at 100. Heavier weights = harder to clean up." %}</p>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if model_breakdown %}
+        <div>
+            <h3 class="text-sm font-bold uppercase tracking-wide text-slate-500">{% trans "Most customized areas" %}</h3>
+            <div class="mt-4 overflow-x-auto rounded-2xl border border-slate-200 shadow-sm">
+                <table class="w-full text-sm">
+                    <thead class="bg-slate-50">
+                        <tr class="text-xs uppercase tracking-wide text-slate-500">
+                            <th class="px-4 py-3 text-start font-semibold">{% trans "Model" %}</th>
+                            <th class="px-4 py-3 text-end font-semibold">{% trans "Fields" %}</th>
+                            <th class="px-4 py-3 text-end font-semibold">{% trans "Views" %}</th>
+                            <th class="px-4 py-3 text-end font-semibold">{% trans "Automations" %}</th>
+                            <th class="px-4 py-3 text-end font-semibold">{% trans "Total" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        {% for row in model_breakdown %}
+                        <tr class="hover:bg-slate-50/60 transition-colors">
+                            <td class="px-4 py-2.5 font-mono text-xs text-slate-700 force-ltr">{{ row.model }}</td>
+                            <td class="px-4 py-2.5 text-end tabular-nums">{{ row.fields }}</td>
+                            <td class="px-4 py-2.5 text-end tabular-nums">{{ row.views }}</td>
+                            <td class="px-4 py-2.5 text-end tabular-nums">{{ row.automations }}</td>
+                            <td class="px-4 py-2.5 text-end font-semibold tabular-nums">{{ row.total }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="rounded-xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm text-slate-600">
+            <p><strong>{% trans "Estimated cleanup effort:" %}</strong> {{ scoring.effort_estimate }} · {{ scoring.effort_note }}</p>
+            <p class="mt-1 text-xs text-slate-500 flex items-center gap-1.5">
+                <svg class="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" d="M12 8v4l2.5 2.5"/></svg>
+                <span>{% trans "This report is deleted automatically on" %} <span class="whitespace-nowrap">{{ run.expires_at|date:"j M Y, H:i" }} UTC</span>. {% trans "Save or share the link before then." %}</span>
+            </p>
+        </div>
+
+        {# ── What happens next: a ready-made meeting agenda ───────────────── #}
+        <div class="rounded-2xl bg-ink text-white p-8 lg:p-10 relative overflow-hidden">
+            <div class="absolute inset-0 tech-grid tech-grid-dark grid-mask opacity-60" aria-hidden="true"></div>
+            <div class="relative grid lg:grid-cols-[1fr_auto] items-center gap-8">
+                <div>
+                    <p class="font-mono text-xs uppercase tracking-wider text-brand-300">// {% trans "What happens next" %}</p>
+                    <h2 class="mt-3 text-2xl font-extrabold">{% trans "Your free review agenda is ready" %}</h2>
+                    <p class="mt-2 text-slate-300 text-sm leading-relaxed max-w-xl">{% trans "Bidatia converts Studio customizations into clean, upgrade-safe modules. Here is what we suggest covering in your free 30-minute review:" %}</p>
+                    {% if booking_agenda %}
+                    <ol class="mt-5 space-y-2.5">
+                        {% for item in booking_agenda %}
+                        <li class="flex items-start gap-2.5 text-sm text-slate-200 leading-relaxed">
+                            <span class="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/20 text-brand-300 text-[11px] font-bold tabular-nums">{{ forloop.counter }}</span>
+                            <span>{{ item }}</span>
+                        </li>
+                        {% endfor %}
+                    </ol>
+                    {% endif %}
+                </div>
+                <div class="text-center lg:text-end shrink-0">
+                    <a href="{% if booking_url %}{{ booking_url }}{% else %}{{ book_review_url }}{% endif %}"
+                       class="inline-flex items-center gap-2 rounded-lg bg-white text-ink font-semibold px-6 py-3.5 hover:bg-brand-50 transition">
+                        {% trans "Book a free 30-minute review of this report" %}
+                        <svg class="h-4 w-4 rtl:rotate-180" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </a>
+                    {% if not booking_url %}
+                    <p class="mt-3 text-xs text-slate-400 max-w-[230px] mx-auto lg:me-0">{% trans "We'll pre-fill the booking form with this agenda and your report link — you only pick the time." %}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% if share_url and not is_demo and not expired %}
+<section class="pb-12 bg-white"><div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 no-print">
+        {# ── send to manager — straight to the decision-maker ─────────────── #}
+        <div x-data="shareReport()" class="mt-4 rounded-2xl border border-slate-200 bg-white p-5">
+            <div class="flex flex-wrap items-center gap-3">
+                <div class="min-w-0 flex-1">
+                    <p class="text-sm font-bold text-ink">{% trans "Send this report to my manager" %}</p>
+                    <p class="text-xs text-slate-500">{% trans "A short executive summary with the link — straight to the decision-maker." %}</p>
+                </div>
+                <form x-show="!sent" @submit.prevent="send()" class="flex items-center gap-2">
+                    {% csrf_token %}
+                    <input type="email" x-model="email" required placeholder="manager@company.com"
+                           class="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm w-56 force-ltr focus:border-sky-500 focus:ring-2 focus:ring-sky-100 outline-none" :disabled="busy">
+                    <button type="submit" :disabled="busy || !email"
+                            class="rounded-lg bg-ink text-white text-sm font-semibold px-4 py-2.5 hover:bg-brand-700 transition disabled:opacity-40">{% trans "Send" %}</button>
+                </form>
+                <p x-show="sent" x-cloak class="text-sm font-semibold text-emerald-700">{% trans "Sent — your manager has it now." %}</p>
+            </div>
+            <p x-show="error" x-cloak class="mt-2 text-xs text-red-600" x-text="error"></p>
+        </div>
+        <script>
+        function shareReport() {
+            return {
+                email: '', busy: false, sent: false, error: '',
+                async send() {
+                    this.busy = true; this.error = '';
+                    try {
+                        const token = document.querySelector('[name=csrfmiddlewaretoken]').value;
+                        const resp = await fetch('{{ share_url }}', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json', 'X-CSRFToken': token },
+                            body: JSON.stringify({ email: this.email }),
+                        });
+                        const data = await resp.json();
+                        if (data.ok) { this.sent = true; }
+                        else if (data.code === 'rate') { this.error = '{% trans "Too many sends — try again later." %}'; }
+                        else { this.error = '{% trans "Could not send — check the address and try again." %}'; }
+                    } catch (e) {
+                        this.error = '{% trans "Could not send — check the address and try again." %}';
+                    } finally { this.busy = false; }
+                },
+            };
+        }
+        </script>
+</div></section>
+{% endif %}
+
+{# ── Ask the AI analyst: full-height side panel (Claude/Cursor style) ─────── #}
+{% if chat_enabled and not expired %}
+{{ chat_history|json_script:"xray-chat-history" }}
+<div x-data="xrayChat()" class="no-print">
+    {# floating launcher — hides while the panel is open #}
+    <button x-show="!open" @click="openPanel()" :aria-expanded="open"
+            x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
+            class="fixed bottom-6 end-6 z-40 inline-flex items-center gap-2 rounded-full bg-ink text-white pl-4 pr-5 py-3.5 shadow-xl shadow-slate-900/20 hover:bg-brand-700 transition group">
+        <span class="relative flex h-2.5 w-2.5">
+            <span class="pulse-dot absolute inline-flex h-full w-full rounded-full bg-accent-400"></span>
+        </span>
+        <svg class="h-5 w-5 text-brand-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3l1.7 4.6L18.3 9l-4.6 1.7L12 15.3l-1.7-4.6L5.7 9l4.6-1.4L12 3zM19 14l.9 2.4 2.4.9-2.4.9L19 20.6l-.9-2.4-2.4-.9 2.4-.9L19 14z"/></svg>
+        <span class="text-sm font-semibold">{% trans "Ask the analyst" %}</span>
+    </button>
+
+    {# docked side panel: right edge in LTR, left edge in RTL (end-0) #}
+    <aside x-show="open" x-cloak role="dialog" aria-label="{% trans 'Ask the analyst about your report' %}"
+           @keydown.escape.window="open = false"
+           x-transition:enter="transform transition ease-out duration-300"
+           x-transition:enter-start="translate-x-full rtl:-translate-x-full"
+           x-transition:enter-end="translate-x-0"
+           x-transition:leave="transform transition ease-in duration-200"
+           x-transition:leave-start="translate-x-0"
+           x-transition:leave-end="translate-x-full rtl:-translate-x-full"
+           class="fixed inset-y-0 end-0 z-[60] w-full md:w-[var(--xray-chat-w,30vw)] bg-white border-s border-slate-200 shadow-2xl shadow-slate-900/15 flex flex-col">
+
+        {# drag divider — desktop only, like a code editor's split handle #}
+        <div role="separator" aria-orientation="vertical" title="{% trans 'Drag to resize the chat' %}"
+             @pointerdown.prevent="startResize($event)"
+             class="hidden md:block absolute inset-y-0 start-0 w-1.5 cursor-col-resize z-10 hover:bg-brand-400/60 active:bg-brand-500/70 transition-colors"
+             style="touch-action: none"></div>
+
+        <header class="flex items-center justify-between gap-3 px-5 py-4 border-b border-slate-100 shrink-0">
+            <div class="flex items-center gap-3 min-w-0">
+                <span class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-ink">
+                    <svg class="h-5 w-5 text-brand-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3l1.7 4.6L18.3 9l-4.6 1.7L12 15.3l-1.7-4.6L5.7 9l4.6-1.4L12 3z"/></svg>
+                </span>
+                <div class="min-w-0">
+                    <p class="text-sm font-bold text-ink leading-tight truncate">{% trans "Ask the analyst about your report" %}</p>
+                    <p class="text-[11px] text-slate-500 truncate">{% trans "Answers come only from this scan's data" %}</p>
+                </div>
+            </div>
+            <button @click="open = false" title="{% trans 'Hide the chat' %}" class="shrink-0 inline-flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:text-ink hover:bg-slate-100 transition" aria-label="{% trans 'Hide the chat' %}">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+        </header>
+
+        <div class="flex-1 overflow-y-auto px-5 py-6 space-y-6 overscroll-contain" x-ref="thread">
+            {# empty state: greeting + tailored starters, Claude-style #}
+            <template x-if="messages.length === 0">
+                <div class="pt-8">
+                    <div class="mx-auto mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-ink ring-8 ring-slate-50">
+                        <svg class="h-6 w-6 text-brand-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3l1.7 4.6L18.3 9l-4.6 1.7L12 15.3l-1.7-4.6L5.7 9l4.6-1.4L12 3zM19 14l.9 2.4 2.4.9-2.4.9L19 20.6l-.9-2.4-2.4-.9 2.4-.9L19 14z"/></svg>
+                    </div>
+                    <p class="text-base font-bold text-ink leading-snug">{% trans "Hi! I'm your report analyst. Ask me anything about these results." %}</p>
+                    <p class="mt-5 mb-2 text-xs font-semibold uppercase tracking-wide text-slate-400">{% trans "Try one of these to start:" %}</p>
+                    <div class="space-y-2">
+                        {% for starter in chat_starters %}
+                        <button @click="ask('{{ starter|escapejs }}')"
+                                class="block w-full text-start text-sm rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-700 hover:border-brand-300 hover:bg-brand-50/40 hover:text-brand-700 transition leading-relaxed">
+                            {{ starter }}
+                        </button>
+                        {% endfor %}
+                    </div>
+                </div>
+            </template>
+
+            <template x-for="m in messages" :key="m.key">
+                <div>
+                    {# visitor: compact bubble on the end side #}
+                    <div x-show="m.role === 'user'" class="flex justify-end">
+                        <p class="max-w-[85%] rounded-2xl rounded-ee-md bg-slate-100 text-ink text-sm px-4 py-2.5 leading-relaxed whitespace-pre-line" dir="auto" x-text="m.text"></p>
+                    </div>
+                    {# analyst: full-width plain text under a small label, like Claude #}
+                    <div x-show="m.role === 'ai'">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="inline-flex h-5 w-5 items-center justify-center rounded-md bg-ink">
+                                <svg class="h-3 w-3 text-brand-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3l1.7 4.6L18.3 9l-4.6 1.7L12 15.3l-1.7-4.6L5.7 9l4.6-1.4L12 3z"/></svg>
+                            </span>
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">{% trans "Analyst" %}</span>
+                        </div>
+                        <p x-show="m.pending" class="flex items-center gap-1.5 text-sm text-slate-400 italic ps-7">
+                            <span class="xray-chat-dot"></span><span class="xray-chat-dot" style="animation-delay:.18s"></span><span class="xray-chat-dot" style="animation-delay:.36s"></span>
+                            <span x-text="m.text"></span>
+                        </p>
+                        <p x-show="!m.pending" class="text-[15px] text-slate-800 leading-relaxed ps-7" dir="auto" x-text="m.text"></p>
+                    </div>
+                </div>
+            </template>
+        </div>
+
+        <div class="px-4 pb-4 pt-2 shrink-0">
+            {# composer — Claude-style box with the send button inside #}
+            <form x-show="remaining > 0" @submit.prevent="ask(draft)"
+                  class="rounded-2xl border border-slate-200 bg-white shadow-sm focus-within:border-brand-400 focus-within:ring-4 focus-within:ring-brand-50 transition">
+                <textarea x-ref="input" x-model="draft" rows="1" maxlength="300" :disabled="busy"
+                          @keydown.enter.exact.prevent="ask(draft)"
+                          @input="$el.style.height = 'auto'; $el.style.height = Math.min($el.scrollHeight, 120) + 'px'"
+                          placeholder="{% trans 'Ask about your results…' %}"
+                          class="block w-full resize-none bg-transparent px-4 pt-3.5 pb-1 text-sm leading-relaxed outline-none border-0 focus:ring-0 disabled:opacity-60" dir="auto"></textarea>
+                <div class="flex items-center justify-between gap-2 px-3 pb-2.5 pt-1">
+                    <p class="text-[10px] text-slate-400 tabular-nums"><span x-text="remaining"></span> {% trans "questions left" %}</p>
+                    <button type="submit" :disabled="busy || draft.trim().length < 3"
+                            class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-ink text-white hover:bg-brand-700 transition disabled:opacity-30" aria-label="{% trans 'Send' %}">
+                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19V5m0 0l-6 6m6-6l6 6"/></svg>
+                    </button>
+                </div>
+            </form>
+            {# out of questions → hand the conversation to the free review #}
+            <a x-show="remaining <= 0" x-cloak href="{% if booking_url %}{{ booking_url }}{% else %}{{ book_review_url }}{% endif %}"
+               class="block rounded-2xl bg-ink text-white text-center text-sm font-semibold px-4 py-3.5 hover:bg-brand-700 transition">
+                {% trans "Out of questions — continue in your free 30-minute review →" %}
+            </a>
+            <p class="mt-2 text-center text-[10px] text-slate-400">{% trans "AI interpretation — every number comes from the scan." %}</p>
+        </div>
+    </aside>
+</div>
+
+<style>
+    /* VS Code-style split: while the chat is docked, the report keeps the
+       remaining width (desktop only — mobile uses a full-width drawer). */
+    @media (min-width: 768px) {
+        body.xray-split {
+            padding-inline-end: var(--xray-chat-w, 30vw);
+            transition: padding-inline-end .25s ease;
+        }
+    }
+    body.xray-resizing { user-select: none; cursor: col-resize; }
+    body.xray-resizing * { transition: none !important; }
+    @media print { body.xray-split { padding-inline-end: 0 !important; } }
+
+    .xray-chat-dot {
+        width: 4px; height: 4px; border-radius: 9999px;
+        background: currentColor; display: inline-block;
+        animation: xrayThinkChat 1.1s ease-in-out infinite;
+    }
+    @keyframes xrayThinkChat {
+        0%, 100% { opacity: .25; transform: translateY(0); }
+        50%      { opacity: 1;   transform: translateY(-3px); }
+    }
+    @media (prefers-reduced-motion: reduce) { .xray-chat-dot { animation: none; } }
+</style>
+
+<script>
+function xrayChat() {
+    const WAITING = [
+        '{% trans "Reading your report…" %}',
+        '{% trans "Checking the findings…" %}',
+        '{% trans "Writing the answer…" %}',
+    ];
+    const FALLBACK = '{% trans "I could not answer that one — try rephrasing, or bring it to the free review." %}';
+    return {
+        open: false,
+        draft: '',
+        busy: false,
+        remaining: {{ chat_remaining }},
+        messages: [],
+        _key: 0,
+        _width: 0,
+        init() {
+            // Restore the visitor's last layout: panel width + open state.
+            let saved = {};
+            try { saved = JSON.parse(localStorage.getItem('xrayChatPanel') || '{}'); } catch (e) {}
+            this._setWidth(saved.width || Math.round(window.innerWidth * 0.3));
+            if (saved.open && this._desktop()) this.open = true;
+            this._applySplit();
+            this.$watch('open', () => { this._applySplit(); this._save(); if (this.open) this._scroll(); });
+            window.addEventListener('resize', () => this._setWidth(this._width));
+            this._restoreHistory();
+        },
+        _restoreHistory() {
+            // The conversation lives in the database with the report (and is
+            // wiped with it after 72h) — rebuild it after a page refresh.
+            let saved = [];
+            try { saved = JSON.parse(document.getElementById('xray-chat-history').textContent) || []; } catch (e) {}
+            const unfinished = [];
+            for (const h of saved) {
+                this.messages.push({ key: ++this._key, role: 'user', text: h.question, pending: false });
+                if (h.status === 'done') {
+                    this.messages.push({ key: ++this._key, role: 'ai', text: h.answer, pending: false });
+                } else if (h.status === 'failed') {
+                    this.messages.push({ key: ++this._key, role: 'ai', text: FALLBACK, pending: false });
+                } else {
+                    // The page was refreshed mid-answer — pick the wait back up.
+                    this.messages.push({ key: ++this._key, role: 'ai', text: WAITING[0], pending: true });
+                    unfinished.push([h.id, this.messages[this.messages.length - 1]]);
+                }
+            }
+            if (saved.length) this._scroll();
+            if (unfinished.length) {
+                this.busy = true;
+                Promise.all(unfinished.map(([id, bubble]) => this._poll(id, bubble)))
+                    .finally(() => { this.busy = false; this._scroll(); });
+            }
+        },
+        _desktop() { return window.matchMedia('(min-width: 768px)').matches; },
+        _setWidth(w) {
+            this._width = Math.min(Math.max(w, 320), Math.round(window.innerWidth * 0.55));
+            document.documentElement.style.setProperty('--xray-chat-w', this._width + 'px');
+        },
+        _applySplit() { document.body.classList.toggle('xray-split', this.open); },
+        _save() {
+            try { localStorage.setItem('xrayChatPanel', JSON.stringify({ open: this.open, width: this._width })); } catch (e) {}
+        },
+        startResize() {
+            if (!this._desktop()) return;
+            document.body.classList.add('xray-resizing');
+            const rtl = document.documentElement.dir === 'rtl';
+            const move = ev => this._setWidth(rtl ? ev.clientX : window.innerWidth - ev.clientX);
+            const up = () => {
+                window.removeEventListener('pointermove', move);
+                window.removeEventListener('pointerup', up);
+                document.body.classList.remove('xray-resizing');
+                this._save();
+            };
+            window.addEventListener('pointermove', move);
+            window.addEventListener('pointerup', up);
+        },
+        openPanel() {
+            this.open = true;
+            this.$nextTick(() => { this.$refs.input && this.$refs.input.focus(); });
+        },
+        async ask(text) {
+            text = (text || '').trim();
+            if (!text || this.busy || this.remaining <= 0) return;
+            this.draft = '';
+            if (this.$refs.input) this.$refs.input.style.height = 'auto';
+            this.busy = true;
+            this.messages.push({ key: ++this._key, role: 'user', text: text, pending: false });
+            this.messages.push({ key: ++this._key, role: 'ai', text: WAITING[0], pending: true });
+            // Re-read through the reactive array: mutating the raw object
+            // would silently never re-render (Alpine/Vue reactivity).
+            const bubble = this.messages[this.messages.length - 1];
+            this._scroll();
+            let waitIdx = 0;
+            const ticker = setInterval(() => {
+                bubble.text = WAITING[++waitIdx % WAITING.length];
+            }, 4000);
+            try {
+                const resp = await fetch('{{ chat_ask_url }}', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json',
+                               'X-CSRFToken': '{{ csrf_token }}' },
+                    body: JSON.stringify({ question: text }),
+                });
+                const data = await resp.json();
+                if (!data.ok) {
+                    bubble.text = data.error || '{% trans "Something went wrong — please try a different question." %}';
+                    bubble.pending = false;
+                    if (data.code === 'limit') this.remaining = 0;
+                    return;
+                }
+                this.remaining = data.remaining;
+                await this._poll(data.id, bubble);
+            } catch (e) {
+                bubble.text = '{% trans "Something went wrong — please try a different question." %}';
+                bubble.pending = false;
+            } finally {
+                clearInterval(ticker);
+                this.busy = false;
+                this._scroll();
+            }
+        },
+        async _poll(id, bubble) {
+            const base = '{{ chat_ask_url }}'.replace(/report\/.*$/, '');
+            for (let i = 0; i < 50; i++) {
+                await new Promise(r => setTimeout(r, 2500));
+                try {
+                    const resp = await fetch(base + 'question/' + id + '/');
+                    const data = await resp.json();
+                    if (data.status === 'done') {
+                        bubble.text = data.answer;
+                        bubble.pending = false;
+                        return;
+                    }
+                    if (data.status === 'failed') break;
+                } catch (e) { /* transient — keep polling */ }
+            }
+            bubble.text = FALLBACK;
+            bubble.pending = false;
+        },
+        _scroll() {
+            this.$nextTick(() => { this.$refs.thread.scrollTop = this.$refs.thread.scrollHeight; });
+        },
+    };
+}
+</script>
+{% endif %}
+{% endif %}
+{% endblock %}

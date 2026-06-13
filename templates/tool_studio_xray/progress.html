@@ -1,0 +1,300 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Scanning your Odoo…" %} — {{ SITE_NAME }}{% endblock %}
+
+{% block extra_head %}
+<style>
+    /* Smooth, continuous fill — the JS nudges width every ~150ms and this
+       transition makes each nudge glide, so the bar is always gently moving. */
+    .xray-bar-fill { transition: width .35s cubic-bezier(.4, 0, .2, 1); }
+
+    /* Moving sheen over the filled portion: reinforces "actively working". */
+    .xray-sheen {
+        background: linear-gradient(100deg, transparent 20%, rgba(255, 255, 255, .55) 50%, transparent 80%);
+        background-size: 220% 100%;
+        animation: xraySheen 1.6s linear infinite;
+    }
+    @keyframes xraySheen { from { background-position: 200% 0; } to { background-position: -60% 0; } }
+
+    /* Soft breathing glow behind the active state. */
+    .xray-glow { animation: xrayGlow 2.4s ease-in-out infinite; }
+    @keyframes xrayGlow {
+        0%, 100% { opacity: .35; transform: scale(1); }
+        50%      { opacity: .7;  transform: scale(1.04); }
+    }
+
+    /* Tiny bouncing dots for the AI "thinking" line. */
+    .xray-think-dot {
+        width: 5px; height: 5px; border-radius: 9999px;
+        background: currentColor; display: inline-block;
+        animation: xrayThink 1.1s ease-in-out infinite;
+    }
+    @keyframes xrayThink {
+        0%, 100% { opacity: .25; transform: translateY(0); }
+        50%      { opacity: 1;   transform: translateY(-3px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .xray-bar-fill { transition: none; }
+        .xray-sheen, .xray-glow, .xray-think-dot { animation: none; }
+        .xray-sheen { opacity: 0; }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="py-16 lg:py-24 bg-slate-50/60">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8" x-data="xrayProgress()">
+
+        {# ── Running / done state ─────────────────────────────────────────── #}
+        <div x-show="status !== 'failed'" class="relative rounded-3xl border border-slate-200 bg-white shadow-xl shadow-slate-200/50 overflow-hidden">
+            {# top accent + soft glow #}
+            <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand-500 via-accent-400 to-brand-500"></div>
+            <div class="absolute -top-24 left-1/2 -translate-x-1/2 h-48 w-48 rounded-full bg-brand-200/40 blur-3xl xray-glow" aria-hidden="true"></div>
+
+            <div class="relative p-7 sm:p-10">
+                <div class="flex items-center justify-between gap-3">
+                    <span class="inline-flex items-center gap-2 rounded-full bg-accent-50 text-accent-700 text-xs font-semibold px-3 py-1.5 ring-1 ring-accent-100">
+                        <span class="pulse-dot inline-flex h-2 w-2 rounded-full bg-accent-500"></span>
+                        <span x-show="status !== 'done'">{% trans "Scan in progress" %}</span>
+                        <span x-show="status === 'done'" x-cloak>{% trans "Scan complete" %}</span>
+                    </span>
+                    <span class="inline-flex items-center gap-1.5 text-xs font-medium text-slate-400 tabular-nums">
+                        <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" d="M12 8v4l2.5 2.5"/></svg>
+                        {% trans "Elapsed" %} <span class="force-ltr" x-text="elapsedLabel()">0:00</span>
+                    </span>
+                </div>
+
+                <h1 class="mt-5 text-2xl sm:text-3xl font-extrabold text-ink tracking-tight">
+                    <span x-show="status !== 'done'">{% trans "Scanning your Odoo" %}</span>
+                    <span x-show="status === 'done'" x-cloak>{% trans "Your report is ready" %}</span>
+                </h1>
+                <p class="mt-2 text-sm text-slate-500 leading-relaxed">
+                    <span x-show="status !== 'done'">{% trans "A secure, read-only scan is running in the background. This usually takes under a minute — you can keep this tab open and wait here." %}</span>
+                    <span x-show="status === 'done'" x-cloak>{% trans "Taking you to your results…" %}</span>
+                </p>
+
+                {# ── Progress bar ─────────────────────────────────────────── #}
+                <div class="mt-7">
+                    <div class="flex items-center justify-between text-xs font-semibold text-slate-500 mb-2">
+                        <span x-text="currentLabel()">{% trans "Connecting to Odoo" %}</span>
+                        <span class="tabular-nums force-ltr" x-text="pctLabel() + '%'">0%</span>
+                    </div>
+                    <div class="relative h-2.5 w-full rounded-full bg-slate-100 overflow-hidden">
+                        <div class="xray-bar-fill absolute inset-y-0 start-0 rounded-full bg-gradient-to-r from-brand-500 to-accent-500"
+                             :style="'width: ' + displayPct + '%'">
+                            <span class="xray-sheen absolute inset-0 rounded-full" aria-hidden="true" x-show="status !== 'done'"></span>
+                        </div>
+                    </div>
+                </div>
+
+                {# ── Step list ────────────────────────────────────────────── #}
+                <ol class="mt-8 space-y-1">
+                    {% for step in steps %}
+                    <li class="relative flex items-start gap-4 rounded-xl px-3 py-3 transition-colors"
+                        :class="{
+                            'bg-brand-50/70': stepState({{ forloop.counter0 }}) === 'active',
+                            'opacity-55': stepState({{ forloop.counter0 }}) === 'todo'
+                        }">
+                        {# status marker #}
+                        <span class="relative mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full"
+                              :class="{
+                                  'bg-emerald-100 text-emerald-600': stepState({{ forloop.counter0 }}) === 'done',
+                                  'bg-brand-600 text-white': stepState({{ forloop.counter0 }}) === 'active',
+                                  'bg-slate-100 text-slate-400': stepState({{ forloop.counter0 }}) === 'todo'
+                              }">
+                            {# done check #}
+                            <svg x-show="stepState({{ forloop.counter0 }}) === 'done'" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                            {# active spinner #}
+                            <svg x-show="stepState({{ forloop.counter0 }}) === 'active'" class="h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="9" class="opacity-25"/><path d="M21 12a9 9 0 0 0-9-9" stroke-linecap="round"/></svg>
+                            {# todo number #}
+                            <span x-show="stepState({{ forloop.counter0 }}) === 'todo'" class="text-xs font-bold force-ltr">{{ forloop.counter }}</span>
+                        </span>
+                        <div class="min-w-0 flex-1">
+                            <p class="text-sm font-semibold transition-colors"
+                               :class="stepState({{ forloop.counter0 }}) === 'todo' ? 'text-slate-500' : 'text-ink'">{{ step.label }}</p>
+                            <p class="text-xs text-slate-500 mt-0.5">{{ step.helper }}</p>
+                            {% if step.ai %}
+                            {# live "thinking" line while the local model works #}
+                            <div x-show="stepState({{ forloop.counter0 }}) === 'active'" x-cloak
+                                 class="mt-2 flex items-center gap-2 text-xs text-brand-700">
+                                <span class="flex gap-1" aria-hidden="true">
+                                    <span class="xray-think-dot"></span>
+                                    <span class="xray-think-dot" style="animation-delay:.18s"></span>
+                                    <span class="xray-think-dot" style="animation-delay:.36s"></span>
+                                </span>
+                                <span class="italic min-w-0 truncate" dir="auto" x-text="thinkingPhrase()"></span>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ol>
+            </div>
+
+            <div class="relative border-t border-slate-100 bg-slate-50/70 px-7 sm:px-10 py-4 flex items-center gap-2 text-xs text-slate-500">
+                <svg class="h-4 w-4 text-accent-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
+                {% trans "Read-only access · your API key is never stored · results auto-delete after 72 hours" %}
+            </div>
+        </div>
+
+        {# ── Failed state ─────────────────────────────────────────────────── #}
+        <div x-show="status === 'failed'" x-cloak class="rounded-3xl border border-red-200 bg-white shadow-xl shadow-red-100/40 overflow-hidden">
+            <div class="absolute inset-x-0 top-0 h-1 bg-red-500"></div>
+            <div class="p-7 sm:p-10 text-center">
+                <span class="inline-flex h-14 w-14 items-center justify-center rounded-full bg-red-50 text-red-500">
+                    <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+                </span>
+                <h1 class="mt-5 text-2xl font-extrabold text-ink">{% trans "The scan could not finish" %}</h1>
+                <p class="mt-3 text-sm text-slate-600 max-w-md mx-auto leading-relaxed" x-text="error"></p>
+                <div class="mt-7 flex flex-col sm:flex-row items-center justify-center gap-3">
+                    <a href="{% url 'tool_studio_xray:landing' %}#run" class="inline-flex items-center justify-center gap-2 rounded-lg bg-ink text-white font-semibold px-6 py-3 hover:bg-brand-700 transition">
+                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h5M20 20v-5h-5M4 9a8 8 0 0 1 14-2M20 15a8 8 0 0 1-14 2"/></svg>
+                        {% trans "Try again" %}
+                    </a>
+                    <a href="{% url 'tools_core:hub' %}" class="inline-flex items-center justify-center rounded-lg border border-slate-300 text-ink font-semibold px-6 py-3 hover:border-ink transition">{% trans "Back to all tools" %}</a>
+                </div>
+            </div>
+        </div>
+
+        <p class="mt-5 text-center text-xs text-slate-400" x-show="status !== 'failed'">
+            {% trans "We'll also email the report link to you, so you won't lose it." %}
+        </p>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+function xrayProgress() {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // [floor, ceiling] target band per status — the bar eases toward the
+    // ceiling but only crosses it when the real status advances, so it keeps
+    // moving without ever lying about completion.
+    const AI_ENABLED = {{ ai_enabled|yesno:"true,false" }};
+    const RANGES = AI_ENABLED ? {
+        pending:     [4, 12],
+        connecting:  [12, 34],
+        collecting:  [34, 58],
+        analyzing:   [58, 74],
+        ai_insights: [74, 94],
+        done:        [100, 100],
+        failed:      [0, 0],
+    } : {
+        pending:    [4, 12],
+        connecting: [12, 38],
+        collecting: [38, 74],
+        analyzing:  [74, 94],
+        done:       [100, 100],
+        failed:     [0, 0],
+    };
+    // Which visual step is "active" for each backend status.
+    const STEP_OF = AI_ENABLED
+        ? { pending: 0, connecting: 0, collecting: 1, analyzing: 2, ai_insights: 3, done: 5 }
+        : { pending: 0, connecting: 0, collecting: 1, analyzing: 2, done: 4 };
+    const LABELS = {
+        pending: '{% trans "Connecting to Odoo" %}',
+        connecting: '{% trans "Connecting to Odoo" %}',
+        collecting: '{% trans "Collecting Studio data" %}',
+        analyzing: '{% trans "Analyzing customizations" %}',
+        {% if ai_enabled %}ai_insights: '{% trans "Consulting the AI analyst" %}',{% endif %}
+        done: '{% trans "Done" %}',
+    };
+    const THINKING = [
+        {% if ai_enabled %}
+        '{% trans "Reading model and module names…" %}',
+        '{% trans "Connecting findings to your business context…" %}',
+        '{% trans "Weighing the upgrade risks…" %}',
+        '{% trans "Drafting the interpretation…" %}',
+        {% else %}''{% endif %}
+    ];
+    return {
+        status: '{{ run.status|escapejs }}',
+        error: '',
+        displayPct: 4,
+        elapsed: 0,
+        activeIndex: 0,
+        thinkIdx: 0,
+        aiNote: '',
+        _creep: null,
+        _clock: null,
+
+        init() {
+            this.applyStatus(this.status);
+            this._clock = setInterval(() => {
+                this.elapsed++;
+                if (this.elapsed % 3 === 0) this.thinkIdx++;
+            }, 1000);
+            if (!reduce) {
+                this._creep = setInterval(() => {
+                    if (this.status === 'done') { this.displayPct = 100; return; }
+                    if (this.status === 'failed') return;
+                    const ceil = (RANGES[this.status] || [0, 0])[1];
+                    this.displayPct += (ceil - this.displayPct) * 0.07;
+                    if (this.displayPct > ceil) this.displayPct = ceil;
+                }, 150);
+            }
+            this.poll();
+        },
+
+        applyStatus(s) {
+            const range = RANGES[s] || [this.displayPct, this.displayPct];
+            if (this.displayPct < range[0]) this.displayPct = range[0];
+            if (reduce) this.displayPct = (s === 'done') ? 100 : Math.max(this.displayPct, range[1]);
+            if (STEP_OF[s] !== undefined) this.activeIndex = STEP_OF[s];
+        },
+
+        stepState(i) {
+            if (this.status === 'done') return 'done';
+            if (i < this.activeIndex) return 'done';
+            if (i === this.activeIndex) return 'active';
+            return 'todo';
+        },
+
+        currentLabel() { return LABELS[this.status] || LABELS.pending; },
+        thinkingPhrase() {
+            // Real reasoning trace from the local model when available;
+            // canned interpretation phrases otherwise.
+            if (this.aiNote) return '\u201C…' + this.aiNote + '\u201D';
+            return THINKING[this.thinkIdx % THINKING.length];
+        },
+        pctLabel() { return Math.round(this.displayPct); },
+        elapsedLabel() {
+            const m = Math.floor(this.elapsed / 60);
+            const s = this.elapsed % 60;
+            return m + ':' + String(s).padStart(2, '0');
+        },
+
+        async poll() {
+            try {
+                const resp = await fetch('{{ status_url }}');
+                const data = await resp.json();
+                this.status = data.status;
+                this.error = data.error || '';
+                this.aiNote = data.ai_note || '';
+                this.applyStatus(this.status);
+                if (data.status === 'done') {
+                    this.displayPct = 100;
+                    this.activeIndex = 4;
+                    this._stop();
+                    setTimeout(() => {
+                        window.location.href = data.report_url || '{{ report_url }}';
+                    }, 950);
+                    return;
+                }
+                if (data.status === 'failed') { this._stop(); return; }
+            } catch (e) { /* transient network error — keep polling */ }
+            if (this.status !== 'failed' && this.status !== 'done') {
+                setTimeout(() => this.poll(), 2000);
+            }
+        },
+
+        _stop() {
+            clearInterval(this._creep);
+            clearInterval(this._clock);
+        },
+    };
+}
+</script>
+{% endblock %}

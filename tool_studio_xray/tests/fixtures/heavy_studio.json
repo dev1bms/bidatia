@@ -1,0 +1,1169 @@
+{
+  "meta": {
+    "schema_version": 1,
+    "tool": "studio_xray",
+    "collected_at": "2026-06-12T10:00:00+00:00",
+    "server_version": "15.0",
+    "edition": "enterprise",
+    "db_name": "heavy-co"
+  },
+  "sections": {
+    "studio_fields": {
+      "items": [
+        {
+          "name": "x_studio_field_00",
+          "model": "sale.order",
+          "label": "Studio Field 00",
+          "ttype": "many2one",
+          "relation": "res.partner",
+          "required": true,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_01",
+          "model": "account.move",
+          "label": "Studio Field 01",
+          "ttype": "char",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_02",
+          "model": "res.partner",
+          "label": "Studio Field 02",
+          "ttype": "char",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_03",
+          "model": "stock.picking",
+          "label": "Studio Field 03",
+          "ttype": "many2one",
+          "relation": "res.partner",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_04",
+          "model": "crm.lead",
+          "label": "Studio Field 04",
+          "ttype": "char",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_05",
+          "model": "sale.order",
+          "label": "Studio Field 05",
+          "ttype": "char",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_06",
+          "model": "account.move",
+          "label": "Studio Field 06",
+          "ttype": "many2one",
+          "relation": "res.partner",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_07",
+          "model": "res.partner",
+          "label": "Studio Field 07",
+          "ttype": "char",
+          "relation": "",
+          "required": true,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_08",
+          "model": "stock.picking",
+          "label": "Studio Field 08",
+          "ttype": "char",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_09",
+          "model": "crm.lead",
+          "label": "Studio Field 09",
+          "ttype": "many2one",
+          "relation": "res.partner",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_10",
+          "model": "sale.order",
+          "label": "Studio Field 10",
+          "ttype": "char",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_11",
+          "model": "account.move",
+          "label": "Studio Field 11",
+          "ttype": "char",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_12",
+          "model": "res.partner",
+          "label": "Studio Field 12",
+          "ttype": "many2one",
+          "relation": "res.partner",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_13",
+          "model": "stock.picking",
+          "label": "Studio Field 13",
+          "ttype": "char",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_14",
+          "model": "crm.lead",
+          "label": "Studio Field 14",
+          "ttype": "char",
+          "relation": "",
+          "required": true,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_15",
+          "model": "sale.order",
+          "label": "Studio Field 15",
+          "ttype": "many2one",
+          "relation": "res.partner",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_16",
+          "model": "account.move",
+          "label": "Studio Field 16",
+          "ttype": "char",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_17",
+          "model": "res.partner",
+          "label": "Studio Field 17",
+          "ttype": "char",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_18",
+          "model": "stock.picking",
+          "label": "Studio Field 18",
+          "ttype": "many2one",
+          "relation": "res.partner",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_19",
+          "model": "crm.lead",
+          "label": "Studio Field 19",
+          "ttype": "char",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_20",
+          "model": "sale.order",
+          "label": "Studio Field 20",
+          "ttype": "char",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_21",
+          "model": "account.move",
+          "label": "Studio Field 21",
+          "ttype": "many2one",
+          "relation": "res.partner",
+          "required": true,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_22",
+          "model": "res.partner",
+          "label": "Studio Field 22",
+          "ttype": "char",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_23",
+          "model": "stock.picking",
+          "label": "Studio Field 23",
+          "ttype": "char",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_24",
+          "model": "crm.lead",
+          "label": "Studio Field 24",
+          "ttype": "many2one",
+          "relation": "res.partner",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_25",
+          "model": "sale.order",
+          "label": "Studio Field 25",
+          "ttype": "char",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_26",
+          "model": "account.move",
+          "label": "Studio Field 26",
+          "ttype": "char",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_27",
+          "model": "res.partner",
+          "label": "Studio Field 27",
+          "ttype": "many2one",
+          "relation": "res.partner",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_28",
+          "model": "stock.picking",
+          "label": "Studio Field 28",
+          "ttype": "char",
+          "relation": "",
+          "required": true,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_29",
+          "model": "crm.lead",
+          "label": "Studio Field 29",
+          "ttype": "char",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_30",
+          "model": "x_studio_property_0",
+          "label": "Studio Field 30",
+          "ttype": "many2one",
+          "relation": "res.partner",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_31",
+          "model": "x_studio_property_1",
+          "label": "Studio Field 31",
+          "ttype": "char",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_32",
+          "model": "x_studio_property_2",
+          "label": "Studio Field 32",
+          "ttype": "char",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_33",
+          "model": "x_studio_property_3",
+          "label": "Studio Field 33",
+          "ttype": "many2one",
+          "relation": "res.partner",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_34",
+          "model": "x_studio_property_4",
+          "label": "Studio Field 34",
+          "ttype": "char",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_35",
+          "model": "x_studio_property_5",
+          "label": "Studio Field 35",
+          "ttype": "char",
+          "relation": "",
+          "required": true,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_36",
+          "model": "x_studio_property_0",
+          "label": "Studio Field 36",
+          "ttype": "many2one",
+          "relation": "res.partner",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_37",
+          "model": "x_studio_property_1",
+          "label": "Studio Field 37",
+          "ttype": "char",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_38",
+          "model": "x_studio_property_2",
+          "label": "Studio Field 38",
+          "ttype": "char",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_39",
+          "model": "x_studio_property_3",
+          "label": "Studio Field 39",
+          "ttype": "many2one",
+          "relation": "res.partner",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_40",
+          "model": "x_studio_property_4",
+          "label": "Studio Field 40",
+          "ttype": "char",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_41",
+          "model": "x_studio_property_5",
+          "label": "Studio Field 41",
+          "ttype": "char",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_42",
+          "model": "x_studio_property_0",
+          "label": "Studio Field 42",
+          "ttype": "many2one",
+          "relation": "res.partner",
+          "required": true,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_43",
+          "model": "x_studio_property_1",
+          "label": "Studio Field 43",
+          "ttype": "char",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_field_44",
+          "model": "x_studio_property_2",
+          "label": "Studio Field 44",
+          "ttype": "char",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_computed_00",
+          "model": "sale.order",
+          "label": "Computed 00",
+          "ttype": "float",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": true,
+          "compute_preview": "for rec in self: rec['x_studio_computed_00'] = rec.amount_total * 0.0"
+        },
+        {
+          "name": "x_studio_computed_01",
+          "model": "account.move",
+          "label": "Computed 01",
+          "ttype": "float",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "partner_id.vat",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_computed_02",
+          "model": "res.partner",
+          "label": "Computed 02",
+          "ttype": "float",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": true,
+          "compute_preview": "for rec in self: rec['x_studio_computed_02'] = rec.amount_total * 0.0"
+        },
+        {
+          "name": "x_studio_computed_03",
+          "model": "stock.picking",
+          "label": "Computed 03",
+          "ttype": "float",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "partner_id.vat",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_computed_04",
+          "model": "crm.lead",
+          "label": "Computed 04",
+          "ttype": "float",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": true,
+          "compute_preview": "for rec in self: rec['x_studio_computed_04'] = rec.amount_total * 0.0"
+        },
+        {
+          "name": "x_studio_computed_05",
+          "model": "sale.order",
+          "label": "Computed 05",
+          "ttype": "float",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "partner_id.vat",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_computed_06",
+          "model": "account.move",
+          "label": "Computed 06",
+          "ttype": "float",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": true,
+          "compute_preview": "for rec in self: rec['x_studio_computed_06'] = rec.amount_total * 0.0"
+        },
+        {
+          "name": "x_studio_computed_07",
+          "model": "res.partner",
+          "label": "Computed 07",
+          "ttype": "float",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "partner_id.vat",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_computed_08",
+          "model": "stock.picking",
+          "label": "Computed 08",
+          "ttype": "float",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": true,
+          "compute_preview": "for rec in self: rec['x_studio_computed_08'] = rec.amount_total * 0.0"
+        },
+        {
+          "name": "x_studio_computed_09",
+          "model": "crm.lead",
+          "label": "Computed 09",
+          "ttype": "float",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "partner_id.vat",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_computed_10",
+          "model": "sale.order",
+          "label": "Computed 10",
+          "ttype": "float",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": true,
+          "compute_preview": "for rec in self: rec['x_studio_computed_10'] = rec.amount_total * 0.0"
+        },
+        {
+          "name": "x_studio_computed_11",
+          "model": "account.move",
+          "label": "Computed 11",
+          "ttype": "float",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "partner_id.vat",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_computed_12",
+          "model": "res.partner",
+          "label": "Computed 12",
+          "ttype": "float",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": true,
+          "compute_preview": "for rec in self: rec['x_studio_computed_12'] = rec.amount_total * 0.0"
+        },
+        {
+          "name": "x_studio_computed_13",
+          "model": "stock.picking",
+          "label": "Computed 13",
+          "ttype": "float",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "partner_id.vat",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_computed_14",
+          "model": "crm.lead",
+          "label": "Computed 14",
+          "ttype": "float",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": true,
+          "compute_preview": "for rec in self: rec['x_studio_computed_14'] = rec.amount_total * 0.0"
+        }
+      ],
+      "total": 60,
+      "truncated": false
+    },
+    "custom_models": {
+      "items": [
+        {
+          "model": "x_studio_property_0",
+          "name": "Property 0",
+          "field_count": 8
+        },
+        {
+          "model": "x_studio_property_1",
+          "name": "Property 1",
+          "field_count": 9
+        },
+        {
+          "model": "x_studio_property_2",
+          "name": "Property 2",
+          "field_count": 10
+        },
+        {
+          "model": "x_studio_property_3",
+          "name": "Property 3",
+          "field_count": 11
+        },
+        {
+          "model": "x_studio_property_4",
+          "name": "Property 4",
+          "field_count": 12
+        },
+        {
+          "model": "x_studio_property_5",
+          "name": "Property 5",
+          "field_count": 13
+        }
+      ],
+      "total": 6
+    },
+    "studio_views": {
+      "items": [
+        {
+          "name": "Odoo Studio: sale.order customization 0",
+          "model": "sale.order",
+          "type": "form",
+          "inherits": true,
+          "inherit_of": "sale.order.form",
+          "key": "studio_customization.sale_order_0"
+        },
+        {
+          "name": "Odoo Studio: account.move customization 1",
+          "model": "account.move",
+          "type": "list",
+          "inherits": true,
+          "inherit_of": "account.move.form",
+          "key": "studio_customization.account_move_1"
+        },
+        {
+          "name": "Odoo Studio: res.partner customization 2",
+          "model": "res.partner",
+          "type": "kanban",
+          "inherits": true,
+          "inherit_of": "res.partner.form",
+          "key": "studio_customization.res_partner_2"
+        },
+        {
+          "name": "Odoo Studio: stock.picking customization 3",
+          "model": "stock.picking",
+          "type": "form",
+          "inherits": true,
+          "inherit_of": "stock.picking.form",
+          "key": "studio_customization.stock_picking_3"
+        },
+        {
+          "name": "Odoo Studio: crm.lead customization 4",
+          "model": "crm.lead",
+          "type": "list",
+          "inherits": true,
+          "inherit_of": "crm.lead.form",
+          "key": "studio_customization.crm_lead_4"
+        },
+        {
+          "name": "Odoo Studio: sale.order customization 5",
+          "model": "sale.order",
+          "type": "kanban",
+          "inherits": true,
+          "inherit_of": "sale.order.form",
+          "key": "studio_customization.sale_order_5"
+        },
+        {
+          "name": "Odoo Studio: account.move customization 6",
+          "model": "account.move",
+          "type": "form",
+          "inherits": true,
+          "inherit_of": "account.move.form",
+          "key": "studio_customization.account_move_6"
+        },
+        {
+          "name": "Odoo Studio: res.partner customization 7",
+          "model": "res.partner",
+          "type": "list",
+          "inherits": true,
+          "inherit_of": "res.partner.form",
+          "key": "studio_customization.res_partner_7"
+        },
+        {
+          "name": "Odoo Studio: stock.picking customization 8",
+          "model": "stock.picking",
+          "type": "kanban",
+          "inherits": true,
+          "inherit_of": "stock.picking.form",
+          "key": "studio_customization.stock_picking_8"
+        },
+        {
+          "name": "Odoo Studio: crm.lead customization 9",
+          "model": "crm.lead",
+          "type": "form",
+          "inherits": true,
+          "inherit_of": "crm.lead.form",
+          "key": "studio_customization.crm_lead_9"
+        },
+        {
+          "name": "Odoo Studio: sale.order customization 10",
+          "model": "sale.order",
+          "type": "list",
+          "inherits": true,
+          "inherit_of": "sale.order.form",
+          "key": "studio_customization.sale_order_10"
+        },
+        {
+          "name": "Odoo Studio: account.move customization 11",
+          "model": "account.move",
+          "type": "kanban",
+          "inherits": true,
+          "inherit_of": "account.move.form",
+          "key": "studio_customization.account_move_11"
+        },
+        {
+          "name": "Odoo Studio: res.partner customization 12",
+          "model": "res.partner",
+          "type": "form",
+          "inherits": true,
+          "inherit_of": "res.partner.form",
+          "key": "studio_customization.res_partner_12"
+        },
+        {
+          "name": "Odoo Studio: stock.picking customization 13",
+          "model": "stock.picking",
+          "type": "list",
+          "inherits": true,
+          "inherit_of": "stock.picking.form",
+          "key": "studio_customization.stock_picking_13"
+        },
+        {
+          "name": "Odoo Studio: crm.lead customization 14",
+          "model": "crm.lead",
+          "type": "kanban",
+          "inherits": true,
+          "inherit_of": "crm.lead.form",
+          "key": "studio_customization.crm_lead_14"
+        },
+        {
+          "name": "Odoo Studio: sale.order customization 15",
+          "model": "sale.order",
+          "type": "form",
+          "inherits": true,
+          "inherit_of": "sale.order.form",
+          "key": "studio_customization.sale_order_15"
+        },
+        {
+          "name": "Odoo Studio: account.move customization 16",
+          "model": "account.move",
+          "type": "list",
+          "inherits": true,
+          "inherit_of": "account.move.form",
+          "key": "studio_customization.account_move_16"
+        },
+        {
+          "name": "Odoo Studio: res.partner customization 17",
+          "model": "res.partner",
+          "type": "kanban",
+          "inherits": true,
+          "inherit_of": "res.partner.form",
+          "key": "studio_customization.res_partner_17"
+        },
+        {
+          "name": "Odoo Studio: stock.picking customization 18",
+          "model": "stock.picking",
+          "type": "form",
+          "inherits": false,
+          "inherit_of": "",
+          "key": "studio_customization.stock_picking_18"
+        },
+        {
+          "name": "Odoo Studio: crm.lead customization 19",
+          "model": "crm.lead",
+          "type": "list",
+          "inherits": false,
+          "inherit_of": "",
+          "key": "studio_customization.crm_lead_19"
+        },
+        {
+          "name": "Odoo Studio: sale.order customization 20",
+          "model": "sale.order",
+          "type": "kanban",
+          "inherits": false,
+          "inherit_of": "",
+          "key": "studio_customization.sale_order_20"
+        },
+        {
+          "name": "Odoo Studio: account.move customization 21",
+          "model": "account.move",
+          "type": "form",
+          "inherits": false,
+          "inherit_of": "",
+          "key": "studio_customization.account_move_21"
+        },
+        {
+          "name": "Odoo Studio: res.partner customization 22",
+          "model": "res.partner",
+          "type": "list",
+          "inherits": false,
+          "inherit_of": "",
+          "key": "studio_customization.res_partner_22"
+        },
+        {
+          "name": "Odoo Studio: stock.picking customization 23",
+          "model": "stock.picking",
+          "type": "kanban",
+          "inherits": false,
+          "inherit_of": "",
+          "key": "studio_customization.stock_picking_23"
+        },
+        {
+          "name": "Odoo Studio: crm.lead customization 24",
+          "model": "crm.lead",
+          "type": "form",
+          "inherits": false,
+          "inherit_of": "",
+          "key": "studio_customization.crm_lead_24"
+        }
+      ],
+      "total": 25,
+      "truncated": false
+    },
+    "automated_actions": {
+      "items": [
+        {
+          "name": "Auto action 00",
+          "model": "sale.order",
+          "model_label": "Model 0",
+          "trigger": "on_create",
+          "active": true
+        },
+        {
+          "name": "Auto action 01",
+          "model": "account.move",
+          "model_label": "Model 1",
+          "trigger": "on_write",
+          "active": true
+        },
+        {
+          "name": "Auto action 02",
+          "model": "res.partner",
+          "model_label": "Model 2",
+          "trigger": "on_create",
+          "active": true
+        },
+        {
+          "name": "Auto action 03",
+          "model": "stock.picking",
+          "model_label": "Model 3",
+          "trigger": "on_write",
+          "active": true
+        },
+        {
+          "name": "Auto action 04",
+          "model": "crm.lead",
+          "model_label": "Model 4",
+          "trigger": "on_create",
+          "active": true
+        },
+        {
+          "name": "Auto action 05",
+          "model": "sale.order",
+          "model_label": "Model 5",
+          "trigger": "on_write",
+          "active": true
+        },
+        {
+          "name": "Auto action 06",
+          "model": "account.move",
+          "model_label": "Model 6",
+          "trigger": "on_create",
+          "active": true
+        },
+        {
+          "name": "Auto action 07",
+          "model": "res.partner",
+          "model_label": "Model 7",
+          "trigger": "on_write",
+          "active": true
+        },
+        {
+          "name": "Auto action 08",
+          "model": "stock.picking",
+          "model_label": "Model 8",
+          "trigger": "on_create",
+          "active": true
+        },
+        {
+          "name": "Auto action 09",
+          "model": "crm.lead",
+          "model_label": "Model 9",
+          "trigger": "on_write",
+          "active": true
+        },
+        {
+          "name": "Auto action 10",
+          "model": "sale.order",
+          "model_label": "Model 10",
+          "trigger": "on_create",
+          "active": true
+        },
+        {
+          "name": "Auto action 11",
+          "model": "account.move",
+          "model_label": "Model 11",
+          "trigger": "on_write",
+          "active": true
+        }
+      ],
+      "total": 12
+    },
+    "server_actions": {
+      "items": [
+        {
+          "name": "Server action 00",
+          "model_label": "Sales Order",
+          "state": "code",
+          "usage": "ir_actions_server"
+        },
+        {
+          "name": "Server action 01",
+          "model_label": "Sales Order",
+          "state": "code",
+          "usage": "base_automation"
+        },
+        {
+          "name": "Server action 02",
+          "model_label": "Sales Order",
+          "state": "code",
+          "usage": "ir_actions_server"
+        },
+        {
+          "name": "Server action 03",
+          "model_label": "Sales Order",
+          "state": "code",
+          "usage": "base_automation"
+        },
+        {
+          "name": "Server action 04",
+          "model_label": "Sales Order",
+          "state": "code",
+          "usage": "ir_actions_server"
+        },
+        {
+          "name": "Server action 05",
+          "model_label": "Sales Order",
+          "state": "code",
+          "usage": "base_automation"
+        },
+        {
+          "name": "Server action 06",
+          "model_label": "Sales Order",
+          "state": "code",
+          "usage": "ir_actions_server"
+        },
+        {
+          "name": "Server action 07",
+          "model_label": "Sales Order",
+          "state": "code",
+          "usage": "base_automation"
+        },
+        {
+          "name": "Server action 08",
+          "model_label": "Sales Order",
+          "state": "object_write",
+          "usage": "ir_actions_server"
+        },
+        {
+          "name": "Server action 09",
+          "model_label": "Sales Order",
+          "state": "object_write",
+          "usage": "base_automation"
+        }
+      ],
+      "total": 10
+    },
+    "studio_menus": {
+      "items": [
+        {
+          "name": "Properties 0"
+        },
+        {
+          "name": "Properties 1"
+        },
+        {
+          "name": "Properties 2"
+        },
+        {
+          "name": "Properties 3"
+        },
+        {
+          "name": "Properties 4"
+        },
+        {
+          "name": "Properties 5"
+        },
+        {
+          "name": "Properties 6"
+        },
+        {
+          "name": "Properties 7"
+        },
+        {
+          "name": "Properties 8"
+        }
+      ],
+      "total": 9
+    },
+    "module_context": {
+      "installed_modules": 142,
+      "studio_installed": true
+    }
+  }
+}

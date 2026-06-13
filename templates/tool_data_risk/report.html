@@ -1,0 +1,333 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Data Risk Profiler report" %} | {{ SITE_NAME }}{% endblock %}
+
+{% block content %}
+{% if expired %}
+<section class="py-24">
+    <div class="max-w-xl mx-auto px-4 text-center">
+        <h1 class="text-2xl font-extrabold text-ink">{% trans "This report has expired" %}</h1>
+        <p class="mt-3 text-slate-600">{% trans "Reports auto-delete after 72 hours as part of our privacy promise. Run a new scan to get a fresh one." %}</p>
+        <a href="{% url 'tool_data_risk:landing' %}" class="mt-6 inline-flex items-center rounded-lg bg-ink text-white font-semibold px-6 py-3 hover:bg-brand-700 transition">{% trans "Run a new scan" %}</a>
+    </div>
+</section>
+{% else %}
+
+{# ── Hero: score + level ─────────────────────────────────────────────────── #}
+<section class="relative overflow-hidden bg-ink text-white">
+    <div class="absolute inset-0 tech-grid tech-grid-dark grid-mask" aria-hidden="true"></div>
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16">
+        {% if is_demo %}
+        <span class="inline-flex items-center gap-1.5 rounded-full bg-amber-400/20 text-amber-200 ring-1 ring-amber-300/40 text-xs font-bold px-3 py-1 font-mono">DEMO</span>
+        {% endif %}
+        <p class="mt-3 font-mono text-xs uppercase tracking-wider text-brand-300">// {% trans "Data Risk Profiler report" %}</p>
+        <h1 class="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight">{{ level_label }}</h1>
+        <p class="mt-3 text-slate-300 max-w-2xl leading-relaxed">{{ level_blurb }}</p>
+
+        <div class="mt-8 flex flex-wrap items-center gap-6">
+            <div class="inline-flex flex-col items-center rounded-2xl bg-white/5 ring-1 ring-white/15 px-8 py-5">
+                <span class="text-5xl font-extrabold tabular-nums force-ltr {% if score >= 70 %}text-red-300{% elif score >= 40 %}text-amber-300{% else %}text-emerald-300{% endif %}">{{ score }}</span>
+                <span class="mt-1 text-xs text-slate-300">{% trans "data risk score / 100" %}</span>
+            </div>
+            <div class="text-sm text-slate-300 space-y-1">
+                {% if db_label %}<p>{% trans "Database:" %} <span class="font-mono force-ltr">{{ db_label }}</span></p>{% endif %}
+                {% if server_version %}<p>{% trans "Odoo version:" %} <span class="font-mono force-ltr">{{ server_version }}</span></p>{% endif %}
+                <p class="text-xs text-slate-400">{% trans "Counts and masked signals only — we never read your business documents." %}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# ── Data Quality Map (radar over the 8 categories) ──────────────────────── #}
+{% if quality_map %}
+<section class="py-10 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="rounded-2xl border border-slate-200 bg-white shadow-sm p-6 sm:p-8">
+            <h2 class="text-lg font-extrabold text-ink">{% trans "Your Data Quality Map" %}</h2>
+            <p class="mt-2 text-sm text-slate-600 max-w-3xl">{% trans "One axis per risk category — the further the shape reaches from the center, the more cleanup that area needs before migration. Dots are colored by severity." %}</p>
+            <div class="mt-5 rounded-xl border border-slate-100 overflow-x-auto">
+                <div class="min-w-[460px] max-w-xl mx-auto">
+                    {% include "tool_data_risk/_quality_map.html" with qmap=quality_map %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{# ── Progress since the previous opt-in snapshot ─────────────────────────── #}
+{% if delta %}
+<section class="py-10 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="rounded-2xl border border-brand-200 bg-brand-50/40 p-6 sm:p-8">
+            <h2 class="text-lg font-extrabold text-ink">{% blocktrans with date=delta.prev_date %}Progress since your last scan ({{ date }}){% endblocktrans %}</h2>
+            <div class="mt-4 flex items-center gap-4">
+                <span class="text-3xl font-extrabold tabular-nums text-slate-400 force-ltr">{{ delta.prev_score }}</span>
+                <svg class="h-6 w-6 text-slate-400 rtl:rotate-180" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                <span class="text-3xl font-extrabold tabular-nums force-ltr {% if delta.direction == 'improved' %}text-emerald-600{% elif delta.direction == 'worse' %}text-red-600{% else %}text-ink{% endif %}">{{ delta.current_score }}</span>
+                <span class="text-sm font-semibold {% if delta.direction == 'improved' %}text-emerald-700{% elif delta.direction == 'worse' %}text-red-700{% else %}text-slate-500{% endif %}">
+                    {% if delta.direction == 'improved' %}{% trans "Improved — the cleanup is paying off." %}{% elif delta.direction == 'worse' %}{% trans "Higher risk than last time — new debt is accumulating." %}{% else %}{% trans "No significant change." %}{% endif %}
+                </span>
+            </div>
+            {% if delta.rows %}
+            <div class="mt-4 flex flex-wrap gap-2">
+                {% for row in delta.rows %}
+                <span class="inline-flex items-center gap-1.5 rounded-full bg-white ring-1 {% if row.direction == 'improved' %}ring-emerald-200 text-emerald-700{% elif row.direction == 'worse' %}ring-red-200 text-red-700{% else %}ring-slate-200 text-slate-500{% endif %} text-xs font-semibold px-3 py-1">
+                    {{ row.label }} <span class="force-ltr tabular-nums">{{ row.prev }}→{{ row.current }}</span>
+                </span>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <p class="mt-3 text-xs text-slate-400">{% trans "Based on the anonymous aggregated snapshot you chose to save — scores and counts only, never record data." %}</p>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{# ── Top blockers ────────────────────────────────────────────────────────── #}
+{% if blockers %}
+<section class="py-10 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-extrabold text-ink">{% trans "Top migration blockers" %}</h2>
+        <ol class="mt-5 space-y-3">
+            {% for blocker in blockers %}
+            <li class="flex items-start gap-3 rounded-xl border {% if blocker.severity == 'critical' %}border-red-200 bg-red-50/50{% elif blocker.severity == 'warning' %}border-amber-200 bg-amber-50/50{% else %}border-slate-200 bg-white{% endif %} p-4">
+                <span class="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full {% if blocker.severity == 'critical' %}bg-red-600{% elif blocker.severity == 'warning' %}bg-amber-500{% else %}bg-slate-500{% endif %} text-white text-xs font-bold force-ltr">{{ forloop.counter }}</span>
+                <span class="text-sm text-slate-800 leading-relaxed">
+                    {{ blocker.text }}
+                    {% if blocker.examples %}<span class="block mt-1 text-xs text-slate-500 font-mono force-ltr">{% trans "e.g." %} {{ blocker.examples|join:" · " }}</span>{% endif %}
+                </span>
+            </li>
+            {% endfor %}
+        </ol>
+    </div>
+</section>
+{% endif %}
+
+{# ── Category cards ──────────────────────────────────────────────────────── #}
+<section class="py-10 bg-slate-50/60">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-extrabold text-ink">{% trans "Risk by category" %}</h2>
+        <div class="mt-6 grid sm:grid-cols-2 gap-5">
+            {% for cat in categories %}
+            <div class="rounded-2xl border {% if cat.severity == 'critical' %}border-red-200{% elif cat.severity == 'warning' %}border-amber-200{% else %}border-slate-200{% endif %} bg-white p-5 sm:p-6">
+                <div class="flex items-center justify-between gap-3">
+                    <h3 class="text-base font-bold text-ink">{{ cat.label }}</h3>
+                    {% if cat.state != 'ok' %}
+                    <span class="font-mono text-[10px] font-semibold text-slate-500 bg-slate-50 rounded-full px-2.5 py-1 ring-1 ring-slate-100">{% trans "SKIPPED" %}</span>
+                    {% elif cat.severity == 'critical' %}
+                    <span class="font-mono text-[10px] font-semibold text-red-700 bg-red-50 rounded-full px-2.5 py-1 ring-1 ring-red-100">{{ cat.score }}/100</span>
+                    {% elif cat.severity == 'warning' %}
+                    <span class="font-mono text-[10px] font-semibold text-amber-700 bg-amber-50 rounded-full px-2.5 py-1 ring-1 ring-amber-100">{{ cat.score }}/100</span>
+                    {% else %}
+                    <span class="font-mono text-[10px] font-semibold text-emerald-700 bg-emerald-50 rounded-full px-2.5 py-1 ring-1 ring-emerald-100">{{ cat.score }}/100</span>
+                    {% endif %}
+                </div>
+                <p class="mt-2 text-xs text-slate-500 leading-relaxed">{{ cat.blurb }}</p>
+                {% if cat.state == 'ok' %}
+                {% if cat.issues %}
+                <ul class="mt-3 space-y-1.5">
+                    {% for issue in cat.issues %}
+                    <li class="text-sm text-slate-700 flex items-start gap-2">
+                        <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full {% if issue.severity == 'critical' %}bg-red-500{% elif issue.severity == 'warning' %}bg-amber-500{% else %}bg-slate-400{% endif %}"></span>
+                        <span>{{ issue.text }}{% if issue.examples %} <span class="text-xs text-slate-400 font-mono force-ltr">({{ issue.examples|join:" · " }})</span>{% endif %}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p class="mt-3 text-sm text-emerald-700">{% trans "No notable signals found in this area." %}</p>
+                {% endif %}
+                {% else %}
+                <p class="mt-3 text-sm text-slate-400">{% trans "This area was not available in your database or to the scanning user — skipped, not failed." %}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        <p class="mt-4 text-xs text-slate-400">
+            {% if partners_coverage_pct == 100 and products_coverage_pct == 100 %}
+            {% trans "Duplicate metrics cover ALL records (full coverage). Examples shown are masked." %}
+            {% elif partners_coverage_pct %}
+            {% blocktrans with p=partners_coverage_pct pr=products_coverage_pct|default:"—" %}Duplicate metrics use a stratified sample across oldest, middle and newest records — coverage: {{ p }}% of contacts, {{ pr }}% of products. A fair signal, not a census. Examples shown are masked.{% endblocktrans %}
+            {% else %}
+            {% trans "Duplicate metrics are computed on a stratified sample of records — a fair signal, not a census. Examples shown are masked." %}
+            {% endif %}
+        </p>
+    </div>
+</section>
+
+{# ── AI advisor (optional, sanitized metrics only, never scores) ─────────── #}
+{% if advisor %}
+<section class="py-10 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="rounded-2xl border border-brand-200 bg-gradient-to-br from-brand-50/60 to-white shadow-sm p-6 sm:p-8">
+            <h2 class="text-lg font-extrabold text-ink flex items-center gap-2">
+                <svg class="h-5 w-5 text-brand-600" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3l1.7 4.6L18.3 9l-4.6 1.7L12 15.3l-1.7-4.6L5.7 9l4.6-1.4L12 3z"/></svg>
+                {% trans "AI advisor notes" %}
+            </h2>
+            <p class="mt-3 text-sm text-slate-700 leading-relaxed" dir="auto">{{ advisor.board_summary }}</p>
+            {% if advisor.cleanup_priorities %}
+            <h3 class="mt-5 text-xs font-bold uppercase tracking-wide text-brand-700">{% trans "Where to start" %}</h3>
+            <ol class="mt-2 space-y-2">
+                {% for item in advisor.cleanup_priorities %}
+                <li class="flex items-start gap-2.5 text-sm text-slate-700" dir="auto"><span class="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-50 ring-1 ring-brand-100 text-brand-700 text-[11px] font-bold force-ltr">{{ forloop.counter }}</span>{{ item }}</li>
+                {% endfor %}
+            </ol>
+            {% endif %}
+            {% if advisor.migration_risks_plain_language %}
+            <div class="mt-5 rounded-xl bg-white ring-1 ring-brand-200 border-s-4 border-s-brand-500 p-4">
+                <h3 class="text-xs font-bold uppercase tracking-wide text-brand-700">{% trans "If nothing is cleaned" %}</h3>
+                <p class="mt-1.5 text-sm text-ink leading-relaxed" dir="auto">{{ advisor.migration_risks_plain_language }}</p>
+            </div>
+            {% endif %}
+            {% if advisor.management_questions %}
+            <h3 class="mt-5 text-xs font-bold uppercase tracking-wide text-slate-500">{% trans "Questions for your team" %}</h3>
+            <ul class="mt-2 space-y-1.5">
+                {% for q in advisor.management_questions %}<li class="text-sm text-slate-700" dir="auto">• {{ q }}</li>{% endfor %}
+            </ul>
+            {% endif %}
+            <p class="mt-4 text-[11px] text-slate-400">{% trans "Interpretation generated by a local AI model from sanitized counts and masked examples only — it never sees your records and never decides any score in this report." %}</p>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{# ── Cleanup plan ────────────────────────────────────────────────────────── #}
+<section class="py-10 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-extrabold text-ink">{% trans "Cleanup plan" %}</h2>
+        <div class="mt-6 grid lg:grid-cols-3 gap-5">
+            {% for stage_label, actions in plan_stages %}
+            <div class="rounded-2xl border border-slate-200 bg-white p-5">
+                <h3 class="text-sm font-bold uppercase tracking-wide text-brand-700">{{ stage_label }}</h3>
+                <ul class="mt-3 space-y-3.5">
+                    {% for action in actions %}
+                    <li class="text-sm leading-relaxed">
+                        <div class="flex items-start gap-2">
+                            <span class="mt-1.5 h-2 w-2 shrink-0 rounded-full {% if action.priority == 'high' %}bg-red-500{% elif action.priority == 'medium' %}bg-amber-500{% else %}bg-slate-300{% endif %}"></span>
+                            <div>
+                                <p class="text-slate-800 font-medium">{{ action.title }}</p>
+                                <p class="mt-1 flex flex-wrap gap-1.5">
+                                    <span class="inline-flex items-center rounded-full {% if action.priority == 'high' %}bg-red-50 text-red-700 ring-red-100{% elif action.priority == 'medium' %}bg-amber-50 text-amber-700 ring-amber-100{% else %}bg-slate-50 text-slate-500 ring-slate-100{% endif %} ring-1 text-[10px] font-bold px-2 py-0.5">{{ action.priority_label }}</span>
+                                    <span class="inline-flex items-center rounded-full bg-slate-50 text-slate-600 ring-1 ring-slate-100 text-[10px] font-semibold px-2 py-0.5">{{ action.owner_label }}</span>
+                                    {% if action.count %}<span class="inline-flex items-center rounded-full bg-slate-50 text-slate-500 ring-1 ring-slate-100 text-[10px] font-semibold px-2 py-0.5 force-ltr tabular-nums">×{{ action.count }}</span>{% endif %}
+                                </p>
+                                {% if action.why %}<p class="mt-1.5 text-xs text-slate-500">{{ action.why }} {{ action.impact }}</p>{% endif %}
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{# ── Checklist + management questions ───────────────────────────────────── #}
+<section class="py-10 bg-slate-50/60">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-6">
+        <div class="rounded-2xl border border-slate-200 bg-white p-6">
+            <h2 class="text-lg font-extrabold text-ink">{% trans "Migration readiness checklist" %}</h2>
+            <ol class="mt-4 space-y-2.5">
+                {% for item in checklist %}
+                <li class="flex items-start gap-2.5 text-sm text-slate-700"><span class="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-ink text-white text-[11px] font-bold force-ltr">{{ forloop.counter }}</span>{{ item }}</li>
+                {% endfor %}
+            </ol>
+        </div>
+        <div class="rounded-2xl border border-slate-200 bg-white p-6">
+            <h2 class="text-lg font-extrabold text-ink">{% trans "Questions to bring to management" %}</h2>
+            <ul class="mt-4 space-y-2.5">
+                {% for q in mgmt_questions %}<li class="text-sm text-slate-700 leading-relaxed">• {{ q }}</li>{% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>
+
+{# ── CTA + privacy ───────────────────────────────────────────────────────── #}
+<section class="pb-16 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="rounded-2xl bg-ink text-white p-8 lg:p-10">
+            <div class="grid lg:grid-cols-[1fr_auto] items-center gap-8">
+                <div>
+                    <p class="font-mono text-xs uppercase tracking-wider text-brand-300">// {% trans "Next step" %}</p>
+                    <h2 class="mt-3 text-2xl font-extrabold">{% trans "Turn this profile into a migration data plan" %}</h2>
+                    <p class="mt-2 text-slate-300 text-sm leading-relaxed max-w-xl">{% trans "In a free 30-minute review we walk through your blockers together and leave you with a prioritized cleanup path — whether or not you ever work with us." %}</p>
+                </div>
+                <div class="shrink-0">
+                    {% if is_demo %}
+                    <a href="{% url 'tool_data_risk:landing' %}" class="inline-flex items-center gap-2 rounded-lg bg-white text-ink font-semibold px-6 py-3.5 hover:bg-brand-50 transition">
+                        {% trans "Run this on your own Odoo" %}
+                        <svg class="h-4 w-4 rtl:rotate-180" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </a>
+                    {% else %}
+                    <a href="{{ book_url }}" class="inline-flex items-center gap-2 rounded-lg bg-white text-ink font-semibold px-6 py-3.5 hover:bg-brand-50 transition">
+                        {% trans "Book my free data review" %}
+                        <svg class="h-4 w-4 rtl:rotate-180" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        {% if not is_demo %}
+        {# ── send to manager — straight to the decision-maker ─────────────── #}
+        <div x-data="shareReport()" class="mt-4 rounded-2xl border border-slate-200 bg-white p-5 no-print">
+            <div class="flex flex-wrap items-center gap-3">
+                <div class="min-w-0 flex-1">
+                    <p class="text-sm font-bold text-ink">{% trans "Send this report to my manager" %}</p>
+                    <p class="text-xs text-slate-500">{% trans "A short executive summary with the link — straight to the decision-maker. No masked examples, just the level and the blockers." %}</p>
+                </div>
+                <form x-show="!sent" @submit.prevent="send()" class="flex items-center gap-2">
+                    {% csrf_token %}
+                    <input type="email" x-model="email" required placeholder="manager@company.com"
+                           class="rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm w-56 force-ltr focus:border-sky-500 focus:ring-2 focus:ring-sky-100 outline-none" :disabled="busy">
+                    <button type="submit" :disabled="busy || !email"
+                            class="rounded-lg bg-ink text-white text-sm font-semibold px-4 py-2.5 hover:bg-brand-700 transition disabled:opacity-40">{% trans "Send" %}</button>
+                </form>
+                <p x-show="sent" x-cloak class="text-sm font-semibold text-emerald-700">{% trans "Sent — your manager has it now." %}</p>
+            </div>
+            <p x-show="error" x-cloak class="mt-2 text-xs text-red-600" x-text="error"></p>
+        </div>
+        <script>
+        function shareReport() {
+            return {
+                email: '', busy: false, sent: false, error: '',
+                async send() {
+                    this.busy = true; this.error = '';
+                    try {
+                        const token = document.querySelector('[name=csrfmiddlewaretoken]').value;
+                        const resp = await fetch('{{ share_url }}', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json', 'X-CSRFToken': token },
+                            body: JSON.stringify({ email: this.email }),
+                        });
+                        const data = await resp.json();
+                        if (data.ok) { this.sent = true; }
+                        else if (data.code === 'rate') { this.error = '{% trans "Too many sends — try again later." %}'; }
+                        else { this.error = '{% trans "Could not send — check the address and try again." %}'; }
+                    } catch (e) {
+                        this.error = '{% trans "Could not send — check the address and try again." %}';
+                    } finally { this.busy = false; }
+                },
+            };
+        }
+        </script>
+
+        {% if badge_offer_url or badge_url %}
+        {% include "tools_core/_badge_offer.html" %}
+        {% endif %}
+        {% endif %}
+
+        <div class="mt-4 grid sm:grid-cols-2 gap-3 no-print">
+            <a href="{{ xray_url }}" class="inline-flex items-center justify-center rounded-lg border border-slate-300 text-ink text-sm font-semibold px-5 py-3 hover:border-ink transition">{% trans "Also map your customizations — Studio X-Ray" %}</a>
+            <a href="{{ rescue_url }}" class="inline-flex items-center justify-center rounded-lg border border-slate-300 text-ink text-sm font-semibold px-5 py-3 hover:border-ink transition">{% trans "Check overall ERP health — Rescue Check" %}</a>
+        </div>
+
+        <p class="mt-6 text-xs text-slate-400 text-center">
+            {% trans "This report contains counts, percentages and masked examples only. It auto-deletes 72 hours after the scan. It is a data-quality snapshot — not a security scan, not an accounting audit and not a certification." %}
+        </p>
+    </div>
+</section>
+{% endif %}
+{% endblock %}

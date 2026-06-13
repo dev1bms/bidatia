@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Data Risk Profiler — assess your master data before migration" %} | {{ SITE_NAME }}{% endblock %}
+
+{% block content %}
+<section class="relative overflow-hidden bg-ink text-white">
+    <div class="absolute inset-0 tech-grid tech-grid-dark grid-mask" aria-hidden="true"></div>
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 text-center reveal">
+        <p class="font-mono text-xs uppercase tracking-wider text-brand-300">// {% trans "Free Tool" %}</p>
+        <h1 class="mt-4 text-4xl sm:text-5xl font-extrabold tracking-tight text-balance">{% trans "Data Risk Profiler" %}</h1>
+        <p class="mt-5 text-lg text-slate-300 max-w-2xl mx-auto">
+            {% trans "Assess your master data before migration: duplicates, orphaned records and import risks — before they slow down your go-live." %}
+        </p>
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-slate-300">
+            <span class="inline-flex items-center gap-2"><svg class="h-4 w-4 text-accent-400" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>{% trans "100% read-only — nothing is ever written" %}</span>
+            <span class="inline-flex items-center gap-2"><svg class="h-4 w-4 text-accent-400" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>{% trans "We analyze signals and counts, not your business documents" %}</span>
+            <span class="inline-flex items-center gap-2"><svg class="h-4 w-4 text-accent-400" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>{% trans "Reports auto-delete after 72 hours" %}</span>
+        </div>
+        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a href="#scan" class="inline-flex items-center gap-2 rounded-lg bg-white text-ink font-semibold px-6 py-3.5 hover:bg-brand-50 transition">
+                {% trans "Start the free scan" %}
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7-7-7m7 7V3"/></svg>
+            </a>
+            <a href="{% url 'tool_data_risk:demo_report' %}" class="inline-flex items-center gap-2 rounded-lg border border-white/30 text-white font-semibold px-6 py-3.5 hover:border-white transition">
+                {% trans "See a sample report first" %}
+            </a>
+        </div>
+    </div>
+</section>
+
+{# ── What we check / what we never touch ─────────────────────────────────── #}
+<section class="py-12 lg:py-14">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-6">
+        <div class="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 reveal">
+            <h2 class="text-lg font-extrabold text-ink flex items-center gap-2">
+                <svg class="h-5 w-5 text-emerald-600" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.6 2A9 9 0 113 12a9 9 0 0118.6-2z"/></svg>
+                {% trans "What the scan checks" %}
+            </h2>
+            <ul class="mt-4 space-y-2.5 text-sm text-slate-700">
+                <li>• {% trans "Potential duplicate clusters: contacts, VAT numbers, product references, barcodes" %}</li>
+                <li>• {% trans "Master-data completeness: emails, phones, countries, internal references" %}</li>
+                <li>• {% trans "Open documents pointing at archived customers, vendors or products" %}</li>
+                <li>• {% trans "External-ID coverage — how repeat-import-friendly your data is" %}</li>
+                <li>• {% trans "Attachment volume and database bloat (counts and sizes only)" %}</li>
+                <li>• {% trans "Records owned by deactivated users" %}</li>
+                <li>• {% trans "Custom (Studio) models holding master data without stable identifiers" %}</li>
+            </ul>
+        </div>
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-8 reveal">
+            <h2 class="text-lg font-extrabold text-ink flex items-center gap-2">
+                <svg class="h-5 w-5 text-slate-500" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636a9 9 0 11-12.728 0M12 2v10"/></svg>
+                {% trans "What it never touches" %}
+            </h2>
+            <ul class="mt-4 space-y-2.5 text-sm text-slate-700">
+                <li>• {% trans "No writes of any kind — the connection cannot create, update or delete" %}</li>
+                <li>• {% trans "No invoice amounts, no chatter messages, no attachment contents" %}</li>
+                <li>• {% trans "No raw names, emails or VAT numbers in the report — examples are masked (b***@a***.com)" %}</li>
+                <li>• {% trans "No SQL, no server actions, no exports of your data" %}</li>
+                <li>• {% trans "This is a data-quality snapshot — not a security scan, not an accounting audit, not a certification" %}</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+{# ── Connection form ──────────────────────────────────────────────────────── #}
+<section class="pb-16" id="scan">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        {% if form.non_field_errors %}
+        <div class="mb-5 rounded-lg border border-red-200 bg-red-50 text-red-700 px-4 py-3 text-sm">
+            {{ form.non_field_errors.0 }}
+        </div>
+        {% endif %}
+        <form method="post" action="{% url 'tool_data_risk:landing' %}#scan" novalidate class="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm">
+            {% csrf_token %}
+            <div class="hidden" aria-hidden="true">{{ form.website }}</div>
+
+            <h2 class="text-base font-extrabold text-ink">{% trans "Connect read-only to your Odoo" %}</h2>
+            <p class="mt-1 text-sm text-slate-500">{% trans "Use a low-privilege user — normal read access is enough. The API key is used once and never stored." %}</p>
+
+            <div class="mt-5 grid sm:grid-cols-2 gap-4">
+                {% for field in form %}{% if field.name != 'website' and field.name != 'consent' and field.name != 'save_snapshot' %}
+                <div {% if field.name == 'odoo_url' %}class="sm:col-span-2"{% endif %}>
+                    <label for="{{ field.id_for_label }}" class="block text-sm font-semibold text-ink mb-1">{{ field.label }}{% if not field.field.required %} <span class="font-normal text-slate-400">({% trans "optional" %})</span>{% endif %}</label>
+                    {{ field }}
+                    {% if field.help_text %}<p class="mt-1 text-xs text-slate-500">{{ field.help_text }}</p>{% endif %}
+                    {% if field.errors %}<p class="mt-1 text-xs text-red-600">{{ field.errors.0 }}</p>{% endif %}
+                </div>
+                {% endif %}{% endfor %}
+            </div>
+
+            <label class="mt-4 flex items-start gap-3 text-sm text-slate-600">
+                {{ form.save_snapshot }}
+                <span>{{ form.save_snapshot.label }}</span>
+            </label>
+
+            <label class="mt-3 flex items-start gap-3 text-sm text-slate-600">
+                {{ form.consent }}
+                <span>{{ form.consent.label }}</span>
+            </label>
+            {% if form.consent.errors %}<p class="mt-1 text-xs text-red-600">{{ form.consent.errors.0 }}</p>{% endif %}
+
+            <button type="submit" class="mt-6 w-full inline-flex justify-center items-center gap-2 rounded-lg bg-ink text-white font-semibold px-6 py-3.5 hover:bg-brand-700 transition">
+                {% trans "Run the data risk scan" %}
+                <svg class="h-4 w-4 rtl:rotate-180" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </button>
+            <p class="mt-3 text-center text-xs text-slate-400">{% trans "Read-only scan · masked examples only · report auto-deletes in 72 hours" %}</p>
+        </form>
+    </div>
+</section>
+{% endblock %}

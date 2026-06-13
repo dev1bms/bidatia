@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block og_image %}<meta property="og:image" content="{{ SITE_BASE_URL }}{% static 'img/og-erp-rescue.png' %}">
+    <meta property="og:image:secure_url" content="{{ SITE_BASE_URL }}{% static 'img/og-erp-rescue.png' %}">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="ERP Rescue Check — is your ERP quietly failing?">{% endblock %}
+{% block twitter_image %}<meta name="twitter:image" content="{{ SITE_BASE_URL }}{% static 'img/og-erp-rescue.png' %}">{% endblock %}
+
+{% block title %}{% trans "Is your ERP at risk? The 3-minute ERP Rescue Check" %} | {{ SITE_NAME }}{% endblock %}
+
+{% block content %}
+<section class="relative overflow-hidden bg-ink text-white">
+    <div class="absolute inset-0 tech-grid tech-grid-dark grid-mask" aria-hidden="true"></div>
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 text-center reveal">
+        <p class="font-mono text-xs uppercase tracking-wider text-brand-300">// {% trans "Free Tool" %}</p>
+        <h1 class="mt-4 text-4xl sm:text-5xl font-extrabold tracking-tight text-balance">{% trans "Is your ERP quietly failing?" %}</h1>
+        <p class="mt-5 text-lg text-slate-300 max-w-2xl mx-auto">
+            {% trans "Most ERP systems don't fail loudly — they fail through parallel spreadsheets, one indispensable developer and reports nobody trusts. Answer 24 consultant-grade questions and get your rescue score, your top 3 risks and a first recovery plan." %}
+        </p>
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-slate-300">
+            <span class="inline-flex items-center gap-2"><svg class="h-4 w-4 text-accent-400" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>{% trans "3 minutes, 24 questions" %}</span>
+            <span class="inline-flex items-center gap-2"><svg class="h-4 w-4 text-accent-400" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>{% trans "No login, no system connection" %}</span>
+            <span class="inline-flex items-center gap-2"><svg class="h-4 w-4 text-accent-400" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>{% trans "Works for any ERP — Odoo, SAP, Dynamics and more" %}</span>
+        </div>
+        <a href="#check" class="mt-8 inline-flex items-center gap-2 rounded-lg bg-white text-ink font-semibold px-6 py-3.5 hover:bg-brand-50 transition">
+            {% trans "Start the check" %}
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7-7-7m7 7V3"/></svg>
+        </a>
+    </div>
+</section>
+
+<section class="py-12" id="check">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8" x-data="rescueCheck()">
+        {% if form.non_field_errors %}
+        <div class="mb-5 rounded-lg border border-red-200 bg-red-50 text-red-700 px-4 py-3 text-sm">
+            {{ form.non_field_errors.0 }}
+        </div>
+        {% endif %}
+
+        <form method="post" action="{% url 'tool_erp_rescue:landing' %}#check" novalidate @change="count()">
+            {% csrf_token %}
+            <div class="hidden" aria-hidden="true">{{ form.website }}</div>
+
+            {# sticky progress #}
+            <div class="sticky top-20 z-30 mb-6 rounded-xl border border-slate-200 bg-white/95 backdrop-blur px-4 py-3 shadow-sm">
+                <div class="flex items-center justify-between text-xs font-semibold text-slate-500">
+                    <span>{% trans "Your progress" %}</span>
+                    <span class="tabular-nums force-ltr"><span x-text="answered">0</span> / 24</span>
+                </div>
+                <div class="mt-1.5 h-1.5 rounded-full bg-slate-100 overflow-hidden">
+                    <div class="h-full bg-brand-600 transition-all duration-300" :style="`width: ${answered / 24 * 100}%`"></div>
+                </div>
+            </div>
+
+            {% for section in sections %}
+            <div class="mb-8 rounded-2xl border border-slate-200 bg-white p-6">
+                <h2 class="text-base font-extrabold text-ink flex items-center gap-2.5">
+                    <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-ink text-white text-xs font-bold force-ltr">{{ forloop.counter }}</span>
+                    {{ section.label }}
+                </h2>
+                <div class="mt-4 space-y-5">
+                    {% for q in section.questions %}
+                    <fieldset>
+                        <legend class="text-sm text-slate-700 leading-relaxed">{{ q.label }}</legend>
+                        <div class="mt-2 flex gap-2">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="q_{{ q.code }}" value="yes" class="peer sr-only">
+                                <span class="inline-block rounded-full border border-slate-200 px-4 py-1.5 text-sm text-slate-600 transition peer-checked:border-brand-600 peer-checked:bg-brand-600 peer-checked:text-white hover:border-brand-300">{% trans "Yes" %}</span>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="q_{{ q.code }}" value="partial" class="peer sr-only">
+                                <span class="inline-block rounded-full border border-slate-200 px-4 py-1.5 text-sm text-slate-600 transition peer-checked:border-amber-500 peer-checked:bg-amber-500 peer-checked:text-white hover:border-amber-300">{% trans "Partially" %}</span>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="q_{{ q.code }}" value="no" class="peer sr-only">
+                                <span class="inline-block rounded-full border border-slate-200 px-4 py-1.5 text-sm text-slate-600 transition peer-checked:border-slate-700 peer-checked:bg-slate-700 peer-checked:text-white hover:border-slate-400">{% trans "No" %}</span>
+                            </label>
+                        </div>
+                    </fieldset>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+
+            {# lead capture #}
+            <div class="rounded-2xl border border-slate-200 bg-white p-6">
+                <h2 class="text-base font-extrabold text-ink">{% trans "Where should we send your results?" %}</h2>
+                <p class="mt-1 text-sm text-slate-500">{% trans "Your score, top risks and rescue plan — saved at a private link and emailed to you." %}</p>
+                <div class="mt-4 grid sm:grid-cols-2 gap-4">
+                    <div class="sm:col-span-2">
+                        <label for="{{ form.email.id_for_label }}" class="block text-sm font-semibold text-ink mb-1">{{ form.email.label }}</label>
+                        {{ form.email }}
+                        <p class="mt-1 text-xs text-slate-500">{{ form.email.help_text }}</p>
+                        {% if form.email.errors %}<p class="mt-1 text-xs text-red-600">{{ form.email.errors.0 }}</p>{% endif %}
+                    </div>
+                    <div>
+                        <label for="{{ form.full_name.id_for_label }}" class="block text-sm font-semibold text-ink mb-1">{{ form.full_name.label }} <span class="font-normal text-slate-400">({% trans "optional" %})</span></label>
+                        {{ form.full_name }}
+                    </div>
+                    <div>
+                        <label for="{{ form.company.id_for_label }}" class="block text-sm font-semibold text-ink mb-1">{{ form.company.label }} <span class="font-normal text-slate-400">({% trans "optional" %})</span></label>
+                        {{ form.company }}
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label for="{{ form.erp_type.id_for_label }}" class="block text-sm font-semibold text-ink mb-1">{{ form.erp_type.label }}</label>
+                        {{ form.erp_type }}
+                        {% if form.erp_type.errors %}<p class="mt-1 text-xs text-red-600">{{ form.erp_type.errors.0 }}</p>{% endif %}
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <label for="{{ form.pain_text.id_for_label }}" class="block text-sm font-semibold text-ink mb-1">{{ form.pain_text.label }} <span class="font-normal text-slate-400">({% trans "optional" %})</span></label>
+                    {{ form.pain_text }}
+                </div>
+
+                <label class="mt-4 flex items-start gap-3 text-sm text-slate-600">
+                    {{ form.consent }}
+                    <span>{{ form.consent.label }}</span>
+                </label>
+                {% if form.consent.errors %}<p class="mt-1 text-xs text-red-600">{% trans "Please accept so we can email you the results." %}</p>{% endif %}
+
+                <button type="submit" :disabled="answered < 24"
+                        class="mt-6 w-full inline-flex justify-center items-center gap-2 rounded-lg bg-ink text-white font-semibold px-6 py-3.5 hover:bg-brand-700 transition disabled:opacity-40 disabled:cursor-not-allowed">
+                    {% trans "Get my rescue score" %}
+                    <svg class="h-4 w-4 rtl:rotate-180" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </button>
+                <p class="mt-2 text-center text-xs text-slate-400" x-show="answered < 24">{% trans "Answer all 24 questions to unlock your score." %}</p>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+function rescueCheck() {
+    return {
+        answered: 0,
+        count() {
+            const names = new Set();
+            document.querySelectorAll('input[type="radio"]:checked').forEach(
+                (el) => { if (el.name.startsWith('q_')) names.add(el.name); });
+            if (this.answered === 0 && names.size > 0 && !this._started) {
+                this._started = true;
+                this._beacon('rescue_started');
+            }
+            this.answered = names.size;
+        },
+        _beacon(event) {
+            try {
+                fetch('{% url "tools_core:track_event" %}', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json',
+                               'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value },
+                    body: JSON.stringify({ tool: 'erp_rescue', event: event }),
+                });
+            } catch (e) { /* analytics never breaks the page */ }
+        },
+        init() { this.count(); },
+    };
+}
+</script>
+{% endblock %}

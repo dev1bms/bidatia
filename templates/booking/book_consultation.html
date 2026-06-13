@@ -1,0 +1,545 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Request a consultation" %} — {{ SITE_NAME }}{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@23/build/css/intlTelInput.css">
+<style>
+    /* Make the intl-tel-input control fill the field like the other inputs. */
+    .iti { width: 100%; display: block; }
+    .iti__dropdown-content { z-index: 60; }
+
+    /* ── Phone / WhatsApp field: keep it visually LTR on the RTL Arabic page ──
+       A phone number (flag + country code + digits) is inherently left-to-right,
+       so it must read the same on every language. intl-tel-input v23 ships its
+       own RTL overrides keyed on an ANCESTOR [dir="rtl"] (our <html dir="rtl">):
+       they move the country selector to the right and mirror the input padding,
+       which makes the international number look reversed and misaligned.
+
+       The wrapper below (.booking-phone-field, dir="ltr") forces the input text
+       LTR, and the scoped rules restore intl-tel-input's OWN left-to-right
+       layout. Each carries one extra class of specificity over the library's
+       [dir="rtl"] rules and comes later in the cascade, so it wins without
+       !important. They are gated on [dir="rtl"], so the English/Spanish (LTR)
+       pages are never touched. Only the phone field is affected — surrounding
+       labels and the rest of the form stay Arabic RTL. */
+    .booking-phone-field { direction: ltr; }
+    .booking-phone-field input.iti__tel-input { direction: ltr; text-align: left; }
+
+    [dir="rtl"] .booking-phone-field .iti--allow-dropdown .iti__country-container {
+        right: auto;
+        left: 0;
+    }
+    [dir="rtl"] .booking-phone-field .iti--allow-dropdown input.iti__tel-input {
+        padding-right: var(--iti-input-padding);
+        padding-left: var(--iti-selected-country-arrow-padding);
+        margin-right: 0;
+        margin-left: 0;
+    }
+    [dir="rtl"] .booking-phone-field .iti__arrow {
+        margin-left: var(--iti-arrow-padding);
+        margin-right: 0;
+    }
+    [dir="rtl"] .booking-phone-field .iti .iti__selected-dial-code {
+        margin-left: 4px;
+        margin-right: 0;
+    }
+    [dir="rtl"] .booking-phone-field .iti__flag-box,
+    [dir="rtl"] .booking-phone-field .iti__country-name {
+        margin-right: var(--iti-spacer-horizontal);
+        margin-left: 0;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="bg-slate-50 border-b border-slate-200">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14 text-center">
+        <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-ink">{% trans "Request a consultation" %}</h1>
+        <p class="mt-5 text-lg text-slate-600">
+            {% trans "Choose a consultation type, pick a time that works for you, and tell us a little about your situation. We'll confirm your slot by email." %}
+        </p>
+        <div class="mt-6 inline-flex flex-wrap items-center justify-center gap-3 text-sm">
+            <span class="rounded-full bg-white border border-slate-200 px-4 py-2 font-medium text-slate-700">{% trans "Free intro & discovery calls available" %}</span>
+            <span class="rounded-full bg-white border border-slate-200 px-4 py-2 font-medium text-slate-700">{% trans "All times shown in Madrid time" %}</span>
+            <span class="rounded-full bg-white border border-slate-200 px-4 py-2 font-medium text-slate-700">{% trans "Replies within one business day" %}</span>
+        </div>
+
+        <div class="mt-10">
+            <p class="text-xs font-semibold uppercase tracking-wide text-slate-400">{% trans "What happens after you book" %}</p>
+            <div class="mt-4 grid sm:grid-cols-3 gap-4 text-start">
+                <div class="rounded-xl bg-white border border-slate-200 p-4">
+                    <span class="flex h-7 w-7 items-center justify-center rounded-full bg-ink text-white text-xs font-bold">1</span>
+                    <p class="mt-3 text-sm text-slate-600 leading-relaxed">{% trans "Choose a time and tell us a little about your situation." %}</p>
+                </div>
+                <div class="rounded-xl bg-white border border-slate-200 p-4">
+                    <span class="flex h-7 w-7 items-center justify-center rounded-full bg-ink text-white text-xs font-bold">2</span>
+                    <p class="mt-3 text-sm text-slate-600 leading-relaxed">{% trans "We confirm your slot by email, usually within one business day." %}</p>
+                </div>
+                <div class="rounded-xl bg-white border border-slate-200 p-4">
+                    <span class="flex h-7 w-7 items-center justify-center rounded-full bg-ink text-white text-xs font-bold">3</span>
+                    <p class="mt-3 text-sm text-slate-600 leading-relaxed">{% trans "We meet for a focused session — and you leave with clear next steps." %}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# Bookable consultation types + their available slots, already translated server-side. #}
+{{ types_payload|json_script:"booking-types-data" }}
+
+<section class="py-14 lg:py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8" x-data="bookingFlow()">
+        <div id="booking-flow"></div>
+
+        <!-- No availability at all: show a clear message instead of the booking flow -->
+        <template x-if="!hasAnyAvailability">
+            <div class="rounded-2xl border border-slate-200 bg-white p-8 sm:p-12 text-center" x-cloak>
+                <span class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-slate-100 text-slate-400">
+                    <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3M4 11h16M5 5h14a1 1 0 011 1v13a1 1 0 01-1 1H5a1 1 0 01-1-1V6a1 1 0 011-1z" /></svg>
+                </span>
+                <h2 class="mt-5 text-xl font-bold text-ink">{% trans "No appointments are available right now" %}</h2>
+                <p class="mt-2 text-slate-600 max-w-md mx-auto">{% trans "We're not taking new bookings at the moment. Please check back soon, or contact us and we'll arrange a time that works for you." %}</p>
+                <a href="{% url 'leads:contact' %}" class="mt-6 inline-flex items-center rounded-lg bg-ink text-white font-semibold px-6 py-3 hover:bg-brand-700 transition">{% trans "Contact Bidatia" %}</a>
+            </div>
+        </template>
+
+        {% if form.non_field_errors %}
+        <div class="mb-6 rounded-lg bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3">
+            {{ form.non_field_errors }}
+        </div>
+        {% endif %}
+
+        <!-- Step indicator -->
+        <ol x-show="hasAnyAvailability" x-cloak class="mb-10 grid grid-cols-3 gap-3 text-sm font-semibold">
+            <li class="flex items-center gap-2.5 rounded-xl border px-4 py-3 transition"
+                :class="step === 1 ? 'border-ink bg-white text-ink shadow-sm' : (selectedType ? 'border-slate-200 bg-white text-slate-500 cursor-pointer hover:border-slate-300' : 'border-slate-200 bg-slate-50 text-slate-400')"
+                @click="selectedType && goToStep(1)">
+                <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs"
+                      :class="selectedType ? 'bg-ink text-white' : 'bg-slate-200 text-slate-500'">1</span>
+                <span>{% trans "Type" %}</span>
+            </li>
+            <li class="flex items-center gap-2.5 rounded-xl border px-4 py-3 transition"
+                :class="step === 2 ? 'border-ink bg-white text-ink shadow-sm' : (selectedSlotId ? 'border-slate-200 bg-white text-slate-500 cursor-pointer hover:border-slate-300' : 'border-slate-200 bg-slate-50 text-slate-400')"
+                @click="selectedSlotId && goToStep(2)">
+                <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs"
+                      :class="selectedSlotId ? 'bg-ink text-white' : 'bg-slate-200 text-slate-500'">2</span>
+                <span>{% trans "Time" %}</span>
+            </li>
+            <li class="flex items-center gap-2.5 rounded-xl border px-4 py-3 transition"
+                :class="step === 3 ? 'border-ink bg-white text-ink shadow-sm' : 'border-slate-200 bg-slate-50 text-slate-400'">
+                <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs"
+                      :class="step === 3 ? 'bg-ink text-white' : 'bg-slate-200 text-slate-500'">3</span>
+                <span>{% trans "Your details" %}</span>
+            </li>
+        </ol>
+
+        <form method="post" novalidate x-show="hasAnyAvailability" x-cloak>
+            {% csrf_token %}
+            {# The visual pickers below drive these two hidden fields the form needs. #}
+            <input type="hidden" name="{{ form.consultation_type.html_name }}" :value="selectedType">
+            <input type="hidden" name="{{ form.slot.html_name }}" :value="selectedSlotId">
+
+            <!-- Step 1: choose a consultation type -->
+            <div x-show="step === 1" x-cloak x-transition.opacity class="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+                <h2 class="text-xl font-bold text-ink">{% trans "Step 1 — Choose a consultation type" %}</h2>
+                <p class="mt-1.5 text-sm text-slate-500">{% trans "Pick the option that best matches what you need right now." %}</p>
+
+                {% for error in form.consultation_type.errors %}<p class="mt-3 text-sm text-red-600">{{ error }}</p>{% endfor %}
+
+                <div class="mt-6 grid sm:grid-cols-2 gap-4">
+                    <template x-for="t in types" :key="t.key">
+                        <button type="button"
+                                @click="chooseType(t.key)"
+                                class="group text-start rounded-2xl border p-5 transition focus:outline-none focus:ring-2 focus:ring-sky-200"
+                                :class="selectedType === t.key ? 'border-ink ring-2 ring-ink/10 bg-white shadow-sm' : 'border-slate-200 bg-white hover:border-slate-300 hover:shadow-sm'">
+                            <span class="flex items-center justify-between gap-3">
+                                <span class="font-semibold text-ink" x-text="t.label"></span>
+                                <svg x-show="selectedType === t.key" x-cloak class="h-5 w-5 shrink-0 text-ink" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                            </span>
+                            <span class="mt-2 inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600 group-hover:bg-slate-200">
+                                <span x-text="t.duration"></span><span class="mx-1">·</span><span x-text="t.price"></span>
+                            </span>
+                            <span class="mt-3 block text-sm text-slate-500 leading-relaxed" x-text="t.desc"></span>
+
+                            <!-- Availability: soonest open day + time, or a muted "no times" note. -->
+                            <span x-show="t.days.length" x-cloak class="mt-3.5 flex flex-wrap items-center gap-x-1.5 gap-y-1 text-xs font-semibold text-emerald-700">
+                                <span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-50">
+                                    <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l2.5 1.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                </span>
+                                <span class="text-emerald-700/90">{% trans "Next available" %}:</span>
+                                <span class="font-bold text-ink" x-text="t.days[0].label"></span>
+                                <span class="text-emerald-700/70" dir="ltr" x-text="'· ' + t.days[0].slots[0].start"></span>
+                            </span>
+                            <span x-show="t.days.length === 0" x-cloak class="mt-3.5 flex items-center gap-1.5 text-xs font-medium text-slate-400">
+                                <span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-slate-100">
+                                    <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M18.36 18.36A9 9 0 015.64 5.64m12.72 12.72A9 9 0 005.64 5.64m12.72 12.72L5.64 5.64" /></svg>
+                                </span>
+                                {% trans "No times available right now" %}
+                            </span>
+                        </button>
+                    </template>
+                </div>
+            </div>
+
+            <!-- Step 2: choose an available time slot -->
+            <div x-show="step === 2" x-cloak x-transition.opacity class="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+                <button type="button" @click="goToStep(1)" class="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-500 hover:text-ink transition">
+                    <svg class="h-4 w-4 rtl:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+                    {% trans "Change consultation type" %}
+                </button>
+
+                <h2 class="mt-3 text-xl font-bold text-ink">{% trans "Step 2 — Choose an available time" %}</h2>
+                <p class="mt-1.5 text-sm text-slate-500">{% trans "Pick a day with available appointments, then choose a time (Madrid time)." %}</p>
+
+                {% for error in form.slot.errors %}<p class="mt-3 text-sm text-red-600">{{ error }}</p>{% endfor %}
+
+                <template x-if="currentType && currentType.days.length">
+                    <div class="mt-6 grid lg:grid-cols-2 gap-6 lg:gap-8">
+                        <!-- Monthly calendar: days with availability are highlighted -->
+                        <div>
+                            <div class="flex items-center justify-between">
+                                <button type="button" @click="prevMonth()" :disabled="!canPrev"
+                                        aria-label="{% trans 'Previous month' %}"
+                                        class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-slate-600 transition hover:border-ink hover:text-ink disabled:opacity-30 disabled:hover:border-slate-200 disabled:hover:text-slate-600">
+                                    <svg class="h-4 w-4 rtl:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+                                </button>
+                                <p class="text-sm font-bold text-ink capitalize" x-text="monthLabel"></p>
+                                <button type="button" @click="nextMonth()" :disabled="!canNext"
+                                        aria-label="{% trans 'Next month' %}"
+                                        class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-slate-600 transition hover:border-ink hover:text-ink disabled:opacity-30 disabled:hover:border-slate-200 disabled:hover:text-slate-600">
+                                    <svg class="h-4 w-4 rtl:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                                </button>
+                            </div>
+
+                            <div class="mt-4 grid grid-cols-7 gap-1 text-center">
+                                <template x-for="(wd, i) in weekdayLabels" :key="i">
+                                    <span class="py-1.5 text-[11px] font-semibold uppercase tracking-wide text-slate-400" x-text="wd"></span>
+                                </template>
+                            </div>
+
+                            <div class="mt-1 grid grid-cols-7 gap-1">
+                                <template x-for="(cell, i) in calendarCells" :key="i">
+                                    <div>
+                                        <template x-if="cell && isAvailable(cell.iso)">
+                                            <button type="button" @click="selectDay(cell.iso)"
+                                                    class="relative flex h-11 w-full items-center justify-center rounded-lg text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-200"
+                                                    :class="selectedDate === cell.iso ? 'bg-ink text-white shadow-sm' : 'bg-brand-50 text-ink ring-1 ring-brand-100 hover:bg-brand-100'">
+                                                <span x-text="cell.day"></span>
+                                                <span class="absolute bottom-1.5 h-1 w-1 rounded-full"
+                                                      :class="selectedDate === cell.iso ? 'bg-white' : 'bg-brand-500'"></span>
+                                            </button>
+                                        </template>
+                                        <template x-if="cell && !isAvailable(cell.iso)">
+                                            <div class="flex h-11 w-full items-center justify-center text-sm text-slate-300" x-text="cell.day"></div>
+                                        </template>
+                                        <template x-if="!cell">
+                                            <div class="h-11"></div>
+                                        </template>
+                                    </div>
+                                </template>
+                            </div>
+
+                            <p class="mt-3 flex items-center gap-2 text-xs text-slate-500">
+                                <span class="inline-flex h-2.5 w-2.5 rounded-full bg-brand-500"></span>
+                                {% trans "Days with available appointments" %}
+                            </p>
+                        </div>
+
+                        <!-- Times for the selected day -->
+                        <div>
+                            <template x-if="selectedDay">
+                                <div>
+                                    <h3 class="text-sm font-semibold text-ink">
+                                        {% trans "Available times" %} · <span class="font-medium text-slate-500" x-text="selectedDay.label"></span>
+                                    </h3>
+                                    <div class="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                                        <template x-for="slot in selectedDay.slots" :key="slot.id">
+                                            <button type="button"
+                                                    @click="chooseSlot(slot.id)"
+                                                    class="rounded-lg border px-3 py-2.5 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-sky-200"
+                                                    :class="selectedSlotId === String(slot.id) ? 'border-ink bg-ink text-white' : 'border-slate-200 bg-white text-ink hover:border-slate-300'">
+                                                <span dir="ltr" class="inline-block" x-text="slot.label"></span>
+                                            </button>
+                                        </template>
+                                    </div>
+                                </div>
+                            </template>
+                            <template x-if="!selectedDay">
+                                <div class="flex h-full min-h-[8rem] items-center justify-center rounded-xl border border-dashed border-slate-300 bg-slate-50 px-5 py-8 text-center">
+                                    <p class="text-sm text-slate-500">{% trans "Select a highlighted day to see available times." %}</p>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+
+                <template x-if="currentType && currentType.days.length === 0">
+                    <div class="mt-6 rounded-xl border border-dashed border-slate-300 bg-slate-50 px-5 py-8 text-center">
+                        <p class="text-sm text-slate-600">{% trans "There are no available slots for this consultation type right now." %}</p>
+                        <p class="mt-1 text-sm text-slate-500">{% trans "Please check back soon, or choose a different consultation type." %}</p>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Step 3: customer details -->
+            <div x-show="step === 3" x-cloak x-transition.opacity class="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 space-y-6">
+                <div>
+                    <button type="button" @click="goToStep(2)" class="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-500 hover:text-ink transition">
+                        <svg class="h-4 w-4 rtl:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg>
+                        {% trans "Change selected time" %}
+                    </button>
+                    <h2 class="mt-3 text-xl font-bold text-ink">{% trans "Step 3 — Your details" %}</h2>
+                    <p class="mt-1.5 text-sm text-slate-500">{% trans "Tell us a little about you and your situation so we can prepare for the call." %}</p>
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-6">
+                    <div>
+                        <label for="{{ form.full_name.id_for_label }}" class="block text-sm font-semibold text-ink mb-2">{{ form.full_name.label }}</label>
+                        {{ form.full_name }}
+                        {% for error in form.full_name.errors %}<p class="mt-1.5 text-sm text-red-600">{{ error }}</p>{% endfor %}
+                    </div>
+                    <div>
+                        <label for="{{ form.company_name.id_for_label }}" class="block text-sm font-semibold text-ink mb-2">{{ form.company_name.label }}</label>
+                        {{ form.company_name }}
+                    </div>
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-6">
+                    <div>
+                        <label for="{{ form.email.id_for_label }}" class="block text-sm font-semibold text-ink mb-2">{{ form.email.label }}</label>
+                        {{ form.email }}
+                        {% for error in form.email.errors %}<p class="mt-1.5 text-sm text-red-600">{{ error }}</p>{% endfor %}
+                    </div>
+                    <div>
+                        <label for="{{ form.phone.id_for_label }}" class="block text-sm font-semibold text-ink mb-2">{{ form.phone.label }}</label>
+                        {# Forced-LTR wrapper so the international phone widget reads naturally on the Arabic (RTL) page. #}
+                        <div class="booking-phone-field" dir="ltr">{{ form.phone }}</div>
+                        {% for error in form.phone.errors %}<p class="mt-1.5 text-sm text-red-600">{{ error }}</p>{% endfor %}
+                    </div>
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-6">
+                    <div>
+                        <label for="{{ form.country.id_for_label }}" class="block text-sm font-semibold text-ink mb-2">{{ form.country.label }}</label>
+                        {{ form.country }}
+                        {% for error in form.country.errors %}<p class="mt-1.5 text-sm text-red-600">{{ error }}</p>{% endfor %}
+                    </div>
+                    <div>
+                        <label for="{{ form.preferred_language.id_for_label }}" class="block text-sm font-semibold text-ink mb-2">{{ form.preferred_language.label }}</label>
+                        {{ form.preferred_language }}
+                    </div>
+                </div>
+
+                <div>
+                    <label for="{{ form.odoo_version.id_for_label }}" class="block text-sm font-semibold text-ink mb-2">{{ form.odoo_version.label }}</label>
+                    {{ form.odoo_version }}
+                </div>
+
+                <div>
+                    <label for="{{ form.problem_summary.id_for_label }}" class="block text-sm font-semibold text-ink mb-2">{{ form.problem_summary.label }}</label>
+                    {{ form.problem_summary }}
+                    {% for error in form.problem_summary.errors %}<p class="mt-1.5 text-sm text-red-600">{{ error }}</p>{% endfor %}
+                </div>
+
+                <div class="flex items-start gap-3">
+                    {{ form.consent }}
+                    <label for="{{ form.consent.id_for_label }}" class="text-sm text-slate-600 leading-relaxed">{{ form.consent.label }}</label>
+                </div>
+                {% for error in form.consent.errors %}<p class="text-sm text-red-600">{{ error }}</p>{% endfor %}
+
+                <button type="submit" class="w-full rounded-lg bg-ink text-white font-semibold px-6 py-3.5 hover:bg-brand-700 transition">
+                    {% trans "Submit Consultation Request" %}
+                </button>
+                <p class="text-xs text-slate-500 text-center">
+                    {% trans "We do not charge your card automatically. We'll confirm your slot by email — and if your selected consultation requires payment, we'll send clear instructions before confirming." %}
+                </p>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    function bookingFlow() {
+        return {
+            // Bookable types + available slots, rendered from the JSON the view embedded.
+            types: JSON.parse(document.getElementById('booking-types-data').textContent),
+            // Repopulate from POST data on validation errors; otherwise honour ?service= preselection.
+            selectedType: '{{ form.consultation_type.value|default_if_none:"" }}' || '{{ preselect_type }}',
+            selectedSlotId: '{{ form.slot.value|default_if_none:"" }}',
+            selectedDate: '',
+            hasErrors: {{ form.errors|yesno:"true,false" }},
+            step: 1,
+            calYear: new Date().getFullYear(),
+            calMonth: new Date().getMonth(),
+
+            init() {
+                // Validation errors: keep the user on the details step to fix them.
+                if (this.hasErrors) { this.step = 3; return; }
+                // Nothing bookable at all: the empty-state message is shown instead.
+                if (!this.hasAnyAvailability) { this.step = 1; return; }
+                // A type is already chosen (e.g. a ?service= link from a service
+                // page, or repopulated after a validation error): jump ahead.
+                if (this.selectedType) {
+                    if (this.selectedSlotId) { this.step = 3; }
+                    else { this.step = 2; this.syncCalendarToFirstAvailable(); }
+                    return;
+                }
+                // Fresh visit: always start on Step 1 so the visitor chooses a
+                // consultation type first. Each card on Step 1 shows whether that
+                // type has availability and its soonest open time.
+                this.step = 1;
+            },
+
+            get hasAnyAvailability() {
+                return this.types.some(t => t.days && t.days.length > 0);
+            },
+            get currentType() {
+                return this.types.find(t => t.key === this.selectedType) || null;
+            },
+            // Map of "YYYY-MM-DD" -> day object (only days that have open slots).
+            get availableDays() {
+                const map = {};
+                if (this.currentType) this.currentType.days.forEach(d => { map[d.date] = d; });
+                return map;
+            },
+            get selectedDay() {
+                return this.availableDays[this.selectedDate] || null;
+            },
+            isAvailable(iso) {
+                return !!this.availableDays[iso];
+            },
+
+            // ── Calendar rendering (localised to the active language) ──────────
+            get locale() {
+                return document.documentElement.lang || 'en';
+            },
+            get monthLabel() {
+                return new Date(this.calYear, this.calMonth, 1)
+                    .toLocaleDateString(this.locale, { month: 'long', year: 'numeric' });
+            },
+            get weekdayLabels() {
+                const monday = new Date(2024, 0, 1); // 1 Jan 2024 is a Monday
+                const out = [];
+                for (let i = 0; i < 7; i++) {
+                    const d = new Date(monday);
+                    d.setDate(monday.getDate() + i);
+                    out.push(d.toLocaleDateString(this.locale, { weekday: 'short' }));
+                }
+                return out;
+            },
+            // Flat list of cells for the displayed month (Monday-first), null = blank.
+            get calendarCells() {
+                const year = this.calYear, month = this.calMonth;
+                const daysInMonth = new Date(year, month + 1, 0).getDate();
+                const offset = (new Date(year, month, 1).getDay() + 6) % 7;
+                const cells = [];
+                for (let i = 0; i < offset; i++) cells.push(null);
+                for (let d = 1; d <= daysInMonth; d++) {
+                    const iso = `${year}-${String(month + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+                    cells.push({ day: d, iso });
+                }
+                while (cells.length % 7 !== 0) cells.push(null);
+                return cells;
+            },
+            get canPrev() {
+                const now = new Date();
+                return (this.calYear * 12 + this.calMonth) > (now.getFullYear() * 12 + now.getMonth());
+            },
+            get canNext() {
+                const days = this.currentType && this.currentType.days;
+                if (!days || !days.length) return false;
+                const last = days[days.length - 1].date.split('-').map(Number);
+                return (this.calYear * 12 + this.calMonth) < (last[0] * 12 + (last[1] - 1));
+            },
+            prevMonth() {
+                if (!this.canPrev) return;
+                if (this.calMonth === 0) { this.calMonth = 11; this.calYear--; } else { this.calMonth--; }
+            },
+            nextMonth() {
+                if (!this.canNext) return;
+                if (this.calMonth === 11) { this.calMonth = 0; this.calYear++; } else { this.calMonth++; }
+            },
+            // Jump the calendar to the first day that has availability and preselect it.
+            syncCalendarToFirstAvailable() {
+                const t = this.currentType;
+                if (t && t.days.length) {
+                    const parts = t.days[0].date.split('-').map(Number);
+                    this.calYear = parts[0];
+                    this.calMonth = parts[1] - 1;
+                    this.selectedDate = t.days[0].date;
+                } else {
+                    const now = new Date();
+                    this.calYear = now.getFullYear();
+                    this.calMonth = now.getMonth();
+                    this.selectedDate = '';
+                }
+            },
+
+            chooseType(key) {
+                this.selectedType = key;
+                this.selectedSlotId = '';
+                this.step = 2;
+                this.syncCalendarToFirstAvailable();
+                this.scrollToTop();
+            },
+            selectDay(iso) {
+                if (!this.isAvailable(iso)) return;
+                this.selectedDate = iso;
+                this.selectedSlotId = '';
+            },
+            chooseSlot(id) {
+                this.selectedSlotId = String(id);
+                this.step = 3;
+                this.scrollToTop();
+            },
+            goToStep(n) {
+                this.step = n;
+                this.scrollToTop();
+            },
+            scrollToTop() {
+                this.$nextTick(() => {
+                    const el = document.getElementById('booking-flow');
+                    if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+                });
+            },
+        };
+    }
+</script>
+
+<!-- International phone field: country flag + dial code, auto-detected country -->
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@23/build/js/intlTelInput.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var input = document.getElementById('id_phone');
+        if (!input || !window.intlTelInput) return;  // graceful fallback to a plain field
+        try {
+            var iti = window.intlTelInput(input, {
+                initialCountry: '{{ phone_country|default:"es" }}',
+                separateDialCode: true,
+                preferredCountries: ['es', 'sa', 'ae', 'eg', 'qa', 'gb', 'us'],
+                loadUtils: function () {
+                    return import('https://cdn.jsdelivr.net/npm/intl-tel-input@23/build/js/utils.js');
+                },
+            });
+            // On submit, store the full international number (+<dial><national>)
+            // in the field so the saved value always includes the country code.
+            var form = input.closest('form');
+            if (form) {
+                form.addEventListener('submit', function () {
+                    try {
+                        var data = iti.getSelectedCountryData();
+                        var national = (input.value || '').replace(/[^\d]/g, '');
+                        if (data && data.dialCode && national) {
+                            input.value = '+' + data.dialCode + national;
+                        }
+                    } catch (e) { /* keep typed value */ }
+                });
+            }
+        } catch (e) { /* plain input fallback */ }
+    });
+</script>
+{% endblock %}

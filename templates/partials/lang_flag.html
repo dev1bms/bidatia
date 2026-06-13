@@ -1,0 +1,39 @@
+{% comment %}
+Renders a small, decorative flag/world icon for a language code.
+Inline SVG is used on purpose: regional-indicator emoji flags do NOT render
+as flags on Windows browsers, so this keeps icons consistent everywhere
+without any external library.
+
+Usage: {% include "partials/lang_flag.html" with code='en' %}
+- `code`  : 'en' | 'es' | 'ar'
+- The icon is purely decorative (aria-hidden); a visible text label must
+  always accompany it.
+- English  -> Union Jack (canonical "English" flag for an international site)
+- Spanish  -> Spain
+- Arabic   -> neutral globe (Arabic spans many nations -> a world mark)
+{% endcomment %}
+<span class="inline-flex h-[14px] w-[19px] shrink-0 items-center justify-center overflow-hidden rounded-[3px] ring-1 ring-black/10 force-ltr" aria-hidden="true">
+{% if code == 'en' %}
+    <svg viewBox="0 0 60 30" class="h-full w-full" preserveAspectRatio="xMidYMid slice">
+        <rect width="60" height="30" fill="#012169"/>
+        <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
+        <path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="3"/>
+        <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
+        <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
+    </svg>
+{% elif code == 'es' %}
+    <svg viewBox="0 0 24 16" class="h-full w-full" preserveAspectRatio="xMidYMid slice">
+        <rect width="24" height="16" fill="#AA151B"/>
+        <rect y="4" width="24" height="8" fill="#F1BF00"/>
+    </svg>
+{% elif code == 'ar' %}
+    <svg viewBox="0 0 24 24" class="h-full w-full" preserveAspectRatio="xMidYMid slice">
+        <rect width="24" height="24" fill="#0d9488"/>
+        <g fill="none" stroke="#fff" stroke-width="1.4" stroke-opacity=".95">
+            <circle cx="12" cy="12" r="7"/>
+            <path d="M5 12h14"/>
+            <path d="M12 5a11 11 0 0 1 0 14M12 5a11 11 0 0 0 0 14"/>
+        </g>
+    </svg>
+{% endif %}
+</span>

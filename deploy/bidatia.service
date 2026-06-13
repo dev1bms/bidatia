@@ -1,0 +1,22 @@
+[Unit]
+Description=Bidatia - Gunicorn application server
+After=network.target
+
+[Service]
+# Runs as the existing 'bidatia' user, but the code lives in /opt (not /home).
+User=bidatia
+Group=bidatia
+WorkingDirectory=/opt/bidatia
+# All production settings come from this file (systemd parses KEY=VALUE safely,
+# including values with spaces like DEFAULT_FROM_EMAIL).
+EnvironmentFile=/opt/bidatia/.env
+ExecStart=/opt/bidatia/.venv/bin/gunicorn bidatia.wsgi:application \
+    --workers 3 \
+    --bind 127.0.0.1:8000 \
+    --access-logfile - \
+    --error-logfile -
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

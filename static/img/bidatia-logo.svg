@@ -1,0 +1,13 @@
+<svg width="280" height="64" viewBox="0 0 280 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bidatia Business Systems">
+  <title>Bidatia Business Systems</title>
+  <!-- Logo mark: slate tile with an RGB signal bar -->
+  <rect x="2" y="12" width="40" height="40" rx="11" fill="#0f172a"/>
+  <rect x="2.5" y="12.5" width="39" height="39" rx="10.5" stroke="#ffffff" stroke-opacity="0.12"/>
+  <text x="22" y="39" text-anchor="middle" font-family="'Space Grotesk','Inter',system-ui,sans-serif" font-size="22" font-weight="700" fill="#ffffff">B</text>
+  <rect x="9"  y="44" width="8" height="3" rx="1" fill="#ef4444"/>
+  <rect x="18" y="44" width="8" height="3" rx="1" fill="#22c55e"/>
+  <rect x="27" y="44" width="8" height="3" rx="1" fill="#3b82f6"/>
+  <!-- Wordmark -->
+  <text x="54" y="34" font-family="'Space Grotesk','Inter',system-ui,sans-serif" font-size="24" font-weight="700" fill="#0f172a" letter-spacing="-0.4">Bidatia</text>
+  <text x="55" y="49" font-family="'JetBrains Mono','SFMono-Regular',monospace" font-size="9.5" letter-spacing="2" fill="#64748b">BUSINESS SYSTEMS</text>
+</svg>

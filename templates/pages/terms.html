@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Terms of Service" %} — {{ SITE_NAME }}{% endblock %}
+
+{% block content %}
+<section class="py-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-ink">{% trans "Terms of Service" %}</h1>
+        <p class="mt-3 text-sm text-slate-500">{% trans "Last updated:" %} {% now "F Y" %}</p>
+
+        <p class="mt-6 rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-500">
+            {% blocktrans trimmed %}
+            These terms describe how Bidatia works with clients through this website. They are a practical
+            first version written in plain language and may be refined as the business grows.
+            {% endblocktrans %}
+        </p>
+
+        <div class="mt-10 space-y-8 text-slate-600 leading-relaxed">
+            <div>
+                <h2 class="text-lg font-bold text-ink">{% trans "1. What Bidatia offers" %}</h2>
+                <p class="mt-2">{% trans "Bidatia Business Systems is the ERP and Business Systems division of Bidatia, a company based in Madrid, Spain. We provide:" %}</p>
+                <ul class="mt-2 list-disc ps-6 space-y-1.5">
+                    <li>{% trans "Odoo and ERP implementation, modernization and consulting" %}</li>
+                    <li>{% trans "Technical and data audits and assessments" %}</li>
+                    <li>{% trans "Custom module development" %}</li>
+                    <li>{% trans "Integrations, ETL and API connections" %}</li>
+                    <li>{% trans "BI dashboards, automation and AI agents" %}</li>
+                    <li>{% trans "Data governance for ERP and CRM systems" %}</li>
+                    <li>{% trans "AI-assisted technical consulting" %}</li>
+                </ul>
+            </div>
+
+            <div>
+                <h2 class="text-lg font-bold text-ink">{% trans "2. The nature of this website" %}</h2>
+                <p class="mt-2">
+                    {% blocktrans trimmed %}
+                    This is an information and lead-generation website. Submitting a contact or booking
+                    form does not, by itself, create a contract or a guaranteed engagement. Bookings made
+                    through this website are requests until Bidatia confirms them.
+                    {% endblocktrans %}
+                </p>
+            </div>
+
+            <div>
+                <h2 class="text-lg font-bold text-ink">{% trans "3. Consultations and bookings" %}</h2>
+                <ul class="mt-2 list-disc ps-6 space-y-1.5">
+                    <li>{% trans "Available slots are shown for convenience and may require manual confirmation." %}</li>
+                    <li>{% trans "Where a consultation is paid, it is confirmed after payment instructions are sent and payment is received." %}</li>
+                    <li>{% trans "Bidatia may decline, reschedule or cancel a request when necessary, and will let you know as early as possible." %}</li>
+                    <li>{% trans "Online card payments are not processed directly on this website. Payment links such as Revolut Pro or Stripe may be used separately when applicable." %}</li>
+                </ul>
+            </div>
+
+            <div>
+                <h2 class="text-lg font-bold text-ink">{% trans "4. Proposals and scope" %}</h2>
+                <p class="mt-2">
+                    {% blocktrans trimmed %}
+                    Larger work is handled through a written proposal or agreement. The scope, deliverables,
+                    timeline and price are agreed before work starts. Any work requested outside the agreed
+                    scope may require a new estimate.
+                    {% endblocktrans %}
+                </p>
+            </div>
+
+            <div>
+                <h2 class="text-lg font-bold text-ink">{% trans "5. Prices and payment" %}</h2>
+                <ul class="mt-2 list-disc ps-6 space-y-1.5">
+                    <li>{% trans "Prices shown on this website are indicative or starting prices unless they are clearly stated as fixed." %}</li>
+                    <li>{% trans "Taxes such as VAT/IVA and any fiscal treatment may depend on your location and legal status." %}</li>
+                    <li>{% trans "Final pricing, invoicing and payment terms are confirmed in writing for each engagement." %}</li>
+                </ul>
+            </div>
+
+            <div>
+                <h2 class="text-lg font-bold text-ink">{% trans "6. Your responsibilities" %}</h2>
+                <p class="mt-2">{% trans "To help us deliver good results, you agree to:" %}</p>
+                <ul class="mt-2 list-disc ps-6 space-y-1.5">
+                    <li>{% trans "Provide accurate and complete information" %}</li>
+                    <li>{% trans "Have the right to grant access to the systems and data involved" %}</li>
+                    <li>{% trans "Maintain your own backups of important data" %}</li>
+                    <li>{% trans "Avoid sending unnecessary sensitive data through the forms" %}</li>
+                    <li>{% trans "Cooperate during the technical review and the work itself" %}</li>
+                </ul>
+            </div>
+
+            <div>
+                <h2 class="text-lg font-bold text-ink">{% trans "7. Access to your systems" %}</h2>
+                <p class="mt-2">
+                    {% blocktrans trimmed %}
+                    When access to your Odoo instance, server or database is needed, it should be provided
+                    securely. Access to production systems should be limited and controlled, and we prefer
+                    to work with backups or test environments whenever possible.
+                    {% endblocktrans %}
+                </p>
+            </div>
+
+            <div>
+                <h2 class="text-lg font-bold text-ink">{% trans "8. AI-assisted engineering" %}</h2>
+                <p class="mt-2">
+                    {% blocktrans trimmed %}
+                    We may use AI tools to assist with analysis, coding, documentation and productivity.
+                    These tools support our work, but the final responsibility for any deliverable remains
+                    with Bidatia. We take care not to expose confidential client data unnecessarily to
+                    third-party tools.
+                    {% endblocktrans %}
+                </p>
+            </div>
+
+            <div>
+                <h2 class="text-lg font-bold text-ink">{% trans "9. Intellectual property" %}</h2>
+                <ul class="mt-2 list-disc ps-6 space-y-1.5">
+                    <li>{% trans "You keep ownership of your own business data." %}</li>
+                    <li>{% trans "Ownership and licensing of custom deliverables are defined in the relevant proposal or agreement." %}</li>
+                    <li>{% trans "Bidatia may reuse general know-how, patterns and non-confidential experience gained during the work." %}</li>
+                </ul>
+            </div>
+
+            <div>
+                <h2 class="text-lg font-bold text-ink">{% trans "10. Limitation of liability" %}</h2>
+                <p class="mt-2">
+                    {% blocktrans trimmed %}
+                    Bidatia provides professional technical services with care and good-faith analysis. We
+                    cannot, however, guarantee uninterrupted systems or specific business outcomes. You
+                    should keep your own backups and review changes before relying on them. Nothing in
+                    these terms removes any rights you have under applicable law.
+                    {% endblocktrans %}
+                </p>
+            </div>
+
+            <div>
+                <h2 class="text-lg font-bold text-ink">{% trans "11. Third-party platforms" %}</h2>
+                <p class="mt-2">
+                    {% blocktrans trimmed %}
+                    Tools and platforms such as Odoo, Django, hosting and email providers, payment links and
+                    third-party APIs have their own terms and conditions. Bidatia is not responsible for
+                    outages, changes or policy decisions made by these third-party platforms.
+                    {% endblocktrans %}
+                </p>
+            </div>
+
+            <div>
+                <h2 class="text-lg font-bold text-ink">{% trans "12. Governing law" %}</h2>
+                <p class="mt-2">
+                    {% blocktrans trimmed %}
+                    As Bidatia is based in Madrid, Spain, these terms are intended to be governed by Spanish
+                    law, with the courts of Madrid as the usual place of jurisdiction. This clause is a
+                    practical starting point and should be reviewed by a legal advisor before full
+                    commercial launch.
+                    {% endblocktrans %}
+                </p>
+            </div>
+
+            <div>
+                <h2 class="text-lg font-bold text-ink">{% trans "13. Contact" %}</h2>
+                <p class="mt-2">{% trans "If you have any questions about these terms, please contact us:" %}</p>
+                <ul class="mt-2 space-y-1">
+                    <li><a href="mailto:{{ CONTACT_EMAIL }}" class="text-brand-600 hover:text-brand-700 font-medium force-ltr inline-block">{{ CONTACT_EMAIL }}</a></li>
+                    <li><span class="force-ltr inline-block">{{ CONTACT_WHATSAPP }}</span> (WhatsApp)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

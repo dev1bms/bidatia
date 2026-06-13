@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /i18n/
+
+Sitemap: {{ SITE_BASE_URL }}/sitemap.xml

@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block og_image %}<meta property="og:image" content="{{ SITE_BASE_URL }}{% static 'img/og-tools-hub.png' %}">
+    <meta property="og:image:secure_url" content="{{ SITE_BASE_URL }}{% static 'img/og-tools-hub.png' %}">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Bidatia Tools — free diagnostic tools for Odoo and ERP">{% endblock %}
+{% block twitter_image %}<meta name="twitter:image" content="{{ SITE_BASE_URL }}{% static 'img/og-tools-hub.png' %}">{% endblock %}
+
+{% block title %}{% trans "Free Odoo Diagnostic Tools" %} — {{ SITE_NAME }}{% endblock %}
+
+{% block content %}
+<section class="relative overflow-hidden bg-ink text-white">
+    <div class="absolute inset-0 tech-grid tech-grid-dark grid-mask" aria-hidden="true"></div>
+    <div class="absolute -top-24 left-1/2 -translate-x-1/2 h-72 w-[40rem] rounded-full bg-brand-600/20 blur-3xl" aria-hidden="true"></div>
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 text-center reveal">
+        <p class="font-mono text-xs uppercase tracking-wider text-brand-300">// {% trans "Free Tools" %}</p>
+        <h1 class="mt-4 text-4xl sm:text-5xl font-extrabold tracking-tight text-balance">{% trans "Free Odoo Diagnostic Tools" %}</h1>
+        <p class="mt-5 text-lg text-slate-300 max-w-2xl mx-auto">
+            {% trans "Built by Odoo migration engineers. Run a read-only diagnostic against your Odoo, get a clear technical report, and know exactly where you stand — in minutes, not weeks." %}
+        </p>
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-slate-300">
+            <span class="inline-flex items-center gap-2">
+                <svg class="h-4 w-4 text-accent-400" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                {% trans "100% read-only" %}
+            </span>
+            <span class="inline-flex items-center gap-2">
+                <svg class="h-4 w-4 text-accent-400" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                {% trans "Credentials never stored" %}
+            </span>
+            <span class="inline-flex items-center gap-2">
+                <svg class="h-4 w-4 text-accent-400" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                {% trans "Reports auto-delete after 72 hours" %}
+            </span>
+        </div>
+    </div>
+</section>
+
+<section class="py-16 lg:py-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid sm:grid-cols-2 gap-6">
+            {% for tool in tools %}
+            <div class="group relative flex flex-col rounded-2xl border border-slate-200 bg-white p-6 hover:border-brand-300 hover:shadow-xl hover:shadow-brand-100/40 transition-all duration-300 reveal" style="--d: {{ forloop.counter0 }}50ms">
+                {% if not tool.url_name %}
+                <span class="absolute top-5 end-5 font-mono text-[10px] font-semibold text-slate-500 bg-slate-50 rounded-full px-2.5 py-1 ring-1 ring-slate-100">{% trans "COMING SOON" %}</span>
+                {% elif tool.featured %}
+                <span class="absolute top-5 end-5 font-mono text-[10px] font-semibold text-brand-700 bg-brand-50 rounded-full px-2.5 py-1 ring-1 ring-brand-100">{% trans "FIRST RELEASE" %}</span>
+                {% else %}
+                <span class="absolute top-5 end-5 font-mono text-[10px] font-semibold text-emerald-700 bg-emerald-50 rounded-full px-2.5 py-1 ring-1 ring-emerald-100">{% trans "LIVE" %}</span>
+                {% endif %}
+
+                <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-ink text-brand-300 group-hover:bg-brand-700 group-hover:text-white transition-colors">
+                    {% if tool.icon == 'xray' %}
+                    <svg class="h-6 w-6" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="M21 21l-4.35-4.35M8 11h6M11 8v6"/></svg>
+                    {% elif tool.icon == 'migration' %}
+                    <svg class="h-6 w-6" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M7 16V8m0 0L4 11m3-3l3 3m7 5V8m0 8l3-3m-3 3l-3-3"/></svg>
+                    {% elif tool.icon == 'shield' %}
+                    <svg class="h-6 w-6" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
+                    {% elif tool.icon == 'radar' %}
+                    <svg class="h-6 w-6" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1" fill="currentColor"/><path stroke-linecap="round" d="M12 12l6-6"/></svg>
+                    {% elif tool.icon == 'calculator' %}
+                    <svg class="h-6 w-6" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><rect x="5" y="3" width="14" height="18" rx="2"/><path stroke-linecap="round" d="M8.5 7.5h7M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 15.5h.01M12 15.5h.01M15.5 15.5v.01"/></svg>
+                    {% else %}
+                    <svg class="h-6 w-6" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><rect x="5" y="4" width="14" height="17" rx="2"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 4.5V3h6v1.5M9 10l1.5 1.5L13.5 8.5M9 15.5l1.5 1.5 3-3"/></svg>
+                    {% endif %}
+                </span>
+
+                <h2 class="mt-5 text-lg font-bold text-ink">{{ tool.name }}</h2>
+                <p class="mt-2 text-sm text-slate-600 leading-relaxed flex-1">{{ tool.description }}</p>
+
+                {% if tool.url_name %}
+                <a href="{% url tool.url_name %}" class="mt-5 inline-flex items-center justify-center rounded-lg bg-ink text-white text-sm font-semibold px-5 py-2.5 hover:bg-brand-700 transition">
+                    {% trans "Run the tool" %}
+                    <svg class="ms-1.5 h-4 w-4 rtl:rotate-180" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                </a>
+                {% else %}
+                <form method="post" action="{% url 'tools_core:hub' %}" class="mt-5 border-t border-slate-100 pt-4">
+                    {% csrf_token %}
+                    <input type="hidden" name="tool" value="{{ tool.slug }}">
+                    {# Honeypot — hidden from humans, bots fill it. #}
+                    <input type="text" name="website" value="" tabindex="-1" autocomplete="off" aria-hidden="true" class="hidden">
+                    <label for="waitlist-{{ tool.slug }}" class="block text-xs font-semibold text-slate-500">{% trans "Get notified when it launches" %}</label>
+                    <div class="mt-2 flex gap-2">
+                        <input id="waitlist-{{ tool.slug }}" type="email" name="email" required placeholder="you@company.com"
+                               class="force-ltr w-full min-w-0 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-sky-500 focus:ring-2 focus:ring-sky-100 outline-none transition">
+                        <button type="submit" class="shrink-0 rounded-lg border border-slate-300 text-ink text-sm font-semibold px-4 py-2 hover:border-ink transition">{% trans "Notify me" %}</button>
+                    </div>
+                    <p class="mt-2 text-[11px] text-slate-400">{% trans "One email when it launches. No spam, no newsletter." %}</p>
+                </form>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="mt-14 rounded-2xl bg-slate-50 border border-slate-200 p-8 text-center reveal">
+            <h2 class="text-xl font-bold text-ink">{% trans "Prefer a human review of your Odoo?" %}</h2>
+            <p class="mt-2 text-slate-600 max-w-xl mx-auto">{% trans "The tools find the symptoms. A senior consultant finds the cause — and the fix." %}</p>
+            <a href="{% url 'booking:book_consultation' %}" class="mt-6 inline-flex items-center rounded-lg bg-ink text-white font-semibold px-6 py-3.5 hover:bg-brand-700 transition">{% trans "Request a consultation" %}</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

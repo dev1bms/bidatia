@@ -1,0 +1,69 @@
+{% load i18n i18n_urls %}
+<header
+    x-data="{ open: false, scrolled: false }"
+    @scroll.window="scrolled = window.scrollY > 8"
+    :class="scrolled ? 'border-slate-200 shadow-sm' : 'border-transparent'"
+    class="sticky top-0 z-50 bg-white/85 backdrop-blur-md border-b transition-shadow duration-300">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between min-h-[4.5rem] py-3">
+        <a href="{% url 'core:home' %}" class="flex items-center gap-2.5 group" aria-label="{{ SITE_NAME }} home">
+            <span class="relative flex h-9 w-9 items-center justify-center rounded-xl bg-ink text-white font-display font-bold text-sm ring-1 ring-white/10 overflow-hidden transition group-hover:ring-brand-400/50">
+                <span class="absolute inset-0 tech-grid tech-grid-dark opacity-40"></span>
+                <span class="absolute inset-x-0 bottom-0 h-[3px] rgb-bar"></span>
+                <span class="relative">B</span>
+            </span>
+            <span class="flex flex-col leading-none">
+                <span class="font-display font-bold text-lg text-ink tracking-tight">{{ SITE_BRAND }}</span>
+                <span class="font-mono text-[10px] text-slate-400 tracking-wide force-ltr">{{ SITE_DIVISION }} · ERP · Data · AI</span>
+            </span>
+        </a>
+
+        <div class="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-600">
+            <a href="{% url 'services:service_list' %}" class="hover:text-ink transition">{% trans "Services" %}</a>
+            <a href="{% url 'tools_core:hub' %}" class="hover:text-ink transition">{% trans "Free Tools" %}</a>
+            <a href="{% url 'case_studies:case_study_list' %}" class="hover:text-ink transition">{% trans "Case Studies" %}</a>
+            <a href="{% url 'blog:blog_list' %}" class="hover:text-ink transition">{% trans "Insights" %}</a>
+            <a href="{% url 'core:about' %}" class="hover:text-ink transition">{% trans "About" %}</a>
+            <a href="{% url 'leads:contact' %}" class="hover:text-ink transition">{% trans "Contact" %}</a>
+        </div>
+
+        <div class="hidden lg:flex items-center gap-4">
+            <span class="inline-flex items-center gap-2 text-xs font-medium text-slate-500">
+                <span class="pulse-dot inline-flex h-2 w-2 rounded-full bg-accent-500"></span>
+                {% trans "Onboarding new clients" %}
+            </span>
+
+            {% include "partials/language_switcher.html" %}
+
+            <a href="{% url 'booking:book_consultation' %}" class="group inline-flex items-center gap-1.5 text-sm font-semibold text-white bg-ink hover:bg-brand-700 transition rounded-lg px-5 py-2.5 shadow-sm">
+                {% trans "Request a consultation" %}
+                <svg class="h-4 w-4 group-hover:translate-x-0.5 transition-transform" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+            </a>
+        </div>
+
+        <button @click="open = !open" class="lg:hidden p-2 -mr-2 text-slate-700" aria-label="{% trans 'Toggle navigation menu' %}" :aria-expanded="open">
+            <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+            <svg x-show="open" x-cloak xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+    </nav>
+
+    <div x-show="open" x-cloak x-transition class="lg:hidden border-t border-slate-200 bg-white">
+        <div class="px-4 py-4 space-y-1 text-sm font-medium text-slate-700">
+            <a href="{% url 'services:service_list' %}" class="block px-3 py-2.5 rounded-lg hover:bg-slate-50">{% trans "Services" %}</a>
+            <a href="{% url 'tools_core:hub' %}" class="block px-3 py-2.5 rounded-lg hover:bg-slate-50">{% trans "Free Tools" %}</a>
+            <a href="{% url 'case_studies:case_study_list' %}" class="block px-3 py-2.5 rounded-lg hover:bg-slate-50">{% trans "Case Studies" %}</a>
+            <a href="{% url 'blog:blog_list' %}" class="block px-3 py-2.5 rounded-lg hover:bg-slate-50">{% trans "Insights" %}</a>
+            <a href="{% url 'core:about' %}" class="block px-3 py-2.5 rounded-lg hover:bg-slate-50">{% trans "About" %}</a>
+            <a href="{% url 'leads:contact' %}" class="block px-3 py-2.5 rounded-lg hover:bg-slate-50">{% trans "Contact" %}</a>
+            <a href="{% url 'booking:book_consultation' %}" class="block mt-2 text-center font-semibold text-white bg-ink hover:bg-brand-700 transition rounded-lg px-5 py-3">{% trans "Request a consultation" %}</a>
+
+            <div class="pt-3 mt-2 border-t border-slate-100">
+                <p class="px-3 pb-1 font-mono text-[11px] uppercase tracking-wide text-slate-400">{% trans "Language" %}</p>
+                <div class="flex gap-2 px-3">
+                    <a href="{% language_url 'en' %}" class="flex-1 inline-flex items-center justify-center gap-1.5 rounded-lg border border-slate-200 px-2 py-2 text-xs font-semibold hover:border-ink {% if LANGUAGE_CODE == 'en' %}bg-ink text-white{% endif %}">{% include "partials/lang_flag.html" with code='en' %}<span>English</span></a>
+                    <a href="{% language_url 'es' %}" class="flex-1 inline-flex items-center justify-center gap-1.5 rounded-lg border border-slate-200 px-2 py-2 text-xs font-semibold hover:border-ink {% if LANGUAGE_CODE == 'es' %}bg-ink text-white{% endif %}">{% include "partials/lang_flag.html" with code='es' %}<span>Español</span></a>
+                    <a href="{% language_url 'ar' %}" class="flex-1 inline-flex items-center justify-center gap-1.5 rounded-lg border border-slate-200 px-2 py-2 text-xs font-semibold hover:border-ink {% if LANGUAGE_CODE == 'ar' %}bg-ink text-white{% endif %}">{% include "partials/lang_flag.html" with code='ar' %}<span>العربية</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,76 @@
+{
+  "meta": {
+    "schema_version": 1,
+    "tool": "studio_xray",
+    "collected_at": "2026-06-12T10:00:00+00:00",
+    "server_version": "17.0",
+    "edition": "enterprise",
+    "db_name": "clean-co"
+  },
+  "sections": {
+    "studio_fields": {
+      "items": [
+        {
+          "name": "x_studio_internal_ref",
+          "model": "maintenance.equipment",
+          "label": "Internal Ref",
+          "ttype": "char",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        },
+        {
+          "name": "x_studio_warranty_until",
+          "model": "maintenance.equipment",
+          "label": "Warranty Until",
+          "ttype": "date",
+          "relation": "",
+          "required": false,
+          "store": true,
+          "related": "",
+          "has_compute": false,
+          "compute_preview": ""
+        }
+      ],
+      "total": 2,
+      "truncated": false
+    },
+    "custom_models": {
+      "items": [],
+      "total": 0
+    },
+    "studio_views": {
+      "items": [
+        {
+          "name": "Odoo Studio: maintenance form customization",
+          "model": "maintenance.equipment",
+          "type": "form",
+          "inherits": false,
+          "inherit_of": "",
+          "key": "studio_customization.maintenance_form"
+        }
+      ],
+      "total": 1,
+      "truncated": false
+    },
+    "automated_actions": {
+      "items": [],
+      "total": 0
+    },
+    "server_actions": {
+      "items": [],
+      "total": 0
+    },
+    "studio_menus": {
+      "items": [],
+      "total": 0
+    },
+    "module_context": {
+      "installed_modules": 64,
+      "studio_installed": true
+    }
+  }
+}

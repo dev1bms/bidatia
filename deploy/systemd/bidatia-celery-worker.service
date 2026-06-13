@@ -1,0 +1,30 @@
+# Celery worker for the Bidatia free tools.
+# Install:  sudo cp deploy/systemd/bidatia-celery-worker.service /etc/systemd/system/
+#           sudo systemctl daemon-reload && sudo systemctl enable --now bidatia-celery-worker
+# Adjust User/Group/paths to match the server (same user that runs gunicorn).
+
+[Unit]
+Description=Bidatia Celery worker
+After=network.target redis-server.service
+Requires=redis-server.service
+
+[Service]
+Type=simple
+User=bidatia
+Group=bidatia
+WorkingDirectory=/srv/bidatia
+EnvironmentFile=/srv/bidatia/.env
+# INFO level on purpose: DEBUG-level celery logging can print task arguments,
+# and tool-run tasks receive Odoo credentials as arguments.
+ExecStart=/srv/bidatia/.venv/bin/celery -A bidatia worker \
+    --loglevel=INFO \
+    --concurrency=2 \
+    --max-tasks-per-child=100
+Restart=always
+RestartSec=5
+# Hardening
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

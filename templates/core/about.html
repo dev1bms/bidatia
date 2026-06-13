@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "About Bidatia Business Systems — ERP, Data & AI" %} — {{ SITE_NAME }}{% endblock %}
+
+{% block content %}
+<section class="bg-slate-50 border-b border-slate-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="grid md:grid-cols-[1fr_auto] items-center gap-10 lg:gap-14">
+            <div>
+                <span class="inline-flex items-center gap-2 rounded-full bg-brand-50 text-brand-700 text-xs font-semibold px-3 py-1.5">{% trans "About Bidatia Business Systems" %}</span>
+                <h1 class="mt-5 text-4xl sm:text-5xl font-extrabold tracking-tight text-ink">
+                    {% trans "We bring data discipline to the systems your business runs on" %}
+                </h1>
+                <p class="mt-6 text-lg text-slate-600 leading-relaxed max-w-2xl">
+                    {% trans "Bidatia Business Systems is the ERP and business-systems division of Bidatia, the Madrid-based firm specializing in data, artificial intelligence and data governance. We apply that same engineering rigor to Odoo and the operational systems companies depend on every day." %}
+                </p>
+            </div>
+            <div class="justify-self-center md:justify-self-end">
+                <!-- Original Bidatia illustration: governed data → ERP → BI/AI -->
+                <div class="relative h-52 w-52 sm:h-60 sm:w-60 rounded-2xl bg-ink ring-1 ring-slate-200 shadow-md overflow-hidden p-5">
+                    <div class="absolute inset-x-0 bottom-0 h-[3px] rgb-bar" aria-hidden="true"></div>
+                    <div class="absolute inset-0 tech-grid tech-grid-dark opacity-40" aria-hidden="true"></div>
+                    <svg class="relative w-full h-full" viewBox="0 0 200 200" role="img" aria-label="{% trans 'Bidatia: governed data feeding ERP, BI and AI' %}">
+                        <g fill="none" stroke-width="2" stroke-linecap="round">
+                            <path d="M40 50 H100" stroke="#ef4444" stroke-opacity="0.85"/>
+                            <path d="M40 100 H100" stroke="#22c55e" stroke-opacity="0.85"/>
+                            <path d="M40 150 H100" stroke="#3b82f6" stroke-opacity="0.85"/>
+                        </g>
+                        <g>
+                            <circle cx="36" cy="50" r="4" fill="#1e293b" stroke="#ef4444" stroke-width="1.5"/>
+                            <circle cx="36" cy="100" r="4" fill="#1e293b" stroke="#22c55e" stroke-width="1.5"/>
+                            <circle cx="36" cy="150" r="4" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+                        </g>
+                        <rect x="100" y="78" width="58" height="44" rx="6" fill="#0f172a" stroke="#22c55e" stroke-width="1.5"/>
+                        <text x="129" y="96" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#ffffff">Odoo</text>
+                        <text x="129" y="110" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="7" fill="#86efac">core ERP</text>
+                        <g fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="7" text-anchor="middle">
+                            <circle cx="170" cy="58" r="12" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/><text x="170" y="61">BI</text>
+                            <circle cx="170" cy="142" r="12" fill="#1e293b" stroke="#22c55e" stroke-width="1.5"/><text x="170" y="145">AI</text>
+                        </g>
+                        <g stroke="#475569" stroke-width="1.5" fill="none">
+                            <path d="M158 92 Q170 80 170 70"/>
+                            <path d="M158 108 Q170 122 170 130"/>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-16 lg:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        <div>
+            <h2 class="text-xl font-bold text-ink">{% trans "Why this division exists" %}</h2>
+            <div class="mt-4 space-y-4 text-slate-600 leading-relaxed">
+                <p>
+                    {% blocktrans %}Most companies don't choose an ERP because they want to manage software — they
+                    choose it because they want their business to run smoothly and their numbers to be
+                    trustworthy. But over time, quick fixes, inherited customizations and rushed implementations
+                    turn that promise into daily friction: slow screens, broken automations, reports nobody
+                    believes, and data scattered across systems that no longer agree with each other.{% endblocktrans %}
+                </p>
+                <p>
+                    {% blocktrans %}Bidatia Business Systems exists to close that gap. We combine genuine Odoo expertise
+                    with the data-governance, BI and AI practices at the core of Bidatia — Python, Django,
+                    PostgreSQL, modern data platforms and clean APIs — so that fixes are not just patches, but
+                    improvements your system, and your data, can keep building on.{% endblocktrans %}
+                </p>
+            </div>
+        </div>
+
+        <div>
+            <h2 class="text-xl font-bold text-ink">{% trans "What we bring to a project" %}</h2>
+            <div class="mt-4 grid sm:grid-cols-2 gap-4">
+                {% for skill in skills %}
+                <div class="flex items-center gap-3 rounded-xl border border-slate-200 px-5 py-4">
+                    <svg class="h-5 w-5 text-brand-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                    <span class="text-sm font-medium text-slate-700">{{ skill }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div>
+            <h2 class="text-xl font-bold text-ink">{% trans "Who we work with" %}</h2>
+            <div class="mt-4 space-y-4 text-slate-600 leading-relaxed">
+                <p>{% trans "We work remotely with:" %}</p>
+                <ul class="space-y-2.5">
+                    <li class="flex items-start gap-3"><svg class="h-5 w-5 text-brand-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg><span>{% trans "Companies in Spain and Europe that want a reliable technical partner for their Odoo and data systems" %}</span></li>
+                    <li class="flex items-start gap-3"><svg class="h-5 w-5 text-brand-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg><span>{% trans "Organizations across the Gulf and MENA region modernizing their ERP and reporting operations" %}</span></li>
+                    <li class="flex items-start gap-3"><svg class="h-5 w-5 text-brand-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg><span>{% trans "Data and analytics teams that need their ERP to feed a governed, trustworthy single source of truth" %}</span></li>
+                    <li class="flex items-start gap-3"><svg class="h-5 w-5 text-brand-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg><span>{% trans "Finance and operations leaders who need dashboards and KPIs they can finally trust" %}</span></li>
+                    <li class="flex items-start gap-3"><svg class="h-5 w-5 text-brand-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg><span>{% trans "International, multilingual teams (EN · ES · AR) that need a senior technical voice on their ERP projects" %}</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="rounded-2xl bg-ink text-white p-8 relative overflow-hidden">
+            <div class="absolute inset-x-0 bottom-0 h-[3px] rgb-bar" aria-hidden="true"></div>
+            <div class="absolute inset-0 tech-grid tech-grid-dark opacity-40" aria-hidden="true"></div>
+            <div class="relative">
+                <h2 class="text-xl font-bold">{% trans "Part of Bidatia" %}</h2>
+                <p class="mt-3 text-slate-300 leading-relaxed max-w-2xl">
+                    {% trans "Bidatia helps organizations maximize the value of their data through AI strategy, generative AI, data platforms, visualization and data governance. Bidatia Business Systems extends that mission into the operational core of the business: the ERP. The result is one partner that can take you from raw operational data to governed processes, reliable reporting and AI that works in production." %}
+                </p>
+            </div>
+        </div>
+
+        <div class="rounded-2xl bg-slate-50 border border-slate-200 p-8 text-center">
+            <h2 class="text-xl font-bold text-ink">{% trans "Let's see if we're the right fit for you" %}</h2>
+            <p class="mt-2 text-slate-600">{% trans "The best way to start is a focused consultation or an ERP & data assessment — no long sales process, just a clear conversation about your situation." %}</p>
+            <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+                <a href="{% url 'booking:book_consultation' %}" class="inline-flex items-center rounded-lg bg-ink text-white font-semibold px-6 py-3.5 hover:bg-brand-700 transition">{% trans "Request a consultation" %}</a>
+                <a href="{% url 'leads:contact' %}" class="inline-flex items-center rounded-lg border border-slate-300 text-ink font-semibold px-6 py-3.5 hover:border-ink transition">{% trans "Contact the team" %}</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

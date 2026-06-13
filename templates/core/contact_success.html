@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Message received" %} — {{ SITE_NAME }}{% endblock %}
+
+{% block content %}
+<section class="py-24">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <span class="inline-flex h-16 w-16 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+            <svg class="h-8 w-8" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+        </span>
+        <h1 class="mt-6 text-3xl sm:text-4xl font-extrabold tracking-tight text-ink">{% trans "Thanks for reaching out" %}</h1>
+        <p class="mt-4 text-lg text-slate-600 leading-relaxed">
+            {% trans "Your message has been received. We typically reply within one business day at the email address you provided." %}
+        </p>
+        <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a href="{% url 'core:home' %}" class="inline-flex items-center rounded-lg bg-ink text-white font-semibold px-6 py-3.5 hover:bg-brand-700 transition">{% trans "Back to homepage" %}</a>
+            <a href="{% url 'services:service_list' %}" class="inline-flex items-center rounded-lg border border-slate-300 text-ink font-semibold px-6 py-3.5 hover:border-ink transition">{% trans "View Services" %}</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Privacy Policy" %} — {{ SITE_NAME }}{% endblock %}
+
+{% block content %}
+<section class="py-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-ink">{% trans "Privacy Policy" %}</h1>
+        <p class="mt-3 text-sm text-slate-500">{% trans "Last updated:" %} {% now "F Y" %}</p>
+
+        <p class="mt-6 rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-500">
+            {% blocktrans trimmed %}
+            This policy explains, in plain language, how Bidatia handles the information you share through
+            this website. It is a practical first version and may be refined as the business grows.
+            {% endblocktrans %}
+        </p>
+
+        <div class="mt-10 space-y-8 text-slate-600 leading-relaxed">
+            <div>
+                <h2 class="text-lg font-bold text-ink">{% trans "1. Who is responsible for your data" %}</h2>
+                <p class="mt-2">
+                    {% blocktrans trimmed %}
+                    Bidatia Business Systems is the ERP and Business Systems division of Bidatia, a company based
+                    in Madrid, Spain, specialising in data, artificial intelligence and data governance. Through
+                    this division we provide Odoo and ERP implementation, modernization, BI, automation and
+                    data-governance services. Bidatia is the party responsible for the personal data collected
+                    through this website.
+                    {% endblocktrans %}
+                </p>
+                <p class="mt-2">{% trans "You can reach us at:" %}</p>
+                <ul class="mt-2 space-y-1">
+                    <li><a href="mailto:{{ CONTACT_EMAIL }}" class="text-brand-600 hover:text-brand-700 font-medium force-ltr inline-block">{{ CONTACT_EMAIL }}</a></li>
+                    <li><span class="force-ltr inline-block">{{ CONTACT_WHATSAPP }}</span> (WhatsApp)</li>
+                    <li>{% trans "Madrid, Spain" %}</li>
+                </ul>
+            </div>
+
+            <div>
+                <h2 class="text-lg font-bold text-ink">{% trans "2. What personal data we collect" %}</h2>
+                <p class="mt-2">{% trans "When you use our contact form, booking form or otherwise get in touch, we may collect:" %}</p>
+                <ul class="mt-2 list-disc ps-6 space-y-1.5">
+                    <li>{% trans "Your name and company name" %}</li>
+                    <li>{% trans "Email address and phone or WhatsApp number" %}</li>
+                    <li>{% trans "Country and preferred language" %}</li>
+                    <li>{% trans "Your Odoo version and the type of consultation requested" %}</li>
+                    <li>{% trans "A selected availability slot for consultation requests" %}</li>
+                    <li>{% trans "Your message, problem summary or any technical details you choose to share" %}</li>
+                    <li>{% trans "Basic technical data such as IP address, browser type and server logs, where applicable" %}</li>
+                </ul>
+                <p class="mt-2">{% trans "Please share only the information needed for your request, and avoid sending unnecessary sensitive data through the forms." %}</p>
+            </div>
+
+            <div>
+                <h2 class="text-lg font-bold text-ink">{% trans "3. Why we collect your data" %}</h2>
+                <p class="mt-2">{% trans "We use the information you provide to:" %}</p>
+                <ul class="mt-2 list-disc ps-6 space-y-1.5">
+                    <li>{% trans "Respond to your enquiries and manage consultation requests" %}</li>
+                    <li>{% trans "Prepare technical proposals and estimates" %}</li>
+                    <li>{% trans "Deliver Odoo, ERP, Django and related consulting services" %}</li>
+                    <li>{% trans "Keep our website secure and reliable" %}</li>
+                    <li>{% trans "Comply with legal and accounting obligations where applicable" %}</li>
+                </ul>
+            </div>
+
+            <div>
+                <h2 class="text-lg font-bold text-ink">{% trans "4. Legal basis for processing" %}</h2>
+                <p class="mt-2">{% trans "Depending on the situation, we rely on one or more of the following legal bases:" %}</p>
+                <ul class="mt-2 list-disc ps-6 space-y-1.5">
+                    <li>{% trans "Your consent, given when you submit a form" %}</li>
+                    <li>{% trans "Pre-contractual steps taken at your request, such as preparing a consultation or proposal" %}</li>
+                    <li>{% trans "Our legitimate interest in keeping the website secure and improving our services" %}</li>
+                    <li>{% trans "Compliance with legal obligations where they apply" %}</li>
+                </ul>
+            </div>
+
+            <div>
+                <h2 class="text-lg font-bold text-ink">{% trans "5. Email notifications" %}</h2>
+                <p class="mt-2">
+                    {% blocktrans trimmed %}
+                    When you submit a request, the details are saved in our website database and a
+                    notification is sent to our business inbox so we can follow up. A copy may also be sent
+                    to an internal address used by Bidatia for operational follow-up. These notifications are
+                    used only to handle your request.
+                    {% endblocktrans %}
+                </p>
+            </div>
+
+            <div>
+                <h2 class="text-lg font-bold text-ink">{% trans "6. How we share your data" %}</h2>
+                <p class="mt-2">{% trans "We do not sell or rent your personal data. We share it only when necessary, for example with:" %}</p>
+                <ul class="mt-2 list-disc ps-6 space-y-1.5">
+                    <li>{% trans "Trusted service providers that help us operate the website, email and hosting" %}</li>
+                    <li>{% trans "Analytics providers, only if such tools are enabled in the future" %}</li>
+                    <li>{% trans "Advisors or authorities where required to meet legal or accounting obligations" %}</li>
+                </ul>
+                <p class="mt-2">{% trans "We keep this sharing to the minimum needed and never share your data unnecessarily." %}</p>
+            </div>
+
+            <div>
+                <h2 class="text-lg font-bold text-ink">{% trans "7. International clients" %}</h2>
+                <p class="mt-2">
+                    {% blocktrans trimmed %}
+                    We work with clients in Spain, the wider EU, the MENA region, the Gulf and other
+                    international locations. As a result, communication may take place by email, WhatsApp or
+                    video call, and your information may be handled across borders to provide our services.
+                    {% endblocktrans %}
+                </p>
+            </div>
+
+            <div>
+                <h2 class="text-lg font-bold text-ink">{% trans "8. How long we keep your data" %}</h2>
+                <p class="mt-2">
+                    {% blocktrans trimmed %}
+                    We keep enquiries and consultation requests only for as long as needed to follow up, to
+                    maintain reasonable business records, and to meet any legal or accounting obligations.
+                    When information is no longer needed, we delete it or keep it in a minimised form.
+                    {% endblocktrans %}
+                </p>
+            </div>
+
+            <div>
+                <h2 class="text-lg font-bold text-ink">{% trans "9. Your rights" %}</h2>
+                <p class="mt-2">{% trans "You may, at any time, ask us to:" %}</p>
+                <ul class="mt-2 list-disc ps-6 space-y-1.5">
+                    <li>{% trans "Access the personal data we hold about you" %}</li>
+                    <li>{% trans "Correct inaccurate or incomplete data" %}</li>
+                    <li>{% trans "Delete your data" %}</li>
+                    <li>{% trans "Object to or restrict how we process it" %}</li>
+                    <li>{% trans "Receive your data in a portable format, where applicable" %}</li>
+                </ul>
+                <p class="mt-2">{% trans "To exercise any of these rights, write to us at:" %}</p>
+                <ul class="mt-2 space-y-1">
+                    <li><a href="mailto:{{ CONTACT_EMAIL }}" class="text-brand-600 hover:text-brand-700 font-medium force-ltr inline-block">{{ CONTACT_EMAIL }}</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h2 class="text-lg font-bold text-ink">{% trans "10. Security" %}</h2>
+                <p class="mt-2">
+                    {% blocktrans trimmed %}
+                    We apply reasonable technical and organisational measures to protect your information.
+                    However, no website or system can be guaranteed to be completely secure, so we cannot
+                    promise absolute security.
+                    {% endblocktrans %}
+                </p>
+            </div>
+
+            <div>
+                <h2 class="text-lg font-bold text-ink">{% trans "11. Cookies and analytics" %}</h2>
+                <p class="mt-2">
+                    {% blocktrans trimmed %}
+                    This website does not currently use tracking or advertising cookies, and relies only on
+                    essential technical cookies needed for it to function. If we add analytics or similar
+                    tools in the future, we will update this policy accordingly.
+                    {% endblocktrans %}
+                </p>
+            </div>
+
+            <div>
+                <h2 class="text-lg font-bold text-ink">{% trans "12. Updates to this policy" %}</h2>
+                <p class="mt-2">
+                    {% blocktrans trimmed %}
+                    We may update this policy from time to time to reflect changes in our services or legal
+                    requirements. The date at the top of this page shows when it was last revised.
+                    {% endblocktrans %}
+                </p>
+            </div>
+
+            <div>
+                <h2 class="text-lg font-bold text-ink">{% trans "13. Contact" %}</h2>
+                <p class="mt-2">{% trans "If you have any questions about this policy, please contact us:" %}</p>
+                <ul class="mt-2 space-y-1">
+                    <li><a href="mailto:{{ CONTACT_EMAIL }}" class="text-brand-600 hover:text-brand-700 font-medium force-ltr inline-block">{{ CONTACT_EMAIL }}</a></li>
+                    <li><span class="force-ltr inline-block">{{ CONTACT_WHATSAPP }}</span> (WhatsApp)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

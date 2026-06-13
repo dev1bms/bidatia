@@ -1,0 +1,27 @@
+# Celery beat scheduler for the Bidatia free tools (runs the daily cleanup
+# that wipes expired ToolRun report payloads).
+# Install:  sudo cp deploy/systemd/bidatia-celery-beat.service /etc/systemd/system/
+#           sudo systemctl daemon-reload && sudo systemctl enable --now bidatia-celery-beat
+# Run exactly ONE beat instance per deployment.
+
+[Unit]
+Description=Bidatia Celery beat scheduler
+After=network.target redis-server.service
+Requires=redis-server.service
+
+[Service]
+Type=simple
+User=bidatia
+Group=bidatia
+WorkingDirectory=/srv/bidatia
+EnvironmentFile=/srv/bidatia/.env
+ExecStart=/srv/bidatia/.venv/bin/celery -A bidatia beat \
+    --loglevel=INFO \
+    --schedule=/srv/bidatia/celerybeat-schedule
+Restart=always
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

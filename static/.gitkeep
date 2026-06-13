@@ -1,0 +1,3 @@
+# This file keeps the empty `static/` directory tracked in Git so that
+# STATICFILES_DIRS points to a real path on fresh checkouts (e.g. in CI).
+# Project static assets (compiled CSS, images, favicon, OG image) go here.

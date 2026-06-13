@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Bidatia ERP Health Snapshot — badge verification" %} | {{ SITE_NAME }}{% endblock %}
+
+{% block content %}
+<section class="py-16 lg:py-20">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+        {% if revoked %}
+        <div class="rounded-2xl border border-slate-200 bg-white p-8 text-center">
+            <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-slate-200 text-slate-500">
+                <svg class="h-6 w-6" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
+            </span>
+            <h1 class="mt-4 text-2xl font-extrabold text-ink">{% trans "This badge has been disabled" %}</h1>
+            <p class="mt-2 text-slate-600">{% trans "The owner disabled this snapshot badge, or it is no longer available. No result details are shown for disabled badges." %}</p>
+            <a href="{% url 'tools_core:hub' %}" class="mt-6 inline-flex items-center rounded-lg bg-ink text-white font-semibold px-6 py-3 hover:bg-brand-700 transition">{% trans "Explore the free tools" %}</a>
+        </div>
+        {% else %}
+
+        {% if is_new %}
+        <div class="mb-6 rounded-lg border border-emerald-200 bg-emerald-50 text-emerald-800 px-4 py-3 text-sm">
+            {% trans "Your badge is live! Copy the embed code below to add it to your website or share the verification link." %}
+        </div>
+        {% endif %}
+
+        <div class="rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-sm">
+            <span class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-ink text-accent-400">
+                <svg class="h-7 w-7" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </span>
+            <p class="mt-4 font-mono text-xs uppercase tracking-wider text-slate-500">Bidatia · {% trans "ERP Health Snapshot" %}</p>
+            <h1 class="mt-2 text-3xl font-extrabold text-ink">{{ level_label }}</h1>
+            {% if badge.company_name %}<p class="mt-2 text-lg text-slate-700">{{ badge.company_name }}</p>{% endif %}
+
+            <dl class="mt-6 grid grid-cols-2 gap-4 text-start">
+                <div class="rounded-xl bg-slate-50 border border-slate-100 p-4">
+                    <dt class="text-xs font-semibold uppercase tracking-wide text-slate-500">{% trans "Diagnostic" %}</dt>
+                    <dd class="mt-1 text-sm font-bold text-ink">{{ tool_label }}</dd>
+                </div>
+                <div class="rounded-xl bg-slate-50 border border-slate-100 p-4">
+                    <dt class="text-xs font-semibold uppercase tracking-wide text-slate-500">{% trans "Snapshot date" %}</dt>
+                    <dd class="mt-1 text-sm font-bold text-ink force-ltr">{{ badge.created_at|date:"Y-m-d" }}</dd>
+                </div>
+            </dl>
+
+            <p class="mt-6 text-xs text-slate-400 leading-relaxed">
+                {% trans "This badge records a point-in-time result from a free Bidatia diagnostic — a self-assessment or read-only scan. It is not a security certification, not an audit and not a guarantee of system health." %}
+            </p>
+        </div>
+
+        <div class="mt-6 rounded-2xl border border-slate-200 bg-white p-6" x-data="badgeEmbed()">
+            <h2 class="text-sm font-bold text-ink">{% trans "Badge preview & embed" %}</h2>
+            <div class="mt-3 rounded-lg bg-slate-50 border border-slate-100 p-4 flex justify-center">
+                <img src="{% url 'tools_core:badge_svg' badge.pk %}" alt="Bidatia ERP Health Snapshot" width="240" height="56">
+            </div>
+            <label for="badge-embed" class="mt-4 block text-xs font-semibold text-slate-500">{% trans "Embed code (links back to this verification page)" %}</label>
+            <textarea id="badge-embed" readonly rows="3" x-ref="code"
+                      class="force-ltr mt-2 w-full rounded-lg border border-slate-300 bg-slate-50 px-3 py-2 text-xs font-mono text-slate-700">{{ embed_snippet }}</textarea>
+            <div class="mt-3 flex flex-col sm:flex-row gap-3">
+                <button type="button" @click="copy()" class="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-ink text-white text-sm font-semibold px-5 py-2.5 hover:bg-brand-700 transition">
+                    <span x-text="copied ? '{% trans "Copied!" %}' : '{% trans "Copy embed code" %}'"></span>
+                </button>
+                <a href="{{ page_url }}" class="inline-flex flex-1 items-center justify-center rounded-lg border border-slate-300 text-ink text-sm font-semibold px-5 py-2.5 hover:border-ink transition force-ltr">{% trans "Verification link" %}</a>
+            </div>
+        </div>
+
+        <div class="mt-8 rounded-2xl bg-slate-50 border border-slate-200 p-6 text-center">
+            <p class="text-sm text-slate-600">{% trans "Want a snapshot like this for your own system?" %}</p>
+            <div class="mt-4 flex flex-col sm:flex-row justify-center gap-3">
+                <a href="{% url 'tool_erp_rescue:landing' %}" class="inline-flex items-center justify-center rounded-lg bg-ink text-white text-sm font-semibold px-5 py-2.5 hover:bg-brand-700 transition">{% trans "Run the ERP Rescue Check" %}</a>
+                <a href="{% url 'tool_studio_xray:landing' %}" class="inline-flex items-center justify-center rounded-lg border border-slate-300 text-ink text-sm font-semibold px-5 py-2.5 hover:border-ink transition">{% trans "Run the Studio X-Ray" %}</a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+{% if not revoked %}
+<script>
+function badgeEmbed() {
+    return {
+        copied: false,
+        copy() {
+            const el = this.$refs.code;
+            el.select();
+            navigator.clipboard ? navigator.clipboard.writeText(el.value)
+                                : document.execCommand('copy');
+            this.copied = true;
+            setTimeout(() => { this.copied = false; }, 2000);
+            try {
+                fetch('{% url "tools_core:track_event" %}', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json',
+                               'X-CSRFToken': '{{ csrf_token }}' },
+                    body: JSON.stringify({ tool: 'health_badge',
+                                           event: 'healthy_badge_copied' }),
+                });
+            } catch (e) { /* analytics never breaks the page */ }
+        },
+    };
+}
+</script>
+{% endif %}
+{% endblock %}

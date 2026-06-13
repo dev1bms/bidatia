@@ -1,0 +1,89 @@
+{% extends 'admin/base.html' %}
+{% load i18n %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+    {% include "unfold/helpers/site_branding.html" %}
+{% endblock %}
+
+{% block content %}
+<div class="dbms-dash">
+    {% if dbms_kpis %}
+    <div class="dbms-kpi-grid">
+        {% for kpi in dbms_kpis %}
+            <a href="{{ kpi.link }}" class="dbms-kpi">
+                <span class="dbms-kpi-value">{{ kpi.value }}</span>
+                <span class="dbms-kpi-title">{{ kpi.title }}</span>
+            </a>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="dbms-cols">
+        <section class="dbms-panel">
+            <h2 class="dbms-panel-title">{% trans "Recent consultation requests" %}</h2>
+            {% if dbms_recent_consultations %}
+            <table class="dbms-table">
+                <thead>
+                    <tr>
+                        <th>{% trans "Name" %}</th>
+                        <th>{% trans "Type" %}</th>
+                        <th>{% trans "Status" %}</th>
+                        <th>{% trans "Date" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in dbms_recent_consultations %}
+                    <tr>
+                        <td><a href="{% url 'admin:booking_consultationrequest_change' c.pk %}">{{ c.full_name }}</a></td>
+                        <td>{{ c.get_consultation_type_display }}</td>
+                        <td><span class="dbms-badge dbms-badge-{{ c.status }}">{{ c.get_status_display }}</span></td>
+                        <td>{{ c.created_at|date:"M j, Y" }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p class="dbms-empty">{% trans "No consultation requests yet." %}</p>
+            {% endif %}
+        </section>
+
+        <section class="dbms-panel">
+            <h2 class="dbms-panel-title">{% trans "Recent contact messages" %}</h2>
+            {% if dbms_recent_leads %}
+            <table class="dbms-table">
+                <thead>
+                    <tr>
+                        <th>{% trans "Name" %}</th>
+                        <th>{% trans "Email" %}</th>
+                        <th>{% trans "Handled" %}</th>
+                        <th>{% trans "Date" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for l in dbms_recent_leads %}
+                    <tr>
+                        <td><a href="{% url 'admin:leads_lead_change' l.pk %}">{{ l.name }}</a></td>
+                        <td dir="ltr">{{ l.email }}</td>
+                        <td>{% if l.is_handled %}✓{% else %}—{% endif %}</td>
+                        <td>{{ l.created_at|date:"M j, Y" }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p class="dbms-empty">{% trans "No contact messages yet." %}</p>
+            {% endif %}
+        </section>
+    </div>
+</div>
+
+{# Default Unfold app list + history, so navigation stays intact. #}
+<div class="flex flex-col lg:flex-row lg:gap-8">
+    <div class="grow">
+        {% include "unfold/helpers/app_list_default.html" %}
+    </div>
+    {% include "unfold/helpers/history.html" %}
+</div>
+{% endblock %}

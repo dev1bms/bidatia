@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ meta_title }} | {{ SITE_NAME }}{% endblock %}
+{% block og_title %}{{ meta_title }} | {{ SITE_NAME }}{% endblock %}
+{% block twitter_title %}{{ meta_title }} | {{ SITE_NAME }}{% endblock %}
+
+{% block content %}
+<section class="relative overflow-hidden bg-ink text-white">
+    <div class="absolute inset-0 tech-grid tech-grid-dark grid-mask" aria-hidden="true"></div>
+    <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16 reveal">
+        <nav class="text-xs text-slate-400" aria-label="breadcrumb">
+            <a href="{% url 'glossary:index' %}" class="hover:text-white transition">{% trans "Odoo glossary" %}</a>
+            <span class="mx-1.5">/</span>
+            <span>{{ category_label }}</span>
+        </nav>
+        <h1 class="mt-4 text-3xl sm:text-4xl font-extrabold tracking-tight">{{ t.title }}</h1>
+        {% if t.term != t.title %}<p class="mt-2 font-mono text-sm text-brand-300 force-ltr">{{ t.term }}</p>{% endif %}
+    </div>
+</section>
+
+<section class="py-12 lg:py-14">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div class="reveal">
+            <h2 class="text-sm font-bold uppercase tracking-wide text-slate-500">{% trans "What it means" %}</h2>
+            <p class="mt-2 text-lg text-slate-800 leading-relaxed" dir="auto">{{ t.definition }}</p>
+        </div>
+
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6 reveal">
+            <h2 class="text-sm font-bold uppercase tracking-wide text-slate-500 flex items-center gap-2">
+                <svg class="h-4 w-4 text-brand-600" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.674M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0013.5 19.5h-3a3.374 3.374 0 00-1.488-2.21l-.548-.547z"/></svg>
+                {% trans "A concrete example" %}
+            </h2>
+            <p class="mt-2 text-slate-700 leading-relaxed" dir="auto">{{ t.example }}</p>
+        </div>
+
+        <div class="reveal">
+            <h2 class="text-sm font-bold uppercase tracking-wide text-slate-500">{% trans "Why it matters" %}</h2>
+            <p class="mt-2 text-slate-700 leading-relaxed" dir="auto">{{ t.why }}</p>
+        </div>
+
+        <div class="rounded-2xl border border-amber-200 bg-amber-50 p-6 reveal">
+            <h2 class="text-sm font-bold uppercase tracking-wide text-amber-700 flex items-center gap-2">
+                <svg class="h-4 w-4" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
+                {% trans "The common mistake" %}
+            </h2>
+            <p class="mt-2 text-amber-900 leading-relaxed" dir="auto">{{ t.mistake }}</p>
+        </div>
+
+        {% if t.cta %}
+        <div class="rounded-2xl bg-ink text-white p-6 sm:p-8 reveal no-print">
+            {% if t.cta == 'rescue' %}
+            <h2 class="text-lg font-extrabold">{% trans "Does this sound like your system?" %}</h2>
+            <p class="mt-1 text-sm text-slate-300">{% trans "The free 3-minute ERP Rescue Check turns symptoms like this into a score, your top risks and a first recovery plan." %}</p>
+            {% else %}
+            <h2 class="text-lg font-extrabold">{% trans "How much of this lives in YOUR Odoo?" %}</h2>
+            <p class="mt-1 text-sm text-slate-300">{% trans "The free Studio X-Ray counts every custom field, model and automation in your database — read-only, in minutes." %}</p>
+            {% endif %}
+            <a href="{% url 'glossary:go_tool' t.slug %}" class="mt-4 inline-flex items-center gap-2 rounded-lg bg-white text-ink text-sm font-semibold px-5 py-2.5 hover:bg-brand-50 transition">
+                {% if t.cta == 'rescue' %}{% trans "Run the ERP Rescue Check" %}{% else %}{% trans "Run the free Studio X-Ray" %}{% endif %}
+                <svg class="h-4 w-4 rtl:rotate-180" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+        </div>
+        {% endif %}
+
+        {% if t.related %}
+        <div class="reveal">
+            <h2 class="text-sm font-bold uppercase tracking-wide text-slate-500">{% trans "Related terms" %}</h2>
+            <div class="mt-3 flex flex-wrap gap-2">
+                {% for r in t.related %}
+                <a href="{% url 'glossary:term' r.slug %}" class="inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-1.5 text-sm font-semibold text-slate-700 hover:border-brand-400 hover:text-brand-700 transition">{{ r.title }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="pt-2 reveal">
+            <a href="{% url 'glossary:index' %}" class="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:text-brand-800 transition">
+                <svg class="h-4 w-4 rtl:rotate-180 rotate-180" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                {% trans "Back to the full glossary" %}
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

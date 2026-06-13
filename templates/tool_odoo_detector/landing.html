@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "Is this website running on Odoo? — Free instant check" %} | {{ SITE_NAME }}{% endblock %}
+
+{% block content %}
+<section class="relative overflow-hidden bg-ink text-white">
+    <div class="absolute inset-0 tech-grid tech-grid-dark grid-mask" aria-hidden="true"></div>
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 text-center reveal">
+        <p class="font-mono text-xs uppercase tracking-wider text-brand-300">// {% trans "Free Tool" %}</p>
+        <h1 class="mt-4 text-4xl sm:text-5xl font-extrabold tracking-tight text-balance">{% trans "Is this website running on Odoo?" %}</h1>
+        <p class="mt-5 text-lg text-slate-300 max-w-2xl mx-auto">
+            {% trans "Paste any public website address and get a best-effort answer in seconds: Odoo or not, how confident we are, and which public signals gave it away." %}
+        </p>
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-slate-300">
+            <span class="inline-flex items-center gap-2"><svg class="h-4 w-4 text-accent-400" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>{% trans "No login, no email needed" %}</span>
+            <span class="inline-flex items-center gap-2"><svg class="h-4 w-4 text-accent-400" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>{% trans "Public signals only — never a security scan" %}</span>
+            <span class="inline-flex items-center gap-2"><svg class="h-4 w-4 text-accent-400" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>{% trans "Nothing about the site is stored" %}</span>
+        </div>
+    </div>
+</section>
+
+<section class="py-12 lg:py-16" id="check">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <form method="post" action="{% url 'tool_odoo_detector:landing' %}#check" class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm reveal">
+            {% csrf_token %}
+            {# Honeypot — hidden from humans, bots fill it. #}
+            <input type="text" name="website" value="" tabindex="-1" autocomplete="off" aria-hidden="true" class="hidden">
+            <label for="detector-url" class="block text-sm font-semibold text-ink">{% trans "Website address" %}</label>
+            <div class="mt-2 flex flex-col sm:flex-row gap-3">
+                <input id="detector-url" type="text" name="url" value="{{ url_value }}" required
+                       placeholder="https://www.company.com" inputmode="url" autocomplete="url"
+                       class="force-ltr w-full min-w-0 rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-sky-500 focus:ring-2 focus:ring-sky-100 outline-none transition">
+                <button type="submit" class="shrink-0 inline-flex items-center justify-center gap-2 rounded-lg bg-ink text-white text-sm font-semibold px-6 py-3 hover:bg-brand-700 transition">
+                    {% trans "Detect Odoo" %}
+                    <svg class="h-4 w-4 rtl:rotate-180" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </button>
+            </div>
+            {% if error %}
+            <p class="mt-3 rounded-lg border border-amber-200 bg-amber-50 text-amber-800 px-4 py-3 text-sm">{{ error }}</p>
+            {% endif %}
+            <p class="mt-3 text-xs text-slate-400">{% trans "We fetch at most two public pages of the site you enter, read the HTML for Odoo signals, and discard everything immediately." %}</p>
+        </form>
+
+        {% if result %}
+        <div class="mt-8 rounded-2xl border {% if result.detected == 'yes' %}border-emerald-200{% elif result.detected == 'no' %}border-slate-200{% else %}border-amber-200{% endif %} bg-white p-6 sm:p-8 shadow-sm" id="result">
+            {% if result.detected == 'yes' %}
+            <div class="flex items-start gap-4">
+                <span class="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-emerald-600 text-white">
+                    <svg class="h-6 w-6" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </span>
+                <div>
+                    <h2 class="text-xl font-extrabold text-ink">{% trans "This site appears to be running on Odoo." %}</h2>
+                    <p class="mt-1 text-sm text-slate-500 force-ltr">{{ result.domain }}</p>
+                </div>
+            </div>
+            {% elif result.detected == 'no' %}
+            <div class="flex items-start gap-4">
+                <span class="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-700 text-white">
+                    <svg class="h-6 w-6" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                </span>
+                <div>
+                    <h2 class="text-xl font-extrabold text-ink">{% trans "We didn't find Odoo signals on this site." %}</h2>
+                    <p class="mt-1 text-sm text-slate-500 force-ltr">{{ result.domain }}</p>
+                </div>
+            </div>
+            {% else %}
+            <div class="flex items-start gap-4">
+                <span class="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-amber-500 text-white">
+                    <svg class="h-6 w-6" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01"/></svg>
+                </span>
+                <div>
+                    <h2 class="text-xl font-extrabold text-ink">{% trans "We couldn't tell for sure." %}</h2>
+                    <p class="mt-1 text-sm text-slate-500 force-ltr">{{ result.domain }}</p>
+                </div>
+            </div>
+            {% endif %}
+
+            <dl class="mt-6 grid sm:grid-cols-3 gap-4">
+                <div class="rounded-xl bg-slate-50 border border-slate-100 p-4">
+                    <dt class="text-xs font-semibold uppercase tracking-wide text-slate-500">{% trans "Confidence" %}</dt>
+                    <dd class="mt-1 text-base font-bold text-ink">{{ result.confidence_label }}</dd>
+                </div>
+                <div class="rounded-xl bg-slate-50 border border-slate-100 p-4">
+                    <dt class="text-xs font-semibold uppercase tracking-wide text-slate-500">{% trans "Odoo version" %}</dt>
+                    <dd class="mt-1 text-base font-bold text-ink force-ltr">{% if result.version %}{{ result.version }}{% else %}{% trans "Unknown" %}{% endif %}</dd>
+                </div>
+                <div class="rounded-xl bg-slate-50 border border-slate-100 p-4">
+                    <dt class="text-xs font-semibold uppercase tracking-wide text-slate-500">{% trans "Hosting (guess)" %}</dt>
+                    <dd class="mt-1 text-base font-bold text-ink">{{ result.hosting_label }}</dd>
+                </div>
+            </dl>
+
+            {% if result.evidence_labels %}
+            <div class="mt-6">
+                <h3 class="text-sm font-bold text-ink">{% trans "Public signals we found" %}</h3>
+                <ul class="mt-3 space-y-2">
+                    {% for label in result.evidence_labels %}
+                    <li class="flex items-start gap-2.5 text-sm text-slate-700">
+                        <svg class="mt-0.5 h-4 w-4 shrink-0 text-brand-600" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                        {{ label }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            <p class="mt-6 text-xs text-slate-400 border-t border-slate-100 pt-4">
+                {% trans "This is a best-effort public signal check, not a security scan. Results say what a site appears to run — only its owners know for certain." %}
+            </p>
+
+            <div class="mt-6 flex flex-col sm:flex-row gap-3">
+                {% if result.detected == 'yes' %}
+                <a href="{% url 'tool_odoo_detector:go_xray' %}" class="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-ink text-white text-sm font-semibold px-5 py-3 hover:bg-brand-700 transition">
+                    {% trans "It's Odoo — run the free Studio X-Ray on yours" %}
+                    <svg class="h-4 w-4 rtl:rotate-180" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <a href="{% url 'tool_odoo_detector:go_demo' %}" class="inline-flex flex-1 items-center justify-center rounded-lg border border-slate-300 text-ink text-sm font-semibold px-5 py-3 hover:border-ink transition">
+                    {% trans "See a sample X-Ray report" %}
+                </a>
+                {% else %}
+                <a href="{% url 'tool_odoo_detector:go_rescue' %}" class="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-ink text-white text-sm font-semibold px-5 py-3 hover:bg-brand-700 transition">
+                    {% trans "Not Odoo? Check any ERP with the free Rescue Check" %}
+                    <svg class="h-4 w-4 rtl:rotate-180" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <a href="{% url 'tool_odoo_detector:go_demo' %}" class="inline-flex flex-1 items-center justify-center rounded-lg border border-slate-300 text-ink text-sm font-semibold px-5 py-3 hover:border-ink transition">
+                    {% trans "Curious? See a sample Odoo X-Ray report" %}
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="mt-12 rounded-2xl bg-slate-50 border border-slate-200 p-6 sm:p-8 reveal">
+            <h2 class="text-lg font-bold text-ink">{% trans "How the detection works" %}</h2>
+            <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+                {% trans "Odoo websites leave recognizable public fingerprints: standard asset bundles, framework JavaScript, website-builder markers and hosting addresses. We read up to two public pages, weigh those signals and report how confident the match is. We never log in, never probe private endpoints and never store the pages we read." %}
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock %}
