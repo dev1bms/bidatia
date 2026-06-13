@@ -108,37 +108,74 @@ jobs:
               -p "${{ secrets.SSH_PORT }}" \
               "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" \
               'bash -s' <<'REMOTE_SCRIPT'
-          set -e
+          set -eu
 
-          cd /home/bidatia/bidatia
+          APP_DIR="/srv/bidatia/app"
+          REPO_URL="git@github.com:dev1bms/bidatia.git"
+          ENV_FILE="/etc/bidatia/bidatia.env"
 
-          git fetch origin main
-          git reset --hard origin/main
+          # ── First-deploy-safe checkout ────────────────────────────────────
+          if [ ! -d "$APP_DIR/.git" ]; then
+            # If the target exists but isn't a git repo, back it up — never delete.
+            if [ -e "$APP_DIR" ] && [ -n "$(ls -A "$APP_DIR" 2>/dev/null || true)" ]; then
+              backup="${APP_DIR}.backup.$(date +%Y%m%d%H%M%S)"
+              echo "Existing non-git $APP_DIR found — backing up to $backup"
+              mv "$APP_DIR" "$backup"
+            fi
+            echo "Cloning $REPO_URL into $APP_DIR ..."
+            git clone "$REPO_URL" "$APP_DIR"
+            cd "$APP_DIR"
+          else
+            cd "$APP_DIR"
+            git remote set-url origin "$REPO_URL"
+            git fetch origin main
+            git reset --hard origin/main
+          fi
 
-          source /home/bidatia/bidatia/.venv/bin/activate
+          # ── Virtualenv ────────────────────────────────────────────────────
+          if [ ! -x "$APP_DIR/.venv/bin/python" ]; then
+            echo "Creating virtualenv ..."
+            python3 -m venv "$APP_DIR/.venv"
+          fi
+          # shellcheck disable=SC1091
+          source "$APP_DIR/.venv/bin/activate"
 
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+
+          # ── Load the production env (DJANGO_DB_PATH, hosts, etc.) so the
+          #    management commands target the SAME database/paths the systemd
+          #    service uses. Values are read literally (no shell evaluation),
+          #    so secrets are never printed or expanded. ──────────────────────
+          if [ -r "$ENV_FILE" ]; then
+            set -a
+            while IFS='=' read -r k v; do
+              case "$k" in ''|\#*) continue;; esac
+              v="${v%\"}"; v="${v#\"}"; v="${v%\'}"; v="${v#\'}"
+              export "$k=$v"
+            done < "$ENV_FILE"
+            set +a
+          fi
 
           python manage.py compilemessages -l es -l ar
           python manage.py migrate --noinput
           # Seeded content (services, insights, case studies) — idempotent (upsert by slug).
           python manage.py seed_demo_data
           python manage.py collectstatic --noinput
-          
-          echo "Restarting Django..."
+
+          # ── Restart the Django service ONLY (Celery added later) ───────────
+          echo "Restarting Django service ..."
           sudo -n /usr/bin/systemctl restart bidatia
           sudo -n /usr/bin/systemctl status bidatia --no-pager -l
-          
-          echo "Restarting Celery worker..."
-          sudo -n /usr/bin/systemctl restart bidatia-celery-worker
-          sudo -n /usr/bin/systemctl status bidatia-celery-worker --no-pager -l
-          
-          echo "Restarting Celery beat..."
-          sudo -n /usr/bin/systemctl restart bidatia-celery-beat
-          sudo -n /usr/bin/systemctl status bidatia-celery-beat --no-pager -l
 
-          echo "Verifying health..."
+          # Celery is intentionally NOT restarted yet — we will enable these
+          # once the Redis broker / Celery units are verified in production:
+          #   sudo -n /usr/bin/systemctl restart bidatia-celery-worker
+          #   sudo -n /usr/bin/systemctl status  bidatia-celery-worker --no-pager -l
+          #   sudo -n /usr/bin/systemctl restart bidatia-celery-beat
+          #   sudo -n /usr/bin/systemctl status  bidatia-celery-beat --no-pager -l
+
+          echo "Verifying health ..."
           sleep 3
           curl -fsS -H "Host: bidatia.xyz" -H "X-Forwarded-Proto: https" http://127.0.0.1:8020/healthz/
 
