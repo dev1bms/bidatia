@@ -90,7 +90,7 @@ jobs:
           chmod 600 ~/.ssh/bidatia_deploy_key
           # Tailscale connectivity inside the runner can take a few seconds
           # to settle, so a single ssh-keyscan attempt is flaky (it killed
-          # the 2026-06-13 deploy). Retry briefly before giving up.
+          # the 2026-06-13 deploy). Retry briefly before giving up. new
           ok=""
           for attempt in 1 2 3 4 5 6; do
             if ssh-keyscan -T 10 -p "${{ secrets.SSH_PORT }}" -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts; then
