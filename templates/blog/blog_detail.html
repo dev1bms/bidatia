@@ -35,12 +35,13 @@
             {% endfor %}
         </div>
 
-        <div class="mt-12 rounded-2xl bg-slate-50 border border-slate-200 p-7 text-center">
-            <h2 class="font-bold text-ink">{% trans "Facing something similar in your own Odoo system?" %}</h2>
-            <p class="mt-2 text-sm text-slate-600">{% trans "A short consultation is often the fastest way to get unstuck." %}</p>
-            <div class="mt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
-                <a href="{% url 'booking:book_consultation' %}" class="inline-flex items-center rounded-lg bg-ink text-white font-semibold px-5 py-3 hover:bg-brand-700 transition">{% trans "Request a consultation" %}</a>
-                <a href="{% url 'services:service_list' %}" class="inline-flex items-center rounded-lg border border-slate-300 text-ink font-semibold px-5 py-3 hover:border-ink transition">{% trans "Explore our Odoo services" %}</a>
+        <div class="relative mt-12 overflow-hidden rounded-2xl mesh p-7 sm:p-9 text-center">
+            <div class="absolute inset-x-0 bottom-0 h-[3px] rgb-bar" aria-hidden="true"></div>
+            <h2 class="font-bold text-white text-lg">{% trans "Want this kind of thinking applied to your own systems?" %}</h2>
+            <p class="mt-2 text-sm text-slate-300 max-w-xl mx-auto">{% trans "An ERP & data assessment turns these ideas into a concrete, prioritized plan for your business." %}</p>
+            <div class="mt-5 flex flex-col sm:flex-row items-center justify-center gap-3">
+                <a href="{% url 'booking:book_consultation' %}" class="inline-flex items-center rounded-lg bg-white text-ink font-semibold px-5 py-3 hover:bg-brand-50 transition">{% trans "Request a consultation" %}</a>
+                <a href="{% url 'services:service_list' %}" class="inline-flex items-center rounded-lg border border-white/20 bg-white/5 text-white font-semibold px-5 py-3 hover:bg-white/10 transition">{% trans "Explore our services" %}</a>
             </div>
         </div>
     </div>

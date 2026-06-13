@@ -2,41 +2,73 @@
 {% load i18n blog_extras %}
 
 {% block title %}{% trans "Insights" %} — {{ SITE_NAME }}{% endblock %}
+{% block meta_description %}{% trans "Bidatia Insights — original articles on ERP data strategy, Odoo as a data platform, BI dashboards, data governance and AI agents for operational workflows." %}{% endblock %}
 
 {% block content %}
-<section class="bg-slate-50 border-b border-slate-200">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
-        <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-ink">{% trans "Insights" %}</h1>
-        <p class="mt-5 text-lg text-slate-600 max-w-2xl mx-auto">
-            {% trans "Practical, no-fluff articles on Odoo, ERP automation, integrations, and running a healthier business system — written from real project experience." %}
+<section class="relative overflow-hidden mesh text-white">
+    <div class="absolute inset-0 dot-grid-dark grid-mask opacity-70" aria-hidden="true"></div>
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 text-center reveal">
+        <p class="kicker text-brand-200 justify-center">{% trans "Insights" %}</p>
+        <h1 class="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] text-balance">
+            {% trans "Ideas on running a business on" %}
+            <span class="rgb-text">{% trans "data you can trust" %}</span>
+        </h1>
+        <p class="mt-6 text-lg text-slate-300 max-w-2xl mx-auto">
+            {% trans "No fluff. Practical perspectives on ERP, data governance, BI and AI — written by the team that implements them, for the people who have to live with the results." %}
         </p>
     </div>
 </section>
 
-<section class="py-16 lg:py-20">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid sm:grid-cols-2 gap-7">
-            {% for post in posts %}
+<section class="py-16 lg:py-24 mesh-light">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {% if posts %}
+        {# ── Featured (latest) article ───────────────────────────── #}
+        {% with featured=posts.0 %}
+        {% article_cover featured as fcover %}
+        <a href="{{ featured.get_absolute_url }}" class="dash-card group grid md:grid-cols-2 overflow-hidden reveal mb-8">
+            <div class="relative aspect-[1200/630] md:aspect-auto overflow-hidden bg-slate-100">
+                <img src="{{ fcover }}" alt="" loading="lazy" decoding="async"
+                     class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]">
+                <span class="absolute top-4 start-4 inline-flex items-center gap-1.5 rounded-full bg-ink/80 backdrop-blur px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-wider text-white ring-1 ring-white/10">
+                    <span class="h-1.5 w-1.5 rounded-full bg-accent-400"></span>{% trans "Latest" %}
+                </span>
+            </div>
+            <div class="flex flex-col justify-center p-7 lg:p-9">
+                <span class="font-mono text-xs font-semibold text-slate-400 uppercase tracking-wide">{{ featured.published_at|date:"M j, Y" }}</span>
+                <h2 class="mt-3 text-2xl lg:text-3xl font-bold leading-tight text-ink group-hover:text-brand-700 transition">{{ featured.title }}</h2>
+                <p class="mt-3 text-slate-600 leading-relaxed">{{ featured.excerpt }}</p>
+                <span class="mt-6 inline-flex items-center text-sm font-semibold text-brand-600">
+                    {% trans "Read article" %}
+                    <svg class="ml-1.5 h-4 w-4 group-hover:translate-x-1 transition-transform rtl:rotate-180" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                </span>
+            </div>
+        </a>
+        {% endwith %}
+
+        {# ── The rest ────────────────────────────────────────────── #}
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for post in posts|slice:"1:" %}
             {% article_cover post as cover %}
-            <a href="{{ post.get_absolute_url }}" class="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white hover:border-brand-300 hover:shadow-xl hover:shadow-brand-100/50 hover:-translate-y-0.5 transition duration-200">
-                <div class="aspect-[1200/630] overflow-hidden bg-slate-100">
+            <a href="{{ post.get_absolute_url }}" class="dash-card group flex flex-col reveal" style="--d: {{ forloop.counter0 }}50ms">
+                <div class="aspect-[1200/630] overflow-hidden bg-slate-100 rounded-t-2xl">
                     <img src="{{ cover }}" alt="" loading="lazy" decoding="async"
                          class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]">
                 </div>
                 <div class="flex flex-1 flex-col p-6">
-                    <span class="text-xs font-semibold text-slate-400 uppercase tracking-wide">{{ post.published_at|date:"M j, Y" }}</span>
-                    <h2 class="mt-2 text-lg font-bold leading-snug text-ink group-hover:text-brand-700 transition">{{ post.title }}</h2>
-                    <p class="mt-2.5 text-sm leading-relaxed text-slate-600 flex-1">{{ post.excerpt }}</p>
+                    <span class="font-mono text-[11px] font-semibold text-slate-400 uppercase tracking-wide">{{ post.published_at|date:"M j, Y" }}</span>
+                    <h2 class="mt-2 text-base font-bold leading-snug text-ink group-hover:text-brand-700 transition">{{ post.title }}</h2>
+                    <p class="mt-2.5 text-sm leading-relaxed text-slate-600 flex-1">{{ post.excerpt|truncatewords:24 }}</p>
                     <span class="mt-5 inline-flex items-center text-sm font-semibold text-brand-600">
                         {% trans "Read article" %}
                         <svg class="ml-1.5 h-4 w-4 group-hover:translate-x-1 transition-transform rtl:rotate-180" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                     </span>
                 </div>
             </a>
-            {% empty %}
-            <p class="text-slate-500 col-span-full text-center py-10">{% trans "New articles are on the way — check back soon." %}</p>
             {% endfor %}
         </div>
+        {% else %}
+        <p class="text-slate-500 text-center py-10">{% trans "New articles are on the way — check back soon." %}</p>
+        {% endif %}
     </div>
 </section>
 {% endblock %}

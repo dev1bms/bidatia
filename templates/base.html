@@ -112,6 +112,60 @@
             -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
         }
 
+        /* ── Bidatia premium "data-platform" design layer ──────────────────── */
+
+        /* Dark mesh: layered radial data-glows over the slate base. */
+        .mesh {
+            background-color: #0f172a;
+            background-image:
+                radial-gradient(42rem 30rem at 12% -12%, rgba(37,99,235,.30), transparent 60%),
+                radial-gradient(38rem 26rem at 96% 6%, rgba(34,197,94,.16), transparent 60%),
+                radial-gradient(34rem 26rem at 50% 128%, rgba(239,68,68,.12), transparent 60%);
+        }
+        /* Light section with a faint data-mesh tint. */
+        .mesh-light {
+            background-color: #fff;
+            background-image:
+                radial-gradient(40rem 26rem at 100% -10%, rgba(37,99,235,.06), transparent 60%),
+                radial-gradient(34rem 22rem at -5% 110%, rgba(34,197,94,.05), transparent 60%);
+        }
+
+        /* Kicker / section eyebrow with an RGB signal tick. */
+        .kicker { display:inline-flex; align-items:center; gap:.65rem; font-family:var(--font-mono);
+            font-size:.72rem; line-height:1; letter-spacing:.14em; text-transform:uppercase; font-weight:600; }
+        .kicker::before { content:''; width:1.75rem; height:2px; border-radius:2px; flex:none;
+            background:linear-gradient(90deg,#ef4444,#22c55e,#3b82f6); }
+
+        /* Dashboard card: premium surface, hover lift, RGB top-edge on hover. */
+        .dash-card { position:relative; border:1px solid rgb(226 232 240); border-radius:1rem;
+            background:#fff; overflow:hidden;
+            transition:transform .25s cubic-bezier(.4,0,.2,1), box-shadow .25s, border-color .25s; }
+        .dash-card:hover { transform:translateY(-4px); border-color:rgb(191 219 254);
+            box-shadow:0 22px 48px -22px rgba(30,58,138,.42); }
+        .dash-card::after { content:''; position:absolute; inset-inline:0; top:0; height:2px;
+            background:linear-gradient(90deg,#ef4444,#22c55e,#3b82f6);
+            transform:scaleX(0); transform-origin:left; transition:transform .35s cubic-bezier(.4,0,.2,1); }
+        .dash-card:hover::after { transform:scaleX(1); }
+
+        /* Glass surface on dark backgrounds. */
+        .glass { background:rgba(255,255,255,.045); border:1px solid rgba(255,255,255,.09);
+            backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); }
+
+        /* Hairline data-flow divider between sections. */
+        .flow-divider { height:1px; border:0;
+            background:linear-gradient(90deg,transparent,rgba(37,99,235,.4),rgba(34,197,94,.4),transparent); }
+
+        /* Animated dotted pipe (data-pipeline / workflow connectors). */
+        .pipe { stroke-dasharray:5 7; animation:pipeflow 1.4s linear infinite; }
+        @keyframes pipeflow { to { stroke-dashoffset:-24; } }
+        @media (prefers-reduced-motion: reduce) { .pipe { animation:none; } }
+
+        /* Dotted/honeycomb data texture (radial dots). */
+        .dot-grid { background-image: radial-gradient(rgba(15,23,42,.06) 1px, transparent 1px);
+            background-size: 22px 22px; }
+        .dot-grid-dark { background-image: radial-gradient(rgba(255,255,255,.08) 1px, transparent 1px);
+            background-size: 22px 22px; }
+
         /* Technical grid background — signals "systems / engineering" */
         .tech-grid {
             --grid: rgba(15, 23, 42, .05);

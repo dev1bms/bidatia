@@ -8,10 +8,8 @@
 {% block content %}
 
 <!-- ============ HERO ============ -->
-<section class="relative overflow-hidden bg-ink text-white">
-    <div class="absolute inset-0 tech-grid tech-grid-dark grid-mask" aria-hidden="true"></div>
-    <div class="absolute -top-32 -right-24 h-96 w-96 rounded-full bg-brand-600/20 blur-3xl" aria-hidden="true"></div>
-    <div class="absolute -bottom-40 -left-24 h-96 w-96 rounded-full bg-accent-500/10 blur-3xl" aria-hidden="true"></div>
+<section class="relative overflow-hidden mesh text-white">
+    <div class="absolute inset-0 dot-grid-dark grid-mask opacity-70" aria-hidden="true"></div>
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20 lg:pt-24 lg:pb-28">
         <div class="grid lg:grid-cols-2 gap-12 lg:gap-10 items-center">
@@ -145,11 +143,74 @@
     </div>
 </section>
 
+<!-- ============ DATA PLATFORM PIPELINE ============ -->
+<section class="relative py-20 lg:py-28 mesh-light border-y border-slate-200 overflow-hidden">
+    <div class="absolute inset-0 dot-grid grid-mask opacity-60" aria-hidden="true"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl reveal">
+            <p class="kicker text-brand-600">{% trans "The Bidatia approach" %}</p>
+            <h2 class="mt-3 text-3xl sm:text-4xl font-bold tracking-tight text-ink text-balance">
+                {% trans "From scattered data to decisions you can act on" %}
+            </h2>
+            <p class="mt-4 text-slate-600">
+                {% trans "Most companies try to automate or report on top of messy data — and inherit the mess. We work the pipeline end to end, in order: capture it, govern it, run it, and only then decide on it." %}
+            </p>
+        </div>
+
+        <div class="mt-14 relative">
+            {# Animated data-flow connector (desktop) #}
+            <svg class="hidden lg:block absolute left-0 right-0 top-7 w-full h-3" viewBox="0 0 1000 12" preserveAspectRatio="none" aria-hidden="true">
+                <line x1="40" y1="6" x2="960" y2="6" stroke="url(#pipeg)" stroke-width="2" class="pipe" />
+                <defs><linearGradient id="pipeg" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#ef4444" stop-opacity=".5"/>
+                    <stop offset="50%" stop-color="#22c55e" stop-opacity=".7"/>
+                    <stop offset="100%" stop-color="#3b82f6" stop-opacity=".5"/>
+                </linearGradient></defs>
+            </svg>
+
+            <ol class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <li class="dash-card p-6 reveal">
+                    <div class="flex items-center justify-between">
+                        <span class="relative z-10 flex h-14 w-14 items-center justify-center rounded-2xl bg-ink text-rose-300 ring-4 ring-white"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M6 12h12M9 18h6"/><path d="M12 3v3M12 12v6"/></svg></span>
+                        <span class="font-mono text-xs font-bold text-slate-300">01</span>
+                    </div>
+                    <h3 class="mt-4 font-bold text-ink">{% trans "Capture" %}</h3>
+                    <p class="mt-1.5 text-sm text-slate-600 leading-relaxed">{% trans "Ingest and integrate data from Odoo, spreadsheets and apps into one reliable pipeline." %}</p>
+                </li>
+                <li class="dash-card p-6 reveal" style="--d:80ms">
+                    <div class="flex items-center justify-between">
+                        <span class="relative z-10 flex h-14 w-14 items-center justify-center rounded-2xl bg-ink text-accent-300 ring-4 ring-white"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 11.5l2 2 4-4.2"/></svg></span>
+                        <span class="font-mono text-xs font-bold text-slate-300">02</span>
+                    </div>
+                    <h3 class="mt-4 font-bold text-ink">{% trans "Govern" %}</h3>
+                    <p class="mt-1.5 text-sm text-slate-600 leading-relaxed">{% trans "Quality rules, ownership and clear definitions, so every metric means exactly one thing." %}</p>
+                </li>
+                <li class="dash-card p-6 reveal" style="--d:160ms">
+                    <div class="flex items-center justify-between">
+                        <span class="relative z-10 flex h-14 w-14 items-center justify-center rounded-2xl bg-ink text-brand-300 ring-4 ring-white"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.2"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.2"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.2"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.2"/></svg></span>
+                        <span class="font-mono text-xs font-bold text-slate-300">03</span>
+                    </div>
+                    <h3 class="mt-4 font-bold text-ink">{% trans "Operate" %}</h3>
+                    <p class="mt-1.5 text-sm text-slate-600 leading-relaxed">{% trans "A modernized Odoo ERP your team trusts to run daily operations — on clean, governed data." %}</p>
+                </li>
+                <li class="dash-card p-6 reveal" style="--d:240ms">
+                    <div class="flex items-center justify-between">
+                        <span class="relative z-10 flex h-14 w-14 items-center justify-center rounded-2xl bg-ink text-brand-300 ring-4 ring-white"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6" rx="0.6"/><rect x="12" y="8" width="3" height="10" rx="0.6"/><rect x="17" y="5" width="3" height="13" rx="0.6"/></svg></span>
+                        <span class="font-mono text-xs font-bold text-slate-300">04</span>
+                    </div>
+                    <h3 class="mt-4 font-bold text-ink">{% trans "Decide" %}</h3>
+                    <p class="mt-1.5 text-sm text-slate-600 leading-relaxed">{% trans "BI dashboards leadership can trust and AI agents that act on data, not guesses." %}</p>
+                </li>
+            </ol>
+        </div>
+    </div>
+</section>
+
 <!-- ============ SERVICES ============ -->
 <section class="py-20 lg:py-28">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-2xl reveal">
-            <p class="font-mono text-xs uppercase tracking-wider text-brand-600">// {% trans "Services" %}</p>
+            <p class="kicker text-brand-600">{% trans "Services" %}</p>
             <h2 class="mt-3 text-3xl sm:text-4xl font-bold tracking-tight text-ink text-balance">
                 {% trans "ERP, data and AI services scoped around outcomes — not hours" %}
             </h2>
@@ -160,13 +221,17 @@
 
         <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {% for service in services %}
-            <a href="{{ service.get_absolute_url }}" class="group relative flex flex-col rounded-2xl border border-slate-200 bg-white p-6 hover:border-brand-300 hover:shadow-xl hover:shadow-brand-100/40 hover:-translate-y-1 transition-all duration-300 reveal" style="--d: {{ forloop.counter0 }}60ms">
-                {% if service.is_featured %}
-                <span class="absolute top-5 end-5 font-mono text-[10px] font-semibold text-brand-700 bg-brand-50 rounded-full px-2.5 py-1 ring-1 ring-brand-100">{% trans "FEATURED" %}</span>
-                {% endif %}
-                <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-ink text-brand-300 ring-1 ring-white/5 group-hover:bg-brand-700 group-hover:text-white transition-colors">
-                    {% include "partials/service_icon.html" with icon=service.icon %}
-                </span>
+            <a href="{{ service.get_absolute_url }}" class="dash-card group flex flex-col p-6 reveal" style="--d: {{ forloop.counter0 }}60ms">
+                <div class="flex items-start justify-between">
+                    <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-ink text-brand-300 ring-1 ring-white/5 group-hover:bg-brand-700 group-hover:text-white transition-colors">
+                        {% include "partials/service_icon.html" with icon=service.icon %}
+                    </span>
+                    {% if service.is_featured %}
+                    <span class="font-mono text-[10px] font-semibold text-brand-700 bg-brand-50 rounded-full px-2.5 py-1 ring-1 ring-brand-100">{% trans "FEATURED" %}</span>
+                    {% else %}
+                    <span class="font-mono text-[11px] text-slate-300 tracking-widest">{{ forloop.counter|stringformat:"02d" }}</span>
+                    {% endif %}
+                </div>
                 <h3 class="mt-5 text-lg font-bold text-ink group-hover:text-brand-700 transition">{{ service.title }}</h3>
                 <p class="mt-2 text-sm text-slate-600 leading-relaxed flex-1">{{ service.short_description }}</p>
                 <div class="mt-5 flex items-center justify-between border-t border-slate-100 pt-4">
@@ -242,7 +307,7 @@
 <section class="py-20 lg:py-28 border-t border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-2xl reveal">
-            <p class="font-mono text-xs uppercase tracking-wider text-brand-600">// {% trans "Odoo expertise" %}</p>
+            <p class="kicker text-brand-600">{% trans "Odoo expertise" %}</p>
             <h2 class="mt-3 text-3xl sm:text-4xl font-bold tracking-tight text-ink text-balance">
                 {% trans "Deep across the entire Odoo suite" %}
             </h2>
@@ -324,7 +389,7 @@
 <section id="build-anim" class="py-20 lg:py-28 bg-slate-50 border-y border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-2xl reveal">
-            <p class="font-mono text-xs uppercase tracking-wider text-brand-600">// {% trans "How we build" %}</p>
+            <p class="kicker text-brand-600">{% trans "How we build" %}</p>
             <h2 class="mt-3 text-3xl sm:text-4xl font-bold tracking-tight text-ink text-balance">
                 {% trans "Real Odoo business logic, written properly" %}
             </h2>
@@ -408,7 +473,7 @@
 <section class="py-20 lg:py-28">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-2xl reveal">
-            <p class="font-mono text-xs uppercase tracking-wider text-brand-600">// {% trans "Industries" %}</p>
+            <p class="kicker text-brand-600">{% trans "Industries" %}</p>
             <h2 class="mt-3 text-3xl sm:text-4xl font-bold tracking-tight text-ink text-balance">
                 {% trans "Industries we help run on Odoo" %}
             </h2>
@@ -474,7 +539,7 @@
 <section class="py-20 lg:py-28 bg-slate-50 border-y border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-2xl reveal">
-            <p class="font-mono text-xs uppercase tracking-wider text-brand-600">// {% trans "The patterns" %}</p>
+            <p class="kicker text-brand-600">{% trans "The patterns" %}</p>
             <h2 class="mt-3 text-3xl sm:text-4xl font-bold tracking-tight text-ink text-balance">
                 {% trans "Most ERP problems fall into one of these" %}
             </h2>
@@ -513,7 +578,7 @@
 <section class="py-20 lg:py-28">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         <div class="reveal">
-            <p class="font-mono text-xs uppercase tracking-wider text-brand-600">// {% trans "Systems &amp; integrations" %}</p>
+            <p class="kicker text-brand-600">{% trans "Systems &amp; integrations" %}</p>
             <h2 class="mt-3 text-3xl sm:text-4xl font-bold tracking-tight text-ink text-balance">
                 {% trans "Your ERP, connected to your data and your AI" %}
             </h2>
@@ -582,7 +647,7 @@
 <section class="py-20 lg:py-28 border-t border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-2xl reveal">
-            <p class="font-mono text-xs uppercase tracking-wider text-brand-600">// {% trans "Why Bidatia" %}</p>
+            <p class="kicker text-brand-600">{% trans "Why Bidatia" %}</p>
             <h2 class="mt-3 text-3xl sm:text-4xl font-bold tracking-tight text-ink text-balance">
                 {% trans "Technical depth, straight talk, and respect for your budget" %}
             </h2>
@@ -617,7 +682,7 @@
 <section class="py-20 lg:py-28 bg-slate-50 border-y border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-2xl reveal">
-            <p class="font-mono text-xs uppercase tracking-wider text-brand-600">// {% trans "How it works" %}</p>
+            <p class="kicker text-brand-600">{% trans "How it works" %}</p>
             <h2 class="mt-3 text-3xl sm:text-4xl font-bold tracking-tight text-ink text-balance">
                 {% trans "From first message to delivered solution — four clear steps" %}
             </h2>
@@ -658,7 +723,7 @@
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="relative rounded-2xl bg-white border border-slate-200 p-8 sm:p-12 overflow-hidden reveal">
             <div class="absolute top-0 right-0 h-40 w-40 tech-grid opacity-70" aria-hidden="true"></div>
-            <p class="font-mono text-xs uppercase tracking-wider text-brand-600">// {% trans "Case study" %}</p>
+            <p class="kicker text-brand-600">{% trans "Case study" %}</p>
             <h2 class="mt-3 text-2xl sm:text-3xl font-bold text-ink tracking-tight text-balance">{{ case_study.title }}</h2>
             <p class="mt-2 font-mono text-sm text-slate-500">{{ case_study.client_summary }}</p>
             <p class="mt-4 text-slate-600 leading-relaxed max-w-2xl">{{ case_study.challenge_paragraphs.0|truncatewords:38 }}</p>

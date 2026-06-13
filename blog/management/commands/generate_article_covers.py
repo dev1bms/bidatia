@@ -343,7 +343,7 @@ _MOTIFS = {
 
 def pick_motif(slug):
     s = (slug or '').lower()
-    if 'spreadsheet' in s or 'outgrow' in s:
+    if 'spreadsheet' in s or 'outgrow' in s or 'excel' in s:
         return 'spreadsheet'
     if 'django' in s or 'integration' in s:
         return 'integration'
@@ -353,6 +353,10 @@ def pick_motif(slug):
         return 'migration'
     if 'studio' in s or 'module' in s:
         return 'modules'
+    if 'dashboard' in s or 'bi-' in s:
+        return 'upgrade'        # ascending bars read as BI / reporting
+    if 'govern' in s or 'quality' in s:
+        return 'diagnostics'    # scope ring reads as audit / governance
     if 'health' in s or 'warning' in s or 'check' in s or 'sign' in s or 'diagnos' in s:
         return 'diagnostics'
     return 'default'

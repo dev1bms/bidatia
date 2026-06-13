@@ -24,6 +24,19 @@ db.sqlite3-journal
 .env
 .env.*
 !.env.example
+# Production env files (e.g. bidatia.env) and any credential material — never commit.
+*.env
+bidatia.env
+*.pem
+*.key
+*.crt
+*credentials*.json
+secrets*.txt
+
+# Deployment / runtime artifacts (never commit)
+celerybeat-schedule*
+*.pid
+*.sock
 
 # OS / editor
 .DS_Store

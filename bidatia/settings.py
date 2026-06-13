@@ -135,10 +135,15 @@ WSGI_APPLICATION = 'bidatia.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+# SQLite database path. In production set DJANGO_DB_PATH to a location OUTSIDE
+# the code checkout (e.g. /srv/bidatia/data/db.sqlite3) so a deploy that resets
+# the working tree (git reset --hard) never touches the live database, and the
+# data stays isolated from any other app on the same host.
+DATABASE_PATH = os.environ.get('DJANGO_DB_PATH', str(BASE_DIR / 'db.sqlite3'))
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': DATABASE_PATH,
     }
 }
 

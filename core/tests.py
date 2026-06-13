@@ -438,9 +438,9 @@ class SeedContentTests(TestCase):
         'odoo-automation-server-actions-review',
     )
     NEW_ARTICLE_SLUGS = (
-        'planning-a-move-to-odoo-19-what-to-check-before-you-upgrade',
-        'how-django-and-odoo-work-together-to-close-process-gaps',
-        'outgrowing-spreadsheets-signs-your-business-needs-a-real-erp',
+        'odoo-as-a-platform-for-operational-data',
+        'from-scattered-excel-to-a-controlled-process',
+        'erp-migration-without-losing-business-knowledge',
     )
 
     @classmethod
@@ -468,7 +468,7 @@ class SeedContentTests(TestCase):
         self.assertIsNotNone(finders.find('img/insights/default.png'))
 
     def test_article_detail_has_cover_and_social_image(self):
-        slug = 'outgrowing-spreadsheets-signs-your-business-needs-a-real-erp'
+        slug = 'from-scattered-excel-to-a-controlled-process'
         html = self.client.get(f'/en/insights/{slug}/').content.decode()
         self.assertIn(f'/static/img/insights/{slug}.png', html)   # hero image
         self.assertIn('property="og:image"', html)                # social card
@@ -508,8 +508,9 @@ class SeedContentTests(TestCase):
             self.assertIn(f'/insights/{slug}/', body)
 
     def test_new_article_appears_in_feed(self):
+        # The feed is non-localized, so it renders in the default language (es).
         feed = self.client.get('/feed/insights.xml').content.decode()
-        self.assertIn('Odoo 19', feed)
+        self.assertIn('datos operativos', feed)
 
     def test_new_service_detail_page_renders(self):
         html = self.client.get('/en/services/odoo-crm-sales-workflow-optimization/').content.decode()

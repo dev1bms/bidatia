@@ -1956,325 +1956,304 @@ BLOG_POSTS = [
     },
     {
         'title': L(
-            '5 warning signs your Odoo system needs a technical health check',
-            '5 señales de que tu sistema Odoo necesita un diagnóstico técnico',
-            '5 علامات تدلّ على أن نظام Odoo لديك يحتاج إلى فحص فني'),
+            'Odoo as a platform for operational data',
+            'Odoo como plataforma de datos operativos',
+            'Odoo كمنصّة للبيانات التشغيلية'),
         'excerpt': L(
-            'Slow screens and "weird" behaviour are rarely random. Here are the signals that usually mean it is time for a structured review.',
-            'Las pantallas lentas y los comportamientos «raros» rara vez son casualidad. Estas son las señales que suelen indicar que toca una revisión estructurada.',
-            'نادرًا ما تكون الشاشات البطيئة والسلوكيات «الغريبة» محض صدفة. إليك العلامات التي تعني عادةً أن وقت المراجعة المنظَّمة قد حان.'),
+            'Most teams treat Odoo as a place to do work. The companies that pull ahead treat it as the place their operational data is born — clean, structured and ready to feed everything else.',
+            'La mayoría de los equipos ven Odoo como un lugar donde trabajar. Las empresas que se adelantan lo ven como el lugar donde nacen sus datos operativos: limpios, estructurados y listos para alimentar todo lo demás.',
+            'يرى معظم الفرق Odoo مكانًا لإنجاز العمل. أما الشركات التي تتقدّم فتراه المكان الذي تُولد فيه بياناتها التشغيلية: نظيفة ومنظَّمة وجاهزة لتغذية كل شيء آخر.'),
         'content': L(
-            "Most Odoo systems don't break overnight — they slowly accumulate friction until one day "
-            "someone asks, 'why does this take so long?' and nobody has a good answer.\n"
-            "Here are five signals that usually mean a structured technical review is overdue: screens "
-            "that have gradually gotten slower without an obvious cause; automated actions or scheduled "
-            "jobs that occasionally fail silently; reports that show different numbers depending on who "
-            "runs them; a growing list of 'don't touch that, we're not sure what it does' customizations; "
-            "and a team that has started building workarounds outside Odoo because something inside it "
-            "doesn't work the way they need.\n"
-            "Individually, each of these might seem manageable. Together, they're usually a sign that "
-            "the system has drifted from its original design — and that a focused audit will save far more "
-            "time than it costs.",
+            "Every sale, purchase, stock move and invoice your business makes is a data point. Your ERP is where "
+            "most of them are created — which means Odoo isn't just an operations tool, it's the single largest "
+            "source of operational data you have. Treating it that way changes how you set it up.\n"
+            "When Odoo is designed as a data platform, the model is intentional: products, partners and accounts "
+            "follow clear structures; mandatory fields are actually mandatory; statuses mean the same thing to "
+            "everyone; and the data is shaped so it can flow cleanly into a warehouse, BI and AI later. When it "
+            "isn't, you get a working system that quietly produces unreliable numbers — and every report built on "
+            "top inherits the problem.\n"
+            "At Bidatia we implement and modernize Odoo with the downstream in mind from day one. The result is an "
+            "ERP that runs your operation today and feeds trustworthy analytics tomorrow, instead of becoming a "
+            "data swamp you have to clean up later.",
 
-            "La mayoría de los sistemas Odoo no se rompen de un día para otro: van acumulando fricción poco a poco "
-            "hasta que un día alguien pregunta «¿por qué tarda tanto esto?» y nadie tiene una buena respuesta.\n"
-            "Estas son cinco señales que suelen indicar que una revisión técnica estructurada lleva tiempo "
-            "pendiente: pantallas que se han ido volviendo más lentas sin causa aparente; acciones automatizadas o "
-            "tareas programadas que de vez en cuando fallan en silencio; informes que muestran cifras distintas "
-            "según quién los ejecute; una lista creciente de personalizaciones del tipo «no toques eso, no sabemos "
-            "bien qué hace»; y un equipo que ha empezado a improvisar soluciones fuera de Odoo porque algo dentro "
-            "no funciona como necesita.\n"
-            "Por separado, cada una puede parecer asumible. Juntas, suelen indicar que el sistema se ha alejado de "
-            "su diseño original, y que una auditoría enfocada ahorrará mucho más tiempo del que cuesta.",
+            "Cada venta, compra, movimiento de stock y factura de tu negocio es un dato. Tu ERP es donde se crean "
+            "la mayoría: eso significa que Odoo no es solo una herramienta de operaciones, es la mayor fuente de "
+            "datos operativos que tienes. Verlo así cambia cómo lo configuras.\n"
+            "Cuando Odoo se diseña como una plataforma de datos, el modelo es intencionado: productos, contactos y "
+            "cuentas siguen estructuras claras; los campos obligatorios lo son de verdad; los estados significan lo "
+            "mismo para todos; y los datos se modelan para poder fluir limpios hacia un almacén, BI e IA más "
+            "adelante. Cuando no lo es, obtienes un sistema que funciona pero produce cifras poco fiables, y cada "
+            "informe construido encima hereda el problema.\n"
+            "En Bidatia implantamos y modernizamos Odoo pensando en lo que viene después desde el primer día. El "
+            "resultado es un ERP que opera tu negocio hoy y alimenta una analítica fiable mañana, en lugar de "
+            "convertirse en un pantano de datos que toca limpiar más tarde.",
 
-            "معظم أنظمة Odoo لا تتعطّل بين ليلة وضحاها — بل تتراكم فيها العوائق ببطء حتى يسأل أحدهم يومًا: «لماذا "
-            "يستغرق هذا كل هذا الوقت؟» ولا يجد أحد إجابة جيدة.\n"
-            "إليك خمس علامات تعني عادةً أن مراجعة فنية منظَّمة قد تأخّرت: شاشات أصبحت أبطأ تدريجيًا دون سبب واضح؛ "
-            "وإجراءات آلية أو مهام مجدوَلة تفشل بصمت أحيانًا؛ وتقارير تُظهر أرقامًا مختلفة بحسب من يشغّلها؛ وقائمة "
-            "متنامية من التخصيصات من نوع «لا تلمس ذلك، لسنا متأكّدين مما يفعله»؛ وفريق بدأ يبتكر حلولًا بديلة خارج "
-            "Odoo لأن شيئًا داخله لا يعمل كما يحتاجون.\n"
-            "بمفردها قد تبدو كل علامة محتمَلة. لكنها مجتمعةً تشير عادةً إلى أن النظام قد ابتعد عن تصميمه الأصلي — وأن "
-            "تدقيقًا مركّزًا سيوفّر من الوقت أكثر بكثير مما يكلّف."),
+            "كل عملية بيع وشراء وحركة مخزون وفاتورة في نشاطك هي نقطة بيانات. ونظام ERP هو المكان الذي يُنشأ فيه "
+            "معظمها — ما يعني أن Odoo ليس مجرّد أداة عمليات، بل أكبر مصدر للبيانات التشغيلية لديك. والنظر إليه على "
+            "هذا النحو يغيّر طريقة إعداده.\n"
+            "حين يُصمَّم Odoo كمنصّة بيانات، يكون النموذج مقصودًا: تتبع المنتجات والجهات والحسابات بِنى واضحة؛ "
+            "والحقول الإلزامية إلزامية فعلًا؛ وتعني الحالات الشيء نفسه للجميع؛ وتُشكَّل البيانات لتتدفّق نظيفة إلى "
+            "مستودع و BI وذكاء اصطناعي لاحقًا. وحين لا يكون كذلك، تحصل على نظام يعمل لكنه ينتج أرقامًا غير موثوقة، "
+            "ويرث كل تقرير فوقه المشكلة.\n"
+            "في Bidatia ننفّذ Odoo ونحدّثه واضعين ما يأتي لاحقًا في الحسبان منذ اليوم الأول. والنتيجة نظام يشغّل "
+            "عملك اليوم ويغذّي تحليلات موثوقة غدًا، بدل أن يصير مستنقع بيانات تضطر لتنظيفه لاحقًا."),
         'meta_description': L(
-            'Five common warning signs that your Odoo system has drifted from its original design and would benefit from a structured technical health check.',
-            'Cinco señales habituales de que tu sistema Odoo se ha alejado de su diseño original y se beneficiaría de un diagnóstico técnico estructurado.',
-            'خمس علامات شائعة على أن نظام Odoo لديك قد ابتعد عن تصميمه الأصلي وسيستفيد من فحص فني منظَّم.'),
+            'Your ERP is the largest source of operational data you have. Why designing Odoo as a data platform — clean model, real constraints, analytics-ready — pays off downstream.',
+            'Tu ERP es la mayor fuente de datos operativos que tienes. Por qué diseñar Odoo como plataforma de datos —modelo limpio, restricciones reales, listo para analítica— compensa después.',
+            'نظام ERP لديك هو أكبر مصدر للبيانات التشغيلية. لماذا يُجدي تصميم Odoo كمنصّة بيانات — نموذج نظيف وقيود حقيقية وجاهزية للتحليلات — لاحقًا.'),
     },
     {
         'title': L(
-            'Odoo Studio vs. custom modules: when each one makes sense',
-            'Odoo Studio frente a módulos a medida: cuándo conviene cada uno',
-            'Odoo Studio مقابل الوحدات المخصّصة: متى يناسب كلٌّ منهما'),
+            'From Odoo Studio to maintainable modules',
+            'De Odoo Studio a módulos mantenibles',
+            'من Odoo Studio إلى وحدات قابلة للصيانة'),
         'excerpt': L(
-            'Studio is a great prototyping tool — but knowing when to graduate to a real module can save you serious pain later.',
-            'Studio es una gran herramienta de prototipado, pero saber cuándo dar el salto a un módulo de verdad puede ahorrarte muchos problemas después.',
-            'يُعدّ Studio أداة ممتازة لبناء النماذج الأولية، لكن معرفة متى تنتقل إلى وحدة حقيقية قد يجنّبك متاعب جدّية لاحقًا.'),
+            'Studio is brilliant for prototyping and quietly dangerous as a long-term foundation. Here is when to graduate your customizations into real, version-controlled modules.',
+            'Studio es excelente para prototipar y, en silencio, peligroso como base a largo plazo. Aquí explicamos cuándo conviene graduar tus personalizaciones a módulos reales y versionados.',
+            'يُعدّ Studio ممتازًا لبناء النماذج الأولية، وخطيرًا بهدوء كأساس طويل الأمد. إليك متى يجب ترقية تخصيصاتك إلى وحدات حقيقية خاضعة لإدارة الإصدارات.'),
         'content': L(
-            "Odoo Studio is genuinely useful: it lets non-developers add fields, tweak views, and build "
-            "simple automations without writing code. The trouble starts when Studio becomes the permanent "
-            "home for business-critical logic rather than a prototyping tool.\n"
-            "A simple rule of thumb: if a customization is small, low-risk, and easy to recreate, Studio is "
-            "often fine. If it's central to how your business runs, touches multiple workflows, or would be "
-            "painful to lose, it probably belongs in a properly engineered custom module — version-controlled, "
-            "testable, and safe to carry through future upgrades.\n"
-            "The good news is that this isn't an all-or-nothing decision. Many companies run a hybrid setup: "
-            "Studio for quick, low-stakes adjustments, and custom modules for the logic that really matters. "
-            "The key is being intentional about which is which — rather than discovering the difference during "
-            "your next upgrade.",
+            "Odoo Studio lets a business person add a field, tweak a view or wire up an automation without writing "
+            "code. That speed is genuinely useful — for prototyping, for small tweaks, for testing an idea. The "
+            "trouble starts when Studio quietly becomes the foundation a critical process depends on.\n"
+            "Studio changes are hard to version, hard to review, easy to break on an upgrade, and invisible to the "
+            "next person who has to extend them. One day a field 'disappears', an automation fires twice, and "
+            "nobody is sure what is safe to touch. The fix isn't to ban Studio — it's to know when a customization "
+            "has earned a proper home: a version-controlled module with tests, documentation and a clear owner.\n"
+            "Bidatia maps what your Studio setup actually does, then rebuilds the parts that matter as clean, "
+            "upgrade-safe modules — same behavior for users, dramatically less risk for the business. You keep "
+            "Studio for what it's good at, and stop betting your operation on clicks nobody can audit.",
 
-            "Odoo Studio es realmente útil: permite a quienes no programan añadir campos, ajustar vistas y crear "
-            "automatizaciones sencillas sin escribir código. El problema empieza cuando Studio pasa de ser una "
-            "herramienta de prototipado a convertirse en el hogar permanente de la lógica crítica del negocio.\n"
-            "Una regla práctica sencilla: si una personalización es pequeña, de bajo riesgo y fácil de rehacer, "
-            "Studio suele bastar. Si es central para el funcionamiento de tu negocio, afecta a varios flujos de "
-            "trabajo o sería doloroso perderla, probablemente debería vivir en un módulo a medida bien diseñado: "
-            "versionado, testeable y seguro de cara a futuras actualizaciones.\n"
-            "La buena noticia es que no es una decisión de todo o nada. Muchas empresas funcionan con un enfoque "
-            "híbrido: Studio para ajustes rápidos y de poca importancia, y módulos a medida para la lógica que de "
-            "verdad importa. La clave es decidir con criterio qué va en cada sitio, en lugar de descubrir la "
-            "diferencia durante la próxima actualización.",
+            "Odoo Studio permite a una persona de negocio añadir un campo, ajustar una vista o montar una "
+            "automatización sin escribir código. Esa rapidez es muy útil: para prototipar, para pequeños retoques, "
+            "para probar una idea. El problema empieza cuando Studio se convierte, sin querer, en la base de la que "
+            "depende un proceso crítico.\n"
+            "Los cambios de Studio son difíciles de versionar, difíciles de revisar, fáciles de romper en una "
+            "actualización e invisibles para la siguiente persona que deba ampliarlos. Un día un campo "
+            "«desaparece», una automatización se dispara dos veces y nadie sabe qué es seguro tocar. La solución no "
+            "es prohibir Studio, sino saber cuándo una personalización merece un hogar de verdad: un módulo "
+            "versionado, con pruebas, documentación y un responsable claro.\n"
+            "En Bidatia documentamos qué hace realmente tu configuración de Studio y reconstruimos lo importante "
+            "como módulos limpios y seguros ante actualizaciones: el mismo comportamiento para los usuarios, mucho "
+            "menos riesgo para el negocio. Sigues usando Studio para lo que es bueno y dejas de apostar tu "
+            "operación a clics que nadie puede auditar.",
 
-            "Odoo Studio مفيد حقًّا: فهو يتيح لغير المطوّرين إضافة الحقول، وتعديل الواجهات، وبناء أتمتة بسيطة دون "
-            "كتابة شيفرة. لكن المشكلة تبدأ حين يتحوّل Studio من أداة لبناء النماذج الأولية إلى موطن دائم لمنطق العمل "
-            "الجوهري.\n"
-            "قاعدة عملية بسيطة: إذا كان التخصيص صغيرًا، ومنخفض المخاطر، وسهل إعادة إنشائه، فغالبًا يكفي Studio. أمّا "
-            "إذا كان محوريًا لطريقة عمل نشاطك، أو يمسّ عدّة تدفّقات عمل، أو سيكون فقدانه مؤلمًا، فالأرجح أن مكانه وحدة "
-            "مخصّصة مصمَّمة بعناية — خاضعة لإدارة الإصدارات، وقابلة للاختبار، وآمنة عبر الترقيات المقبلة.\n"
-            "والخبر الجيّد أن هذا ليس قرارًا حاسمًا بين كل شيء أو لا شيء. تعتمد كثير من الشركات إعدادًا هجينًا: Studio "
-            "للتعديلات السريعة المنخفضة الأهمية، والوحدات المخصّصة للمنطق المهمّ فعلًا. والمفتاح هو اتخاذ القرار بوعي "
-            "حول ما يذهب إلى كلٍّ منهما — بدل اكتشاف الفرق أثناء الترقية التالية."),
+            "يتيح Odoo Studio لشخص من فريق الأعمال إضافة حقل أو تعديل واجهة أو إنشاء أتمتة دون كتابة شيفرة. وهذه "
+            "السرعة مفيدة فعلًا: لبناء النماذج، وللتعديلات الصغيرة، ولاختبار فكرة. تبدأ المشكلة حين يصبح Studio دون "
+            "قصد الأساس الذي تعتمد عليه عملية حسّاسة.\n"
+            "تغييرات Studio يصعب إصدارها ومراجعتها، وتنكسر بسهولة عند الترقية، وتكون غير مرئية لمن يأتي لاحقًا "
+            "ليوسّعها. وذات يوم «يختفي» حقل، وتُنفَّذ أتمتة مرتين، ولا أحد متأكّد ممّا يمكن لمسه بأمان. والحل ليس منع "
+            "Studio، بل معرفة متى استحقّت التخصيصات بيتًا حقيقيًا: وحدة خاضعة للإصدارات، باختبارات وتوثيق ومسؤول "
+            "واضح.\n"
+            "في Bidatia نوثّق ما يفعله إعداد Studio فعلًا، ثم نعيد بناء ما يهمّ كوحدات نظيفة وآمنة أمام الترقيات: "
+            "السلوك نفسه للمستخدمين، ومخاطر أقلّ بكثير للنشاط. تبقي Studio لما يُتقنه، وتتوقّف عن المخاطرة بعملك على "
+            "نقرات لا يستطيع أحد تدقيقها."),
         'meta_description': L(
-            'A practical guide to deciding when Odoo Studio customizations are appropriate, and when business-critical logic should be rebuilt as a proper custom module.',
-            'Una guía práctica para decidir cuándo son apropiadas las personalizaciones de Odoo Studio y cuándo la lógica crítica debe reconstruirse como un módulo a medida en condiciones.',
-            'دليل عملي لتقرير متى تكون تخصيصات Odoo Studio مناسبة، ومتى ينبغي إعادة بناء المنطق الجوهري كوحدة مخصّصة سليمة.'),
+            'Odoo Studio is great for prototyping and risky as a foundation. When to convert Studio customizations into clean, version-controlled, upgrade-safe modules — and why.',
+            'Odoo Studio es ideal para prototipar y arriesgado como base. Cuándo convertir las personalizaciones de Studio en módulos limpios, versionados y seguros ante actualizaciones, y por qué.',
+            'Odoo Studio رائع لبناء النماذج وخطير كأساس. متى تحوّل تخصيصات Studio إلى وحدات نظيفة خاضعة للإصدارات وآمنة أمام الترقيات، ولماذا.'),
     },
     {
         'title': L(
-            'Three questions to ask before starting an Odoo migration',
-            'Tres preguntas que hacerte antes de empezar una migración de Odoo',
-            'ثلاثة أسئلة اطرحها قبل بدء ترقية Odoo'),
+            'From scattered Excel to a controlled process',
+            'Del Excel disperso al proceso controlado',
+            'من Excel المتفرّق إلى عملية مُحكَمة'),
         'excerpt': L(
-            'Migrations succeed or struggle long before the first line of code changes. These three questions help you start on the right foot.',
-            'El éxito o las dificultades de una migración se deciden mucho antes de cambiar la primera línea de código. Estas tres preguntas te ayudan a empezar con buen pie.',
-            'يتحدّد نجاح الترقية أو تعثّرها قبل تغيير أول سطر برمجي بوقت طويل. تساعدك هذه الأسئلة الثلاثة على البدء بشكل صحيح.'),
+            'Spreadsheets feel like control. In reality they spread the truth across files, versions and inboxes. Moving to a controlled process is less about software and more about agreeing on one reality.',
+            'Las hojas de cálculo dan sensación de control. En realidad reparten la verdad entre archivos, versiones y bandejas de entrada. Pasar a un proceso controlado va menos de software y más de acordar una única realidad.',
+            'تمنح جداول البيانات شعورًا بالسيطرة. لكنها في الواقع توزّع الحقيقة على ملفات ونسخ وصناديق بريد. والانتقال إلى عملية مُحكَمة يتعلّق بالبرمجيات أقل، وبالاتفاق على واقع واحد أكثر.'),
         'content': L(
-            "Odoo migrations have a reputation for being risky — and sometimes they are, but usually because "
-            "key questions weren't answered clearly before the project started.\n"
-            "First: what exactly are we relying on today that must keep working tomorrow? It's surprisingly "
-            "common for teams to discover, mid-migration, that a 'minor' customization is actually load-bearing. "
-            "Second: how clean is our current setup, really? A migration is the worst time to discover years of "
-            "undocumented Studio changes and forgotten automations. Third: what does success actually look like, "
-            "and how will we know we've achieved it? Without a clear definition, it's hard to know when the "
-            "project is truly done.\n"
-            "Answering these honestly — ideally through a structured assessment — turns a migration from a "
-            "leap of faith into a manageable, well-scoped project.",
+            "Almost every growing company runs part of itself on spreadsheets: a pricing file, a stock tracker, a "
+            "month-end model, a 'master' list that three people maintain slightly differently. They work — until "
+            "they don't. The failure is rarely dramatic; it's a slow drift where nobody is quite sure which file "
+            "is current and which number is real.\n"
+            "Moving to a controlled process doesn't mean banning Excel. It means deciding which data is "
+            "authoritative, who owns it, and where the single version lives — then putting that data inside a "
+            "system that enforces the rules instead of trusting everyone to remember them. Validation replaces "
+            "copy-paste; an audit trail replaces 'I think Maria changed it'; one record replaces fifteen tabs.\n"
+            "Bidatia helps teams make that move in stages: we map how the business actually works today, pick the "
+            "one or two processes causing the most pain, and structure those first — usually in Odoo, connected to "
+            "the data you already trust. Excel stays for what it's great at: quick analysis on top of a single, "
+            "reliable source.",
 
-            "Las migraciones de Odoo tienen fama de arriesgadas, y a veces lo son, pero normalmente porque no se "
-            "respondieron con claridad las preguntas clave antes de empezar el proyecto.\n"
-            "Primera: ¿de qué dependemos hoy exactamente que tenga que seguir funcionando mañana? Es "
-            "sorprendentemente habitual que los equipos descubran, a mitad de la migración, que una personalización "
-            "«menor» en realidad es esencial. Segunda: ¿cómo de limpia está realmente nuestra configuración actual? "
-            "Una migración es el peor momento para descubrir años de cambios de Studio sin documentar y "
-            "automatizaciones olvidadas. Tercera: ¿qué significa realmente el éxito y cómo sabremos que lo hemos "
-            "logrado? Sin una definición clara, es difícil saber cuándo está de verdad terminado el proyecto.\n"
-            "Responder a estas preguntas con honestidad —idealmente mediante una evaluación estructurada— convierte "
-            "una migración de un salto al vacío en un proyecto manejable y bien definido.",
+            "Casi toda empresa en crecimiento gestiona una parte de sí misma en hojas de cálculo: un archivo de "
+            "precios, un control de stock, un modelo de cierre de mes, una lista «maestra» que tres personas "
+            "mantienen de forma ligeramente distinta. Funcionan, hasta que dejan de hacerlo. El fallo rara vez es "
+            "dramático; es una deriva lenta en la que nadie sabe muy bien qué archivo está vigente y qué cifra es "
+            "real.\n"
+            "Pasar a un proceso controlado no significa prohibir Excel. Significa decidir qué datos son "
+            "autoritativos, quién es su responsable y dónde vive la única versión, y luego poner esos datos en un "
+            "sistema que aplique las reglas en lugar de confiar en que todos las recuerden. La validación sustituye "
+            "al copia-pega; una traza de auditoría sustituye al «creo que lo cambió María»; un registro sustituye a "
+            "quince pestañas.\n"
+            "En Bidatia ayudamos a dar ese paso por fases: mapeamos cómo funciona hoy el negocio, elegimos el "
+            "proceso o dos que más duelen y los estructuramos primero, normalmente en Odoo, conectados a los datos "
+            "en los que ya confías. Excel se queda para lo que hace de maravilla: análisis rápido sobre una fuente "
+            "única y fiable.",
 
-            "تُعرف ترقيات Odoo بأنها محفوفة بالمخاطر — وهي كذلك أحيانًا، لكن غالبًا لأن أسئلة جوهرية لم تُجَب بوضوح "
-            "قبل انطلاق المشروع.\n"
-            "أولًا: ما الذي نعتمد عليه اليوم بالضبط ويجب أن يستمرّ في العمل غدًا؟ من الشائع بشكل مفاجئ أن تكتشف الفرق "
-            "في منتصف الترقية أن تخصيصًا «ثانويًا» هو في الحقيقة أساسي. ثانيًا: ما مدى نظافة إعدادنا الحالي فعلًا؟ "
-            "الترقية أسوأ وقت لاكتشاف سنوات من تغييرات Studio غير الموثّقة والأتمتة المنسيّة. ثالثًا: كيف يبدو النجاح "
-            "فعليًا، وكيف سنعرف أننا حقّقناه؟ بدون تعريف واضح، يصعب معرفة متى يكون المشروع قد اكتمل حقًّا.\n"
-            "والإجابة عن هذه الأسئلة بصدق — ويُفضَّل عبر تقييم منظَّم — تحوّل الترقية من قفزة في المجهول إلى مشروع "
-            "محدّد المعالم وقابل للإدارة."),
+            "تدير كل شركة نامية تقريبًا جزءًا منها على جداول البيانات: ملف أسعار، ومتابعة مخزون، ونموذج إقفال شهري، "
+            "وقائمة «رئيسية» يحافظ عليها ثلاثة أشخاص بطرق مختلفة قليلًا. وهي تعمل، إلى أن تتوقّف. ونادرًا ما يكون "
+            "الإخفاق دراميًا؛ بل انحراف بطيء لا يعرف فيه أحد بدقّة أي ملف هو الحالي وأي رقم هو الحقيقي.\n"
+            "الانتقال إلى عملية مُحكَمة لا يعني منع Excel. بل يعني تحديد أي البيانات مرجعية، ومن يملكها، وأين توجد "
+            "النسخة الوحيدة، ثم وضع تلك البيانات داخل نظام يفرض القواعد بدل الاعتماد على تذكُّر الجميع لها. يحلّ "
+            "التحقّق محلّ النسخ واللصق؛ ويحلّ سجلّ التدقيق محلّ «أظن أن ماريا غيّرته»؛ ويحلّ سجلّ واحد محلّ خمس عشرة "
+            "علامة تبويب.\n"
+            "في Bidatia نساعد الفرق على هذه النقلة على مراحل: نرسم كيف يعمل النشاط اليوم، ونختار العملية أو "
+            "العمليتين الأكثر إيلامًا ونهيكلها أولًا، عادةً في Odoo، متّصلة بالبيانات التي تثق بها بالفعل. ويبقى "
+            "Excel لما يُبدع فيه: تحليل سريع فوق مصدر واحد موثوق."),
         'meta_description': L(
-            'Three essential questions every business should answer before starting an Odoo version migration, to reduce risk and avoid costly surprises mid-project.',
-            'Tres preguntas esenciales que toda empresa debería responder antes de iniciar una migración de versión de Odoo, para reducir el riesgo y evitar sorpresas costosas a mitad del proyecto.',
-            'ثلاثة أسئلة جوهرية ينبغي لكل شركة الإجابة عنها قبل بدء ترقية إصدار Odoo، للحدّ من المخاطر وتجنّب المفاجآت المكلفة في منتصف المشروع.'),
+            'Spreadsheets feel like control but scatter the truth across files and versions. How to move from scattered Excel to one controlled, audited process — without banning Excel.',
+            'Las hojas de cálculo dan sensación de control pero dispersan la verdad. Cómo pasar del Excel disperso a un proceso único, controlado y auditado, sin prohibir Excel.',
+            'تمنح جداول البيانات شعورًا بالسيطرة لكنها تشتّت الحقيقة. كيف تنتقل من Excel المتفرّق إلى عملية واحدة مُحكَمة ومُدقَّقة دون منع Excel.'),
     },
     {
         'title': L(
-            'Planning a move to Odoo 19? What to check before you upgrade',
-            '¿Pensando en pasar a Odoo 19? Qué revisar antes de actualizar',
-            'تفكّر في الانتقال إلى Odoo 19؟ ما الذي يجب فحصه قبل الترقية'),
+            'BI dashboards connected to your ERP',
+            'Dashboards de BI conectados a tu ERP',
+            'لوحات BI متّصلة بنظام ERP لديك'),
         'excerpt': L(
-            'A newer Odoo version is tempting — but the upgrade succeeds or stalls based on what you check first. Here is a practical pre-migration checklist.',
-            'Una versión más nueva de Odoo es tentadora, pero el éxito de la actualización depende de lo que revises primero. Aquí tienes una lista práctica previa a la migración.',
-            'إصدار أحدث من Odoo مغرٍ — لكن نجاح الترقية يتوقّف على ما تفحصه أولًا. إليك قائمة عملية لما قبل الترقية.'),
+            'A dashboard is only as trustworthy as the pipe behind it. Connecting BI directly to a governed ERP is what turns pretty charts into numbers leadership will actually act on.',
+            'Un dashboard solo es tan fiable como la tubería que tiene detrás. Conectar el BI directamente a un ERP gobernado es lo que convierte gráficos bonitos en cifras sobre las que la dirección sí actuará.',
+            'لوحة المعلومات موثوقة بقدر الأنبوب خلفها فقط. وربط BI مباشرةً بنظام ERP مَحوكم هو ما يحوّل الرسوم الجميلة إلى أرقام تتصرّف الإدارة بناءً عليها فعلًا.'),
         'content': L(
-            "Moving to a newer Odoo version like Odoo 19 can bring real benefits — but most painful upgrades "
-            "aren't caused by the new version itself. They're caused by what gets carried into it: custom code "
-            "that wasn't written to survive upgrades, Studio changes nobody documented, third-party apps that may "
-            "not have a compatible release yet, and data that quietly drifted out of shape over the years.\n"
-            "Before committing to the move, check four things. First, your customizations and Studio changes: "
-            "which are business-critical, and will they work on the new version? Second, your third-party and "
-            "community apps: is each one available and stable for your target version? Third, your integrations: "
-            "will the APIs and connectors still behave the same way? Fourth, your data: is it clean enough to "
-            "migrate, or will it carry old problems forward?\n"
-            "The cheapest way to answer these is a structured migration assessment on a copy of your system, "
-            "before any production change. It turns 'we think it'll be fine' into a clear, evidence-based plan — "
-            "and that is almost always cheaper than fixing a migration that went sideways.",
+            "Leadership doesn't lose trust in dashboards because the charts are ugly. They lose trust because last "
+            "month's revenue showed three different totals in three meetings. The chart was never the problem — "
+            "the pipeline feeding it was.\n"
+            "BI done well starts at the source: operational data lands in the ERP under clear rules, flows through "
+            "a governed pipeline, and is shaped by a defined metric layer before it ever reaches a chart. 'Revenue', "
+            "'active customer' and 'margin' are defined once and reused everywhere, so two dashboards can't "
+            "disagree. The visualization is the last 10% — the trustworthy 90% is the plumbing and the governance "
+            "underneath it.\n"
+            "Bidatia builds dashboards on top of your Odoo and warehouse data with that discipline baked in: "
+            "documented metrics, traceability back to source, and self-service views so teams answer their own "
+            "questions. The outcome is the rarest thing in business reporting — a number nobody argues with.",
 
-            "Pasar a una versión más nueva de Odoo, como Odoo 19, puede aportar beneficios reales, pero la mayoría "
-            "de las actualizaciones dolorosas no las causa la nueva versión en sí, sino lo que se arrastra hasta "
-            "ella: código a medida que no se escribió para sobrevivir a las actualizaciones, cambios de Studio que "
-            "nadie documentó, aplicaciones de terceros que quizá aún no tengan una versión compatible y datos que "
-            "se han ido deformando con los años.\n"
-            "Antes de dar el paso, revisa cuatro cosas. Primero, tus personalizaciones y cambios de Studio: "
-            "¿cuáles son críticos y funcionarán en la nueva versión? Segundo, tus aplicaciones de terceros o de la "
-            "comunidad: ¿están disponibles y estables para tu versión de destino? Tercero, tus integraciones: "
-            "¿seguirán comportándose igual las API y los conectores? Cuarto, tus datos: ¿están lo bastante limpios "
-            "para migrar o arrastrarán problemas antiguos?\n"
-            "La forma más barata de responder a esto es una evaluación de migración estructurada sobre una copia de "
-            "tu sistema, antes de tocar producción. Convierte el «creemos que irá bien» en un plan claro basado en "
-            "evidencias, y eso casi siempre sale más barato que arreglar una migración que se torció.",
+            "La dirección no pierde la confianza en los dashboards porque los gráficos sean feos. La pierde porque "
+            "los ingresos del mes pasado mostraron tres totales distintos en tres reuniones. El gráfico nunca fue "
+            "el problema: lo era la tubería que lo alimentaba.\n"
+            "El BI bien hecho empieza en el origen: los datos operativos llegan al ERP con reglas claras, fluyen "
+            "por una tubería gobernada y se modelan con una capa de métricas definida antes de llegar a un gráfico. "
+            "«Ingresos», «cliente activo» y «margen» se definen una vez y se reutilizan en todas partes, así dos "
+            "dashboards no pueden contradecirse. La visualización es el último 10 %: el 90 % fiable es la fontanería "
+            "y el gobierno del dato que hay debajo.\n"
+            "En Bidatia construimos dashboards sobre tus datos de Odoo y del almacén con esa disciplina integrada: "
+            "métricas documentadas, trazabilidad hasta el origen y vistas de autoservicio para que los equipos "
+            "respondan sus propias preguntas. El resultado es lo más raro en los informes de empresa: una cifra que "
+            "nadie discute.",
 
-            "قد يجلب الانتقال إلى إصدار أحدث من Odoo مثل Odoo 19 فوائد حقيقية — لكن معظم الترقيات المؤلمة لا يسبّبها "
-            "الإصدار الجديد نفسه، بل ما يُحمَل إليه: شيفرة مخصّصة لم تُكتب لتصمد أمام الترقيات، وتغييرات Studio لم "
-            "يوثّقها أحد، وتطبيقات طرف ثالث قد لا يتوفّر لها إصدار متوافق بعد، وبيانات انحرفت بهدوء عن شكلها عبر "
-            "السنين.\n"
-            "قبل الإقدام على الخطوة، افحص أربعة أمور. أولًا، تخصيصاتك وتغييرات Studio: أيّها جوهري، وهل ستعمل على "
-            "الإصدار الجديد؟ ثانيًا، تطبيقات الطرف الثالث أو المجتمع: هل كلٌّ منها متوفّر ومستقر لإصدارك المستهدف؟ "
-            "ثالثًا، تكاملاتك: هل ستظلّ واجهات الـ API والموصّلات تتصرّف بالطريقة نفسها؟ رابعًا، بياناتك: هل هي نظيفة "
-            "بما يكفي للترحيل أم ستحمل المشكلات القديمة معها؟\n"
-            "أرخص طريقة للإجابة عن ذلك هي تقييم ترقية منظَّم على نسخة من نظامك، قبل أي تغيير في الإنتاج. فهو يحوّل "
-            "«نظنّ أن الأمور ستكون بخير» إلى خطة واضحة مبنية على أدلة — وهذا غالبًا أرخص من إصلاح ترقية انحرفت عن "
-            "مسارها."),
+            "لا تفقد الإدارة الثقة في اللوحات لأن الرسوم قبيحة، بل لأن إيراد الشهر الماضي ظهر بثلاثة مجاميع مختلفة في "
+            "ثلاثة اجتماعات. لم يكن الرسم هو المشكلة قط؛ بل الأنبوب الذي يغذّيه.\n"
+            "يبدأ BI الجيّد من المصدر: تصل البيانات التشغيلية إلى ERP وفق قواعد واضحة، وتتدفّق عبر أنبوب مَحوكم، "
+            "وتُشكَّل بطبقة مقاييس معرَّفة قبل أن تصل إلى أي رسم. تُعرَّف «الإيراد» و«العميل النشِط» و«الهامش» مرّة "
+            "واحدة وتُعاد في كل مكان، فلا تتعارض لوحتان. التمثيل المرئي هو آخر 10٪؛ أما الـ 90٪ الموثوقة فهي السباكة "
+            "والحوكمة تحتها.\n"
+            "في Bidatia نبني اللوحات فوق بيانات Odoo والمستودع بهذا الانضباط مدمجًا: مقاييس موثَّقة، وتتبُّع حتى "
+            "المصدر، وعروض خدمة ذاتية لتجيب الفرق عن أسئلتها. والنتيجة أندر شيء في تقارير الأعمال: رقم لا يجادل فيه أحد."),
         'meta_description': L(
-            'Planning an upgrade to Odoo 19? A practical pre-migration checklist covering customizations, third-party apps, integrations and data — so your Odoo upgrade goes smoothly.',
-            '¿Planeas actualizar a Odoo 19? Una lista práctica previa a la migración sobre personalizaciones, apps de terceros, integraciones y datos, para que tu actualización de Odoo salga bien.',
-            'تخطّط للترقية إلى Odoo 19؟ قائمة عملية لما قبل الترقية تغطّي التخصيصات وتطبيقات الطرف الثالث والتكاملات والبيانات — لتمرّ ترقية Odoo بسلاسة.'),
+            'A dashboard is only as trustworthy as the pipeline behind it. How connecting BI to a governed Odoo ERP — with a defined metric layer — produces numbers leadership acts on.',
+            'Un dashboard solo es tan fiable como su tubería. Cómo conectar el BI a un Odoo ERP gobernado, con una capa de métricas definida, produce cifras sobre las que la dirección actúa.',
+            'اللوحة موثوقة بقدر أنبوبها فقط. كيف يُنتج ربط BI بنظام Odoo ERP مَحوكم — بطبقة مقاييس معرَّفة — أرقامًا تتصرّف الإدارة بناءً عليها.'),
     },
     {
         'title': L(
-            'How Django and Odoo work together to close process gaps',
-            'Cómo Django y Odoo trabajan juntos para cerrar brechas en los procesos de negocio',
-            'كيف يعمل Django و Odoo معًا لسدّ الفجوات في عمليات الأعمال'),
+            'ERP migration without losing business knowledge',
+            'Migraciones de ERP sin perder el conocimiento del negocio',
+            'ترحيل ERP دون فقدان معرفة العمل'),
         'excerpt': L(
-            'Odoo runs your business — but some processes need more than configuration. Here is where a Django layer turns a limitation into a clean solution.',
-            'Odoo gestiona tu negocio, pero algunos procesos necesitan más que configuración. Aquí es donde una capa Django convierte una limitación en una solución limpia.',
-            'يدير Odoo نشاطك — لكن بعض العمليات تحتاج إلى أكثر من مجرّد إعداد. هنا يحوّل وجود طبقة Django القيدَ إلى حلٍّ نظيف.'),
+            'The biggest risk in an ERP migration isn\'t technical — it\'s amnesia. The hard-won rules buried in your old system are easy to leave behind. Capturing them is the real project.',
+            'El mayor riesgo de una migración de ERP no es técnico: es la amnesia. Las reglas ganadas con esfuerzo que viven enterradas en tu sistema antiguo son fáciles de dejar atrás. Capturarlas es el verdadero proyecto.',
+            'أكبر خطر في ترحيل ERP ليس تقنيًا، بل النسيان. فالقواعد المكتسبة بمشقّة والمدفونة في نظامك القديم يسهل تركها خلفك. والتقاطها هو المشروع الحقيقي.'),
         'content': L(
-            "Odoo is excellent at covering the standard shape of a business — sales, inventory, accounting, "
-            "projects. But most companies eventually hit a process that doesn't fit neatly inside it: a "
-            "customer-facing portal with its own logic, a high-volume data flow that has to be fast and reliable, "
-            "a complex calculation, or a tight integration with an external platform.\n"
-            "You can sometimes force these into Odoo with heavy customization — but it is often cleaner to build "
-            "the specialized part as a Django service that talks to Odoo through a well-defined API. Odoo stays the "
-            "system of record for your core operations, while Django handles the part it is better suited for: "
-            "custom interfaces, heavier logic, or performance-sensitive flows. Each system does what it does best, "
-            "and a clean integration keeps them in sync.\n"
-            "This pattern works precisely because the two share the same foundation — Python — so the same engineer "
-            "can reason about both sides. The result is fewer fragile workarounds inside Odoo and a solution that "
-            "is genuinely maintainable, rather than a pile of patches waiting to break at the next upgrade.",
+            "When companies plan an ERP migration, they budget for data transfer and testing. What they "
+            "under-budget for is knowledge: the dozens of quiet rules your current system encodes — why this "
+            "customer is invoiced differently, which products skip a step, what that custom field really means. "
+            "Much of it lives in people's heads and a few unlabeled customizations.\n"
+            "Lift-and-shift the data without capturing that knowledge and you don't migrate your business — you "
+            "migrate a hollow copy of it, then spend the next year rediscovering rules the hard way, one angry "
+            "customer at a time. The work that actually de-risks a migration is the unglamorous part: documenting "
+            "how the business really runs before a single record moves.\n"
+            "Bidatia treats migration as a knowledge-capture project first and a data project second. We audit the "
+            "existing system, surface the rules hiding inside customizations and habits, and carry them forward "
+            "deliberately into a cleaner Odoo build — so you arrive on the new system with your operation intact, "
+            "not amputated.",
 
-            "Odoo es excelente para cubrir la forma estándar de un negocio: ventas, inventario, contabilidad, "
-            "proyectos. Pero casi todas las empresas acaban topándose con un proceso que no encaja del todo: un "
-            "portal para clientes con su propia lógica, un flujo de datos de gran volumen que debe ser rápido y "
-            "fiable, un cálculo complejo o una integración estrecha con una plataforma externa.\n"
-            "A veces puedes forzar todo esto dentro de Odoo con mucha personalización, pero suele ser más limpio "
-            "construir la parte especializada como un servicio Django que se comunica con Odoo mediante una API "
-            "bien definida. Odoo sigue siendo el sistema de referencia de tu operativa principal, mientras Django "
-            "se encarga de aquello para lo que está mejor preparado: interfaces a medida, lógica más pesada o "
-            "flujos sensibles al rendimiento. Cada sistema hace lo que mejor sabe hacer y una integración limpia "
-            "los mantiene sincronizados.\n"
-            "Este enfoque funciona precisamente porque ambos comparten la misma base —Python—, de modo que el mismo "
-            "ingeniero puede razonar sobre los dos lados. El resultado son menos soluciones frágiles dentro de Odoo "
-            "y una solución de verdad mantenible, en lugar de un montón de parches a la espera de romperse en la "
-            "próxima actualización.",
+            "Cuando las empresas planifican una migración de ERP, presupuestan la transferencia de datos y las "
+            "pruebas. Lo que infravaloran es el conocimiento: las decenas de reglas silenciosas que codifica tu "
+            "sistema actual —por qué a este cliente se le factura distinto, qué productos se saltan un paso, qué "
+            "significa de verdad ese campo a medida—. Buena parte vive en la cabeza de las personas y en unas "
+            "pocas personalizaciones sin etiquetar.\n"
+            "Si trasladas los datos sin capturar ese conocimiento, no migras tu negocio: migras una copia vacía y "
+            "luego pasas el año siguiente redescubriendo reglas a las malas, un cliente enfadado cada vez. El "
+            "trabajo que de verdad reduce el riesgo es la parte poco vistosa: documentar cómo funciona realmente el "
+            "negocio antes de mover un solo registro.\n"
+            "En Bidatia tratamos la migración como un proyecto de captura de conocimiento primero y de datos "
+            "después. Auditamos el sistema actual, sacamos a la luz las reglas escondidas en personalizaciones y "
+            "costumbres, y las trasladamos de forma deliberada a un Odoo más limpio, para que llegues al nuevo "
+            "sistema con tu operación intacta, no amputada.",
 
-            "يُبدع Odoo في تغطية الشكل القياسي لأي نشاط: المبيعات، والمخزون، والمحاسبة، والمشاريع. لكن معظم الشركات "
-            "تصطدم في النهاية بعملية لا تتلاءم تمامًا معه: بوّابة للعملاء بمنطقها الخاص، أو تدفّق بيانات كبير الحجم "
-            "يجب أن يكون سريعًا وموثوقًا، أو عملية حسابية معقّدة، أو تكامل وثيق مع منصّة خارجية.\n"
-            "يمكنك أحيانًا حشر هذه الأمور داخل Odoo بتخصيص ثقيل — لكن غالبًا يكون الأنظف بناء الجزء المتخصّص كخدمة "
-            "Django تتواصل مع Odoo عبر واجهة API محدّدة جيدًا. يبقى Odoo نظام التسجيل الأساسي لعملياتك الجوهرية، بينما "
-            "يتولّى Django ما هو أنسب له: الواجهات المخصّصة، أو المنطق الأثقل، أو التدفّقات الحسّاسة للأداء. كل نظام "
-            "يفعل ما يُتقنه، ويُبقيهما تكاملٌ نظيف متزامنين.\n"
-            "ينجح هذا النمط تحديدًا لأن النظامين يشتركان في الأساس نفسه — Python — فيستطيع المهندس نفسه استيعاب "
-            "الجانبين. والنتيجة حلول بديلة هشّة أقل داخل Odoo، وحلّ قابل للصيانة فعلًا، بدل كومة من الترقيعات تنتظر أن "
-            "تنكسر عند الترقية التالية."),
+            "حين تخطّط الشركات لترحيل ERP، تُرصد ميزانية لنقل البيانات والاختبار. وما تبخس تقديره هو المعرفة: عشرات "
+            "القواعد الصامتة التي يرمّزها نظامك الحالي — لماذا تُفوتر لهذا العميل بطريقة مختلفة، وأي المنتجات تتخطّى "
+            "خطوة، وماذا يعني فعلًا ذلك الحقل المخصّص. ويعيش الكثير منها في رؤوس الناس وفي بضعة تخصيصات بلا تسمية.\n"
+            "إن نقلت البيانات دون التقاط تلك المعرفة، فأنت لا ترحّل عملك، بل نسخة جوفاء منه، ثم تقضي العام التالي في "
+            "إعادة اكتشاف القواعد بالطريقة الصعبة، عميلًا غاضبًا تلو الآخر. والعمل الذي يقلّل المخاطر فعلًا هو الجزء "
+            "غير البرّاق: توثيق كيف يعمل النشاط حقًا قبل نقل سجلّ واحد.\n"
+            "في Bidatia نعامل الترحيل كمشروع التقاط معرفة أولًا، ومشروع بيانات ثانيًا. ندقّق النظام الحالي، ونُظهِر "
+            "القواعد المختبئة في التخصيصات والعادات، وننقلها بوعي إلى بناء Odoo أنظف، لتصل إلى النظام الجديد وعملك "
+            "سليم، لا مبتور."),
         'meta_description': L(
-            "When Odoo configuration isn't enough, a Django integration can close the gap. Learn when to extend Odoo with a Django service and a clean API — and why it is more maintainable.",
-            'Cuando la configuración de Odoo no basta, una integración con Django puede cerrar la brecha. Descubre cuándo ampliar Odoo con un servicio Django y una API limpia, y por qué es más mantenible.',
-            'عندما لا يكفي إعداد Odoo، يمكن لتكامل Django سدّ الفجوة. تعرّف متى تُوسّع Odoo بخدمة Django وواجهة API نظيفة — ولماذا يكون ذلك أكثر قابلية للصيانة.'),
+            'The biggest ERP migration risk is amnesia, not data loss. How to capture the business rules buried in your old system and carry them into a cleaner Odoo build.',
+            'El mayor riesgo de una migración de ERP es la amnesia, no la pérdida de datos. Cómo capturar las reglas de negocio enterradas en tu sistema antiguo y llevarlas a un Odoo más limpio.',
+            'أكبر خطر في ترحيل ERP هو النسيان لا فقدان البيانات. كيف تلتقط قواعد العمل المدفونة في نظامك القديم وتنقلها إلى بناء Odoo أنظف.'),
     },
     {
         'title': L(
-            'Outgrowing spreadsheets: signs your business needs a real ERP',
-            'Cuando las hojas de cálculo se quedan cortas: señales de que tu negocio necesita un ERP de verdad',
-            'حين تعجز جداول البيانات عن مواكبة نموّك: علامات تدلّ على أن نشاطك يحتاج إلى نظام ERP حقيقي'),
+            'Getting your company ready to automate with AI',
+            'Cómo preparar tu empresa para automatizar con IA',
+            'كيف تجهّز شركتك للأتمتة بالذكاء الاصطناعي'),
         'excerpt': L(
-            "Spreadsheets are where most businesses start — and where many quietly get stuck. Here are the signs it is time for a structured ERP like Odoo.",
-            "Las hojas de cálculo son donde empiezan casi todos los negocios, y donde muchos se quedan atascados sin darse cuenta. Estas son las señales de que toca dar el paso a un ERP estructurado como Odoo.",
-            "جداول البيانات هي نقطة انطلاق معظم الأنشطة — وعندها يتوقّف كثيرون دون أن ينتبهوا. إليك العلامات التي تدلّ على أن وقت الانتقال إلى نظام ERP منظَّم مثل Odoo قد حان."),
+            'AI doesn\'t fix a messy operation — it scales it. Before you automate anything, the question isn\'t "which model?" but "is our data and process ready to be trusted with a decision?"',
+            'La IA no arregla una operación caótica: la escala. Antes de automatizar nada, la pregunta no es «¿qué modelo?» sino «¿están nuestros datos y procesos listos para que se les confíe una decisión?».',
+            'لا يُصلح الذكاء الاصطناعي عملية فوضوية، بل يضخّمها. وقبل أتمتة أي شيء، السؤال ليس «أي نموذج؟» بل «هل بياناتنا وعملياتنا جاهزة ليُؤتمن عليها قرار؟».'),
         'content': L(
-            "Spreadsheets are flexible, familiar, and free — which is exactly why so many businesses run "
-            "critical operations on them far longer than they should. For a while it works. Then the cracks "
-            "appear: two people edit the same file, a formula silently breaks, last quarter's numbers can't be "
-            "reproduced, and onboarding a new hire means explaining a maze of tabs that only one person fully "
-            "understands.\n"
-            "The warning signs are remarkably consistent across companies. The 'real' version of a number lives "
-            "in someone's head or inbox rather than in a system. Different teams keep their own copies of the "
-            "same data, and the copies no longer agree. Simple questions — what's in stock, what's unpaid, "
-            "what's actually profitable — take hours to answer instead of seconds. Manually re-keying data "
-            "between files eats time and quietly introduces errors. And the moment a key person is on holiday, "
-            "parts of the business slow to a crawl.\n"
-            "An ERP like Odoo replaces that fragile patchwork with a single source of truth: one place where "
-            "sales, inventory, invoicing, and reporting share the same data and stay in sync. The goal isn't "
-            "more software for its own sake — it's removing the daily friction and risk of running a growing "
-            "business on disconnected files. Done well, the system also scales with you, so the setup that fits "
-            "ten people still fits fifty.\n"
-            "You don't have to move everything at once. The transitions that go best start small: map how the "
-            "business actually works today, pick the one or two processes causing the most pain, and structure "
-            "those first. If you're not sure whether you've genuinely outgrown spreadsheets or just need to "
-            "organise them better, a short conversation is usually enough to tell — and to sketch a realistic, "
-            "low-risk path forward.",
+            "There's enormous pressure to 'add AI' right now, and a lot of it is aimed at the wrong layer. An AI "
+            "agent that drafts replies, classifies documents or flags anomalies is only as good as the data and "
+            "process underneath it. Point one at a chaotic operation and you don't get magic — you get fast, "
+            "confident mistakes.\n"
+            "Readiness comes before models. That means three boring-sounding things: your data is governed (clean, "
+            "owned, well-defined), your core processes are explicit rather than tribal knowledge, and you've "
+            "identified tasks that are high-volume, lower-stakes-per-item, and easy to keep a human in the loop on. "
+            "Get those right and AI becomes a force multiplier; skip them and it becomes a liability with good PR.\n"
+            "Bidatia helps companies get ready in the right order: govern the data, structure the process in Odoo, "
+            "then introduce AI agents that are grounded in your own information, scoped to a clear task, and "
+            "logged so every action is auditable. The result is automation you can actually trust in production — "
+            "because you built the foundation before the hype.",
 
-            "Las hojas de cálculo son flexibles, conocidas y gratuitas, y precisamente por eso muchas empresas "
-            "gestionan en ellas operaciones críticas durante mucho más tiempo del que deberían. Durante un "
-            "tiempo funciona. Después aparecen las grietas: dos personas editan el mismo archivo, una fórmula se "
-            "rompe sin que nadie lo note, los números del trimestre pasado no se pueden reproducir, e incorporar "
-            "a alguien nuevo implica explicarle un laberinto de pestañas que solo una persona entiende del "
-            "todo.\n"
-            "Las señales de alerta se repiten en casi todas las empresas. La versión «buena» de un dato vive en "
-            "la cabeza o en el correo de alguien, en lugar de en un sistema. Cada equipo guarda su propia copia "
-            "de los mismos datos, y las copias ya no coinciden. Preguntas sencillas —qué hay en stock, qué está "
-            "sin cobrar, qué es realmente rentable— tardan horas en responderse en vez de segundos. Reescribir "
-            "datos a mano de un archivo a otro consume tiempo e introduce errores en silencio. Y en cuanto una "
-            "persona clave se va de vacaciones, partes del negocio se ralentizan.\n"
-            "Un ERP como Odoo sustituye ese frágil rompecabezas por una única fuente de verdad: un solo lugar "
-            "donde ventas, inventario, facturación e informes comparten los mismos datos y se mantienen "
-            "sincronizados. El objetivo no es tener más software porque sí, sino eliminar la fricción y el "
-            "riesgo diarios de gestionar un negocio en crecimiento con archivos desconectados. Bien hecho, "
-            "además crece contigo: el sistema que sirve para diez personas sigue sirviendo para cincuenta.\n"
-            "No hace falta migrarlo todo de golpe. Las transiciones que mejor salen empiezan poco a poco: "
-            "entender cómo funciona de verdad el negocio hoy, elegir los uno o dos procesos que más duelen y "
-            "estructurar esos primero. Si no tienes claro si te has quedado sin hojas de cálculo o solo "
-            "necesitas ordenarlas mejor, una conversación breve suele bastar para saberlo y para trazar un "
-            "camino realista y de bajo riesgo.",
+            "Hay una presión enorme por «añadir IA» ahora mismo, y buena parte apunta a la capa equivocada. Un "
+            "agente de IA que redacta respuestas, clasifica documentos o señala anomalías es tan bueno como los "
+            "datos y el proceso que tiene debajo. Apúntalo a una operación caótica y no obtienes magia: obtienes "
+            "errores rápidos y seguros.\n"
+            "La preparación va antes que los modelos. Eso significa tres cosas que suenan aburridas: tus datos "
+            "están gobernados (limpios, con responsable, bien definidos), tus procesos clave son explícitos y no "
+            "conocimiento tribal, y has identificado tareas de gran volumen, bajo riesgo por elemento y fáciles de "
+            "supervisar por una persona. Hazlo bien y la IA multiplica fuerzas; sáltatelo y se convierte en un "
+            "pasivo con buena prensa.\n"
+            "En Bidatia ayudamos a las empresas a prepararse en el orden correcto: gobernar los datos, estructurar "
+            "el proceso en Odoo y luego introducir agentes de IA anclados en tu propia información, acotados a una "
+            "tarea clara y registrados para que cada acción sea auditable. El resultado es una automatización en la "
+            "que puedes confiar en producción, porque construiste los cimientos antes que el hype.",
 
-            "جداول البيانات مرنة ومألوفة ومجّانية — ولهذا السبب تحديدًا تدير كثير من الشركات عمليات حسّاسة عليها "
-            "مدّةً أطول بكثير مما ينبغي. تنجح الأمور لبعض الوقت، ثم تبدأ الشروخ بالظهور: شخصان يعدّلان الملف نفسه، "
-            "ومعادلة تتعطّل بصمت، وأرقام الربع الماضي يتعذّر إعادة إنتاجها، وتدريب موظّف جديد يعني شرح متاهة من "
-            "علامات التبويب لا يفهمها بالكامل سوى شخص واحد.\n"
-            "وعلامات الإنذار متشابهة إلى حدٍّ لافت بين الشركات. تبقى النسخة «الصحيحة» من الرقم في ذهن أحدهم أو في "
-            "بريده بدل أن تكون في نظام. ويحتفظ كل فريق بنسخته الخاصة من البيانات نفسها، ثم لم تعد النسخ متطابقة. "
-            "وأسئلة بسيطة — ما المتوفّر في المخزون؟ وما الذي لم يُحصَّل بعد؟ وما المُربح فعلًا؟ — تستغرق ساعات "
-            "للإجابة بدل ثوانٍ. وإعادة إدخال البيانات يدويًا بين الملفّات تلتهم الوقت وتُدخل الأخطاء بهدوء. وما إن "
-            "يغيب شخص أساسي في إجازة حتى تتباطأ أجزاء من العمل.\n"
-            "يستبدل نظام ERP مثل Odoo هذا المزيج الهشّ بمصدر واحد للحقيقة: مكان واحد تتشارك فيه المبيعات والمخزون "
-            "والفوترة والتقارير البيانات نفسها وتبقى متزامنة. والهدف ليس مزيدًا من البرمجيات لذاتها، بل إزالة "
-            "الاحتكاك والمخاطرة اليوميّين الناتجين عن إدارة نشاط متنامٍ بملفّات غير مترابطة. وحين يُنفَّذ بإتقان، "
-            "فإنه ينمو معك أيضًا: النظام الذي يناسب عشرة أشخاص يظلّ مناسبًا لخمسين.\n"
-            "ولست مضطرًّا إلى نقل كل شيء دفعةً واحدة. أنجح عمليات الانتقال تبدأ صغيرة: ارسم كيف يعمل النشاط فعليًا "
-            "اليوم، واختر العملية أو العمليتين الأكثر إيلامًا، وابدأ بهيكلتها أولًا. وإن لم تكن متأكّدًا هل تجاوزت "
-            "جداول البيانات فعلًا أم تحتاج فقط إلى تنظيمها بشكل أفضل، فغالبًا تكفي محادثة قصيرة لمعرفة ذلك ولرسم "
-            "مسار واقعي ومنخفض المخاطر للمضيّ قدمًا."),
+            "هناك ضغط هائل لـ«إضافة الذكاء الاصطناعي» الآن، وكثير منه موجَّه إلى الطبقة الخطأ. فوكيل ذكاء اصطناعي "
+            "يصوغ الردود أو يصنّف المستندات أو يرصد الشذوذ ليس أفضل من البيانات والعملية تحته. وجّهه إلى عملية "
+            "فوضوية فلن تحصل على سحر، بل على أخطاء سريعة وواثقة.\n"
+            "تأتي الجاهزية قبل النماذج. وهذا يعني ثلاثة أمور تبدو مملّة: بياناتك مَحوكمة (نظيفة، ومملوكة، وواضحة "
+            "التعريف)، وعملياتك الأساسية صريحة لا معرفة قبلية، وقد حدّدت مهامّ عالية الحجم ومنخفضة المخاطر لكل عنصر "
+            "ويسهل إبقاء إنسان في مسارها. أتقن ذلك يصبح الذكاء الاصطناعي مضاعِف قوة؛ تجاهله يصبح عبئًا بدعاية جيّدة.\n"
+            "في Bidatia نساعد الشركات على الاستعداد بالترتيب الصحيح: حوكمة البيانات، وهيكلة العملية في Odoo، ثم "
+            "إدخال وكلاء ذكاء اصطناعي مستندين إلى معلوماتك، ومحصورين في مهمّة واضحة، ومسجَّلين ليكون كل إجراء قابلًا "
+            "للتدقيق. والنتيجة أتمتة يمكنك الوثوق بها في الإنتاج، لأنك بنيت الأساس قبل الضجيج."),
         'meta_description': L(
-            'Spreadsheets holding your business back? The clear signs you have outgrown them — and how a structured ERP like Odoo gives you one source of truth that scales.',
-            '¿Las hojas de cálculo frenan tu negocio? Las señales claras de que se te han quedado cortas y cómo un ERP como Odoo te da una única fuente de datos que escala.',
-            'هل تعيق جداول البيانات نموّ نشاطك؟ علامات واضحة على أنك تجاوزتها، وكيف يمنحك نظام ERP مثل Odoo مصدرًا واحدًا للبيانات قابلًا للتوسّع.'),
+            'AI scales your operation rather than fixing it. The readiness that has to come before automation: governed data, explicit processes, and well-chosen, human-in-the-loop tasks.',
+            'La IA escala tu operación en vez de arreglarla. La preparación que debe ir antes de automatizar: datos gobernados, procesos explícitos y tareas bien elegidas con supervisión humana.',
+            'يضخّم الذكاء الاصطناعي عمليتك بدل إصلاحها. الجاهزية التي يجب أن تسبق الأتمتة: بيانات مَحوكمة، وعمليات صريحة، ومهامّ مختارة بعناية بإشراف بشري.'),
     },
 ]
 
@@ -2286,6 +2265,12 @@ BLOG_POSTS = [
 # production, without ever touching admin-authored articles.
 RETIRED_POST_SLUGS = [
     'how-django-and-odoo-work-together-to-close-business-process-gaps',
+    '5-warning-signs-your-odoo-system-needs-a-technical-health-check',
+    'odoo-studio-vs-custom-modules-when-each-one-makes-sense',
+    'three-questions-to-ask-before-starting-an-odoo-migration',
+    'planning-a-move-to-odoo-19-what-to-check-before-you-upgrade',
+    'how-django-and-odoo-work-together-to-close-process-gaps',
+    'outgrowing-spreadsheets-signs-your-business-needs-a-real-erp',
 ]
 
 
