@@ -47,20 +47,20 @@ SS = 2                      # supersample factor (render big, downscale = antial
 W2, H2 = W * SS, H * SS
 
 # ── Brand palette (matches tailwind.config in base.html) ──────────────────
-# Bidatia "Ledger" system: near-black ink, signature violet, electric lime.
+# Bidatia "Ledger" system: near-black ink, deep teal-emerald (brand), warm amber.
 INK = (14, 14, 17)          # near-black (#0E0E11)
 NAVY_TOP = (12, 12, 16)
 NAVY_BOT = (19, 19, 25)
-BRAND = (124, 58, 237)      # violet (#7c3aed)
-BRAND_LT = (167, 139, 250)  # violet-400 (#a78bfa)
-TEAL = (132, 204, 22)       # lime (#84cc16)
-TEAL_LT = (163, 230, 53)    # lime (#a3e635)
+BRAND = (13, 148, 136)      # teal-600 (#0d9488)
+BRAND_LT = (45, 212, 191)   # teal-400 (#2dd4bf)
+TEAL = (217, 119, 6)        # amber-600 (#d97706)  [accent]
+TEAL_LT = (245, 158, 11)    # amber-500 (#f59e0b)  [accent]
 WHITE = (255, 255, 255)
 SLATE = (150, 150, 160)
-# Two-tone signal rule (violet → lime).
-SIG_R = (124, 58, 237)
-SIG_G = (163, 230, 53)
-SIG_B = (163, 230, 53)
+# Two-tone signal rule (teal → amber).
+SIG_R = (13, 148, 136)
+SIG_G = (245, 158, 11)
+SIG_B = (245, 158, 11)
 
 
 def _f(size):
@@ -137,7 +137,7 @@ def _databars(d, x, y, s):
     pad = int(s * 0.22); bw = int(s * 0.16); gap = int(s * 0.10)
     base = y + s - pad
     hs = [int(s * 0.30), int(s * 0.46), int(s * 0.62)]
-    cols = [TEAL_LT, TEAL_LT, BRAND_LT]
+    cols = [BRAND_LT, BRAND_LT, TEAL_LT]
     bx = x + pad
     for h, c in zip(hs, cols):
         d.rectangle([bx, base - h, bx + bw, base], fill=c + (255,))

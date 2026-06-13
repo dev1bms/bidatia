@@ -39,7 +39,7 @@
     <link rel="icon" type="image/png" sizes="96x96" href="{% static 'icons/favicon-96x96.png' %}">
     <link rel="apple-touch-icon" href="{% static 'icons/apple-touch-icon.png' %}">
     <link rel="manifest" href="{% static 'site.webmanifest' %}">
-    <meta name="theme-color" content="#0E0E11">
+    <meta name="theme-color" content="#0A0A0F">
 
     {# Feed auto-discovery — lets crawlers/readers find new content fast. #}
     <link rel="alternate" type="application/rss+xml" title="{{ SITE_NAME }} — Insights" href="{% url 'insights_feed' %}">
@@ -47,36 +47,37 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // ── Bidatia "Ledger" design system ───────────────────────────────────
-        // A data/analytics-platform identity: warm bone canvas, near-black ink,
-        // a single signature VIOLET, and electric LIME used only for live/data
-        // sparks. Token names (ink / brand / accent) stay stable so the whole
-        // codebase recolours from here. No blue, no rainbow gradients.
+        // ── Bidatia "Aurora" design system ───────────────────────────────────
+        // Modern dark-mode identity: near-black canvas, light text, and an
+        // electric INDIGO → FUCHSIA gradient as the signature. Token names stay
+        // stable (ink = text/light, canvas = dark bg, brand = indigo,
+        // accent = fuchsia) and a global override layer below repaints the whole
+        // Tailwind surface for dark mode from one place.
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        ink:    '#0E0E11',       // near-black — text & dark surfaces
-                        ink2:   '#17171C',       // lifted dark surface
-                        canvas: '#F1EFE8',       // warm bone — page background
-                        canvas2:'#E7E4D9',       // deeper warm — alternating bands
-                        paper:  '#FBFAF6',       // warm near-white — card surface
-                        line:   '#0E0E11',       // hairline (used at low opacity)
-                        brand: {                 // signature VIOLET (analytics / AI)
-                            50: '#f5f3ff', 100: '#ede9fe', 200: '#ddd6fe', 300: '#c4b5fd',
-                            400: '#a78bfa', 500: '#8b5cf6', 600: '#7c3aed', 700: '#6d28d9',
-                            800: '#5b21b6', 900: '#4c1d95',
+                        ink:    '#ECECF1',       // PRIMARY TEXT (light) — text-ink*
+                        ink2:   '#15151D',       // lifted dark surface
+                        canvas: '#0A0A0F',       // near-black — page background
+                        canvas2:'#101017',       // alternating dark band
+                        paper:  '#15151D',       // dark card surface
+                        line:   '#2A2A37',       // hairline on dark
+                        brand: {                 // electric INDIGO
+                            50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe', 300: '#a5b4fc',
+                            400: '#818cf8', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca',
+                            800: '#3730a3', 900: '#312e81',
                         },
-                        accent: {                // electric LIME — live / data signal
-                            50: '#f7fee7', 100: '#ecfccb', 200: '#d9f99d', 300: '#bef264',
-                            400: '#a3e635', 500: '#84cc16', 600: '#65a30d', 700: '#4d7c0f',
+                        accent: {                // electric FUCHSIA
+                            50: '#fdf4ff', 100: '#fae8ff', 200: '#f5d0fe', 300: '#f0abfc',
+                            400: '#e879f9', 500: '#d946ef', 600: '#c026d3', 700: '#a21caf',
                         },
                     },
                     fontFamily: {
-                        display: ['"Bricolage Grotesque"', 'Georgia', 'serif'],
-                        sans: ['"IBM Plex Sans"', '"Helvetica Neue"', 'Arial', 'sans-serif'],
-                        mono: ['"IBM Plex Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
-                        arabic: ['"Readex Pro"', '"IBM Plex Sans"', 'Arial', 'sans-serif'],
+                        display: ['"Space Grotesk"', '"Inter"', 'Arial', 'sans-serif'],
+                        sans: ['"Inter"', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+                        mono: ['"Geist Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+                        arabic: ['"Readex Pro"', '"Inter"', 'Arial', 'sans-serif'],
                     },
                 }
             }
@@ -84,7 +85,7 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     {% if LANGUAGE_BIDI %}
     {# Arabic pages: load Readex Pro — a modern, highly readable Arabic Google Font — for a natural, premium reading experience. #}
     <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -93,99 +94,95 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
         :root {
-            --font-display: 'Bricolage Grotesque', Georgia, serif;
-            --font-sans: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
-            --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
-            --font-arabic: 'Readex Pro', 'IBM Plex Sans', Arial, sans-serif;
-            --ink: #0E0E11; --ink2: #17171C;
-            --canvas: #F1EFE8; --canvas2: #E7E4D9; --paper: #FBFAF6;
-            --violet: #6d28d9; --violet-2: #7c3aed; --lime: #a3e635;
-            --line: rgba(14,14,17,.14); --line-strong: rgba(14,14,17,.28);
+            --font-display: 'Space Grotesk', 'Inter', Arial, sans-serif;
+            --font-sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, monospace;
+            --font-arabic: 'Readex Pro', 'Inter', Arial, sans-serif;
+            --bg: #0A0A0F; --surface: #15151D; --surface2: #101017; --panel: #0C0C12;
+            --text: #ECECF1; --muted: #93939F; --line: #26262F;
+            --indigo: #6366f1; --indigo-lt: #818cf8; --fuchsia: #d946ef; --fuchsia-lt: #e879f9;
+            --grad: linear-gradient(120deg, #6366f1 0%, #8b5cf6 45%, #d946ef 100%);
         }
-        html { background: var(--canvas); }
-        body { font-family: var(--font-sans); background: var(--canvas); color: var(--ink);
+        html { background: var(--bg); }
+        body { font-family: var(--font-sans); background: var(--bg); color: var(--text);
             -webkit-font-smoothing: antialiased; }
         h1, h2, h3, .font-display { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.02em; }
-        ::selection { background: var(--violet); color: #fff; }
+        ::selection { background: var(--fuchsia); color: #fff; }
         [x-cloak] { display: none !important; }
 
-        /* ── Global "Ledger" overrides: flip the whole Tailwind surface language
-              site-wide — squared corners, warm paper, hairline borders, FLAT
-              (no soft drop-shadows). One place, applies everywhere. ─────────── */
-        .rounded-3xl, .rounded-2xl, .rounded-xl { border-radius: 4px !important; }
-        .rounded-lg, .rounded-md { border-radius: 3px !important; }     /* keep .rounded-full round */
-        .bg-white { background-color: var(--paper) !important; }
-        .bg-slate-50, .bg-slate-100 { background-color: var(--canvas2) !important; }
-        .border-slate-100, .border-slate-200, .border-slate-300 { border-color: var(--line) !important; }
-        [class*="shadow-"] { box-shadow: none !important; }            /* kill all soft/drop shadows */
-        .text-slate-800 { color: #26262c !important; }
+        /* ── Global "Aurora" dark-mode overrides: repaint the whole Tailwind
+              surface for dark mode from one place. Squared corners, flat
+              (no soft drop-shadows), dark surfaces, light text, indigo/fuchsia. */
+        .rounded-3xl, .rounded-2xl, .rounded-xl { border-radius: 6px !important; }
+        .rounded-lg, .rounded-md { border-radius: 5px !important; }     /* keep .rounded-full round */
+        [class*="shadow-"] { box-shadow: none !important; }
 
-        /* Section eyebrow: mono label with a solid violet index square. */
+        .bg-white, .bg-paper { background-color: var(--surface) !important; }
+        .bg-slate-50, .bg-slate-100, .mesh-light { background-color: var(--surface2) !important; }
+        .bg-ink { background-color: var(--panel) !important; }
+        /* anchor/button surfaces become the signature gradient (the CTAs) */
+        a.bg-ink, button.bg-ink, a.bg-white, button.bg-white,
+        .hover\:bg-ink:hover { background: var(--grad) !important; color: #fff !important; border-color: transparent !important; }
+        [class*="text-canvas"] { color: var(--text) !important; }
+        .text-slate-400, .text-slate-500, .text-slate-600, .text-slate-700,
+        .text-slate-800, .text-slate-900, .text-slate-300 { color: var(--muted) !important; }
+        .border-slate-100, .border-slate-200, .border-slate-300 { border-color: var(--line) !important; }
+
+        /* Section eyebrow: mono label with a gradient index square. */
         .kicker { display:inline-flex; align-items:center; gap:.6rem; font-family:var(--font-mono);
             font-size:.7rem; line-height:1; letter-spacing:.18em; text-transform:uppercase; font-weight:600; }
-        .kicker::before { content:''; width:.5rem; height:.5rem; flex:none; background:var(--violet); }
+        .kicker::before { content:''; width:.5rem; height:.5rem; flex:none; background:var(--grad); border-radius:1px; }
 
-        /* Ledger card: squared, hairline, FLAT, with a crisp hard-offset on hover. */
-        .l-card { position:relative; background:var(--paper); border:1px solid var(--line);
-            transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
-        .l-card:hover { border-color:var(--ink); box-shadow: 5px 5px 0 0 var(--ink);
-            transform: translate(-2px,-2px); }
-        /* keep .dash-card working but in the new flat ledger language */
-        .dash-card { position:relative; background:var(--paper); border:1px solid var(--line);
-            transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
-        .dash-card:hover { border-color:var(--ink); box-shadow: 5px 5px 0 0 var(--ink);
-            transform: translate(-2px,-2px); }
+        /* Card: dark surface, hairline, with an indigo glow + lift on hover. */
+        .l-card, .dash-card { position:relative; background:var(--surface); border:1px solid var(--line);
+            transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+        .l-card:hover, .dash-card:hover { border-color:var(--indigo);
+            box-shadow: 0 0 0 1px rgba(99,102,241,.5), 0 24px 60px -24px rgba(99,102,241,.55);
+            transform: translateY(-3px); }
 
-        /* Squared icon tile (bordered, instrument style). */
+        /* Squared icon tile. */
         .tile { display:inline-flex; align-items:center; justify-content:center;
-            border:1px solid var(--line); background:var(--canvas); }
-        .tile-ink { border-color:transparent; background:var(--ink); color:var(--lime); }
+            border:1px solid var(--line); background:var(--surface2); }
+        .tile-ink { border-color:transparent; background:var(--grad); color:#fff; }
 
-        /* Dark "instrument panel" surface for data boards / dark sections. */
-        .panel { background:var(--ink2); border:1px solid rgba(255,255,255,.12); }
-        .mesh { background:var(--ink); position:relative; }
+        /* Instrument panel / dark mesh with indigo→fuchsia aurora glow. */
+        .panel { background:#0C0C12; border:1px solid rgba(255,255,255,.10); }
+        .mesh { background:var(--bg); position:relative; }
         .mesh::before { content:''; position:absolute; inset:0; pointer-events:none;
             background:
-                radial-gradient(60rem 32rem at 88% -10%, rgba(124,58,237,.35), transparent 60%),
-                radial-gradient(40rem 24rem at 6% 110%, rgba(163,230,53,.10), transparent 60%); }
-        .mesh-light { background: var(--canvas); }
+                radial-gradient(58rem 34rem at 84% -12%, rgba(99,102,241,.40), transparent 60%),
+                radial-gradient(46rem 30rem at 8% 116%, rgba(217,70,239,.26), transparent 60%); }
+        .mesh-light { position:relative; }
+        .mesh-light::before { content:''; position:absolute; inset:0; pointer-events:none;
+            background: radial-gradient(50rem 30rem at 100% -10%, rgba(99,102,241,.12), transparent 60%); }
 
-        /* Signature accent bar / text / ring — violet→lime, used sparingly. */
-        .rgb-bar { background: linear-gradient(90deg, var(--violet) 0%, var(--lime) 100%); }
-        .rgb-text { color: var(--violet); }
-        [class~="mesh"] .rgb-text, .mesh .rgb-text { color: var(--lime); }
+        /* Signature aurora bar / gradient text / ring. */
+        .rgb-bar { background: var(--grad); }
+        .rgb-text { background: var(--grad); -webkit-background-clip:text; background-clip:text;
+            -webkit-text-fill-color:transparent; color:transparent; }
         .rgb-ring { position:relative; }
-        .rgb-ring::before { content:''; position:absolute; inset:-1px; padding:1px;
-            background:linear-gradient(135deg,var(--violet),var(--lime));
+        .rgb-ring::before { content:''; position:absolute; inset:-1px; padding:1px; background:var(--grad);
             -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
             -webkit-mask-composite:xor; mask-composite:exclude; pointer-events:none; }
 
-        .flow-divider { height:1px; border:0; background: var(--line-strong); }
+        .flow-divider { height:1px; border:0; background: rgba(255,255,255,.12); }
 
         /* Animated dotted pipe (data-pipeline / workflow connectors). */
         .pipe { stroke-dasharray:5 7; animation:pipeflow 1.4s linear infinite; }
         @keyframes pipeflow { to { stroke-dashoffset:-24; } }
         @media (prefers-reduced-motion: reduce) { .pipe { animation:none; } }
 
-        /* Blueprint rule grid (fine, ink) + dot matrix — the new background texture. */
-        .rule-grid { background-image:
-                linear-gradient(to right, var(--line) 1px, transparent 1px),
-                linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+        /* Blueprint rule grid + dot matrix (faint, light-on-dark). */
+        .rule-grid, .tech-grid { background-image:
+                linear-gradient(to right, rgba(255,255,255,.045) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,.045) 1px, transparent 1px);
             background-size: 64px 64px; }
-        .rule-grid-dark { background-image:
-                linear-gradient(to right, rgba(255,255,255,.07) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255,255,255,.07) 1px, transparent 1px);
+        .rule-grid-dark, .tech-grid-dark { background-image:
+                linear-gradient(to right, rgba(255,255,255,.06) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,.06) 1px, transparent 1px);
             background-size: 64px 64px; }
-        .dot-grid { background-image: radial-gradient(var(--line) 1px, transparent 1px); background-size: 22px 22px; }
-        .dot-grid-dark { background-image: radial-gradient(rgba(255,255,255,.10) 1px, transparent 1px); background-size: 22px 22px; }
-        /* legacy aliases kept so existing markup keeps working */
-        .tech-grid { background-image:
-                linear-gradient(to right, var(--line) 1px, transparent 1px),
-                linear-gradient(to bottom, var(--line) 1px, transparent 1px);
-            background-size: 64px 64px; }
-        .tech-grid-dark { background-image:
-                linear-gradient(to right, rgba(255,255,255,.07) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255,255,255,.07) 1px, transparent 1px); }
+        .dot-grid, .dot-grid-dark { background-image: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1px);
+            background-size: 22px 22px; }
         .grid-mask {
             -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 0%, #000 45%, transparent 100%);
             mask-image: radial-gradient(ellipse 75% 65% at 50% 0%, #000 45%, transparent 100%); }
@@ -204,7 +201,7 @@
         @keyframes pulsering { 0%{transform:scale(1);opacity:.55;} 100%{transform:scale(2.6);opacity:0;} }
 
         a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
-            outline: 2px solid var(--violet); outline-offset: 2px; }
+            outline: 2px solid var(--brand); outline-offset: 2px; }
 
         @media (prefers-reduced-motion: reduce) {
             .reveal { opacity:1 !important; transform:none !important; transition:none !important; }

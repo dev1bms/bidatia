@@ -118,7 +118,7 @@
                     <svg class="h-36 w-36 -rotate-90" viewBox="0 0 120 120" aria-hidden="true">
                         <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="9"/>
                         <circle cx="60" cy="60" r="52" fill="none"
-                                stroke="{% if scoring.score >= 76 %}#f87171{% elif scoring.score >= 51 %}#fb923c{% elif scoring.score >= 25 %}#fbbf24{% else %}#a3e635{% endif %}"
+                                stroke="{% if scoring.score >= 76 %}#f87171{% elif scoring.score >= 51 %}#fb923c{% elif scoring.score >= 25 %}#fbbf24{% else %}#d946ef{% endif %}"
                                 stroke-width="9" stroke-linecap="round"
                                 stroke-dasharray="{% widthratio scoring.score 100 327 %} 327"/>
                     </svg>
@@ -365,13 +365,13 @@
             </div>
 
             <div class="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-2 text-xs text-slate-600">
-                <span class="inline-flex items-center gap-1.5"><span class="h-3 w-3 shrink-0 rounded-full" style="background:#6d28d9"></span>{% trans "Standard model" %}</span>
-                <span class="inline-flex items-center gap-1.5"><span class="h-3 w-3 shrink-0 rounded-full" style="background:#f59e0b"></span>{% trans "Core model with custom fields" %}</span>
+                <span class="inline-flex items-center gap-1.5"><span class="h-3 w-3 shrink-0 rounded-full" style="background:#4f46e5"></span>{% trans "Standard model" %}</span>
+                <span class="inline-flex items-center gap-1.5"><span class="h-3 w-3 shrink-0 rounded-full" style="background:#d946ef"></span>{% trans "Core model with custom fields" %}</span>
                 <span class="inline-flex items-center gap-1.5"><span class="h-3 w-3 shrink-0 rounded-full" style="background:#f43f5e"></span>{% trans "Custom (Studio) model" %}</span>
                 <span class="inline-flex items-center gap-1.5"><span class="h-3 w-3 shrink-0 rounded-full" style="background:#be123c"></span>{% trans "Business-critical custom model" %}</span>
                 <span class="inline-flex items-center gap-1.5"><span class="h-3 w-3 shrink-0 rounded-full opacity-50" style="background:#94a3b8"></span>{% trans "Empty / abandoned model" %}</span>
                 <span class="inline-flex items-center gap-1.5"><span class="h-0.5 w-4 shrink-0 rounded" style="background:#f97316"></span>{% trans "Automation thread" %}</span>
-                <span class="inline-flex items-center gap-1.5"><span class="h-3 w-3 shrink-0 rounded-full border-2" style="border-color:#f59e0b"></span>{% trans "Halo: density of custom fields" %}</span>
+                <span class="inline-flex items-center gap-1.5"><span class="h-3 w-3 shrink-0 rounded-full border-2" style="border-color:#d946ef"></span>{% trans "Halo: density of custom fields" %}</span>
                 <span class="inline-flex items-center gap-1.5"><span class="inline-flex items-end gap-0.5 shrink-0"><span class="h-1.5 w-1.5 rounded-full bg-slate-400"></span><span class="h-3 w-3 rounded-full bg-slate-400"></span></span>{% trans "Size: volume of data / customization" %}</span>
             </div>
 

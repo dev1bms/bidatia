@@ -71,7 +71,7 @@ def _app_icon(size):
     base = int(s * 0.74); pad = int(s * 0.24)
     bw = int(s * 0.13); gap = int(s * 0.095)
     hs = [int(s * 0.26), int(s * 0.40), int(s * 0.54)]
-    cols = [TEAL_LT, TEAL_LT, BRAND_LT]
+    cols = [BRAND_LT, BRAND_LT, TEAL_LT]
     total = 3 * bw + 2 * gap
     bx = int((s - total) / 2)
     for h, c in zip(hs, cols):
