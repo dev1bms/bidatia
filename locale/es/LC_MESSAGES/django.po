@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bidatia Business Systems 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-15 11:19+0000\n"
+"POT-Creation-Date: 2026-06-15 13:06+0000\n"
 "PO-Revision-Date: 2026-06-15 00:00+0000\n"
 "Last-Translator: Bidatia Business Systems <hola@bidatia.xyz>\n"
 "Language-Team: Spanish <hola@bidatia.xyz>\n"
@@ -576,7 +576,7 @@ msgstr "Resultado"
 msgid "Ownership & timing"
 msgstr "Propiedad y tiempos"
 
-#: jobs/apps.py:8 site_config/admin.py:141
+#: jobs/apps.py:8 site_config/admin.py:234
 msgid "Background tasks"
 msgstr "Tareas en segundo plano"
 
@@ -850,24 +850,24 @@ msgstr ""
 msgid "Edit this service"
 msgstr "Editar este servicio"
 
-#: site_config/admin.py:45
+#: site_config/admin.py:46
 msgid "Brand & URLs"
 msgstr "Marca y URLs"
 
-#: site_config/admin.py:46 templates/partials/navbar.html:30
+#: site_config/admin.py:47 templates/partials/navbar.html:30
 #: templates/partials/navbar.html:60
 msgid "Contact"
 msgstr "Contacto"
 
-#: site_config/admin.py:48
+#: site_config/admin.py:49
 msgid "Flags"
 msgstr "Indicadores"
 
-#: site_config/admin.py:56
+#: site_config/admin.py:57
 msgid "SMTP password"
 msgstr "Contraseña SMTP"
 
-#: site_config/admin.py:58
+#: site_config/admin.py:59
 msgid ""
 "Leave blank to keep the current password. Prefer the EMAIL_HOST_PASSWORD "
 "environment variable in production."
@@ -875,64 +875,164 @@ msgstr ""
 "Déjalo en blanco para conservar la contraseña actual. En producción, es "
 "preferible usar la variable de entorno EMAIL_HOST_PASSWORD."
 
-#: site_config/admin.py:70
+#: site_config/admin.py:71
 msgid "Send a test email with these settings"
 msgstr "Enviar un correo de prueba con estos ajustes"
 
-#: site_config/admin.py:78
+#: site_config/admin.py:79
 msgid "Set a test recipient first."
 msgstr "Primero define un destinatario de prueba."
 
-#: site_config/admin.py:81
+#: site_config/admin.py:82
 msgid "Bidatia — test email"
 msgstr "Bidatia — correo de prueba"
 
-#: site_config/admin.py:82
+#: site_config/admin.py:83
 msgid "Test email"
 msgstr "Correo de prueba"
 
-#: site_config/admin.py:83
+#: site_config/admin.py:84
 msgid "This confirms your email settings are working."
 msgstr "Esto confirma que tu configuración de correo funciona."
 
-#: site_config/admin.py:89
+#: site_config/admin.py:90
 #, python-format
 msgid "Test email sent to %s."
 msgstr "Correo de prueba enviado a %s."
 
-#: site_config/admin.py:92
+#: site_config/admin.py:93
 msgid "Test email failed — see \"last test\" fields."
 msgstr "El correo de prueba falló: consulta los campos de «última prueba»."
 
-#: site_config/admin.py:104
+#: site_config/admin.py:105
 msgid "SMTP server"
 msgstr "Servidor SMTP"
 
-#: site_config/admin.py:106
+#: site_config/admin.py:107
 msgid "Addresses"
 msgstr "Direcciones"
 
-#: site_config/admin.py:107
+#: site_config/admin.py:108
 msgid "Last test"
 msgstr "Última prueba"
 
-#: site_config/admin.py:111
+#: site_config/admin.py:112
 msgid "Password"
 msgstr "Contraseña"
 
-#: site_config/admin.py:122
+#: site_config/admin.py:136
+#| msgid "Installed modules"
+msgid "select an installed model"
+msgstr "selecciona un modelo instalado"
+
+#: site_config/admin.py:140
+#| msgid "modules installed"
+msgid "not installed"
+msgstr "no instalado"
+
+#: site_config/admin.py:144
+msgid ""
+"Models installed on the Ollama host. Pull more with \"ollama pull <name>\" "
+"on the server, then reload this page."
+msgstr ""
+"Modelos instalados en el host de Ollama. Instala más con \"ollama pull "
+"<nombre>\" en el servidor y recarga esta página."
+
+#: site_config/admin.py:148
+msgid "Run AI self-test (live call to the model)"
+msgstr "Ejecutar prueba de IA (llamada real al modelo)"
+
+#: site_config/admin.py:170 templates/admin/index.html:66
+#: templates/jobs/status_page.html:10
+msgid "Status"
+msgstr "Estado"
+
+#: site_config/admin.py:172
 msgid "Limits"
 msgstr "Límites"
 
-#: site_config/admin.py:124
+#: site_config/admin.py:174
 msgid "Skills / system instructions"
 msgstr "Habilidades / instrucciones del sistema"
 
-#: site_config/admin.py:125
+#: site_config/admin.py:175
+#| msgid "Last test"
+msgid "Last self-test"
+msgstr "Última prueba"
+
+#: site_config/admin.py:177
 msgid "Audit"
 msgstr "Auditoría"
 
-#: site_config/admin.py:139
+#: site_config/admin.py:184
+msgid "AI health"
+msgstr "Estado de la IA"
+
+#: site_config/admin.py:203
+msgid "Master switch"
+msgstr "Interruptor principal"
+
+#: site_config/admin.py:203
+msgid "On"
+msgstr "Activado"
+
+#: site_config/admin.py:203
+msgid "Off"
+msgstr "Desactivado"
+
+#: site_config/admin.py:204
+msgid "Ollama host"
+msgstr "Host de Ollama"
+
+#: site_config/admin.py:205
+msgid "Reachable"
+msgstr "Accesible"
+
+#: site_config/admin.py:205 site_config/admin.py:211
+#: templates/tool_erp_rescue/landing.html:72
+msgid "Yes"
+msgstr "Sí"
+
+#: site_config/admin.py:205 templates/tool_erp_rescue/landing.html:80
+msgid "No"
+msgstr "No"
+
+#: site_config/admin.py:207
+#| msgid "Configuration"
+msgid "Configured model"
+msgstr "Modelo configurado"
+
+#: site_config/admin.py:207
+msgid "(none)"
+msgstr "(ninguno)"
+
+#: site_config/admin.py:210
+#| msgid "modules installed"
+msgid "Model installed"
+msgstr "Modelo instalado"
+
+#: site_config/admin.py:211
+msgid "NOT found — pull it or pick another"
+msgstr "NO encontrado — instálalo o elige otro"
+
+#: site_config/admin.py:214 site_config/admin.py:216
+#| msgid "Installed modules"
+msgid "Installed models"
+msgstr "Modelos instalados"
+
+#: site_config/admin.py:216
+msgid "none pulled yet"
+msgstr "ninguno instalado aún"
+
+#: site_config/admin.py:221
+msgid "AI is ready ✓"
+msgstr "La IA está lista ✓"
+
+#: site_config/admin.py:221
+msgid "AI not ready — see below, then use “Run AI self-test”"
+msgstr "La IA no está lista — revisa abajo y usa «Ejecutar prueba de IA»"
+
+#: site_config/admin.py:232
 msgid "Feature flags"
 msgstr "Indicadores de funciones"
 
@@ -1078,20 +1178,20 @@ msgstr ""
 "Habilidades / instrucciones del sistema que se anteponen al prompt del "
 "modelo. Internas: nunca se muestran a los visitantes."
 
-#: site_config/models.py:156 site_config/models.py:157
-#: site_config/models.py:160
+#: site_config/models.py:161 site_config/models.py:162
+#: site_config/models.py:165
 msgid "AI settings"
 msgstr "Ajustes de IA"
 
-#: site_config/models.py:165
+#: site_config/models.py:170
 msgid "Allow visitors to submit booking requests."
 msgstr "Permitir que los visitantes envíen solicitudes de reserva."
 
-#: site_config/models.py:167
+#: site_config/models.py:172
 msgid "Allow the free diagnostic tools to run."
 msgstr "Permitir que se ejecuten las herramientas de diagnóstico gratuitas."
 
-#: site_config/models.py:170
+#: site_config/models.py:175
 msgid ""
 "Show technical error details on the free-tool progress pages when a scan "
 "fails (for debugging). Staff always see them; turn this on to show them to "
@@ -1102,23 +1202,23 @@ msgstr ""
 "personal siempre los ve; actívalo para mostrarlos también a todos los "
 "visitantes y desactívalo de nuevo una vez resuelto el problema."
 
-#: site_config/models.py:176
+#: site_config/models.py:181
 msgid "How often the status component polls, in milliseconds."
 msgstr ""
 "Frecuencia con la que el componente de estado consulta el estado, en "
 "milisegundos."
 
-#: site_config/models.py:179
+#: site_config/models.py:184
 msgid "Reference timeout for long background jobs, in seconds."
 msgstr ""
 "Tiempo de espera de referencia para tareas largas en segundo plano, en "
 "segundos."
 
-#: site_config/models.py:184 site_config/models.py:185
+#: site_config/models.py:189 site_config/models.py:190
 msgid "operational settings"
 msgstr "ajustes operativos"
 
-#: site_config/models.py:188
+#: site_config/models.py:193
 msgid "Operational settings"
 msgstr "Ajustes operativos"
 
@@ -1231,10 +1331,6 @@ msgstr "Nombre"
 #: templates/admin/index.html:65 templates/booking/book_consultation.html:121
 msgid "Type"
 msgstr "Tipo"
-
-#: templates/admin/index.html:66 templates/jobs/status_page.html:10
-msgid "Status"
-msgstr "Estado"
 
 #: templates/admin/index.html:67 templates/admin/index.html:95
 msgid "Date"
@@ -3636,7 +3732,7 @@ msgstr "Algo ha salido mal"
 
 #: templates/partials/task_status.html:47
 #: templates/tool_data_risk/progress.html:54
-#: templates/tool_studio_xray/progress.html:163
+#: templates/tool_studio_xray/progress.html:161
 msgid "Try again"
 msgstr "Intentarlo de nuevo"
 
@@ -4091,8 +4187,7 @@ msgid "The scan could not finish"
 msgstr "El escaneo no pudo completarse"
 
 #: templates/tool_data_risk/progress.html:51
-#: templates/tool_studio_xray/progress.html:156
-#| msgid "Diagnostic"
+#: templates/tool_studio_xray/progress.html:154
 msgid "Diagnostic details"
 msgstr "Detalles del diagnóstico"
 
@@ -4389,17 +4484,9 @@ msgstr "Empezar el diagnóstico"
 msgid "Your progress"
 msgstr "Tu progreso"
 
-#: templates/tool_erp_rescue/landing.html:72
-msgid "Yes"
-msgstr "Sí"
-
 #: templates/tool_erp_rescue/landing.html:76
 msgid "Partially"
 msgstr "Parcialmente"
-
-#: templates/tool_erp_rescue/landing.html:80
-msgid "No"
-msgstr "No"
 
 #: templates/tool_erp_rescue/landing.html:91
 msgid "Where should we send your results?"
@@ -5115,8 +5202,8 @@ msgid "Taking you to your results…"
 msgstr "Llevándote a tus resultados…"
 
 #: templates/tool_studio_xray/progress.html:81
-#: templates/tool_studio_xray/progress.html:206
-#: templates/tool_studio_xray/progress.html:207 tool_data_risk/views.py:292
+#: templates/tool_studio_xray/progress.html:204
+#: templates/tool_studio_xray/progress.html:205 tool_data_risk/views.py:292
 #: tool_studio_xray/views.py:147
 msgid "Connecting to Odoo"
 msgstr "Conectando con Odoo"
@@ -5129,45 +5216,45 @@ msgstr ""
 "Acceso de solo lectura · tu clave API nunca se guarda · los resultados se "
 "eliminan a las 72 horas"
 
-#: templates/tool_studio_xray/progress.html:165
+#: templates/tool_studio_xray/progress.html:163
 msgid "Back to all tools"
 msgstr "Volver a todas las herramientas"
 
-#: templates/tool_studio_xray/progress.html:171
+#: templates/tool_studio_xray/progress.html:169
 msgid "We'll also email the report link to you, so you won't lose it."
 msgstr ""
 "También te enviaremos el enlace del informe por correo para que no lo "
 "pierdas."
 
-#: templates/tool_studio_xray/progress.html:208 tool_studio_xray/views.py:149
+#: templates/tool_studio_xray/progress.html:206 tool_studio_xray/views.py:149
 msgid "Collecting Studio data"
 msgstr "Recopilando datos de Studio"
 
-#: templates/tool_studio_xray/progress.html:209 tool_studio_xray/views.py:151
+#: templates/tool_studio_xray/progress.html:207 tool_studio_xray/views.py:151
 msgid "Analyzing customizations"
 msgstr "Analizando las personalizaciones"
 
-#: templates/tool_studio_xray/progress.html:210 tool_studio_xray/views.py:155
+#: templates/tool_studio_xray/progress.html:208 tool_studio_xray/views.py:155
 msgid "Consulting the AI analyst"
 msgstr "Consultando al analista de IA"
 
-#: templates/tool_studio_xray/progress.html:211
+#: templates/tool_studio_xray/progress.html:209
 msgid "Done"
 msgstr "Listo"
 
-#: templates/tool_studio_xray/progress.html:215
+#: templates/tool_studio_xray/progress.html:213
 msgid "Reading model and module names…"
 msgstr "Leyendo nombres de modelos y módulos…"
 
-#: templates/tool_studio_xray/progress.html:216
+#: templates/tool_studio_xray/progress.html:214
 msgid "Connecting findings to your business context…"
 msgstr "Conectando los hallazgos con el contexto de tu negocio…"
 
-#: templates/tool_studio_xray/progress.html:217
+#: templates/tool_studio_xray/progress.html:215
 msgid "Weighing the upgrade risks…"
 msgstr "Sopesando los riesgos de actualización…"
 
-#: templates/tool_studio_xray/progress.html:218
+#: templates/tool_studio_xray/progress.html:216
 msgid "Drafting the interpretation…"
 msgstr "Redactando la interpretación…"
 

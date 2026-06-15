@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bidatia Business Systems 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-15 11:19+0000\n"
+"POT-Creation-Date: 2026-06-15 13:06+0000\n"
 "PO-Revision-Date: 2026-06-15 00:00+0000\n"
 "Last-Translator: Bidatia Business Systems <hola@bidatia.xyz>\n"
 "Language-Team: Arabic <hola@bidatia.xyz>\n"
@@ -557,7 +557,7 @@ msgstr "النتيجة"
 msgid "Ownership & timing"
 msgstr "الملكية والتوقيت"
 
-#: jobs/apps.py:8 site_config/admin.py:141
+#: jobs/apps.py:8 site_config/admin.py:234
 msgid "Background tasks"
 msgstr "المهام في الخلفية"
 
@@ -814,24 +814,24 @@ msgstr ""
 msgid "Edit this service"
 msgstr "تحرير هذه الخدمة"
 
-#: site_config/admin.py:45
+#: site_config/admin.py:46
 msgid "Brand & URLs"
 msgstr "العلامة التجارية والروابط"
 
-#: site_config/admin.py:46 templates/partials/navbar.html:30
+#: site_config/admin.py:47 templates/partials/navbar.html:30
 #: templates/partials/navbar.html:60
 msgid "Contact"
 msgstr "اتصل بنا"
 
-#: site_config/admin.py:48
+#: site_config/admin.py:49
 msgid "Flags"
 msgstr "المؤشرات"
 
-#: site_config/admin.py:56
+#: site_config/admin.py:57
 msgid "SMTP password"
 msgstr "كلمة مرور SMTP"
 
-#: site_config/admin.py:58
+#: site_config/admin.py:59
 msgid ""
 "Leave blank to keep the current password. Prefer the EMAIL_HOST_PASSWORD "
 "environment variable in production."
@@ -839,64 +839,166 @@ msgstr ""
 "اتركه فارغًا للإبقاء على كلمة المرور الحالية. يُفضَّل في بيئة الإنتاج "
 "استخدام متغيّر البيئة EMAIL_HOST_PASSWORD."
 
-#: site_config/admin.py:70
+#: site_config/admin.py:71
 msgid "Send a test email with these settings"
 msgstr "إرسال بريد اختباري بهذه الإعدادات"
 
-#: site_config/admin.py:78
+#: site_config/admin.py:79
 msgid "Set a test recipient first."
 msgstr "حدّد مستلِم الاختبار أولًا."
 
-#: site_config/admin.py:81
+#: site_config/admin.py:82
 msgid "Bidatia — test email"
 msgstr "Bidatia — بريد اختباري"
 
-#: site_config/admin.py:82
+#: site_config/admin.py:83
 msgid "Test email"
 msgstr "بريد اختباري"
 
-#: site_config/admin.py:83
+#: site_config/admin.py:84
 msgid "This confirms your email settings are working."
 msgstr "هذا يؤكّد أن إعدادات بريدك تعمل."
 
-#: site_config/admin.py:89
+#: site_config/admin.py:90
 #, python-format
 msgid "Test email sent to %s."
 msgstr "تم إرسال البريد الاختباري إلى %s."
 
-#: site_config/admin.py:92
+#: site_config/admin.py:93
 msgid "Test email failed — see \"last test\" fields."
 msgstr "فشل البريد الاختباري — راجع حقول «آخر اختبار»."
 
-#: site_config/admin.py:104
+#: site_config/admin.py:105
 msgid "SMTP server"
 msgstr "خادم SMTP"
 
-#: site_config/admin.py:106
+#: site_config/admin.py:107
 msgid "Addresses"
 msgstr "العناوين"
 
-#: site_config/admin.py:107
+#: site_config/admin.py:108
 msgid "Last test"
 msgstr "آخر اختبار"
 
-#: site_config/admin.py:111
+#: site_config/admin.py:112
 msgid "Password"
 msgstr "كلمة المرور"
 
-#: site_config/admin.py:122
+#: site_config/admin.py:136
+#| msgid "Installed modules"
+msgid "select an installed model"
+msgstr "اختر نموذجًا مثبَّتًا"
+
+#: site_config/admin.py:140
+#| msgid "modules installed"
+msgid "not installed"
+msgstr "غير مثبَّت"
+
+#: site_config/admin.py:144
+msgid ""
+"Models installed on the Ollama host. Pull more with \"ollama pull <name>\" "
+"on the server, then reload this page."
+msgstr ""
+"النماذج المثبَّتة على مضيف Ollama. ثبّت المزيد عبر «ollama pull <الاسم>» على"
+" الخادم ثم أعد تحميل هذه الصفحة."
+
+#: site_config/admin.py:148
+msgid "Run AI self-test (live call to the model)"
+msgstr "تشغيل اختبار الذكاء الاصطناعي (اتصال مباشر بالنموذج)"
+
+#: site_config/admin.py:170 templates/admin/index.html:66
+#: templates/jobs/status_page.html:10
+msgid "Status"
+msgstr "الحالة"
+
+#: site_config/admin.py:172
 msgid "Limits"
 msgstr "الحدود"
 
-#: site_config/admin.py:124
+#: site_config/admin.py:174
 msgid "Skills / system instructions"
 msgstr "المهارات / تعليمات النظام"
 
-#: site_config/admin.py:125
+#: site_config/admin.py:175
+#| msgid "Last test"
+msgid "Last self-test"
+msgstr "آخر اختبار"
+
+#: site_config/admin.py:177
 msgid "Audit"
 msgstr "التدقيق"
 
-#: site_config/admin.py:139
+#: site_config/admin.py:184
+msgid "AI health"
+msgstr "حالة الذكاء الاصطناعي"
+
+#: site_config/admin.py:203
+msgid "Master switch"
+msgstr "المفتاح الرئيسي"
+
+#: site_config/admin.py:203
+msgid "On"
+msgstr "مُفعّل"
+
+#: site_config/admin.py:203
+msgid "Off"
+msgstr "مُعطّل"
+
+#: site_config/admin.py:204
+msgid "Ollama host"
+msgstr "مضيف Ollama"
+
+#: site_config/admin.py:205
+msgid "Reachable"
+msgstr "قابل للوصول"
+
+#: site_config/admin.py:205 site_config/admin.py:211
+#: templates/tool_erp_rescue/landing.html:72
+msgid "Yes"
+msgstr "نعم"
+
+#: site_config/admin.py:205 templates/tool_erp_rescue/landing.html:80
+msgid "No"
+msgstr "لا"
+
+#: site_config/admin.py:207
+#| msgid "Configuration"
+msgid "Configured model"
+msgstr "النموذج المُهيّأ"
+
+#: site_config/admin.py:207
+msgid "(none)"
+msgstr "(لا يوجد)"
+
+#: site_config/admin.py:210
+#| msgid "modules installed"
+msgid "Model installed"
+msgstr "النموذج مثبَّت"
+
+#: site_config/admin.py:211
+msgid "NOT found — pull it or pick another"
+msgstr "غير موجود — ثبّته أو اختر غيره"
+
+#: site_config/admin.py:214 site_config/admin.py:216
+#| msgid "Installed modules"
+msgid "Installed models"
+msgstr "النماذج المثبَّتة"
+
+#: site_config/admin.py:216
+msgid "none pulled yet"
+msgstr "لا يوجد أي نموذج مثبَّت بعد"
+
+#: site_config/admin.py:221
+msgid "AI is ready ✓"
+msgstr "الذكاء الاصطناعي جاهز ✓"
+
+#: site_config/admin.py:221
+msgid "AI not ready — see below, then use “Run AI self-test”"
+msgstr ""
+"الذكاء الاصطناعي غير جاهز — راجع الأسفل ثم استخدم «تشغيل اختبار الذكاء "
+"الاصطناعي»"
+
+#: site_config/admin.py:232
 msgid "Feature flags"
 msgstr "مؤشّرات الميزات"
 
@@ -1037,20 +1139,20 @@ msgstr ""
 "المهارات / تعليمات النظام التي تُضاف قبل موجّه النموذج. داخلية — لا تُعرض "
 "للزوار أبدًا."
 
-#: site_config/models.py:156 site_config/models.py:157
-#: site_config/models.py:160
+#: site_config/models.py:161 site_config/models.py:162
+#: site_config/models.py:165
 msgid "AI settings"
 msgstr "إعدادات الذكاء الاصطناعي"
 
-#: site_config/models.py:165
+#: site_config/models.py:170
 msgid "Allow visitors to submit booking requests."
 msgstr "السماح للزوار بإرسال طلبات الحجز."
 
-#: site_config/models.py:167
+#: site_config/models.py:172
 msgid "Allow the free diagnostic tools to run."
 msgstr "السماح بتشغيل أدوات التشخيص المجانية."
 
-#: site_config/models.py:170
+#: site_config/models.py:175
 msgid ""
 "Show technical error details on the free-tool progress pages when a scan "
 "fails (for debugging). Staff always see them; turn this on to show them to "
@@ -1060,19 +1162,19 @@ msgstr ""
 "(لأغراض التشخيص). يراها فريق العمل دائمًا؛ فعّله لعرضها لجميع الزوار أيضًا، "
 "ثم أوقفه مرة أخرى بعد حل المشكلة."
 
-#: site_config/models.py:176
+#: site_config/models.py:181
 msgid "How often the status component polls, in milliseconds."
 msgstr "عدد مرات استعلام مكوّن الحالة عن الحالة، بالملي ثانية."
 
-#: site_config/models.py:179
+#: site_config/models.py:184
 msgid "Reference timeout for long background jobs, in seconds."
 msgstr "مهلة مرجعية للمهام الطويلة في الخلفية، بالثواني."
 
-#: site_config/models.py:184 site_config/models.py:185
+#: site_config/models.py:189 site_config/models.py:190
 msgid "operational settings"
 msgstr "الإعدادات التشغيلية"
 
-#: site_config/models.py:188
+#: site_config/models.py:193
 msgid "Operational settings"
 msgstr "الإعدادات التشغيلية"
 
@@ -1188,10 +1290,6 @@ msgstr "الاسم"
 #: templates/admin/index.html:65 templates/booking/book_consultation.html:121
 msgid "Type"
 msgstr "النوع"
-
-#: templates/admin/index.html:66 templates/jobs/status_page.html:10
-msgid "Status"
-msgstr "الحالة"
 
 #: templates/admin/index.html:67 templates/admin/index.html:95
 msgid "Date"
@@ -3492,7 +3590,7 @@ msgstr "حدث خطأ ما"
 
 #: templates/partials/task_status.html:47
 #: templates/tool_data_risk/progress.html:54
-#: templates/tool_studio_xray/progress.html:163
+#: templates/tool_studio_xray/progress.html:161
 msgid "Try again"
 msgstr "حاول مرة أخرى"
 
@@ -3923,8 +4021,7 @@ msgid "The scan could not finish"
 msgstr "تعذّر إكمال الفحص"
 
 #: templates/tool_data_risk/progress.html:51
-#: templates/tool_studio_xray/progress.html:156
-#| msgid "Diagnostic"
+#: templates/tool_studio_xray/progress.html:154
 msgid "Diagnostic details"
 msgstr "تفاصيل التشخيص"
 
@@ -4212,17 +4309,9 @@ msgstr "ابدأ الفحص"
 msgid "Your progress"
 msgstr "تقدمك"
 
-#: templates/tool_erp_rescue/landing.html:72
-msgid "Yes"
-msgstr "نعم"
-
 #: templates/tool_erp_rescue/landing.html:76
 msgid "Partially"
 msgstr "جزئيًا"
-
-#: templates/tool_erp_rescue/landing.html:80
-msgid "No"
-msgstr "لا"
 
 #: templates/tool_erp_rescue/landing.html:91
 msgid "Where should we send your results?"
@@ -4900,8 +4989,8 @@ msgid "Taking you to your results…"
 msgstr "جارٍ نقلك إلى نتائجك…"
 
 #: templates/tool_studio_xray/progress.html:81
-#: templates/tool_studio_xray/progress.html:206
-#: templates/tool_studio_xray/progress.html:207 tool_data_risk/views.py:292
+#: templates/tool_studio_xray/progress.html:204
+#: templates/tool_studio_xray/progress.html:205 tool_data_risk/views.py:292
 #: tool_studio_xray/views.py:147
 msgid "Connecting to Odoo"
 msgstr "جارٍ الاتصال بـ Odoo"
@@ -4914,43 +5003,43 @@ msgstr ""
 "وصول للقراءة فقط · مفتاح API لا يُخزَّن أبدًا · تُحذف النتائج تلقائيًا بعد "
 "72 ساعة"
 
-#: templates/tool_studio_xray/progress.html:165
+#: templates/tool_studio_xray/progress.html:163
 msgid "Back to all tools"
 msgstr "العودة إلى جميع الأدوات"
 
-#: templates/tool_studio_xray/progress.html:171
+#: templates/tool_studio_xray/progress.html:169
 msgid "We'll also email the report link to you, so you won't lose it."
 msgstr "سنرسل إليك أيضًا رابط التقرير عبر البريد حتى لا تفقده."
 
-#: templates/tool_studio_xray/progress.html:208 tool_studio_xray/views.py:149
+#: templates/tool_studio_xray/progress.html:206 tool_studio_xray/views.py:149
 msgid "Collecting Studio data"
 msgstr "جارٍ جمع بيانات Studio"
 
-#: templates/tool_studio_xray/progress.html:209 tool_studio_xray/views.py:151
+#: templates/tool_studio_xray/progress.html:207 tool_studio_xray/views.py:151
 msgid "Analyzing customizations"
 msgstr "جارٍ تحليل التخصيصات"
 
-#: templates/tool_studio_xray/progress.html:210 tool_studio_xray/views.py:155
+#: templates/tool_studio_xray/progress.html:208 tool_studio_xray/views.py:155
 msgid "Consulting the AI analyst"
 msgstr "استشارة المحلل الذكي"
 
-#: templates/tool_studio_xray/progress.html:211
+#: templates/tool_studio_xray/progress.html:209
 msgid "Done"
 msgstr "تم"
 
-#: templates/tool_studio_xray/progress.html:215
+#: templates/tool_studio_xray/progress.html:213
 msgid "Reading model and module names…"
 msgstr "يقرأ أسماء النماذج والوحدات…"
 
-#: templates/tool_studio_xray/progress.html:216
+#: templates/tool_studio_xray/progress.html:214
 msgid "Connecting findings to your business context…"
 msgstr "يربط النتائج بسياق عملك…"
 
-#: templates/tool_studio_xray/progress.html:217
+#: templates/tool_studio_xray/progress.html:215
 msgid "Weighing the upgrade risks…"
 msgstr "يوازن مخاطر الترقية…"
 
-#: templates/tool_studio_xray/progress.html:218
+#: templates/tool_studio_xray/progress.html:216
 msgid "Drafting the interpretation…"
 msgstr "يصيغ الخلاصة…"
 

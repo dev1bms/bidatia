@@ -147,6 +147,11 @@ class AIConfiguration(SingletonModel):
         help_text=_('Skills / system instructions prepended to the model prompt. '
                     'Internal — never shown to visitors.'))
 
+    # Result of the last "Run AI self-test" admin action.
+    last_ai_test_status = models.CharField(max_length=10, blank=True)
+    last_ai_test_at = models.DateTimeField(null=True, blank=True)
+    last_ai_test_message = models.CharField(max_length=300, blank=True)
+
     updated_at = models.DateTimeField(auto_now=True)
     updated_by = models.ForeignKey(
         settings.AUTH_USER_MODEL, null=True, blank=True,

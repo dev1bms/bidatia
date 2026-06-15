@@ -111,6 +111,92 @@ class AiServiceTests(SimpleTestCase):
         self.assertEqual(urlopen.call_count, 2)
 
 
+def fake_response(payload):
+    """Non-streaming urlopen stand-in exposing .read() + context manager."""
+    resp = mock.MagicMock()
+    resp.__enter__.return_value = resp
+    resp.__exit__.return_value = False
+    resp.read.return_value = json.dumps(payload).encode()
+    return resp
+
+
+class AiDiagnosticsTests(SimpleTestCase):
+    """list_models / health_check / self_test power the admin AI panel + button."""
+
+    def test_list_models_returns_sorted_names(self):
+        resp = fake_response({'models': [{'name': 'qwen3.5:9b'}, {'name': 'gemma2:27b'}]})
+        with mock.patch('tools_core.services.ai_service.urllib.request.urlopen',
+                        return_value=resp):
+            self.assertEqual(ai_service.list_models(), ['gemma2:27b', 'qwen3.5:9b'])
+
+    @AI_ON
+    def test_health_check_flags_model_present(self):
+        resp = fake_response({'models': [{'name': 'qwen3.5:9b'}, {'name': 'llama3'}]})
+        with mock.patch('tools_core.services.ai_service.urllib.request.urlopen',
+                        return_value=resp):
+            h = ai_service.health_check()
+        self.assertTrue(h['reachable'])
+        self.assertTrue(h['model_present'])          # configured qwen3.5:9b is pulled
+        self.assertIn('llama3', h['models'])
+
+    @override_settings(TOOLS_AI_MODEL='not-pulled:1b')
+    def test_health_check_flags_missing_model(self):
+        resp = fake_response({'models': [{'name': 'qwen3.5:9b'}]})
+        with mock.patch('tools_core.services.ai_service.urllib.request.urlopen',
+                        return_value=resp):
+            h = ai_service.health_check()
+        self.assertTrue(h['reachable'])
+        self.assertFalse(h['model_present'])
+
+    def test_health_check_handles_unreachable(self):
+        import urllib.error
+        with mock.patch('tools_core.services.ai_service.urllib.request.urlopen',
+                        side_effect=urllib.error.URLError('refused')):
+            with override_settings(TOOLS_AI_MODEL='qwen3.5:9b'):
+                h = ai_service.health_check()
+        self.assertFalse(h['reachable'])
+        self.assertTrue(h['error'])
+
+    @AI_ON
+    def test_self_test_ok(self):
+        resp = fake_response({'message': {'content': 'OK'}})
+        with mock.patch('tools_core.services.ai_service.urllib.request.urlopen',
+                        return_value=resp):
+            ok, detail = ai_service.self_test()
+        self.assertTrue(ok)
+        self.assertIn('qwen3.5:9b', detail)
+
+    @AI_ON
+    def test_self_test_reports_model_not_found(self):
+        import io
+        import urllib.error
+        err = urllib.error.HTTPError(
+            'http://x/api/chat', 404, 'Not Found', {},
+            io.BytesIO(json.dumps({'error': "model 'qwen3.5:9b' not found"}).encode()))
+        with mock.patch('tools_core.services.ai_service.urllib.request.urlopen',
+                        side_effect=err):
+            ok, detail = ai_service.self_test()
+        self.assertFalse(ok)
+        self.assertIn('404', detail)
+        self.assertIn('not pulled', detail)
+
+    @AI_ON
+    def test_self_test_reports_unreachable(self):
+        import urllib.error
+        with mock.patch('tools_core.services.ai_service.urllib.request.urlopen',
+                        side_effect=urllib.error.URLError('Connection refused')):
+            ok, detail = ai_service.self_test()
+        self.assertFalse(ok)
+        self.assertIn('Cannot reach Ollama', detail)
+
+    def test_self_test_disabled_when_no_model(self):
+        # No TOOLS_AI_MODEL and no DB row → AI disabled, clear message, no call.
+        with mock.patch('tools_core.services.ai_service.urllib.request.urlopen') as urlopen:
+            ok, detail = ai_service.self_test()
+        self.assertFalse(ok)
+        urlopen.assert_not_called()
+
+
 class ValidatorRetryTests(SimpleTestCase):
     @AI_ON
     def test_unacceptable_first_answer_triggers_strict_retry(self):

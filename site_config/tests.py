@@ -142,3 +142,25 @@ class AdminPermissionTests(TestCase):
         self.assertFalse(admin.has_module_permission(req_staff))
         self.assertTrue(admin.has_module_permission(req_boss))
         self.assertFalse(admin.has_delete_permission(req_boss))
+
+
+@override_settings(ALLOWED_HOSTS=['testserver'])
+class AISelfTestActionTests(TestCase):
+    def setUp(self):
+        cache.clear()
+
+    def test_action_records_result_on_the_config_row(self):
+        from unittest import mock
+
+        from site_config.admin import run_ai_self_test
+        from site_config.models import AIConfiguration
+
+        req = RequestFactory().get('/admin/')
+        with mock.patch('tools_core.services.ai_service.self_test',
+                        return_value=(False, "Ollama HTTP 404: model not pulled")):
+            run_ai_self_test(mock.MagicMock(), req, AIConfiguration.objects.all())
+
+        cfg = AIConfiguration.load()
+        self.assertEqual(cfg.last_ai_test_status, 'failed')
+        self.assertIn('404', cfg.last_ai_test_message)
+        self.assertIsNotNone(cfg.last_ai_test_at)

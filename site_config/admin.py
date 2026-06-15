@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib import admin, messages
 from django.utils import timezone
+from django.utils.html import format_html, format_html_join
 from django.utils.translation import gettext_lazy as _
 
 from unfold.admin import ModelAdmin
@@ -113,21 +114,113 @@ class EmailConfigurationAdmin(SingletonAdmin):
         return obj.has_password
 
 
+class AIConfigurationForm(forms.ModelForm):
+    """When the Ollama host is reachable, turn `model_name` into a dropdown of
+    the models actually pulled there, so the admin picks instead of typing (and
+    can't typo a tag). Falls back to a free-text box if Ollama is unreachable,
+    so the form never hangs or breaks."""
+
+    class Meta:
+        model = AIConfiguration
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        try:
+            from tools_core.services.ai_service import list_models
+            models = list_models(timeout=3)
+        except Exception:  # noqa: BLE001 — unreachable/slow → keep the text box
+            models = []
+        if models:
+            current = (self.instance.model_name or '').strip()
+            choices = [('', '— ' + str(_('select an installed model')) + ' —')]
+            choices += [(m, m) for m in models]
+            if current and current not in models:
+                # Don't silently drop a configured-but-not-installed model.
+                choices.append((current, f'{current} ({_("not installed")})'))
+            self.fields['model_name'] = forms.ChoiceField(
+                choices=choices, required=False,
+                label=self.fields['model_name'].label,
+                help_text=_('Models installed on the Ollama host. Pull more with '
+                            '"ollama pull <name>" on the server, then reload this page.'))
+
+
+@admin.action(description=_('Run AI self-test (live call to the model)'))
+def run_ai_self_test(modeladmin, request, queryset):
+    from tools_core.services.ai_service import self_test
+
+    cfg = AIConfiguration.load()
+    ok, detail = self_test()
+    cfg.last_ai_test_status = 'ok' if ok else 'failed'
+    cfg.last_ai_test_at = timezone.now()
+    cfg.last_ai_test_message = detail[:300]
+    cfg.save()
+    level = messages.SUCCESS if ok else messages.ERROR
+    modeladmin.message_user(request, detail, level=level)
+
+
 @admin.register(AIConfiguration)
 class AIConfigurationAdmin(SingletonAdmin):
-    list_display = ('__str__', 'enabled', 'model_name', 'request_timeout', 'updated_at')
-    readonly_fields = ('updated_at', 'updated_by')
+    form = AIConfigurationForm
+    actions = [run_ai_self_test]
+    list_display = ('__str__', 'enabled', 'model_name', 'last_ai_test_status', 'updated_at')
+    readonly_fields = ('ai_health', 'last_ai_test_status', 'last_ai_test_at',
+                       'last_ai_test_message', 'updated_at', 'updated_by')
     fieldsets = (
+        (_('Status'), {'fields': ('ai_health',)}),
         (None, {'fields': ('enabled', 'provider', 'model_name')}),
         (_('Limits'), {'fields': ('request_timeout', 'thinking_budget',
                                   'max_output_tokens', 'temperature')}),
         (_('Skills / system instructions'), {'fields': ('system_instructions',)}),
+        (_('Last self-test'), {'fields': ('last_ai_test_status', 'last_ai_test_at',
+                                          'last_ai_test_message')}),
         (_('Audit'), {'fields': ('updated_at', 'updated_by')}),
     )
 
     def save_model(self, request, obj, form, change):
         obj.updated_by = request.user
         super().save_model(request, obj, form, change)
+
+    @admin.display(description=_('AI health'))
+    def ai_health(self, obj):
+        """Live snapshot: is Ollama reachable, which models are pulled, and is
+        the configured model among them — so the owner can see at a glance why
+        the AI layer is or isn't working, and copy an exact model name."""
+        from tools_core.services.ai_service import health_check
+
+        h = health_check(timeout=3)
+
+        def row(label, value, good=None):
+            color = '' if good is None else ('#16a34a' if good else '#dc2626')
+            mark = '' if good is None else ('✓ ' if good else '✗ ')
+            return format_html(
+                '<div style="display:flex;gap:.5rem;padding:.15rem 0">'
+                '<b style="min-width:170px">{}</b>'
+                '<span style="color:{}">{}{}</span></div>',
+                label, color, mark, value)
+
+        rows = [
+            row(_('Master switch'), _('On') if h['enabled'] else _('Off'), h['enabled']),
+            row(_('Ollama host'), h['url'], None),
+            row(_('Reachable'), _('Yes') if h['reachable'] else (h['error'] or _('No')),
+                h['reachable']),
+            row(_('Configured model'), h['model'] or _('(none)'), bool(h['model'])),
+        ]
+        if h['reachable']:
+            rows.append(row(_('Model installed'),
+                            _('Yes') if h['model_present'] else _('NOT found — pull it or pick another'),
+                            h['model_present']))
+            if h['models']:
+                rows.append(row(_('Installed models'), ', '.join(h['models']), None))
+            else:
+                rows.append(row(_('Installed models'), _('none pulled yet'), False))
+        overall_ok = h['enabled'] and h['reachable'] and h['model_present']
+        banner = format_html(
+            '<div style="font-weight:700;margin-bottom:.5rem;color:{}">{}</div>',
+            '#16a34a' if overall_ok else '#dc2626',
+            _('AI is ready ✓') if overall_ok else _('AI not ready — see below, then use “Run AI self-test”'))
+        return format_html('{}{}', banner,
+                           format_html_join('', '{}', ((r,) for r in rows)))
 
 
 @admin.register(OperationalConfiguration)

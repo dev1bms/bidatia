@@ -19,6 +19,7 @@ The request STREAMS. Two reasons:
 import json
 import logging
 import time
+import urllib.error
 import urllib.request
 
 from django.conf import settings
@@ -86,17 +87,25 @@ def generate_json(system_prompt, user_prompt, on_thinking=None, is_acceptable=No
     if ai.get('system_instructions'):
         system_prompt = f"{ai['system_instructions']}\n\n{system_prompt}"
 
+    # Admin-tunable options override the defaults (temperature / output cap).
+    options = dict(GENERATION_OPTIONS)
+    if ai.get('temperature') is not None:
+        options['temperature'] = float(ai['temperature'])
+    if ai.get('max_output_tokens'):
+        options['num_predict'] = int(ai['max_output_tokens'])
+
     base_body = {
         'model': ai['model'],
         'stream': True,
         'keep_alive': KEEP_ALIVE,
-        'options': GENERATION_OPTIONS,
+        'options': options,
         'messages': [
             {'role': 'system', 'content': system_prompt},
             {'role': 'user', 'content': user_prompt},
         ],
     }
-    deadline = time.monotonic() + int(ai['timeout'])
+    timeout = int(ai['timeout'])
+    deadline = time.monotonic() + timeout
     thinking_budget = max(int(ai['thinking_budget'] or 0), 0)
 
     saw_thinking = False
@@ -104,7 +113,7 @@ def generate_json(system_prompt, user_prompt, on_thinking=None, is_acceptable=No
         # Free-form attempt: real reasoning streams to the progress page for
         # up to TOOLS_AI_THINKING_BUDGET seconds, then we cut to strict mode.
         first_deadline = deadline
-        if settings.TOOLS_AI_TIMEOUT > 2 * RETRY_RESERVE:
+        if timeout > 2 * RETRY_RESERVE:
             first_deadline = deadline - RETRY_RESERVE
         first_deadline = min(first_deadline, time.monotonic() + thinking_budget)
 
@@ -179,3 +188,91 @@ def _attempt(body, deadline, on_thinking):
                        '(thinking may have consumed the token budget)')
         return None, bool(thinking_parts)
     return content, bool(thinking_parts)
+
+
+# ── Admin diagnostics: discover models, check health, run a live self-test ────
+def list_models(timeout=4):
+    """Names of the models actually pulled on the Ollama host (``/api/tags``).
+    Raises on any connection/HTTP error so callers can report it."""
+    url = settings.OLLAMA_URL.rstrip('/') + '/api/tags'
+    with urllib.request.urlopen(url, timeout=timeout) as response:
+        data = json.loads(response.read().decode('utf-8'))
+    return sorted(m['name'] for m in data.get('models', []) if m.get('name'))
+
+
+def health_check(timeout=4):
+    """A snapshot for the admin: is Ollama reachable, which models are pulled,
+    and is the configured model among them. Never raises."""
+    from site_config import services as config
+
+    ai = config.ai_settings()
+    info = {
+        'enabled': ai['enabled'],
+        'model': ai['model'],
+        'url': settings.OLLAMA_URL,
+        'reachable': False,
+        'models': [],
+        'model_present': False,
+        'error': '',
+    }
+    if not ai['model']:
+        info['error'] = 'no_model_configured'
+        return info
+    try:
+        info['models'] = list_models(timeout=timeout)
+        info['reachable'] = True
+        info['model_present'] = ai['model'] in info['models']
+    except urllib.error.URLError as exc:
+        info['error'] = f'unreachable: {getattr(exc, "reason", exc)}'
+    except Exception as exc:  # noqa: BLE001
+        info['error'] = type(exc).__name__
+    return info
+
+
+def self_test():
+    """Make one tiny real generation with the configured model. Returns
+    (ok: bool, detail: str) with a precise, secret-free reason on failure —
+    e.g. 'HTTP 404: model not found' or 'cannot reach Ollama'."""
+    from site_config import services as config
+
+    ai = config.ai_settings()
+    if not ai['enabled']:
+        return False, 'AI is disabled (Enabled is off, or no model configured).'
+    if not ai['model']:
+        return False, 'No model configured — set Model name or TOOLS_AI_MODEL.'
+
+    body = {
+        'model': ai['model'], 'stream': False, 'keep_alive': KEEP_ALIVE,
+        'messages': [{'role': 'user', 'content': 'Reply with the single word: OK'}],
+        'options': {'num_predict': 16, 'temperature': 0},
+    }
+    request = urllib.request.Request(
+        settings.OLLAMA_URL.rstrip('/') + '/api/chat',
+        data=json.dumps(body).encode('utf-8'),
+        headers={'Content-Type': 'application/json'},
+    )
+    started = time.monotonic()
+    try:
+        # Generous cap: a cold model load can take a while on first call.
+        with urllib.request.urlopen(request, timeout=min(int(ai['timeout']), 180)) as resp:
+            data = json.loads(resp.read().decode('utf-8'))
+    except urllib.error.HTTPError as exc:
+        detail = ''
+        try:
+            detail = json.loads(exc.read().decode('utf-8')).get('error', '')
+        except Exception:  # noqa: BLE001
+            pass
+        hint = (f" — model '{ai['model']}' is not pulled on this server"
+                if exc.code == 404 else '')
+        return False, f'Ollama returned HTTP {exc.code}: {detail or exc.reason}{hint}'
+    except urllib.error.URLError as exc:
+        return False, (f"Cannot reach Ollama at {settings.OLLAMA_URL} "
+                       f"({getattr(exc, 'reason', exc)}). Is the service running?")
+    except Exception as exc:  # noqa: BLE001
+        return False, f'{type(exc).__name__}: {exc}'[:200]
+
+    text = ((data.get('message') or {}).get('content') or '').strip()
+    elapsed = time.monotonic() - started
+    if text:
+        return True, f"OK — '{ai['model']}' replied in {elapsed:.1f}s."
+    return False, f"'{ai['model']}' connected but returned empty content."
