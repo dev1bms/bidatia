@@ -176,6 +176,16 @@
 
         .bg-white, .bg-paper { background-color: rgb(var(--paper-rgb)) !important; }
         .bg-slate-50, .bg-slate-100, .mesh-light { background-color: rgb(var(--canvas2-rgb)) !important; }
+        /* Opacity-variant light surfaces (bg-white/80, bg-slate-50/70, bg-brand-50/70, …)
+           are distinct class names the rules above don't match, so on the dark theme they
+           kept a LIGHT fill under now-light text — poor contrast (e.g. the tool scan
+           progress card). Repaint them too; theme-aware vars keep the light theme right.
+           The faint bg-white/10 "glass" is intentionally left alone. */
+        .bg-white\/95, .bg-white\/90, .bg-white\/80, .bg-white\/70 { background-color: rgb(var(--paper-rgb)) !important; }
+        .bg-slate-50\/70, .bg-slate-50\/60, .bg-slate-50\/50,
+        .bg-slate-100\/70, .bg-slate-100\/60, .bg-slate-100\/50 { background-color: rgb(var(--canvas2-rgb)) !important; }
+        .bg-brand-50\/70, .bg-brand-50\/60, .bg-brand-50\/50, .bg-brand-50\/40 { background-color: rgba(99,102,241,.12) !important; }
+        .bg-emerald-50\/50, .bg-emerald-50\/40 { background-color: rgba(16,185,129,.13) !important; }
         .bg-ink { background-color: var(--panel) !important; }
         /* anchor/button surfaces become the signature gradient (the CTAs) */
         a.bg-ink, button.bg-ink, a.bg-white, button.bg-white,
