@@ -20,24 +20,26 @@
             </span>
         </a>
 
-        <div class="hidden lg:flex items-center gap-7 font-mono text-[11px] uppercase tracking-[0.12em] text-ink/60">
-            <a href="{% url 'services:service_list' %}" class="hover:text-ink transition">{% trans "Services" %}</a>
-            <a href="{% url 'tools_core:hub' %}" class="hover:text-ink transition">{% trans "Free Tools" %}</a>
-            <a href="{% url 'case_studies:case_study_list' %}" class="hover:text-ink transition">{% trans "Case Studies" %}</a>
-            <a href="{% url 'blog:blog_list' %}" class="hover:text-ink transition">{% trans "Insights" %}</a>
-            <a href="{% url 'core:about' %}" class="hover:text-ink transition">{% trans "About" %}</a>
-            <a href="{% url 'leads:contact' %}" class="hover:text-ink transition">{% trans "Contact" %}</a>
+        {# Desktop nav: nowrap + tight tracking + responsive gaps keep labels on one line; short nav labels. #}
+        <div class="hidden lg:flex items-center gap-5 xl:gap-7 font-mono text-[11px] uppercase tracking-[0.05em] text-ink/65">
+            <a href="{% url 'services:service_list' %}" class="whitespace-nowrap hover:text-ink transition">{% trans "Services" %}</a>
+            <a href="{% url 'tools_core:hub' %}" class="whitespace-nowrap hover:text-ink transition">{% trans "Tools" %}</a>
+            <a href="{% url 'case_studies:case_study_list' %}" class="whitespace-nowrap hover:text-ink transition">{% trans "Case Studies" %}</a>
+            <a href="{% url 'blog:blog_list' %}" class="whitespace-nowrap hover:text-ink transition">{% trans "Insights" %}</a>
+            <a href="{% url 'core:about' %}" class="whitespace-nowrap hover:text-ink transition">{% trans "About" %}</a>
+            <a href="{% url 'leads:contact' %}" class="whitespace-nowrap hover:text-ink transition">{% trans "Contact" %}</a>
         </div>
 
-        <div class="hidden lg:flex items-center gap-4">
-            <button type="button" onclick="window.toggleTheme()" class="theme-toggle inline-flex h-9 w-9 items-center justify-center border border-line text-ink/70 hover:text-ink hover:border-ink transition" aria-label="{% trans 'Toggle light / dark theme' %}">
+        <div class="hidden lg:flex items-center gap-2.5 xl:gap-4">
+            <button type="button" onclick="window.toggleTheme()" class="theme-toggle inline-flex h-9 w-9 flex-none items-center justify-center border border-line text-ink/70 hover:text-ink hover:border-ink transition" aria-label="{% trans 'Toggle light / dark theme' %}">
                 {# moon shows in dark mode (tap → go light); sun shows in light mode #}
                 <svg class="theme-moon h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
                 <svg class="theme-sun h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"/></svg>
             </button>
             {% include "partials/language_switcher.html" %}
-            <a href="{% url 'booking:book_consultation' %}" class="group inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em] font-semibold text-canvas bg-ink hover:bg-brand-700 transition px-4 py-2.5">
-                {% trans "Request a consultation" %}
+            {# Nav CTA: short label so it never wraps; the booking page keeps the full wording. #}
+            <a href="{% url 'booking:book_consultation' %}" class="group inline-flex flex-none items-center gap-2 whitespace-nowrap font-mono text-[11px] uppercase tracking-[0.05em] font-semibold text-canvas bg-ink hover:bg-brand-700 transition px-3.5 py-2.5">
+                {% trans "Book a call" %}
                 <svg class="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </a>
         </div>
@@ -51,7 +53,7 @@
     <div x-show="open" x-cloak x-transition class="lg:hidden border-t border-line bg-canvas">
         <div class="px-4 py-4 space-y-0.5 font-mono text-xs uppercase tracking-[0.12em] text-ink/70">
             <a href="{% url 'services:service_list' %}" class="block px-3 py-3 border-b border-line hover:text-ink">{% trans "Services" %}</a>
-            <a href="{% url 'tools_core:hub' %}" class="block px-3 py-3 border-b border-line hover:text-ink">{% trans "Free Tools" %}</a>
+            <a href="{% url 'tools_core:hub' %}" class="block px-3 py-3 border-b border-line hover:text-ink">{% trans "Tools" %}</a>
             <a href="{% url 'case_studies:case_study_list' %}" class="block px-3 py-3 border-b border-line hover:text-ink">{% trans "Case Studies" %}</a>
             <a href="{% url 'blog:blog_list' %}" class="block px-3 py-3 border-b border-line hover:text-ink">{% trans "Insights" %}</a>
             <a href="{% url 'core:about' %}" class="block px-3 py-3 border-b border-line hover:text-ink">{% trans "About" %}</a>

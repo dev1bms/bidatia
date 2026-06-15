@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 import os
+import sys
 from pathlib import Path
 
 from celery.schedules import crontab
@@ -85,6 +86,8 @@ INSTALLED_APPS = [
     'tool_chaos_calc',
     'tool_data_risk',
     'glossary',
+    'jobs',
+    'site_config',
 ]
 
 MIDDLEWARE = [
@@ -275,6 +278,11 @@ CELERY_BROKER_URL = os.environ.get('REDIS_URL', 'redis://localhost:6379/0')
 # Local development without Redis/worker: set CELERY_TASK_ALWAYS_EAGER=True to
 # run tasks synchronously in the request process. Never enable in production.
 CELERY_TASK_ALWAYS_EAGER = env_bool('CELERY_TASK_ALWAYS_EAGER', False)
+# Under the test runner, always run tasks inline so the suite never needs a
+# live broker (and request-path .delay() calls behave deterministically).
+if 'test' in sys.argv:
+    CELERY_TASK_ALWAYS_EAGER = True
+    CELERY_TASK_EAGER_PROPAGATES = True
 CELERY_TASK_IGNORE_RESULT = True
 CELERY_RESULT_EXTENDED = False  # never store args/kwargs metadata anywhere
 CELERY_TASK_TIME_LIMIT = 420        # hard kill after 7 minutes

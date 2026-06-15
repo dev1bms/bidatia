@@ -7,7 +7,7 @@ from django.utils import timezone
 from django.utils.formats import date_format
 from django.utils.translation import gettext as _
 
-from core.notifications import notify_consultation_request
+from jobs.services import create_task
 
 from .forms import ConsultationRequestForm
 from .models import (
@@ -17,6 +17,26 @@ from .models import (
     PAID_CONSULTATION_TYPES,
     AvailabilitySlot,
 )
+
+def _dispatch_consultation_notification(request, consultation):
+    """Queue the booking notification email off the request path; return a
+    BackgroundTask the success page can poll. Inline fallback if broker is down."""
+    from core.tasks import send_consultation_notification
+
+    if not request.session.session_key:
+        request.session.save()
+    task = create_task(
+        task_type='booking_email',
+        title=_('Submitting your booking request…'),
+        session_key=request.session.session_key,
+    )
+    lang = getattr(request, 'LANGUAGE_CODE', 'en') or 'en'
+    try:
+        send_consultation_notification.delay(consultation.pk, str(task.pk), lang)
+    except Exception:  # noqa: BLE001 — broker down: deliver inline, still non-fatal
+        send_consultation_notification(consultation.pk, str(task.pk), lang)
+    return task
+
 
 # Maps service detail-page slugs to a consultation type, so links like
 # /book-consultation/?service=odoo-health-check pre-select the right option.
@@ -151,10 +171,11 @@ def book_consultation(request):
                     _('Sorry, that time slot was just booked by someone else. Please choose another one.'),
                 )
             else:
-                # Request is safely saved; email is best-effort and the failure
-                # is logged inside notify_* without blocking the user.
-                notify_consultation_request(consultation)
+                # Request is safely saved; the notification email is delivered
+                # in the background so the browser gets an instant response.
+                task = _dispatch_consultation_notification(request, consultation)
                 request.session['booking_is_paid'] = bool(consultation.is_paid)
+                request.session['booking_task_id'] = str(task.pk)
                 return redirect('booking:booking_success')
     else:
         form = ConsultationRequestForm(initial=initial)
@@ -185,7 +206,9 @@ def book_consultation(request):
 
 def booking_success(request):
     is_paid = request.session.pop('booking_is_paid', False)
+    task_id = request.session.pop('booking_task_id', None)
     return render(request, 'booking/booking_success.html', {
         'is_paid': is_paid,
-        'meta_description': 'Your consultation request has been received by Bidatia.',
+        'task_id': task_id,
+        'meta_description': _('Your consultation request has been received by Bidatia.'),
     })

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bidatia Business Systems 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-15 08:19+0000\n"
+"POT-Creation-Date: 2026-06-15 08:58+0000\n"
 "PO-Revision-Date: 2026-06-15 00:00+0000\n"
 "Last-Translator: Bidatia Business Systems <hola@bidatia.xyz>\n"
 "Language-Team: Spanish <hola@bidatia.xyz>\n"
@@ -17,88 +17,88 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: bidatia/settings.py:179 booking/models.py:77
+#: bidatia/settings.py:182 booking/models.py:77
 msgid "Spanish"
 msgstr "Español"
 
-#: bidatia/settings.py:180 booking/models.py:76
+#: bidatia/settings.py:183 booking/models.py:76
 msgid "English"
 msgstr "Inglés"
 
-#: bidatia/settings.py:181 booking/models.py:78
+#: bidatia/settings.py:184 booking/models.py:78
 msgid "Arabic"
 msgstr "Árabe"
 
-#: bidatia/settings.py:228
+#: bidatia/settings.py:231
 msgid "ERP, Odoo & governed data with AI"
 msgstr "ERP, Odoo y datos gobernados con IA"
 
-#: bidatia/settings.py:231 templates/pages/privacy.html:35
+#: bidatia/settings.py:234 templates/pages/privacy.html:35
 msgid "Madrid, Spain"
 msgstr "Madrid, España"
 
-#: bidatia/settings.py:425
+#: bidatia/settings.py:433
 msgid "Business Systems · ERP, Data & AI"
 msgstr "Business Systems · ERP, datos e IA"
 
-#: bidatia/settings.py:457
+#: bidatia/settings.py:465
 msgid "Dashboard"
 msgstr "Panel"
 
-#: bidatia/settings.py:459
+#: bidatia/settings.py:467
 msgid "Overview"
 msgstr "Resumen"
 
-#: bidatia/settings.py:463
+#: bidatia/settings.py:471
 msgid "Bookings"
 msgstr "Reservas"
 
-#: bidatia/settings.py:465 core/context_processors.py:60
+#: bidatia/settings.py:473 core/context_processors.py:60
 msgid "Consultation requests"
 msgstr "Solicitudes de consultoría"
 
-#: bidatia/settings.py:467 core/context_processors.py:62
+#: bidatia/settings.py:475 core/context_processors.py:62
 msgid "Availability slots"
 msgstr "Franjas de disponibilidad"
 
-#: bidatia/settings.py:472 core/context_processors.py:63
+#: bidatia/settings.py:480 core/context_processors.py:63
 msgid "Leads"
 msgstr "Contactos"
 
-#: bidatia/settings.py:474
+#: bidatia/settings.py:482
 msgid "Contact messages"
 msgstr "Mensajes de contacto"
 
-#: bidatia/settings.py:479
+#: bidatia/settings.py:487
 msgid "Content"
 msgstr "Contenido"
 
-#: bidatia/settings.py:481 core/context_processors.py:56 services/views.py:35
+#: bidatia/settings.py:489 core/context_processors.py:56 services/views.py:35
 #: templates/core/home.html:218 templates/partials/footer.html:31
-#: templates/partials/navbar.html:24 templates/partials/navbar.html:53
+#: templates/partials/navbar.html:25 templates/partials/navbar.html:55
 msgid "Services"
 msgstr "Servicios"
 
-#: bidatia/settings.py:483 blog/views.py:38 core/context_processors.py:57
+#: bidatia/settings.py:491 blog/views.py:38 core/context_processors.py:57
 #: templates/blog/blog_list.html:4 templates/blog/blog_list.html:11
-#: templates/partials/navbar.html:27 templates/partials/navbar.html:56
+#: templates/partials/navbar.html:28 templates/partials/navbar.html:58
 msgid "Insights"
 msgstr "Artículos"
 
-#: bidatia/settings.py:485 core/context_processors.py:58
+#: bidatia/settings.py:493 core/context_processors.py:58
 #: templates/partials/footer.html:36
 msgid "Case studies"
 msgstr "Casos de éxito"
 
-#: bidatia/settings.py:490
+#: bidatia/settings.py:498
 msgid "Administration"
 msgstr "Administración"
 
-#: bidatia/settings.py:492
+#: bidatia/settings.py:500
 msgid "Users"
 msgstr "Usuarios"
 
-#: bidatia/settings.py:494
+#: bidatia/settings.py:502
 msgid "Groups"
 msgstr "Grupos"
 
@@ -132,10 +132,10 @@ msgstr ""
 msgid "Edit this case study"
 msgstr "Editar este caso de éxito"
 
-#: blog/views.py:67 templates/partials/navbar.html:26
-#: templates/partials/navbar.html:55
+#: blog/views.py:67 templates/partials/navbar.html:27
+#: templates/partials/navbar.html:57
 msgid "Case Studies"
-msgstr "Casos de éxito"
+msgstr "Casos"
 
 #: booking/forms.py:40
 msgid "Jane Doe"
@@ -356,15 +356,19 @@ msgstr "Integración Django ↔ Odoo"
 msgid "Other / Not sure yet"
 msgstr "Otro / Aún no lo sé"
 
-#: booking/views.py:45 booking/views.py:60
+#: booking/views.py:30 templates/booking/booking_success.html:23
+msgid "Submitting your booking request…"
+msgstr "Enviando tu solicitud de reserva…"
+
+#: booking/views.py:65 booking/views.py:80
 msgid "Free"
 msgstr "Gratis"
 
-#: booking/views.py:46
+#: booking/views.py:66
 msgid "20 minutes"
 msgstr "20 minutos"
 
-#: booking/views.py:47
+#: booking/views.py:67
 msgid ""
 "A quick introductory call to understand your needs and see if we are a good "
 "fit."
@@ -372,15 +376,15 @@ msgstr ""
 "Una llamada introductoria breve para entender tus necesidades y ver si "
 "encajamos bien."
 
-#: booking/views.py:50
+#: booking/views.py:70
 msgid "From €49"
 msgstr "Desde 49 €"
 
-#: booking/views.py:51 booking/views.py:56
+#: booking/views.py:71 booking/views.py:76
 msgid "45 minutes"
 msgstr "45 minutos"
 
-#: booking/views.py:52
+#: booking/views.py:72
 msgid ""
 "A focused, paid technical session to get expert answers on your Odoo "
 "questions."
@@ -388,21 +392,21 @@ msgstr ""
 "Una sesión técnica de pago y enfocada para obtener respuestas expertas a tus"
 " dudas sobre Odoo."
 
-#: booking/views.py:55
+#: booking/views.py:75
 msgid "Discovery"
 msgstr "Diagnóstico"
 
-#: booking/views.py:57
+#: booking/views.py:77
 msgid "A discovery call to scope a full technical audit of your Odoo system."
 msgstr ""
 "Una llamada de diagnóstico para definir el alcance de una auditoría técnica "
 "completa de tu sistema Odoo."
 
-#: booking/views.py:61
+#: booking/views.py:81
 msgid "30 minutes"
 msgstr "30 minutos"
 
-#: booking/views.py:62
+#: booking/views.py:82
 msgid ""
 "A call to discuss an ongoing monthly support arrangement for your Odoo "
 "setup."
@@ -410,7 +414,7 @@ msgstr ""
 "Una llamada para hablar sobre un acuerdo de soporte mensual continuo para tu"
 " Odoo."
 
-#: booking/views.py:151
+#: booking/views.py:171
 msgid ""
 "Sorry, that time slot was just booked by someone else. Please choose another"
 " one."
@@ -418,7 +422,7 @@ msgstr ""
 "Lo sentimos, otra persona acaba de reservar ese horario. Por favor, elige "
 "otro."
 
-#: booking/views.py:179
+#: booking/views.py:200
 msgid ""
 "Book an Odoo consultation with Bidatia in Madrid: choose a consultation "
 "type, pick an available time slot (Madrid time), and tell us about your ERP "
@@ -427,6 +431,26 @@ msgstr ""
 "Reserva una consulta de Odoo con Bidatia en Madrid: elige un tipo de "
 "consulta, selecciona un horario disponible (hora de Madrid) y cuéntanos tu "
 "reto con el ERP."
+
+#: booking/views.py:213
+#| msgid "No consultation requests yet."
+msgid "Your consultation request has been received by Bidatia."
+msgstr "Bidatia ha recibido tu solicitud de consulta."
+
+#: core/tasks.py:50
+#| msgid ""
+#| "Your message has been received. We typically reply within one business day "
+#| "at the email address you provided."
+msgid "Your message has been received. We will reply within one business day."
+msgstr "Hemos recibido tu mensaje. Te responderemos en un día laborable."
+
+#: core/tasks.py:75
+#| msgid "Thanks — your booking request has been received"
+msgid ""
+"Your booking request has been received. We confirm every booking by email."
+msgstr ""
+"Hemos recibido tu solicitud de reserva. Confirmamos cada reserva por correo "
+"electrónico."
 
 #: core/views.py:17
 msgid ""
@@ -548,6 +572,83 @@ msgstr "%(term)s — significado en Odoo, ejemplos y errores comunes"
 msgid "Odoo glossary"
 msgstr "Glosario de Odoo"
 
+#: jobs/admin.py:23
+msgid "Result"
+msgstr "Resultado"
+
+#: jobs/admin.py:24
+#| msgid "Ownership & documentation"
+msgid "Ownership & timing"
+msgstr "Propiedad y tiempos"
+
+#: jobs/apps.py:8 site_config/admin.py:140
+msgid "Background tasks"
+msgstr "Tareas en segundo plano"
+
+#: jobs/models.py:30
+msgid "Queued"
+msgstr "En cola"
+
+#: jobs/models.py:31
+msgid "Processing"
+msgstr "Procesando"
+
+#: jobs/models.py:32
+#| msgid "Complexity score"
+msgid "Completed"
+msgstr "Completada"
+
+#: jobs/models.py:33
+msgid "Failed"
+msgstr "Fallida"
+
+#: jobs/models.py:34
+#| msgid "Cancel"
+msgid "Cancelled"
+msgstr "Cancelada"
+
+#: jobs/models.py:42
+msgid "Machine code for the kind of job, e.g. \"contact_email\"."
+msgstr "Código interno del tipo de tarea, p. ej. «contact_email»."
+
+#: jobs/models.py:45
+msgid "Short human title shown to the user, already translated."
+msgstr "Título breve mostrado al usuario, ya traducido."
+
+#: jobs/models.py:65
+msgid "background task"
+msgstr "tarea en segundo plano"
+
+#: jobs/models.py:66
+msgid "background tasks"
+msgstr "tareas en segundo plano"
+
+#: jobs/services.py:31
+msgid "Queued — this will start in a moment."
+msgstr "En cola: empezará en un momento."
+
+#: jobs/services.py:32
+msgid "Working on it…"
+msgstr "Trabajando en ello…"
+
+#: jobs/services.py:33
+msgid "Completed successfully."
+msgstr "Completado correctamente."
+
+#: jobs/services.py:34
+#| msgid "Something went wrong — please try again."
+msgid "Something went wrong."
+msgstr "Algo ha salido mal."
+
+#: jobs/services.py:35
+msgid "This task was cancelled."
+msgstr "Esta tarea se canceló."
+
+#: jobs/services.py:57
+#| msgid "Something went wrong — please try again."
+msgid "Something went wrong. Please try again."
+msgstr "Algo ha salido mal. Inténtalo de nuevo."
+
 #: leads/forms.py:17
 msgid "Your name"
 msgstr "Tu nombre"
@@ -560,7 +661,12 @@ msgstr "Empresa (opcional)"
 msgid "Tell me a bit about your Odoo setup and what you need help with."
 msgstr "Cuéntame un poco sobre tu Odoo y en qué necesitas ayuda."
 
-#: leads/views.py:23
+#: leads/views.py:20
+#| msgid "Scanning your data…"
+msgid "Sending your message…"
+msgstr "Enviando tu mensaje…"
+
+#: leads/views.py:47
 msgid ""
 "Get in touch with Bidatia for Odoo and ERP technical support, custom "
 "development or integration projects. Based in Madrid, working with clients "
@@ -569,6 +675,10 @@ msgstr ""
 "Ponte en contacto con Bidatia para soporte técnico de Odoo y ERP, desarrollo"
 " a medida o proyectos de integración. Con base en Madrid, trabajando con "
 "clientes de todo el mundo."
+
+#: leads/views.py:58
+msgid "Thank you for contacting Bidatia — we will get back to you shortly."
+msgstr "Gracias por contactar con Bidatia: te responderemos en breve."
 
 #: pages/odoo_versions.py:20 templates/pages/odoo_eol_detail.html:34
 #: templates/pages/odoo_eol_index.html:51
@@ -750,6 +860,274 @@ msgstr ""
 msgid "Edit this service"
 msgstr "Editar este servicio"
 
+#: site_config/admin.py:45
+msgid "Brand & URLs"
+msgstr "Marca y URLs"
+
+#: site_config/admin.py:46 templates/partials/navbar.html:30
+#: templates/partials/navbar.html:60
+msgid "Contact"
+msgstr "Contacto"
+
+#: site_config/admin.py:48
+msgid "Flags"
+msgstr "Indicadores"
+
+#: site_config/admin.py:56
+msgid "SMTP password"
+msgstr "Contraseña SMTP"
+
+#: site_config/admin.py:58
+msgid ""
+"Leave blank to keep the current password. Prefer the EMAIL_HOST_PASSWORD "
+"environment variable in production."
+msgstr ""
+"Déjalo en blanco para conservar la contraseña actual. En producción, es "
+"preferible usar la variable de entorno EMAIL_HOST_PASSWORD."
+
+#: site_config/admin.py:70
+msgid "Send a test email with these settings"
+msgstr "Enviar un correo de prueba con estos ajustes"
+
+#: site_config/admin.py:78
+#| msgid "See a sample report first"
+msgid "Set a test recipient first."
+msgstr "Primero define un destinatario de prueba."
+
+#: site_config/admin.py:81
+msgid "Bidatia — test email"
+msgstr "Bidatia — correo de prueba"
+
+#: site_config/admin.py:82
+#| msgid "Your email"
+msgid "Test email"
+msgstr "Correo de prueba"
+
+#: site_config/admin.py:83
+msgid "This confirms your email settings are working."
+msgstr "Esto confirma que tu configuración de correo funciona."
+
+#: site_config/admin.py:89
+#, python-format
+msgid "Test email sent to %s."
+msgstr "Correo de prueba enviado a %s."
+
+#: site_config/admin.py:92
+msgid "Test email failed — see \"last test\" fields."
+msgstr "El correo de prueba falló: consulta los campos de «última prueba»."
+
+#: site_config/admin.py:104
+msgid "SMTP server"
+msgstr "Servidor SMTP"
+
+#: site_config/admin.py:106
+msgid "Addresses"
+msgstr "Direcciones"
+
+#: site_config/admin.py:107
+#| msgid "Latest"
+msgid "Last test"
+msgstr "Última prueba"
+
+#: site_config/admin.py:111
+msgid "Password"
+msgstr "Contraseña"
+
+#: site_config/admin.py:122
+msgid "Limits"
+msgstr "Límites"
+
+#: site_config/admin.py:124
+msgid "Skills / system instructions"
+msgstr "Habilidades / instrucciones del sistema"
+
+#: site_config/admin.py:125
+msgid "Audit"
+msgstr "Auditoría"
+
+#: site_config/admin.py:139
+msgid "Feature flags"
+msgstr "Indicadores de funciones"
+
+#: site_config/apps.py:8
+#| msgid "Consultation"
+msgid "Configuration"
+msgstr "Configuración"
+
+#: site_config/models.py:48
+msgid "Public brand name. Blank uses the SITE_NAME setting."
+msgstr "Nombre público de la marca. En blanco usa el ajuste SITE_NAME."
+
+#: site_config/models.py:51
+msgid "Absolute base URL, e.g. https://bidatia.xyz. Blank uses SITE_BASE_URL."
+msgstr ""
+"URL base absoluta, p. ej. https://bidatia.xyz. En blanco usa SITE_BASE_URL."
+
+#: site_config/models.py:54
+msgid "Address shown to visitors. Blank uses CONTACT_EMAIL."
+msgstr "Dirección mostrada a los visitantes. En blanco usa CONTACT_EMAIL."
+
+#: site_config/models.py:57
+msgid ""
+"Where contact/booking notifications are sent. Blank uses "
+"CONTACT_NOTIFICATION_EMAIL."
+msgstr ""
+"A dónde se envían las notificaciones de contacto/reservas. En blanco usa "
+"CONTACT_NOTIFICATION_EMAIL."
+
+#: site_config/models.py:61
+msgid "Public WhatsApp/phone number. Blank uses CONTACT_WHATSAPP."
+msgstr "Número público de WhatsApp/teléfono. En blanco usa CONTACT_WHATSAPP."
+
+#: site_config/models.py:64
+msgid "City / address line shown publicly."
+msgstr "Ciudad / línea de dirección mostrada públicamente."
+
+#: site_config/models.py:67
+msgid ""
+"Reserved flag for a future maintenance banner/page. Does not take pages "
+"offline on its own."
+msgstr ""
+"Indicador reservado para un futuro aviso o página de mantenimiento. Por sí "
+"solo no desconecta ninguna página."
+
+#: site_config/models.py:73 site_config/models.py:74
+msgid "site settings"
+msgstr "ajustes del sitio"
+
+#: site_config/models.py:77
+msgid "Site settings"
+msgstr "Ajustes del sitio"
+
+#: site_config/models.py:83
+msgid ""
+"When on, outgoing mail uses the SMTP details below instead of the "
+"environment defaults."
+msgstr ""
+"Si está activado, el correo saliente usa los datos SMTP de abajo en lugar de"
+" los valores del entorno."
+
+#: site_config/models.py:85
+msgid "SMTP server host."
+msgstr "Host del servidor SMTP."
+
+#: site_config/models.py:89
+msgid "SMTP port, e.g. 465 (SSL) or 587 (TLS)."
+msgstr "Puerto SMTP, p. ej. 465 (SSL) o 587 (TLS)."
+
+#: site_config/models.py:90
+msgid "Use implicit SSL (port 465)."
+msgstr "Usar SSL implícito (puerto 465)."
+
+#: site_config/models.py:91
+msgid "Use STARTTLS (port 587). Not with SSL."
+msgstr "Usar STARTTLS (puerto 587). No junto con SSL."
+
+#: site_config/models.py:97
+msgid "\"From\" header. Blank uses DEFAULT_FROM_EMAIL."
+msgstr "Cabecera «From». En blanco usa DEFAULT_FROM_EMAIL."
+
+#: site_config/models.py:98
+msgid "Optional Reply-To address."
+msgstr "Dirección Reply-To opcional."
+
+#: site_config/models.py:100
+msgid "Address used by the \"Send test email\" admin action."
+msgstr ""
+"Dirección usada por la acción de administración «Enviar correo de prueba»."
+
+#: site_config/models.py:109 site_config/models.py:110
+msgid "email settings"
+msgstr "ajustes de correo"
+
+#: site_config/models.py:113
+#| msgid "5. Email notifications"
+msgid "Email settings"
+msgstr "Ajustes de correo"
+
+#: site_config/models.py:123
+msgid ""
+"Master switch for the AI interpretation layer on tool reports. When on, AI "
+"still runs only if a model is configured here or via the TOOLS_AI_MODEL "
+"environment value; turn off to force it off."
+msgstr ""
+"Interruptor principal de la capa de interpretación con IA en los informes de"
+" las herramientas. Si está activado, la IA solo se ejecuta si hay un modelo "
+"configurado aquí o mediante la variable de entorno TOOLS_AI_MODEL; "
+"desactívalo para forzar su apagado."
+
+#: site_config/models.py:128
+msgid "AI provider key, e.g. \"ollama\"."
+msgstr "Clave del proveedor de IA, p. ej. «ollama»."
+
+#: site_config/models.py:131
+msgid "Model id, e.g. \"qwen3.5:9b\". Blank uses TOOLS_AI_MODEL."
+msgstr "ID del modelo, p. ej. «qwen3.5:9b». En blanco usa TOOLS_AI_MODEL."
+
+#: site_config/models.py:134
+msgid "Overall generation deadline in seconds. Blank uses TOOLS_AI_TIMEOUT."
+msgstr ""
+"Plazo total de generación en segundos. En blanco usa TOOLS_AI_TIMEOUT."
+
+#: site_config/models.py:137
+msgid ""
+"Seconds of free-form reasoning before the strict-JSON pass. 0 disables "
+"thinking. Blank uses TOOLS_AI_THINKING_BUDGET."
+msgstr ""
+"Segundos de razonamiento libre antes de la fase de JSON estricto. 0 "
+"desactiva el razonamiento. En blanco usa TOOLS_AI_THINKING_BUDGET."
+
+#: site_config/models.py:141
+msgid "Optional cap on generated tokens."
+msgstr "Límite opcional de tokens generados."
+
+#: site_config/models.py:144
+msgid "Creativity 0–2. Lower is more deterministic."
+msgstr "Creatividad 0–2. Más bajo es más determinista."
+
+#: site_config/models.py:147
+msgid ""
+"Skills / system instructions prepended to the model prompt. Internal — never"
+" shown to visitors."
+msgstr ""
+"Habilidades / instrucciones del sistema que se anteponen al prompt del "
+"modelo. Internas: nunca se muestran a los visitantes."
+
+#: site_config/models.py:156 site_config/models.py:157
+#: site_config/models.py:160
+msgid "AI settings"
+msgstr "Ajustes de IA"
+
+#: site_config/models.py:165
+msgid "Allow visitors to submit booking requests."
+msgstr "Permitir que los visitantes envíen solicitudes de reserva."
+
+#: site_config/models.py:167
+msgid "Allow the free diagnostic tools to run."
+msgstr "Permitir que se ejecuten las herramientas de diagnóstico gratuitas."
+
+#: site_config/models.py:170
+msgid "How often the status component polls, in milliseconds."
+msgstr ""
+"Frecuencia con la que el componente de estado consulta el estado, en "
+"milisegundos."
+
+#: site_config/models.py:173
+msgid "Reference timeout for long background jobs, in seconds."
+msgstr ""
+"Tiempo de espera de referencia para tareas largas en segundo plano, en "
+"segundos."
+
+#: site_config/models.py:178 site_config/models.py:179
+#| msgid "Operational flags:"
+msgid "operational settings"
+msgstr "ajustes operativos"
+
+#: site_config/models.py:182
+#| msgid "Operational flags:"
+msgid "Operational settings"
+msgstr "Ajustes operativos"
+
 #: templates/admin/booking/generate_slots.html:7
 msgid "Back to availability slots"
 msgstr "Volver a las citas disponibles"
@@ -845,7 +1223,7 @@ msgstr "Nombre"
 msgid "Type"
 msgstr "Tipo"
 
-#: templates/admin/index.html:32
+#: templates/admin/index.html:32 templates/jobs/status_page.html:10
 msgid "Status"
 msgstr "Estado"
 
@@ -869,7 +1247,7 @@ msgstr "Gestionado"
 msgid "No contact messages yet."
 msgstr "Aún no hay mensajes de contacto."
 
-#: templates/base.html:321
+#: templates/base.html:333
 msgid "Skip to content"
 msgstr "Saltar al contenido"
 
@@ -896,8 +1274,8 @@ msgstr ""
 #: templates/core/contact.html:73 templates/core/home.html:34
 #: templates/core/home.html:257 templates/core/home.html:702
 #: templates/partials/cta.html:15 templates/partials/footer.html:34
-#: templates/partials/navbar.html:40 templates/partials/navbar.html:59
-#: templates/services/service_list.html:20 templates/tools_core/hub.html:101
+#: templates/partials/navbar.html:61 templates/services/service_list.html:20
+#: templates/tools_core/hub.html:101
 msgid "Request a consultation"
 msgstr "Solicita una consultoría"
 
@@ -1135,12 +1513,12 @@ msgstr ""
 "(El pago en línea aún no está integrado en el sitio; por ahora, todas las "
 "reservas se confirman manualmente por correo electrónico.)"
 
-#: templates/booking/booking_success.html:23
-#: templates/core/contact_success.html:17
+#: templates/booking/booking_success.html:30
+#: templates/core/contact_success.html:24
 msgid "Back to homepage"
 msgstr "Volver al inicio"
 
-#: templates/booking/booking_success.html:24
+#: templates/booking/booking_success.html:31
 msgid "Browse other services"
 msgstr "Ver otros servicios"
 
@@ -1169,7 +1547,7 @@ msgid "Start with a paid technical consultation or an Odoo Health Check."
 msgstr "Empieza con una consultoría técnica de pago o un diagnóstico de Odoo."
 
 #: templates/case_studies/detail.html:42
-#: templates/core/contact_success.html:18
+#: templates/core/contact_success.html:25
 msgid "View Services"
 msgstr "Ver servicios"
 
@@ -1409,6 +1787,11 @@ msgid ""
 msgstr ""
 "Hemos recibido tu mensaje. Normalmente respondemos en un día laborable al "
 "correo electrónico que nos has facilitado."
+
+#: templates/core/contact_success.html:17
+#| msgid "Detecting your database…"
+msgid "Delivering your message…"
+msgstr "Entregando tu mensaje…"
 
 #: templates/core/home.html:4
 msgid "ERP, Odoo & data platforms for enterprises"
@@ -2248,6 +2631,19 @@ msgstr "Términos relacionados"
 #: templates/glossary/term.html:80
 msgid "Back to the full glossary"
 msgstr "Volver al glosario completo"
+
+#: templates/jobs/status_page.html:4
+msgid "Task status"
+msgstr "Estado de la tarea"
+
+#: templates/jobs/status_page.html:5
+msgid "Live status of your request."
+msgstr "Estado en tiempo real de tu solicitud."
+
+#: templates/jobs/status_page.html:12
+#| msgid "Your progress"
+msgid "Your request"
+msgstr "Tu solicitud"
 
 #: templates/pages/odoo_eol_detail.html:17
 msgid "The estimated support window for this version has closed."
@@ -3171,42 +3567,78 @@ msgstr "ERP · Odoo · Gobierno del dato · BI · IA — Madrid, España"
 msgid "Change language"
 msgstr "Cambiar idioma"
 
-#: templates/partials/navbar.html:25 templates/partials/navbar.html:54
-#: templates/tools_core/hub.html:20
-msgid "Free Tools"
-msgstr "Herramientas gratuitas"
+#: templates/partials/navbar.html:26 templates/partials/navbar.html:56
+msgid "Tools"
+msgstr "Herramientas"
 
-#: templates/partials/navbar.html:28 templates/partials/navbar.html:57
+#: templates/partials/navbar.html:29 templates/partials/navbar.html:59
 msgid "About"
-msgstr "Sobre mí"
+msgstr "Nosotros"
 
-#: templates/partials/navbar.html:29 templates/partials/navbar.html:58
-msgid "Contact"
-msgstr "Contacto"
-
-#: templates/partials/navbar.html:33
+#: templates/partials/navbar.html:34
 msgid "Toggle light / dark theme"
 msgstr "Cambiar entre tema claro y oscuro"
 
-#: templates/partials/navbar.html:45
+#: templates/partials/navbar.html:42
+msgid "Book a call"
+msgstr "Reserva una llamada"
+
+#: templates/partials/navbar.html:47
 msgid "Toggle navigation menu"
 msgstr "Abrir o cerrar el menú"
 
-#: templates/partials/navbar.html:62
+#: templates/partials/navbar.html:64
 msgid "Appearance"
 msgstr "Apariencia"
 
-#: templates/partials/navbar.html:64
+#: templates/partials/navbar.html:66
 msgid "Switch to light"
 msgstr "Cambiar a claro"
 
-#: templates/partials/navbar.html:65
+#: templates/partials/navbar.html:67
 msgid "Switch to dark"
 msgstr "Cambiar a oscuro"
 
-#: templates/partials/navbar.html:70
+#: templates/partials/navbar.html:72
 msgid "Language"
 msgstr "Idioma"
+
+#: templates/partials/task_status.html:18
+#| msgid "Reading your report…"
+msgid "Processing your request…"
+msgstr "Procesando tu solicitud…"
+
+#: templates/partials/task_status.html:24
+msgid ""
+"You can safely keep this page open while we finish. This may take a few "
+"moments."
+msgstr ""
+"Puedes mantener esta página abierta mientras terminamos. Puede tardar unos "
+"momentos."
+
+#: templates/partials/task_status.html:33
+msgid "Completed successfully"
+msgstr "Completado correctamente"
+
+#: templates/partials/task_status.html:35
+#| msgid "Content"
+msgid "Continue"
+msgstr "Continuar"
+
+#: templates/partials/task_status.html:44
+#| msgid "Something went wrong — please try again."
+msgid "Something went wrong"
+msgstr "Algo ha salido mal"
+
+#: templates/partials/task_status.html:47
+#: templates/tool_data_risk/progress.html:49
+#: templates/tool_studio_xray/progress.html:154
+msgid "Try again"
+msgstr "Intentarlo de nuevo"
+
+#: templates/partials/task_status.html:48
+msgid "Go back"
+msgstr "Volver"
 
 #: templates/services/service_detail.html:34
 #: templates/services/service_detail.html:98
@@ -3653,11 +4085,6 @@ msgstr ""
 #: templates/tool_studio_xray/progress.html:149
 msgid "The scan could not finish"
 msgstr "El escaneo no pudo completarse"
-
-#: templates/tool_data_risk/progress.html:49
-#: templates/tool_studio_xray/progress.html:154
-msgid "Try again"
-msgstr "Intentarlo de nuevo"
 
 #: templates/tool_data_risk/report.html:4
 #: templates/tool_data_risk/report.html:24
@@ -5427,6 +5854,10 @@ msgstr "Ejecuta el Studio X-Ray"
 #: templates/tools_core/hub.html:13 templates/tools_core/hub.html:21
 msgid "Free Odoo Diagnostic Tools"
 msgstr "Herramientas gratuitas de diagnóstico para Odoo"
+
+#: templates/tools_core/hub.html:20
+msgid "Free Tools"
+msgstr "Herramientas gratuitas"
 
 #: templates/tools_core/hub.html:23
 msgid ""

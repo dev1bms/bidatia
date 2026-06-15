@@ -19,6 +19,13 @@
         <p class="mt-3 text-slate-500 text-sm">
             {% trans "(Online payment is not yet integrated on the site — for now, all bookings are confirmed manually by email.)" %}
         </p>
+        {% if task_id %}
+            {% trans "Submitting your booking request…" as task_title %}
+            {% url 'jobs:status' task_id as status_url %}
+            <div class="mt-8 text-start max-w-md mx-auto">
+                {% include "partials/task_status.html" with status_url=status_url title=task_title %}
+            </div>
+        {% endif %}
         <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
             <a href="{% url 'core:home' %}" class="inline-flex items-center rounded-lg bg-ink text-white font-semibold px-6 py-3.5 hover:bg-brand-700 transition">{% trans "Back to homepage" %}</a>
             <a href="{% url 'services:service_list' %}" class="inline-flex items-center rounded-lg border border-slate-300 text-ink font-semibold px-6 py-3.5 hover:border-ink transition">{% trans "Browse other services" %}</a>

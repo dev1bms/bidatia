@@ -268,6 +268,16 @@
             background:inherit; animation:pulsering 2.2s ease-out infinite; }
         @keyframes pulsering { 0%{transform:scale(1);opacity:.55;} 100%{transform:scale(2.6);opacity:0;} }
 
+        /* Background-task status component (partials/task_status.html). Theme-aware
+           via the same ink/indigo vars; RTL-aware progress bar; reduced-motion safe. */
+        .task-spinner { border:2px solid rgb(var(--ink-rgb) / .18); border-top-color:var(--indigo);
+            border-radius:9999px; animation:taskspin .7s linear infinite; }
+        @keyframes taskspin { to { transform:rotate(360deg); } }
+        .task-bar-indeterminate { transform-origin:left center; animation:taskbar 1.3s ease-in-out infinite; }
+        [dir="rtl"] .task-bar-indeterminate { transform-origin:right center; }
+        @keyframes taskbar { 0%{transform:scaleX(.12);opacity:.65;} 50%{transform:scaleX(.7);opacity:1;}
+            100%{transform:scaleX(.12);opacity:.65;} }
+
         a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
             outline: 2px solid var(--indigo); outline-offset: 2px; }
 
@@ -291,6 +301,8 @@
         @media (prefers-reduced-motion: reduce) {
             .reveal { opacity:1 !important; transform:none !important; transition:none !important; }
             .pulse-dot::after { animation:none !important; }
+            .task-spinner { animation-duration:1.4s !important; }
+            .task-bar-indeterminate { animation:none !important; transform:none !important; }
             html { scroll-behavior:auto !important; }
         }
 

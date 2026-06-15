@@ -52,7 +52,10 @@ THINKING_CALLBACK_INTERVAL = 1.0
 
 
 def is_enabled():
-    return bool(settings.TOOLS_AI_MODEL)
+    # Admin-managed AI Settings (site_config) decide this at runtime, falling
+    # back to the TOOLS_AI_MODEL environment value when no row is configured.
+    from site_config import services as config
+    return bool(config.ai_settings()['enabled'])
 
 
 def generate_json(system_prompt, user_prompt, on_thinking=None, is_acceptable=None,
@@ -74,11 +77,17 @@ def generate_json(system_prompt, user_prompt, on_thinking=None, is_acceptable=No
     2. If the answer is empty or rejected by `is_acceptable`, retry with
        thinking DISABLED and format=json forced — fast and strict.
     """
-    if not is_enabled():
+    from site_config import services as config
+    ai = config.ai_settings()
+    if not ai['enabled']:
         return None
 
+    # Optional admin-managed "skills" prepended to the caller's system prompt.
+    if ai.get('system_instructions'):
+        system_prompt = f"{ai['system_instructions']}\n\n{system_prompt}"
+
     base_body = {
-        'model': settings.TOOLS_AI_MODEL,
+        'model': ai['model'],
         'stream': True,
         'keep_alive': KEEP_ALIVE,
         'options': GENERATION_OPTIONS,
@@ -87,8 +96,8 @@ def generate_json(system_prompt, user_prompt, on_thinking=None, is_acceptable=No
             {'role': 'user', 'content': user_prompt},
         ],
     }
-    deadline = time.monotonic() + settings.TOOLS_AI_TIMEOUT
-    thinking_budget = max(int(getattr(settings, 'TOOLS_AI_THINKING_BUDGET', 60)), 0)
+    deadline = time.monotonic() + int(ai['timeout'])
+    thinking_budget = max(int(ai['thinking_budget'] or 0), 0)
 
     saw_thinking = False
     if thinking_budget > 0 and allow_thinking:

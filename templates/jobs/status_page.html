@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ task.title|default:_("Task status") }} — {{ SITE_NAME }}{% endblock %}
+{% block meta_description %}{% trans "Live status of your request." %}{% endblock %}
+
+{% block content %}
+<section class="bg-canvas">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+        <p class="kicker text-brand-600 mb-4">{% trans "Status" %}</p>
+        <h1 class="font-display text-3xl sm:text-4xl font-bold text-ink tracking-tight mb-8">
+            {{ task.title|default:_("Your request") }}
+        </h1>
+        {% url 'jobs:status' task.id as status_url %}
+        {% include "partials/task_status.html" with status_url=status_url title=task.title %}
+    </div>
+</section>
+{% endblock %}

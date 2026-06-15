@@ -1,9 +1,31 @@
 from django.shortcuts import redirect, render
 from django.utils.translation import gettext as _
 
-from core.notifications import notify_lead
+from jobs.services import create_task
 
 from .forms import ContactForm
+
+
+def _dispatch_lead_notification(request, lead):
+    """Queue the notification email off the request path and return a
+    BackgroundTask the success page can poll. Falls back to running inline if
+    the broker is unavailable, so the email still goes out and nothing blocks
+    longer than the (fast) send itself."""
+    from core.tasks import send_lead_notification
+
+    if not request.session.session_key:
+        request.session.save()  # materialize a session so the task is owned
+    task = create_task(
+        task_type='contact_email',
+        title=_('Sending your message…'),
+        session_key=request.session.session_key,
+    )
+    lang = getattr(request, 'LANGUAGE_CODE', 'en') or 'en'
+    try:
+        send_lead_notification.delay(lead.pk, str(task.pk), lang)
+    except Exception:  # noqa: BLE001 — broker down: deliver inline, still non-fatal
+        send_lead_notification(lead.pk, str(task.pk), lang)
+    return task
 
 
 def contact(request):
@@ -11,8 +33,10 @@ def contact(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             lead = form.save()
-            # Saved to DB above; email is best-effort and never blocks the user.
-            notify_lead(lead)
+            # Lead is saved; the notification email is delivered in the
+            # background so the browser gets an instant response.
+            task = _dispatch_lead_notification(request, lead)
+            request.session['contact_task_id'] = str(task.pk)
             return redirect('leads:contact_success')
     else:
         form = ContactForm()
@@ -28,6 +52,9 @@ def contact(request):
 
 
 def contact_success(request):
+    # One-shot: the task id is consumed so a refresh doesn't re-poll forever.
+    task_id = request.session.pop('contact_task_id', None)
     return render(request, 'core/contact_success.html', {
-        'meta_description': 'Thank you for contacting Bidatia — we will get back to you shortly.',
+        'meta_description': _('Thank you for contacting Bidatia — we will get back to you shortly.'),
+        'task_id': task_id,
     })

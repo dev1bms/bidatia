@@ -38,8 +38,10 @@ def _submitted_at(obj):
 
 def _notify(subject, category, obj, heading, rows, panel=None, reply_to=None):
     """Send one internal notification through the unified email service."""
+    from site_config import services as config
+
     log = send_email(
-        to=settings.CONTACT_NOTIFICATION_EMAIL,
+        to=config.admin_recipient_email(),
         subject=subject,
         category=category,
         heading=heading,

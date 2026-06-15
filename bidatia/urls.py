@@ -62,6 +62,7 @@ urlpatterns += i18n_patterns(
     path('tools/erp-chaos-cost-calculator/', include('tool_chaos_calc.urls')),
     path('tools/data-risk-profiler/', include('tool_data_risk.urls')),
     path('odoo-glossary/', include('glossary.urls')),
+    path('tasks/', include('jobs.urls')),
     path('', include('pages.urls')),
     prefix_default_language=True,
 )

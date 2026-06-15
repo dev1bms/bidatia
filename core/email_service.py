@@ -22,7 +22,7 @@ Usage:
 import logging
 
 from django.conf import settings
-from django.core.mail import EmailMultiAlternatives
+from django.core.mail import EmailMultiAlternatives, get_connection
 from django.template.loader import render_to_string
 from django.utils import timezone, translation
 
@@ -82,13 +82,21 @@ def send_email(*, to, subject, category, recipient_name='',
     )
 
     try:
+        # Admin-managed Email Settings (site_config) override the environment
+        # EMAIL_* / from address when configured; otherwise these fall back to
+        # the settings defaults. email_connection_kwargs() returns {} when no
+        # override is active, so get_connection() uses the env backend as-is.
+        from site_config import services as config
+
+        connection = get_connection(**config.email_connection_kwargs())
         message = EmailMultiAlternatives(
             subject=subject,
             body=text_body,
-            from_email=settings.DEFAULT_FROM_EMAIL,
+            from_email=config.default_from_email(),
             to=[to],
             cc=list(cc) or None,
             reply_to=list(reply_to) or None,
+            connection=connection,
         )
         message.attach_alternative(html_body, 'text/html')
         message.send()

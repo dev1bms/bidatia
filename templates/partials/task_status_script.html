@@ -1,0 +1,66 @@
+{# Polling logic for partials/task_status.html — guarded so it binds once. #}
+<script>
+(function () {
+    if (window.__taskStatusInit) { return; }
+    window.__taskStatusInit = true;
+
+    function show(root, state) {
+        root.setAttribute('data-state', state);
+        root.querySelector('.task-when-active').hidden = state !== 'active';
+        root.querySelector('.task-when-success').hidden = state !== 'success';
+        root.querySelector('.task-when-failed').hidden = state !== 'failed';
+    }
+
+    function render(root, data) {
+        var msg = root.querySelector('.task-message');
+        if (msg && data.message) { msg.textContent = data.message; }
+
+        var bar = root.querySelector('.task-bar');
+        if (bar) {
+            if (typeof data.progress === 'number') {
+                bar.classList.remove('task-bar-indeterminate');
+                bar.style.width = Math.max(0, Math.min(100, data.progress)) + '%';
+                var track = bar.parentElement;
+                track.setAttribute('role', 'progressbar');
+                track.setAttribute('aria-valuemin', '0');
+                track.setAttribute('aria-valuemax', '100');
+                track.setAttribute('aria-valuenow', String(data.progress));
+            }
+        }
+
+        if (data.status === 'success') {
+            show(root, 'success');
+            if (root.dataset.redirect && data.result_url) {
+                setTimeout(function () { window.location.assign(data.result_url); }, 900);
+            }
+        } else if (data.status === 'failed' || data.status === 'cancelled') {
+            var err = root.querySelector('.task-error-message');
+            if (err && data.error) { err.textContent = data.error; }
+            show(root, 'failed');
+        }
+    }
+
+    function start(root) {
+        var url = root.dataset.statusUrl;
+        if (!url) { return; }
+        var stopAt = Date.now() + 5 * 60 * 1000;  // safety: stop after 5 min
+        var delay = 1500;
+
+        function poll() {
+            fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+                .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+                .then(function (data) {
+                    render(root, data);
+                    if (data.poll && Date.now() < stopAt) { setTimeout(poll, delay); }
+                })
+                .catch(function () {
+                    // Transient network/server hiccup — retry a little slower.
+                    if (Date.now() < stopAt) { setTimeout(poll, 4000); }
+                });
+        }
+        poll();
+    }
+
+    document.querySelectorAll('.js-task-status').forEach(start);
+})();
+</script>
