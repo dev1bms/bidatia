@@ -1,10 +1,13 @@
 from django import forms
 from django.contrib import admin, messages
+from django.shortcuts import redirect
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.html import format_html, format_html_join
 from django.utils.translation import gettext_lazy as _
 
 from unfold.admin import ModelAdmin
+from unfold.decorators import action as unfold_action
 
 from . import services
 from .models import (
@@ -145,8 +148,10 @@ class AIConfigurationForm(forms.ModelForm):
                             '"ollama pull <name>" on the server, then reload this page.'))
 
 
-@admin.action(description=_('Run AI self-test (live call to the model)'))
-def run_ai_self_test(modeladmin, request, queryset):
+def _record_ai_self_test():
+    """Run a live AI call and persist the outcome on the config row. Returns
+    (ok, detail) so both the changelist action and the change-form button can
+    report it."""
     from tools_core.services.ai_service import self_test
 
     cfg = AIConfiguration.load()
@@ -155,14 +160,22 @@ def run_ai_self_test(modeladmin, request, queryset):
     cfg.last_ai_test_at = timezone.now()
     cfg.last_ai_test_message = detail[:300]
     cfg.save()
-    level = messages.SUCCESS if ok else messages.ERROR
-    modeladmin.message_user(request, detail, level=level)
+    return ok, detail
+
+
+@admin.action(description=_('Run AI self-test (live call to the model)'))
+def run_ai_self_test(modeladmin, request, queryset):
+    ok, detail = _record_ai_self_test()
+    modeladmin.message_user(request, detail,
+                            level=messages.SUCCESS if ok else messages.ERROR)
 
 
 @admin.register(AIConfiguration)
 class AIConfigurationAdmin(SingletonAdmin):
     form = AIConfigurationForm
     actions = [run_ai_self_test]
+    # A button at the top of the change form itself (not just the list action).
+    actions_detail = ['ai_self_test_button']
     list_display = ('__str__', 'enabled', 'model_name', 'last_ai_test_status', 'updated_at')
     readonly_fields = ('ai_health', 'last_ai_test_status', 'last_ai_test_at',
                        'last_ai_test_message', 'updated_at', 'updated_by')
@@ -180,6 +193,15 @@ class AIConfigurationAdmin(SingletonAdmin):
     def save_model(self, request, obj, form, change):
         obj.updated_by = request.user
         super().save_model(request, obj, form, change)
+
+    @unfold_action(description=_('Test AI now'), url_path='ai-self-test')
+    def ai_self_test_button(self, request, object_id):
+        """Top-of-page button: runs a live call to the configured model and
+        flashes success or the exact error, then reloads the page."""
+        ok, detail = _record_ai_self_test()
+        messages.success(request, detail) if ok else messages.error(request, detail)
+        return redirect(reverse('admin:site_config_aiconfiguration_change',
+                                args=[object_id]))
 
     @admin.display(description=_('AI health'))
     def ai_health(self, obj):

@@ -140,7 +140,10 @@ def progress(request, run_id):
     if run.status == 'done':
         return redirect('tool_studio_xray:report', run_id=run.pk)
 
-    ai_enabled = bool(settings.TOOLS_AI_MODEL)
+    # Reflect the admin-managed AI toggle (not just the env value), so the
+    # "Consulting the AI analyst" step shows whenever AI is actually enabled.
+    from tools_core.services.ai_service import is_enabled as ai_is_enabled
+    ai_enabled = ai_is_enabled()
     # Purely presentational step list — the active step is driven client-side
     # from the status endpoint. The AI step only exists when the feature is on.
     steps = [

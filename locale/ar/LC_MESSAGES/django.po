@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bidatia Business Systems 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-15 13:06+0000\n"
+"POT-Creation-Date: 2026-06-15 13:40+0000\n"
 "PO-Revision-Date: 2026-06-15 00:00+0000\n"
 "Last-Translator: Bidatia Business Systems <hola@bidatia.xyz>\n"
 "Language-Team: Arabic <hola@bidatia.xyz>\n"
@@ -557,7 +557,7 @@ msgstr "النتيجة"
 msgid "Ownership & timing"
 msgstr "الملكية والتوقيت"
 
-#: jobs/apps.py:8 site_config/admin.py:234
+#: jobs/apps.py:8 site_config/admin.py:256
 msgid "Background tasks"
 msgstr "المهام في الخلفية"
 
@@ -814,24 +814,24 @@ msgstr ""
 msgid "Edit this service"
 msgstr "تحرير هذه الخدمة"
 
-#: site_config/admin.py:46
+#: site_config/admin.py:49
 msgid "Brand & URLs"
 msgstr "العلامة التجارية والروابط"
 
-#: site_config/admin.py:47 templates/partials/navbar.html:30
+#: site_config/admin.py:50 templates/partials/navbar.html:30
 #: templates/partials/navbar.html:60
 msgid "Contact"
 msgstr "اتصل بنا"
 
-#: site_config/admin.py:49
+#: site_config/admin.py:52
 msgid "Flags"
 msgstr "المؤشرات"
 
-#: site_config/admin.py:57
+#: site_config/admin.py:60
 msgid "SMTP password"
 msgstr "كلمة مرور SMTP"
 
-#: site_config/admin.py:59
+#: site_config/admin.py:62
 msgid ""
 "Leave blank to keep the current password. Prefer the EMAIL_HOST_PASSWORD "
 "environment variable in production."
@@ -839,62 +839,60 @@ msgstr ""
 "اتركه فارغًا للإبقاء على كلمة المرور الحالية. يُفضَّل في بيئة الإنتاج "
 "استخدام متغيّر البيئة EMAIL_HOST_PASSWORD."
 
-#: site_config/admin.py:71
+#: site_config/admin.py:74
 msgid "Send a test email with these settings"
 msgstr "إرسال بريد اختباري بهذه الإعدادات"
 
-#: site_config/admin.py:79
+#: site_config/admin.py:82
 msgid "Set a test recipient first."
 msgstr "حدّد مستلِم الاختبار أولًا."
 
-#: site_config/admin.py:82
+#: site_config/admin.py:85
 msgid "Bidatia — test email"
 msgstr "Bidatia — بريد اختباري"
 
-#: site_config/admin.py:83
+#: site_config/admin.py:86
 msgid "Test email"
 msgstr "بريد اختباري"
 
-#: site_config/admin.py:84
+#: site_config/admin.py:87
 msgid "This confirms your email settings are working."
 msgstr "هذا يؤكّد أن إعدادات بريدك تعمل."
 
-#: site_config/admin.py:90
+#: site_config/admin.py:93
 #, python-format
 msgid "Test email sent to %s."
 msgstr "تم إرسال البريد الاختباري إلى %s."
 
-#: site_config/admin.py:93
+#: site_config/admin.py:96
 msgid "Test email failed — see \"last test\" fields."
 msgstr "فشل البريد الاختباري — راجع حقول «آخر اختبار»."
 
-#: site_config/admin.py:105
+#: site_config/admin.py:108
 msgid "SMTP server"
 msgstr "خادم SMTP"
 
-#: site_config/admin.py:107
+#: site_config/admin.py:110
 msgid "Addresses"
 msgstr "العناوين"
 
-#: site_config/admin.py:108
+#: site_config/admin.py:111
 msgid "Last test"
 msgstr "آخر اختبار"
 
-#: site_config/admin.py:112
+#: site_config/admin.py:115
 msgid "Password"
 msgstr "كلمة المرور"
 
-#: site_config/admin.py:136
-#| msgid "Installed modules"
+#: site_config/admin.py:139
 msgid "select an installed model"
 msgstr "اختر نموذجًا مثبَّتًا"
 
-#: site_config/admin.py:140
-#| msgid "modules installed"
+#: site_config/admin.py:143
 msgid "not installed"
 msgstr "غير مثبَّت"
 
-#: site_config/admin.py:144
+#: site_config/admin.py:147
 msgid ""
 "Models installed on the Ollama host. Pull more with \"ollama pull <name>\" "
 "on the server, then reload this page."
@@ -902,103 +900,103 @@ msgstr ""
 "النماذج المثبَّتة على مضيف Ollama. ثبّت المزيد عبر «ollama pull <الاسم>» على"
 " الخادم ثم أعد تحميل هذه الصفحة."
 
-#: site_config/admin.py:148
+#: site_config/admin.py:166
 msgid "Run AI self-test (live call to the model)"
 msgstr "تشغيل اختبار الذكاء الاصطناعي (اتصال مباشر بالنموذج)"
 
-#: site_config/admin.py:170 templates/admin/index.html:66
+#: site_config/admin.py:183 templates/admin/index.html:66
 #: templates/jobs/status_page.html:10
 msgid "Status"
 msgstr "الحالة"
 
-#: site_config/admin.py:172
+#: site_config/admin.py:185
 msgid "Limits"
 msgstr "الحدود"
 
-#: site_config/admin.py:174
+#: site_config/admin.py:187
 msgid "Skills / system instructions"
 msgstr "المهارات / تعليمات النظام"
 
-#: site_config/admin.py:175
-#| msgid "Last test"
+#: site_config/admin.py:188
 msgid "Last self-test"
 msgstr "آخر اختبار"
 
-#: site_config/admin.py:177
+#: site_config/admin.py:190
 msgid "Audit"
 msgstr "التدقيق"
 
-#: site_config/admin.py:184
+#: site_config/admin.py:197
+msgid "Test AI now"
+msgstr "اختبر الذكاء الاصطناعي الآن"
+
+#: site_config/admin.py:206
 msgid "AI health"
 msgstr "حالة الذكاء الاصطناعي"
 
-#: site_config/admin.py:203
+#: site_config/admin.py:225
 msgid "Master switch"
 msgstr "المفتاح الرئيسي"
 
-#: site_config/admin.py:203
+#: site_config/admin.py:225
 msgid "On"
 msgstr "مُفعّل"
 
-#: site_config/admin.py:203
+#: site_config/admin.py:225
 msgid "Off"
 msgstr "مُعطّل"
 
-#: site_config/admin.py:204
+#: site_config/admin.py:226
 msgid "Ollama host"
 msgstr "مضيف Ollama"
 
-#: site_config/admin.py:205
+#: site_config/admin.py:227
 msgid "Reachable"
 msgstr "قابل للوصول"
 
-#: site_config/admin.py:205 site_config/admin.py:211
+#: site_config/admin.py:227 site_config/admin.py:233
 #: templates/tool_erp_rescue/landing.html:72
 msgid "Yes"
 msgstr "نعم"
 
-#: site_config/admin.py:205 templates/tool_erp_rescue/landing.html:80
+#: site_config/admin.py:227 templates/tool_erp_rescue/landing.html:80
 msgid "No"
 msgstr "لا"
 
-#: site_config/admin.py:207
-#| msgid "Configuration"
+#: site_config/admin.py:229
 msgid "Configured model"
 msgstr "النموذج المُهيّأ"
 
-#: site_config/admin.py:207
+#: site_config/admin.py:229
 msgid "(none)"
 msgstr "(لا يوجد)"
 
-#: site_config/admin.py:210
-#| msgid "modules installed"
+#: site_config/admin.py:232
 msgid "Model installed"
 msgstr "النموذج مثبَّت"
 
-#: site_config/admin.py:211
+#: site_config/admin.py:233
 msgid "NOT found — pull it or pick another"
 msgstr "غير موجود — ثبّته أو اختر غيره"
 
-#: site_config/admin.py:214 site_config/admin.py:216
-#| msgid "Installed modules"
+#: site_config/admin.py:236 site_config/admin.py:238
 msgid "Installed models"
 msgstr "النماذج المثبَّتة"
 
-#: site_config/admin.py:216
+#: site_config/admin.py:238
 msgid "none pulled yet"
 msgstr "لا يوجد أي نموذج مثبَّت بعد"
 
-#: site_config/admin.py:221
+#: site_config/admin.py:243
 msgid "AI is ready ✓"
 msgstr "الذكاء الاصطناعي جاهز ✓"
 
-#: site_config/admin.py:221
+#: site_config/admin.py:243
 msgid "AI not ready — see below, then use “Run AI self-test”"
 msgstr ""
 "الذكاء الاصطناعي غير جاهز — راجع الأسفل ثم استخدم «تشغيل اختبار الذكاء "
 "الاصطناعي»"
 
-#: site_config/admin.py:232
+#: site_config/admin.py:254
 msgid "Feature flags"
 msgstr "مؤشّرات الميزات"
 
@@ -4991,7 +4989,7 @@ msgstr "جارٍ نقلك إلى نتائجك…"
 #: templates/tool_studio_xray/progress.html:81
 #: templates/tool_studio_xray/progress.html:204
 #: templates/tool_studio_xray/progress.html:205 tool_data_risk/views.py:292
-#: tool_studio_xray/views.py:147
+#: tool_studio_xray/views.py:150
 msgid "Connecting to Odoo"
 msgstr "جارٍ الاتصال بـ Odoo"
 
@@ -5011,15 +5009,15 @@ msgstr "العودة إلى جميع الأدوات"
 msgid "We'll also email the report link to you, so you won't lose it."
 msgstr "سنرسل إليك أيضًا رابط التقرير عبر البريد حتى لا تفقده."
 
-#: templates/tool_studio_xray/progress.html:206 tool_studio_xray/views.py:149
+#: templates/tool_studio_xray/progress.html:206 tool_studio_xray/views.py:152
 msgid "Collecting Studio data"
 msgstr "جارٍ جمع بيانات Studio"
 
-#: templates/tool_studio_xray/progress.html:207 tool_studio_xray/views.py:151
+#: templates/tool_studio_xray/progress.html:207 tool_studio_xray/views.py:154
 msgid "Analyzing customizations"
 msgstr "جارٍ تحليل التخصيصات"
 
-#: templates/tool_studio_xray/progress.html:208 tool_studio_xray/views.py:155
+#: templates/tool_studio_xray/progress.html:208 tool_studio_xray/views.py:158
 msgid "Consulting the AI analyst"
 msgstr "استشارة المحلل الذكي"
 
@@ -5086,19 +5084,19 @@ msgstr "الصورة الكاملة لتخصيصات Studio لديك"
 msgid "scanned"
 msgstr "تم الفحص في"
 
-#: templates/tool_studio_xray/report.html:98 tool_studio_xray/views.py:753
+#: templates/tool_studio_xray/report.html:98 tool_studio_xray/views.py:756
 msgid "Studio fields"
 msgstr "حقول Studio"
 
-#: templates/tool_studio_xray/report.html:102 tool_studio_xray/views.py:758
+#: templates/tool_studio_xray/report.html:102 tool_studio_xray/views.py:761
 msgid "Custom models"
 msgstr "نماذج مخصّصة"
 
-#: templates/tool_studio_xray/report.html:106 tool_studio_xray/views.py:756
+#: templates/tool_studio_xray/report.html:106 tool_studio_xray/views.py:759
 msgid "Automated actions"
 msgstr "إجراءات آلية"
 
-#: templates/tool_studio_xray/report.html:110 tool_studio_xray/views.py:755
+#: templates/tool_studio_xray/report.html:110 tool_studio_xray/views.py:758
 msgid "Studio views"
 msgstr "واجهات Studio"
 
@@ -6316,7 +6314,7 @@ msgid "Operations team"
 msgstr "فريق العمليات"
 
 #: tool_data_risk/views.py:177 tool_odoo_detector/views.py:42
-#: tool_studio_xray/views.py:733
+#: tool_studio_xray/views.py:736
 msgid "High"
 msgstr "مرتفعة"
 
@@ -6456,7 +6454,7 @@ msgid ""
 msgstr ""
 "قائمة انتظار الفحوصات غير متاحة حاليًا — يرجى المحاولة مرة أخرى بعد دقائق."
 
-#: tool_data_risk/views.py:293 tool_studio_xray/views.py:148
+#: tool_data_risk/views.py:293 tool_studio_xray/views.py:151
 msgid "Opening a secure, read-only session"
 msgstr "فتح جلسة آمنة للقراءة فقط"
 
@@ -6476,7 +6474,7 @@ msgstr "تقييم مخاطر الترحيل"
 msgid "Deterministic category scores and cleanup priorities"
 msgstr "درجات حتمية لكل فئة وأولويات تنظيف"
 
-#: tool_data_risk/views.py:318 tool_studio_xray/views.py:207
+#: tool_data_risk/views.py:318 tool_studio_xray/views.py:210
 msgid ""
 "The scan could not start — the processing queue appears to be offline. "
 "Please try again later."
@@ -6484,7 +6482,7 @@ msgstr ""
 "تعذّر بدء الفحص — يبدو أن قائمة المعالجة متوقفة حاليًا. يرجى المحاولة مرة "
 "أخرى لاحقًا."
 
-#: tool_data_risk/views.py:323 tool_studio_xray/views.py:214
+#: tool_data_risk/views.py:323 tool_studio_xray/views.py:217
 msgid ""
 "The scan took too long and was stopped. Please try again in a few minutes."
 msgstr ""
@@ -6525,7 +6523,7 @@ msgstr "تمت مشاركة تقرير محلّل مخاطر البيانات م
 msgid "A colleague shared their pre-migration data profile with you"
 msgstr "شارك زميلك معك تحليل بياناته لما قبل الترحيل"
 
-#: tool_data_risk/views.py:587 tool_studio_xray/views.py:573
+#: tool_data_risk/views.py:587 tool_studio_xray/views.py:576
 msgid "Open the full report"
 msgstr "افتح التقرير الكامل"
 
@@ -6553,7 +6551,7 @@ msgstr "درجة مخاطر البيانات: %(score)s/100 — %(level)s"
 msgid "Top blockers:"
 msgstr "أبرز المعوّقات:"
 
-#: tool_data_risk/views.py:616 tool_studio_xray/views.py:603
+#: tool_data_risk/views.py:616 tool_studio_xray/views.py:606
 #, python-format
 msgid "Report link: %(url)s"
 msgstr "رابط التقرير: %(url)s"
@@ -7052,7 +7050,7 @@ msgid "Rescue score"
 msgstr "درجة الإنقاذ"
 
 #: tool_erp_rescue/views.py:261 tool_erp_rescue/views.py:446
-#: tool_studio_xray/views.py:561
+#: tool_studio_xray/views.py:564
 #, python-format
 msgid "Risk %(n)s"
 msgstr "الخطر %(n)s"
@@ -7222,7 +7220,7 @@ msgstr "أساسي"
 msgid "Standard"
 msgstr "قياسي"
 
-#: tool_studio_xray/system_map.py:82 tool_studio_xray/views.py:411
+#: tool_studio_xray/system_map.py:82 tool_studio_xray/views.py:414
 msgid "Custom"
 msgstr "مخصص"
 
@@ -7274,112 +7272,112 @@ msgstr[3] "%(n)s واجهات مخصصة"
 msgstr[4] "%(n)s واجهة مخصصة"
 msgstr[5] "%(n)s واجهة مخصصة"
 
-#: tool_studio_xray/views.py:150
+#: tool_studio_xray/views.py:153
 msgid "Reading fields, models, views and automations"
 msgstr "قراءة الحقول والنماذج والواجهات والأتمتة"
 
-#: tool_studio_xray/views.py:152
+#: tool_studio_xray/views.py:155
 msgid "Scoring complexity and spotting upgrade risks"
 msgstr "حساب درجة التعقيد ورصد مخاطر الترقية"
 
-#: tool_studio_xray/views.py:156
+#: tool_studio_xray/views.py:159
 msgid ""
 "A local AI model interprets the findings for your business — this can take "
 "up to a minute"
 msgstr ""
 "نموذج ذكاء اصطناعي محلي يفسّر النتائج لنشاطك التجاري — قد يستغرق هذا دقيقة"
 
-#: tool_studio_xray/views.py:158
+#: tool_studio_xray/views.py:161
 msgid "Preparing your report"
 msgstr "جارٍ تجهيز تقريرك"
 
-#: tool_studio_xray/views.py:159
+#: tool_studio_xray/views.py:162
 msgid "Building your results and emailing the link"
 msgstr "إعداد نتائجك وإرسال الرابط إلى بريدك"
 
-#: tool_studio_xray/views.py:369
+#: tool_studio_xray/views.py:372
 msgid "What is the most urgent risk in my system?"
 msgstr "ما أكثر المخاطر إلحاحًا في نظامي؟"
 
-#: tool_studio_xray/views.py:374
+#: tool_studio_xray/views.py:377
 #, python-format
 msgid "What does having %(n)s custom models mean for us?"
 msgstr "ماذا يعني وجود %(n)s نموذجًا مخصّصًا بالنسبة لنا؟"
 
-#: tool_studio_xray/views.py:377
+#: tool_studio_xray/views.py:380
 msgid "How risky are our custom code server actions?"
 msgstr "ما مدى خطورة إجراءات الخادم البرمجية المخصّصة لدينا؟"
 
-#: tool_studio_xray/views.py:381
+#: tool_studio_xray/views.py:384
 #, python-format
 msgid "Is upgrading to Odoo %(latest)s safe for us right now?"
 msgstr "هل الترقية إلى Odoo %(latest)s آمنة لنا الآن؟"
 
-#: tool_studio_xray/views.py:384
+#: tool_studio_xray/views.py:387
 msgid "What should we fix before our next upgrade?"
 msgstr "ما الذي يجب إصلاحه قبل ترقيتنا القادمة؟"
 
-#: tool_studio_xray/views.py:393
+#: tool_studio_xray/views.py:396
 msgid "Contacts"
 msgstr "جهات الاتصال"
 
-#: tool_studio_xray/views.py:394
+#: tool_studio_xray/views.py:397
 msgid "Sales orders"
 msgstr "أوامر البيع"
 
-#: tool_studio_xray/views.py:395
+#: tool_studio_xray/views.py:398
 msgid "Invoices & journal entries"
 msgstr "الفواتير والقيود المحاسبية"
 
-#: tool_studio_xray/views.py:396
+#: tool_studio_xray/views.py:399
 msgid "Purchase orders"
 msgstr "أوامر الشراء"
 
-#: tool_studio_xray/views.py:397
+#: tool_studio_xray/views.py:400
 msgid "Stock transfers"
 msgstr "التحويلات المخزنية"
 
-#: tool_studio_xray/views.py:398
+#: tool_studio_xray/views.py:401
 msgid "CRM leads"
 msgstr "فرص CRM"
 
-#: tool_studio_xray/views.py:399
+#: tool_studio_xray/views.py:402
 msgid "Project tasks"
 msgstr "مهام المشاريع"
 
-#: tool_studio_xray/views.py:400
+#: tool_studio_xray/views.py:403
 msgid "Manufacturing orders"
 msgstr "أوامر التصنيع"
 
-#: tool_studio_xray/views.py:401
+#: tool_studio_xray/views.py:404
 msgid "Messages & log notes"
 msgstr "الرسائل والملاحظات"
 
-#: tool_studio_xray/views.py:405
+#: tool_studio_xray/views.py:408
 msgid "Critical"
 msgstr "حرج"
 
-#: tool_studio_xray/views.py:406
+#: tool_studio_xray/views.py:409
 msgid "In use"
 msgstr "مستخدم"
 
-#: tool_studio_xray/views.py:407
+#: tool_studio_xray/views.py:410
 msgid "Empty"
 msgstr "فارغ"
 
-#: tool_studio_xray/views.py:412
+#: tool_studio_xray/views.py:415
 msgid "Third-party"
 msgstr "طرف ثالث"
 
-#: tool_studio_xray/views.py:413
+#: tool_studio_xray/views.py:416
 msgid "OCA community"
 msgstr "مجتمع OCA"
 
-#: tool_studio_xray/views.py:414
+#: tool_studio_xray/views.py:417
 msgid "Official"
 msgstr "رسمي"
 
-#: tool_studio_xray/views.py:476
+#: tool_studio_xray/views.py:479
 msgid ""
 "Question limit reached for this report — the rest is exactly what the free "
 "30-minute review is for."
@@ -7387,28 +7385,28 @@ msgstr ""
 "بلغت حد الأسئلة لهذا التقرير — والبقية هي بالضبط ما وُجدت لأجله المراجعة "
 "المجانية لمدة 30 دقيقة."
 
-#: tool_studio_xray/views.py:480
+#: tool_studio_xray/views.py:483
 msgid "A little too fast — give the analyst a moment and try again."
 msgstr "أسرع من اللازم — أمهل المحلل لحظة وحاول مجددًا."
 
-#: tool_studio_xray/views.py:558
+#: tool_studio_xray/views.py:561
 msgid "Complexity score"
 msgstr "درجة التعقيد"
 
-#: tool_studio_xray/views.py:559
+#: tool_studio_xray/views.py:562
 msgid "Estimated effort"
 msgstr "الجهد التقديري"
 
-#: tool_studio_xray/views.py:565
+#: tool_studio_xray/views.py:568
 #, python-format
 msgid "A Studio X-Ray report was shared with you — %(site)s"
 msgstr "تمت مشاركة تقرير Studio X-Ray معك — %(site)s"
 
-#: tool_studio_xray/views.py:568
+#: tool_studio_xray/views.py:571
 msgid "A colleague shared their Odoo Studio X-Ray report with you"
 msgstr "شارك زميلك معك تقرير Studio X-Ray لنظام Odoo لديهم"
 
-#: tool_studio_xray/views.py:569
+#: tool_studio_xray/views.py:572
 msgid ""
 "This read-only scan maps the customizations inside your Odoo and what they "
 "mean for the next upgrade."
@@ -7416,11 +7414,11 @@ msgstr ""
 "هذا فحص للقراءة فقط يرسم خريطة التخصيصات داخل Odoo لديكم وما تعنيه للترقية "
 "القادمة."
 
-#: tool_studio_xray/views.py:571
+#: tool_studio_xray/views.py:574
 msgid "What the scan found"
 msgstr "ما اكتشفه الفحص"
 
-#: tool_studio_xray/views.py:575
+#: tool_studio_xray/views.py:578
 msgid ""
 "Reply to this email to book a free 30-minute review of this report with a "
 "consultant."
@@ -7428,35 +7426,35 @@ msgstr ""
 "رُدّ على هذا البريد لحجز مراجعة مجانية لهذا التقرير مدتها 30 دقيقة مع "
 "مستشار."
 
-#: tool_studio_xray/views.py:598
+#: tool_studio_xray/views.py:601
 msgid "Booking the free 30-minute review of my Studio X-Ray report."
 msgstr "حجز المراجعة المجانية لمدة 30 دقيقة لتقرير Studio X-Ray الخاص بي."
 
-#: tool_studio_xray/views.py:600
+#: tool_studio_xray/views.py:603
 msgid "Suggested agenda:"
 msgstr "الأجندة المقترحة:"
 
-#: tool_studio_xray/views.py:639
+#: tool_studio_xray/views.py:642
 msgid "Walk-through of my Studio X-Ray scan results."
 msgstr "استعراض نتائج فحص Studio X-Ray الخاص بي."
 
-#: tool_studio_xray/views.py:648
+#: tool_studio_xray/views.py:651
 #, python-format
 msgid ""
 "Walk-through of the Studio X-Ray results (score %(score)s/100 — %(band)s)."
 msgstr "استعراض نتائج Studio X-Ray ‏(الدرجة %(score)s/100 — %(band)s)."
 
-#: tool_studio_xray/views.py:652
+#: tool_studio_xray/views.py:655
 #, python-format
 msgid "A rebuilding plan for the %(n)s Studio-created models."
 msgstr "خطة إعادة بناء النماذج المُنشأة بـ Studio وعددها %(n)s."
 
-#: tool_studio_xray/views.py:655
+#: tool_studio_xray/views.py:658
 #, python-format
 msgid "Strategy for the %(n)s custom code server actions."
 msgstr "استراتيجية التعامل مع إجراءات الخادم البرمجية المخصّصة وعددها %(n)s."
 
-#: tool_studio_xray/views.py:659
+#: tool_studio_xray/views.py:662
 #, python-format
 msgid ""
 "The upgrade path from Odoo %(current)s to Odoo %(latest)s and the cleanup it"
@@ -7464,33 +7462,33 @@ msgid ""
 msgstr ""
 "مسار الترقية من Odoo %(current)s إلى Odoo %(latest)s وما يتطلبه من تنظيف."
 
-#: tool_studio_xray/views.py:664
+#: tool_studio_xray/views.py:667
 #, python-format
 msgid "Compatibility check for the %(n)s non-standard modules."
 msgstr "فحص توافق الوحدات غير القياسية وعددها %(n)s."
 
-#: tool_studio_xray/views.py:667
+#: tool_studio_xray/views.py:670
 #, python-format
 msgid "Risk review of the %(n)s Studio fields on core business models."
 msgstr "مراجعة مخاطر حقول Studio على النماذج الأساسية وعددها %(n)s."
 
-#: tool_studio_xray/views.py:675
+#: tool_studio_xray/views.py:678
 msgid "Low complexity"
 msgstr "تعقيد منخفض"
 
-#: tool_studio_xray/views.py:677
+#: tool_studio_xray/views.py:680
 msgid "Moderate complexity"
 msgstr "تعقيد متوسط"
 
-#: tool_studio_xray/views.py:679
+#: tool_studio_xray/views.py:682
 msgid "High complexity"
 msgstr "تعقيد مرتفع"
 
-#: tool_studio_xray/views.py:680
+#: tool_studio_xray/views.py:683
 msgid "Very high complexity"
 msgstr "تعقيد مرتفع جدًا"
 
-#: tool_studio_xray/views.py:689
+#: tool_studio_xray/views.py:692
 #, python-format
 msgid ""
 "%(n)s custom Studio models exist only in this database — they tie you to "
@@ -7499,7 +7497,7 @@ msgstr ""
 "%(n)s نماذج مخصّصة من Studio لا توجد إلا في قاعدة البيانات هذه — وهي تقيّدك "
 "بـ Studio/Enterprise ويجب إعادة بنائها كوحدات برمجية للترحيل بأمان."
 
-#: tool_studio_xray/views.py:692
+#: tool_studio_xray/views.py:695
 #, python-format
 msgid ""
 "%(n)s server actions run Python code stored in the database — outside "
@@ -7508,7 +7506,7 @@ msgstr ""
 "%(n)s من إجراءات الخادم تنفّذ كود Python مخزّنًا في قاعدة البيانات — خارج أي"
 " تحكم بالإصدارات، وسبب متكرر لأعطال صامتة عند الترقية."
 
-#: tool_studio_xray/views.py:695
+#: tool_studio_xray/views.py:698
 #, python-format
 msgid ""
 "You are %(n)s major versions behind the latest Odoo — every skipped version "
@@ -7517,7 +7515,7 @@ msgstr ""
 "أنت متأخر %(n)s إصدارات رئيسية عن أحدث Odoo — وكل إصدار يُتخطّى يزيد جهد "
 "الترحيل ومخاطره."
 
-#: tool_studio_xray/views.py:698
+#: tool_studio_xray/views.py:701
 #, python-format
 msgid ""
 "%(n)s Studio fields sit on core business models (sales, invoicing, "
@@ -7526,7 +7524,7 @@ msgstr ""
 "%(n)s من حقول Studio تقع على النماذج الأساسية للأعمال (المبيعات والفوترة "
 "وجهات الاتصال…) — وهي المصدر الأكثر شيوعًا لتعارضات الترقية."
 
-#: tool_studio_xray/views.py:701
+#: tool_studio_xray/views.py:704
 #, python-format
 msgid ""
 "%(n)s installed modules are not standard Odoo — each one must be verified or"
@@ -7535,7 +7533,7 @@ msgstr ""
 "%(n)s من الوحدات المثبتة ليست من Odoo القياسي — ويجب التحقق من كل منها أو "
 "ترقيتها لإصدارك القادم."
 
-#: tool_studio_xray/views.py:704
+#: tool_studio_xray/views.py:707
 #, python-format
 msgid ""
 "%(n)s fields carry business logic stored in the database — standard upgrades"
@@ -7544,7 +7542,7 @@ msgstr ""
 "%(n)s حقلًا يحمل منطق أعمال مخزّنًا في قاعدة البيانات — والترقيات القياسية "
 "لا ترحّل هذا المنطق."
 
-#: tool_studio_xray/views.py:707
+#: tool_studio_xray/views.py:710
 #, python-format
 msgid ""
 "%(n)s Studio views override standard screens and can conflict on every "
@@ -7552,14 +7550,14 @@ msgid ""
 msgstr ""
 "%(n)s من واجهات Studio تتجاوز الشاشات القياسية وقد تتعارض مع كل تحديث."
 
-#: tool_studio_xray/views.py:709
+#: tool_studio_xray/views.py:712
 #, python-format
 msgid ""
 "%(n)s automated actions are configured in the database and should be "
 "reviewed and documented."
 msgstr "%(n)s إجراءً آليًا مُعدّ في قاعدة البيانات وينبغي مراجعته وتوثيقه."
 
-#: tool_studio_xray/views.py:715
+#: tool_studio_xray/views.py:718
 msgid ""
 "Plan a cleanup project: rebuild the Studio models and database code as a "
 "proper, versioned module before your next upgrade. Bidatia can scope this in"
@@ -7569,7 +7567,7 @@ msgstr ""
 "كوحدة برمجية مُدارة بالإصدارات قبل ترقيتك القادمة. تستطيع Bidatia تحديد نطاق"
 " ذلك في مراجعة مجانية مدتها 30 دقيقة."
 
-#: tool_studio_xray/views.py:719
+#: tool_studio_xray/views.py:722
 msgid ""
 "Schedule a customization cleanup before committing to an upgrade — it "
 "reduces migration cost and risk. Bidatia can prioritize the work with you in"
@@ -7579,7 +7577,7 @@ msgstr ""
 "الترحيل ومخاطره. وتستطيع Bidatia ترتيب أولويات العمل معك في مراجعة مجانية "
 "مدتها 30 دقيقة."
 
-#: tool_studio_xray/views.py:723
+#: tool_studio_xray/views.py:726
 msgid ""
 "A short, targeted review of the flagged items is enough to keep this "
 "installation healthy — Bidatia offers that as a free 30-minute session."
@@ -7587,33 +7585,33 @@ msgstr ""
 "مراجعة قصيرة ومركّزة للعناصر المُشار إليها تكفي للحفاظ على سلامة هذا النظام "
 "— وتقدّمها Bidatia كجلسة مجانية مدتها 30 دقيقة."
 
-#: tool_studio_xray/views.py:726
+#: tool_studio_xray/views.py:729
 msgid ""
 "No significant customization debt detected. A periodic re-scan before each "
 "upgrade keeps it that way."
 msgstr ""
 "لم يُرصد دين تخصيص يُذكر. إعادة الفحص دوريًا قبل كل ترقية تُبقي الوضع كذلك."
 
-#: tool_studio_xray/views.py:731
+#: tool_studio_xray/views.py:734
 msgid "Minimal"
 msgstr "ضئيلة"
 
-#: tool_studio_xray/views.py:732
+#: tool_studio_xray/views.py:735
 msgid "Moderate"
 msgstr "متوسطة"
 
-#: tool_studio_xray/views.py:734
+#: tool_studio_xray/views.py:737
 msgid "Very high"
 msgstr "مرتفعة جدًا"
 
-#: tool_studio_xray/views.py:739
+#: tool_studio_xray/views.py:742
 msgid ""
 "You are on a recent version with limited customization debt — keep scanning "
 "before each upgrade."
 msgstr ""
 "أنت على إصدار حديث مع قدر محدود من ديون التخصيص — واصل الفحص قبل كل ترقية."
 
-#: tool_studio_xray/views.py:742
+#: tool_studio_xray/views.py:745
 msgid ""
 "Plan the next upgrade deliberately: review the flagged customizations first "
 "so the migration stays predictable."
@@ -7621,7 +7619,7 @@ msgstr ""
 "خطّط للترقية القادمة بتأنٍّ: راجع التخصيصات المُشار إليها أولًا لتبقى عملية "
 "الترحيل متوقعة."
 
-#: tool_studio_xray/views.py:745
+#: tool_studio_xray/views.py:748
 msgid ""
 "Expect real migration friction: budget a cleanup phase before the upgrade "
 "project, not during it."
@@ -7629,7 +7627,7 @@ msgstr ""
 "توقّع صعوبة حقيقية في الترحيل: خصّص ميزانية لمرحلة تنظيف قبل مشروع الترقية، "
 "لا أثناءه."
 
-#: tool_studio_xray/views.py:748
+#: tool_studio_xray/views.py:751
 msgid ""
 "Upgrading as-is would be expensive and risky. A staged cleanup-then-migrate "
 "plan is strongly recommended."
@@ -7637,35 +7635,35 @@ msgstr ""
 "الترقية بالوضع الحالي ستكون مكلفة ومحفوفة بالمخاطر. يُنصح بشدة بخطة مرحلية: "
 "التنظيف أولًا ثم الترحيل."
 
-#: tool_studio_xray/views.py:754
+#: tool_studio_xray/views.py:757
 msgid "Computed / related fields"
 msgstr "حقول محسوبة / مرتبطة"
 
-#: tool_studio_xray/views.py:757
+#: tool_studio_xray/views.py:760
 msgid "Code server actions"
 msgstr "إجراءات خادم برمجية"
 
-#: tool_studio_xray/views.py:762
+#: tool_studio_xray/views.py:765
 msgid "Official Odoo"
 msgstr "Odoo الرسمي"
 
-#: tool_studio_xray/views.py:763
+#: tool_studio_xray/views.py:766
 msgid "OCA / Community"
 msgstr "OCA / المجتمع"
 
-#: tool_studio_xray/views.py:764
+#: tool_studio_xray/views.py:767
 msgid "Third-party vendor"
 msgstr "مزوّد خارجي"
 
-#: tool_studio_xray/views.py:765
+#: tool_studio_xray/views.py:768
 msgid "Custom / internal"
 msgstr "مخصّص / داخلي"
 
-#: tool_studio_xray/views.py:772
+#: tool_studio_xray/views.py:775
 msgid "Studio fields on core business models"
 msgstr "حقول Studio على النماذج الأساسية للأعمال"
 
-#: tool_studio_xray/views.py:773
+#: tool_studio_xray/views.py:776
 msgid ""
 "Fields added directly to core models are the most common source of conflicts"
 " and data issues during version upgrades."
@@ -7673,11 +7671,11 @@ msgstr ""
 "الحقول المضافة مباشرةً إلى النماذج الأساسية هي المصدر الأكثر شيوعًا "
 "للتعارضات ومشكلات البيانات أثناء ترقيات الإصدار."
 
-#: tool_studio_xray/views.py:776
+#: tool_studio_xray/views.py:779
 msgid "Computed or related Studio fields"
 msgstr "حقول Studio محسوبة أو مرتبطة"
 
-#: tool_studio_xray/views.py:777
+#: tool_studio_xray/views.py:780
 msgid ""
 "These fields carry business logic stored in the database instead of a module"
 " — standard upgrade paths do not migrate that logic."
@@ -7685,11 +7683,11 @@ msgstr ""
 "تحمل هذه الحقول منطق أعمال مخزّنًا في قاعدة البيانات بدلًا من وحدة برمجية — "
 "ومسارات الترقية القياسية لا ترحّل هذا المنطق."
 
-#: tool_studio_xray/views.py:780
+#: tool_studio_xray/views.py:783
 msgid "Custom models created with Studio"
 msgstr "نماذج مخصّصة أُنشئت بواسطة Studio"
 
-#: tool_studio_xray/views.py:781
+#: tool_studio_xray/views.py:784
 msgid ""
 "Studio (x_) models exist only in this database. Leaving Enterprise, or any "
 "clean rebuild, requires reimplementing them as a proper module."
@@ -7697,11 +7695,11 @@ msgstr ""
 "نماذج Studio ‏(x_) لا توجد إلا في قاعدة البيانات هذه. ومغادرة Enterprise، أو"
 " أي إعادة بناء نظيفة، تتطلب إعادة تنفيذها كوحدة برمجية صحيحة."
 
-#: tool_studio_xray/views.py:784
+#: tool_studio_xray/views.py:787
 msgid "Custom server actions executing Python code from the database"
 msgstr "إجراءات خادم مخصّصة تنفّذ كود Python من قاعدة البيانات"
 
-#: tool_studio_xray/views.py:785
+#: tool_studio_xray/views.py:788
 msgid ""
 "Hand-made code living in database records (module-shipped actions are "
 "excluded): invisible to version control, untested, and a frequent cause of "
@@ -7711,22 +7709,22 @@ msgstr ""
 "الوحدات): خارج أي تحكم بالإصدارات، وغير مُختبر، وسبب متكرر لأعطال صامتة عند "
 "الترقية."
 
-#: tool_studio_xray/views.py:789
+#: tool_studio_xray/views.py:792
 msgid "Studio views inheriting standard views"
 msgstr "واجهات Studio ترث الواجهات القياسية"
 
-#: tool_studio_xray/views.py:790
+#: tool_studio_xray/views.py:793
 msgid ""
 "Inherited view customizations conflict with upstream view changes on every "
 "upgrade."
 msgstr ""
 "تتعارض تخصيصات الواجهات الموروثة مع تغييرات الواجهات الأصلية في كل ترقية."
 
-#: tool_studio_xray/views.py:793
+#: tool_studio_xray/views.py:796
 msgid "Automated actions configured in the database"
 msgstr "إجراءات آلية مُعدّة في قاعدة البيانات"
 
-#: tool_studio_xray/views.py:794
+#: tool_studio_xray/views.py:797
 msgid ""
 "Worth reviewing one by one: automated actions are easy to create and easy to"
 " forget, and their interactions are rarely documented."
@@ -7734,11 +7732,11 @@ msgstr ""
 "تستحق المراجعة واحدةً واحدة: فالإجراءات الآلية سهلة الإنشاء وسهلة النسيان، "
 "ونادرًا ما تكون تفاعلاتها موثّقة."
 
-#: tool_studio_xray/views.py:797
+#: tool_studio_xray/views.py:800
 msgid "Modules that are not standard Odoo"
 msgstr "وحدات ليست من Odoo القياسي"
 
-#: tool_studio_xray/views.py:798
+#: tool_studio_xray/views.py:801
 msgid ""
 "Every community, third-party or custom module must be verified — and often "
 "upgraded or replaced — before each Odoo version migration."
@@ -7746,65 +7744,65 @@ msgstr ""
 "يجب التحقق من كل وحدة مجتمعية أو خارجية أو مخصّصة — وغالبًا ترقيتها أو "
 "استبدالها — قبل كل ترحيل لإصدار Odoo."
 
-#: tool_studio_xray/views.py:803
+#: tool_studio_xray/views.py:806
 msgid "1–3 days"
 msgstr "1–3 أيام"
 
-#: tool_studio_xray/views.py:804
+#: tool_studio_xray/views.py:807
 msgid "4–8 days"
 msgstr "4–8 أيام"
 
-#: tool_studio_xray/views.py:805
+#: tool_studio_xray/views.py:808
 msgid "2–3 weeks"
 msgstr "2–3 أسابيع"
 
-#: tool_studio_xray/views.py:806
+#: tool_studio_xray/views.py:809
 msgid "4+ weeks"
 msgstr "أكثر من 4 أسابيع"
 
-#: tool_studio_xray/views.py:809
+#: tool_studio_xray/views.py:812
 msgid "Indicative estimate — an exact quote requires a code review."
 msgstr "تقدير استرشادي — التسعير الدقيق يتطلب مراجعة للكود."
 
-#: tool_studio_xray/views.py:890
+#: tool_studio_xray/views.py:893
 msgid ""
 "Review every automated action; deactivate and document the unused ones."
 msgstr "راجع كل الإجراءات الآلية؛ وعطّل غير المستخدم منها ووثّقه."
 
-#: tool_studio_xray/views.py:892
+#: tool_studio_xray/views.py:895
 msgid "Export and back up the Python code of all code server actions."
 msgstr ""
 "صدّر كود Python لجميع إجراءات الخادم البرمجية واحتفظ بنسخة احتياطية منه."
 
-#: tool_studio_xray/views.py:893
+#: tool_studio_xray/views.py:896
 msgid "Move database-stored Python code into a versioned, tested module."
 msgstr ""
 "انقل كود Python المخزّن في قاعدة البيانات إلى وحدة برمجية مُدارة بالإصدارات "
 "ومُختبرة."
 
-#: tool_studio_xray/views.py:895
+#: tool_studio_xray/views.py:898
 msgid "Rebuild the Studio-created models as a proper Odoo module."
 msgstr "أعد بناء النماذج المُنشأة بـ Studio كوحدة Odoo برمجية صحيحة."
 
-#: tool_studio_xray/views.py:897
+#: tool_studio_xray/views.py:900
 msgid "Reimplement computed/related Studio fields inside a maintained module."
 msgstr "أعد تنفيذ حقول Studio المحسوبة/المرتبطة داخل وحدة برمجية مُصانة."
 
-#: tool_studio_xray/views.py:899
+#: tool_studio_xray/views.py:902
 msgid ""
 "Re-apply the needed Studio view changes as clean XML inheritance in a "
 "module."
 msgstr ""
 "أعد تطبيق تعديلات واجهات Studio اللازمة كوراثة XML نظيفة داخل وحدة برمجية."
 
-#: tool_studio_xray/views.py:901
+#: tool_studio_xray/views.py:904
 #, python-format
 msgid ""
 "Plan the upgrade path towards Odoo %(v)s and budget the cleanup before "
 "migrating."
 msgstr "خطّط لمسار الترقية نحو Odoo %(v)s وخصّص ميزانية للتنظيف قبل الترحيل."
 
-#: tool_studio_xray/views.py:904
+#: tool_studio_xray/views.py:907
 msgid ""
 "Map every core-model Studio field and decide keep / merge / drop before "
 "migration."
@@ -7812,7 +7810,7 @@ msgstr ""
 "احصر كل حقول Studio على النماذج الأساسية وقرر الإبقاء / الدمج / الحذف قبل "
 "الترحيل."
 
-#: tool_studio_xray/views.py:906
+#: tool_studio_xray/views.py:909
 #, python-format
 msgid ""
 "Verify that your %(n)s non-standard modules are available for the target "
@@ -7820,15 +7818,15 @@ msgid ""
 msgstr ""
 "تحقّق من توفر وحداتك غير القياسية البالغ عددها %(n)s للإصدار المستهدف."
 
-#: tool_studio_xray/views.py:911
+#: tool_studio_xray/views.py:914
 msgid "Quick wins"
 msgstr "مكاسب سريعة"
 
-#: tool_studio_xray/views.py:913
+#: tool_studio_xray/views.py:916
 msgid "Structural work"
 msgstr "أعمال هيكلية"
 
-#: tool_studio_xray/views.py:915
+#: tool_studio_xray/views.py:918
 msgid "Upgrade preparation"
 msgstr "التحضير للترقية"
 
