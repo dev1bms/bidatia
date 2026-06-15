@@ -223,10 +223,12 @@ SITE_NAME = 'Bidatia Business Systems'
 # Short brand + division used for the logo lockup in the navbar/footer.
 SITE_BRAND = 'Bidatia'
 SITE_DIVISION = 'Business Systems'
-SITE_TAGLINE = 'ERP, Odoo y datos gobernados con IA'
+# Lazy-translated so SEO metadata (title/OG/Twitter) and JSON-LD render in the
+# active language instead of leaking Spanish onto the EN/AR pages.
+SITE_TAGLINE = _('ERP, Odoo & governed data with AI')
 CONTACT_EMAIL = os.environ.get('CONTACT_EMAIL', 'info@bidatia.xyz')
 CONTACT_WHATSAPP = os.environ.get('CONTACT_WHATSAPP', '+34 911 23 45 67')
-SITE_CITY = 'Madrid, España'
+SITE_CITY = _('Madrid, Spain')
 
 # Email (SMTP, environment-driven)
 # Defaults to the console backend in development so no credentials are needed

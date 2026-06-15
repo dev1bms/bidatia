@@ -355,7 +355,7 @@ class CanonicalBaseTests(SimpleTestCase):
         self.assertTrue(canonical_base(request).endswith('testserver'))
 
 
-@override_settings(ALLOWED_HOSTS=['testserver'])
+@override_settings(ALLOWED_HOSTS=['testserver'], LANGUAGE_CODE='en')
 class AdminTests(TestCase):
     """Admin is protected, the Unfold dashboard renders, and every business
     model is registered and browsable."""

@@ -70,7 +70,7 @@ class SlotGeneratorFormTests(TestCase):
         self.assertFalse(SlotGeneratorForm(data=_base_data(slot_minutes=0)).is_valid())
 
 
-@override_settings(ALLOWED_HOSTS=['testserver'])
+@override_settings(ALLOWED_HOSTS=['testserver'], LANGUAGE_CODE='en')
 class SlotGeneratorAdminViewTests(TestCase):
     @classmethod
     def setUpTestData(cls):

@@ -5,12 +5,12 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Bidatia Business Systems 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-13 16:33+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"POT-Creation-Date: 2026-06-15 08:19+0000\n"
+"PO-Revision-Date: 2026-06-15 00:00+0000\n"
+"Last-Translator: Bidatia Business Systems <hola@bidatia.xyz>\n"
+"Language-Team: Spanish <hola@bidatia.xyz>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,68 +29,76 @@ msgstr "Inglés"
 msgid "Arabic"
 msgstr "Árabe"
 
-#: bidatia/settings.py:423
+#: bidatia/settings.py:228
+msgid "ERP, Odoo & governed data with AI"
+msgstr "ERP, Odoo y datos gobernados con IA"
+
+#: bidatia/settings.py:231 templates/pages/privacy.html:35
+msgid "Madrid, Spain"
+msgstr "Madrid, España"
+
+#: bidatia/settings.py:425
 msgid "Business Systems · ERP, Data & AI"
 msgstr "Business Systems · ERP, datos e IA"
 
-#: bidatia/settings.py:455
+#: bidatia/settings.py:457
 msgid "Dashboard"
 msgstr "Panel"
 
-#: bidatia/settings.py:457
+#: bidatia/settings.py:459
 msgid "Overview"
 msgstr "Resumen"
 
-#: bidatia/settings.py:461
+#: bidatia/settings.py:463
 msgid "Bookings"
 msgstr "Reservas"
 
-#: bidatia/settings.py:463 core/context_processors.py:60
+#: bidatia/settings.py:465 core/context_processors.py:60
 msgid "Consultation requests"
 msgstr "Solicitudes de consultoría"
 
-#: bidatia/settings.py:465 core/context_processors.py:62
+#: bidatia/settings.py:467 core/context_processors.py:62
 msgid "Availability slots"
 msgstr "Franjas de disponibilidad"
 
-#: bidatia/settings.py:470 core/context_processors.py:63
+#: bidatia/settings.py:472 core/context_processors.py:63
 msgid "Leads"
 msgstr "Contactos"
 
-#: bidatia/settings.py:472
+#: bidatia/settings.py:474
 msgid "Contact messages"
 msgstr "Mensajes de contacto"
 
-#: bidatia/settings.py:477
+#: bidatia/settings.py:479
 msgid "Content"
 msgstr "Contenido"
 
-#: bidatia/settings.py:479 core/context_processors.py:56 services/views.py:35
+#: bidatia/settings.py:481 core/context_processors.py:56 services/views.py:35
 #: templates/core/home.html:218 templates/partials/footer.html:31
-#: templates/partials/navbar.html:24 templates/partials/navbar.html:48
+#: templates/partials/navbar.html:24 templates/partials/navbar.html:53
 msgid "Services"
 msgstr "Servicios"
 
-#: bidatia/settings.py:481 blog/views.py:38 core/context_processors.py:57
+#: bidatia/settings.py:483 blog/views.py:38 core/context_processors.py:57
 #: templates/blog/blog_list.html:4 templates/blog/blog_list.html:11
-#: templates/partials/navbar.html:27 templates/partials/navbar.html:51
+#: templates/partials/navbar.html:27 templates/partials/navbar.html:56
 msgid "Insights"
 msgstr "Artículos"
 
-#: bidatia/settings.py:483 core/context_processors.py:58
+#: bidatia/settings.py:485 core/context_processors.py:58
 #: templates/partials/footer.html:36
 msgid "Case studies"
 msgstr "Casos de éxito"
 
-#: bidatia/settings.py:488
+#: bidatia/settings.py:490
 msgid "Administration"
 msgstr "Administración"
 
-#: bidatia/settings.py:490
+#: bidatia/settings.py:492
 msgid "Users"
 msgstr "Usuarios"
 
-#: bidatia/settings.py:492
+#: bidatia/settings.py:494
 msgid "Groups"
 msgstr "Grupos"
 
@@ -104,7 +112,7 @@ msgstr ""
 
 #: blog/views.py:32
 msgid "Edit this insight"
-msgstr ""
+msgstr "Editar este artículo"
 
 #: blog/views.py:37 blog/views.py:66 services/views.py:34
 msgid "Home"
@@ -122,10 +130,10 @@ msgstr ""
 
 #: blog/views.py:62
 msgid "Edit this case study"
-msgstr ""
+msgstr "Editar este caso de éxito"
 
 #: blog/views.py:67 templates/partials/navbar.html:26
-#: templates/partials/navbar.html:50
+#: templates/partials/navbar.html:55
 msgid "Case Studies"
 msgstr "Casos de éxito"
 
@@ -221,94 +229,96 @@ msgstr ""
 msgid ""
 "Sorry, that time slot is no longer available. Please choose another one."
 msgstr ""
+"Lo sentimos, ese horario ya no está disponible. Por favor, elige otro."
 
 #: booking/forms.py:95
 msgid "The selected time slot does not match the chosen consultation type."
-msgstr ""
+msgstr "El horario seleccionado no corresponde al tipo de consulta elegido."
 
 #: booking/forms.py:101
 msgid "Monday"
-msgstr ""
+msgstr "Lunes"
 
 #: booking/forms.py:102
 msgid "Tuesday"
-msgstr ""
+msgstr "Martes"
 
 #: booking/forms.py:103
 msgid "Wednesday"
-msgstr ""
+msgstr "Miércoles"
 
 #: booking/forms.py:104
 msgid "Thursday"
-msgstr ""
+msgstr "Jueves"
 
 #: booking/forms.py:105
 msgid "Friday"
-msgstr ""
+msgstr "Viernes"
 
 #: booking/forms.py:106
 msgid "Saturday"
-msgstr ""
+msgstr "Sábado"
 
 #: booking/forms.py:107
 msgid "Sunday"
-msgstr ""
+msgstr "Domingo"
 
 #: booking/forms.py:120
 msgid "Consultation type"
-msgstr ""
+msgstr "Tipo de consulta"
 
 #: booking/forms.py:124
 msgid "Start date"
-msgstr ""
+msgstr "Fecha de inicio"
 
 #: booking/forms.py:128
 msgid "End date"
-msgstr ""
+msgstr "Fecha de fin"
 
 #: booking/forms.py:133
 msgid "Days of the week"
-msgstr ""
+msgstr "Días de la semana"
 
 #: booking/forms.py:134
 msgid "Only the selected weekdays in the range get slots."
 msgstr ""
+"Solo los días de la semana seleccionados dentro del rango generan citas."
 
 #: booking/forms.py:138
 msgid "Start time"
-msgstr ""
+msgstr "Hora de inicio"
 
 #: booking/forms.py:142
 msgid "End time"
-msgstr ""
+msgstr "Hora de fin"
 
 #: booking/forms.py:145
 msgid "Slot duration (minutes)"
-msgstr ""
+msgstr "Duración de cada cita (minutos)"
 
 #: booking/forms.py:149
 msgid "Break between slots (minutes)"
-msgstr ""
+msgstr "Descanso entre citas (minutos)"
 
 #: booking/forms.py:152
 msgid "Timezone"
-msgstr ""
+msgstr "Zona horaria"
 
 #: booking/forms.py:156
 msgid "Mark generated slots as active"
-msgstr ""
+msgstr "Marcar las citas generadas como activas"
 
 #: booking/forms.py:168
 msgid "End date must be on or after the start date."
-msgstr ""
+msgstr "La fecha de fin debe ser igual o posterior a la fecha de inicio."
 
 #: booking/forms.py:170
 msgid "End time must be after the start time."
-msgstr ""
+msgstr "La hora de fin debe ser posterior a la hora de inicio."
 
 #: booking/forms.py:177
 msgid "Slot duration is longer than the daily time window."
-msgstr ""
+msgstr "La duración de la cita supera la franja horaria diaria."
 
 #: booking/models.py:8
 msgid "Free 20-minute Intro Call"
@@ -405,6 +415,8 @@ msgid ""
 "Sorry, that time slot was just booked by someone else. Please choose another"
 " one."
 msgstr ""
+"Lo sentimos, otra persona acaba de reservar ese horario. Por favor, elige "
+"otro."
 
 #: booking/views.py:179
 msgid ""
@@ -422,6 +434,9 @@ msgid ""
 "connected to your data platform, BI dashboards and AI agents. The Business "
 "Systems division of Bidatia, Madrid."
 msgstr ""
+"Bidatia Business Systems implanta, moderniza y gobierna el ERP Odoo, "
+"conectado a tu plataforma de datos, tus cuadros de mando de BI y tus agentes"
+" de IA. La división de Business Systems de Bidatia, Madrid."
 
 #: core/views.py:27
 msgid "Odoo ERP implementation & custom module development"
@@ -461,10 +476,13 @@ msgid ""
 "Bidatia. A team of engineers bringing data, AI and governance discipline to "
 "Odoo and enterprise systems."
 msgstr ""
+"Sobre Bidatia Business Systems, la división de ERP y Business Systems de "
+"Bidatia. Un equipo de ingenieros que aporta la disciplina del dato, la IA y "
+"el gobierno del dato a Odoo y a los sistemas empresariales."
 
 #: glossary/views.py:21
 msgid "Odoo Studio"
-msgstr ""
+msgstr "Odoo Studio"
 
 #: glossary/views.py:22
 msgid "Automations & scheduled jobs"
@@ -730,11 +748,11 @@ msgstr ""
 
 #: services/views.py:29
 msgid "Edit this service"
-msgstr ""
+msgstr "Editar este servicio"
 
 #: templates/admin/booking/generate_slots.html:7
 msgid "Back to availability slots"
-msgstr ""
+msgstr "Volver a las citas disponibles"
 
 #: templates/admin/booking/generate_slots.html:10
 msgid ""
@@ -742,35 +760,38 @@ msgid ""
 "weekdays and a daily time window. Slots that already exist (same "
 "consultation type, date and start time) are skipped automatically."
 msgstr ""
+"Genera muchas citas a la vez en un rango de fechas, los días de la semana "
+"seleccionados y una franja horaria diaria. Las citas que ya existen (mismo "
+"tipo de consulta, fecha y hora de inicio) se omiten automáticamente."
 
 #: templates/admin/booking/generate_slots.html:20
 #: templates/admin/booking/slots_calendar.html:32
 msgid "Generate slots"
-msgstr ""
+msgstr "Generar citas"
 
 #: templates/admin/booking/slots_calendar.html:12
 msgid "Today"
-msgstr ""
+msgstr "Hoy"
 
 #: templates/admin/booking/slots_calendar.html:16
 msgid "Month"
-msgstr ""
+msgstr "Mes"
 
 #: templates/admin/booking/slots_calendar.html:17
 msgid "Week"
-msgstr ""
+msgstr "Semana"
 
 #: templates/admin/booking/slots_calendar.html:23
 msgid "All consultation types"
-msgstr ""
+msgstr "Todos los tipos de consulta"
 
 #: templates/admin/booking/slots_calendar.html:28
 msgid "Filter"
-msgstr ""
+msgstr "Filtrar"
 
 #: templates/admin/booking/slots_calendar.html:33
 msgid "List view"
-msgstr ""
+msgstr "Vista de lista"
 
 #: templates/admin/booking/slots_calendar.html:38
 #: templates/tool_studio_xray/report.html:309
@@ -781,43 +802,44 @@ msgstr "Total"
 #: templates/admin/booking/slots_calendar.html:39
 #: templates/admin/booking/slots_calendar.html:100
 msgid "Available"
-msgstr ""
+msgstr "Disponible"
 
 #: templates/admin/booking/slots_calendar.html:40
 #: templates/admin/booking/slots_calendar.html:101
 msgid "Booked"
-msgstr ""
+msgstr "Reservada"
 
 #: templates/admin/booking/slots_calendar.html:41
 #: templates/admin/booking/slots_calendar.html:102
 msgid "Past"
-msgstr ""
+msgstr "Pasada"
 
 #: templates/admin/booking/slots_calendar.html:42
 #: templates/admin/booking/slots_calendar.html:103
 msgid "Inactive"
-msgstr ""
+msgstr "Inactiva"
 
 #: templates/admin/booking/slots_calendar.html:52
 #: templates/admin/booking/slots_calendar.html:82
 msgid "Add slots on this day"
-msgstr ""
+msgstr "Añadir citas en este día"
 
 #: templates/admin/booking/slots_calendar.html:104
 msgid "click a slot to edit it, or “+” to add slots on a day."
 msgstr ""
+"haz clic en una cita para editarla, o en «+» para añadir citas en un día."
 
 #: templates/admin/index.html:4
 msgid "Django site admin"
-msgstr ""
+msgstr "Administración del sitio"
 
 #: templates/admin/index.html:25
 msgid "Recent consultation requests"
-msgstr ""
+msgstr "Solicitudes de consulta recientes"
 
 #: templates/admin/index.html:30 templates/admin/index.html:58
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
 #: templates/admin/index.html:31 templates/booking/book_consultation.html:121
 msgid "Type"
@@ -825,29 +847,29 @@ msgstr "Tipo"
 
 #: templates/admin/index.html:32
 msgid "Status"
-msgstr ""
+msgstr "Estado"
 
 #: templates/admin/index.html:33 templates/admin/index.html:61
 msgid "Date"
-msgstr ""
+msgstr "Fecha"
 
 #: templates/admin/index.html:48
 msgid "No consultation requests yet."
-msgstr ""
+msgstr "Aún no hay solicitudes de consulta."
 
 #: templates/admin/index.html:53
 msgid "Recent contact messages"
-msgstr ""
+msgstr "Mensajes de contacto recientes"
 
 #: templates/admin/index.html:60
 msgid "Handled"
-msgstr ""
+msgstr "Gestionado"
 
 #: templates/admin/index.html:76
 msgid "No contact messages yet."
-msgstr ""
+msgstr "Aún no hay mensajes de contacto."
 
-#: templates/base.html:239
+#: templates/base.html:321
 msgid "Skip to content"
 msgstr "Saltar al contenido"
 
@@ -874,7 +896,7 @@ msgstr ""
 #: templates/core/contact.html:73 templates/core/home.html:34
 #: templates/core/home.html:257 templates/core/home.html:702
 #: templates/partials/cta.html:15 templates/partials/footer.html:34
-#: templates/partials/navbar.html:35 templates/partials/navbar.html:54
+#: templates/partials/navbar.html:40 templates/partials/navbar.html:59
 #: templates/services/service_list.html:20 templates/tools_core/hub.html:101
 msgid "Request a consultation"
 msgstr "Solicita una consultoría"
@@ -1081,7 +1103,7 @@ msgstr "Solicitud recibida"
 
 #: templates/booking/booking_success.html:12
 msgid "Thanks — your booking request has been received"
-msgstr ""
+msgstr "Gracias: hemos recibido tu solicitud de reserva"
 
 #: templates/booking/booking_success.html:14
 msgid ""
@@ -1089,6 +1111,10 @@ msgid ""
 "confirm every booking by email, usually within one business day, so your "
 "chosen slot is held but not yet final."
 msgstr ""
+"Hemos recibido el horario que has elegido y tus datos. Revisamos y "
+"confirmamos personalmente cada reserva por correo electrónico, normalmente "
+"en un día laborable, de modo que tu horario queda reservado, pero aún no es "
+"definitivo."
 
 #: templates/booking/booking_success.html:17
 msgid ""
@@ -1096,6 +1122,10 @@ msgid ""
 " that confirmation email — your session is scheduled once payment is "
 "received. Free calls are confirmed directly, no payment needed."
 msgstr ""
+"Si has reservado una consulta de pago, te enviaremos instrucciones de pago "
+"sencillas en ese correo de confirmación; tu sesión queda agendada en cuanto "
+"recibamos el pago. Las llamadas gratuitas se confirman directamente, sin "
+"necesidad de pago."
 
 #: templates/booking/booking_success.html:20
 msgid ""
@@ -1205,6 +1235,13 @@ msgid ""
 "                    turn that promise into daily friction: slow screens, broken automations, reports nobody\n"
 "                    believes, and data scattered across systems that no longer agree with each other."
 msgstr ""
+"La mayoría de las empresas no eligen un ERP porque quieran gestionar "
+"software, sino porque quieren que su negocio funcione con fluidez y que sus "
+"números sean fiables. Pero, con el tiempo, los parches rápidos, las "
+"personalizaciones heredadas y las implantaciones apresuradas convierten esa "
+"promesa en fricción diaria: pantallas lentas, automatizaciones rotas, "
+"informes en los que nadie confía y datos dispersos en sistemas que ya no "
+"concuerdan entre sí."
 
 #: templates/core/about.html:66
 msgid ""
@@ -1213,6 +1250,12 @@ msgid ""
 "                    PostgreSQL, modern data platforms and clean APIs — so that fixes are not just patches, but\n"
 "                    improvements your system, and your data, can keep building on."
 msgstr ""
+"Bidatia Business Systems existe para cerrar esa brecha. Combinamos una "
+"experiencia real en Odoo con las prácticas de gobierno del dato, BI e IA que"
+" están en el núcleo de Bidatia —Python, Django, PostgreSQL, plataformas de "
+"datos modernas y APIs limpias— para que las soluciones no sean simples "
+"parches, sino mejoras sobre las que tu sistema, y tus datos, puedan seguir "
+"creciendo."
 
 #: templates/core/about.html:75
 msgid "What we bring to a project"
@@ -1231,30 +1274,40 @@ msgid ""
 "Companies in Spain and Europe that want a reliable technical partner for "
 "their Odoo and data systems"
 msgstr ""
+"Empresas en España y Europa que buscan un socio técnico fiable para sus "
+"sistemas Odoo y de datos"
 
 #: templates/core/about.html:92
 msgid ""
 "Organizations across the Gulf and MENA region modernizing their ERP and "
 "reporting operations"
 msgstr ""
+"Organizaciones del Golfo y la región MENA que modernizan su ERP y sus "
+"operaciones de reporting"
 
 #: templates/core/about.html:93
 msgid ""
 "Data and analytics teams that need their ERP to feed a governed, trustworthy"
 " single source of truth"
 msgstr ""
+"Equipos de datos y analítica que necesitan que su ERP alimente una única "
+"fuente de verdad, gobernada y fiable"
 
 #: templates/core/about.html:94
 msgid ""
 "Finance and operations leaders who need dashboards and KPIs they can finally"
 " trust"
 msgstr ""
+"Responsables de finanzas y operaciones que necesitan cuadros de mando y KPIs"
+" en los que por fin puedan confiar"
 
 #: templates/core/about.html:95
 msgid ""
 "International, multilingual teams (EN · ES · AR) that need a senior "
 "technical voice on their ERP projects"
 msgstr ""
+"Equipos internacionales y multilingües (EN · ES · AR) que necesitan una voz "
+"técnica sénior en sus proyectos de ERP"
 
 #: templates/core/about.html:104
 msgid "Part of Bidatia"
@@ -1269,6 +1322,12 @@ msgid ""
 "operational data to governed processes, reliable reporting and AI that works"
 " in production."
 msgstr ""
+"Bidatia ayuda a las organizaciones a maximizar el valor de sus datos "
+"mediante estrategia de IA, IA generativa, plataformas de datos, "
+"visualización y gobierno del dato. Bidatia Business Systems lleva esa misión"
+" al núcleo operativo del negocio: el ERP. El resultado es un único socio que"
+" puede acompañarte desde los datos operativos en bruto hasta procesos "
+"gobernados, reporting fiable e IA que funciona en producción."
 
 #: templates/core/about.html:112
 msgid "Let's see if we're the right fit for you"
@@ -1366,7 +1425,6 @@ msgstr ""
 " de Bidatia. Madrid, España · En remoto en todo el mundo."
 
 #: templates/core/home.html:24
-#| msgid "Data governance in the DNA"
 msgid "ERP · Data governance · AI"
 msgstr "ERP · Gobierno del dato · IA"
 
@@ -1430,7 +1488,6 @@ msgid "Data quality"
 msgstr "Calidad de los datos"
 
 #: templates/core/home.html:96
-#| msgid "Govern"
 msgid "Governed KPIs"
 msgstr "KPIs gobernados"
 
@@ -1443,7 +1500,6 @@ msgid "Single source of truth · reconciled"
 msgstr "Fuente única de verdad · conciliada"
 
 #: templates/core/home.html:109
-#| msgid "From operational data to"
 msgid "Illustrative operations data board"
 msgstr "Panel de datos operativos ilustrativo"
 
@@ -1935,6 +1991,8 @@ msgid ""
 "Bidatia connecting Odoo to the data warehouse, BI, AI agents, payments, "
 "logistics and custom apps"
 msgstr ""
+"Bidatia conectando Odoo con el data warehouse, el BI, los agentes de IA, los"
+" pagos, la logística y las aplicaciones a medida"
 
 #: templates/core/home.html:633
 msgid "Data warehouse"
@@ -2407,14 +2465,16 @@ msgid ""
 "services. Bidatia is the party responsible for the personal data collected "
 "through this website."
 msgstr ""
+"Bidatia Business Systems es la división de ERP y Business Systems de "
+"Bidatia, una empresa con sede en Madrid, España, especializada en datos, "
+"inteligencia artificial y gobierno del dato. A través de esta división "
+"prestamos servicios de implantación y modernización de Odoo y ERP, BI, "
+"automatización y gobierno del dato. Bidatia es la responsable de los datos "
+"personales recogidos a través de este sitio web."
 
 #: templates/pages/privacy.html:31
 msgid "You can reach us at:"
 msgstr "Puedes contactarnos en:"
-
-#: templates/pages/privacy.html:35
-msgid "Madrid, Spain"
-msgstr "Madrid, España"
 
 #: templates/pages/privacy.html:40
 msgid "2. What personal data we collect"
@@ -2739,6 +2799,8 @@ msgid ""
 "Bidatia Business Systems is the ERP and Business Systems division of "
 "Bidatia, a company based in Madrid, Spain. We provide:"
 msgstr ""
+"Bidatia Business Systems es la división de ERP y Business Systems de "
+"Bidatia, una empresa con sede en Madrid, España. Ofrecemos:"
 
 #: templates/pages/terms.html:24
 msgid "Odoo and ERP implementation, modernization and consulting"
@@ -3102,8 +3164,6 @@ msgid "All rights reserved."
 msgstr "Todos los derechos reservados."
 
 #: templates/partials/footer.html:67
-#| msgid ""
-#| "ERP · Odoo · Data governance · BI · AI — Madrid, Spain · Remote worldwide"
 msgid "ERP · Odoo · Data governance · BI · AI — Madrid, Spain"
 msgstr "ERP · Odoo · Gobierno del dato · BI · IA — Madrid, España"
 
@@ -3111,24 +3171,40 @@ msgstr "ERP · Odoo · Gobierno del dato · BI · IA — Madrid, España"
 msgid "Change language"
 msgstr "Cambiar idioma"
 
-#: templates/partials/navbar.html:25 templates/partials/navbar.html:49
+#: templates/partials/navbar.html:25 templates/partials/navbar.html:54
 #: templates/tools_core/hub.html:20
 msgid "Free Tools"
 msgstr "Herramientas gratuitas"
 
-#: templates/partials/navbar.html:28 templates/partials/navbar.html:52
+#: templates/partials/navbar.html:28 templates/partials/navbar.html:57
 msgid "About"
 msgstr "Sobre mí"
 
-#: templates/partials/navbar.html:29 templates/partials/navbar.html:53
+#: templates/partials/navbar.html:29 templates/partials/navbar.html:58
 msgid "Contact"
 msgstr "Contacto"
 
-#: templates/partials/navbar.html:40
+#: templates/partials/navbar.html:33
+msgid "Toggle light / dark theme"
+msgstr "Cambiar entre tema claro y oscuro"
+
+#: templates/partials/navbar.html:45
 msgid "Toggle navigation menu"
 msgstr "Abrir o cerrar el menú"
 
-#: templates/partials/navbar.html:57
+#: templates/partials/navbar.html:62
+msgid "Appearance"
+msgstr "Apariencia"
+
+#: templates/partials/navbar.html:64
+msgid "Switch to light"
+msgstr "Cambiar a claro"
+
+#: templates/partials/navbar.html:65
+msgid "Switch to dark"
+msgstr "Cambiar a oscuro"
+
+#: templates/partials/navbar.html:70
 msgid "Language"
 msgstr "Idioma"
 
@@ -7193,7 +7269,7 @@ msgstr ""
 
 #: tool_studio_xray/views.py:529
 msgid "What the scan found"
-msgstr ""
+msgstr "Lo que detectó el análisis"
 
 #: tool_studio_xray/views.py:533
 msgid ""

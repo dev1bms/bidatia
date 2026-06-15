@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {# theme-color sits before the init script so the script can sync it to the active theme on first paint. #}
+    <meta name="theme-color" content="#1A1B24">
     {# Theme init: set data-theme before first paint to avoid a flash (dark default). #}
     <script>
         (function () {
@@ -61,7 +63,6 @@
     <link rel="icon" type="image/png" sizes="96x96" href="{% static 'icons/favicon-96x96.png' %}">
     <link rel="apple-touch-icon" href="{% static 'icons/apple-touch-icon.png' %}">
     <link rel="manifest" href="{% static 'site.webmanifest' %}">
-    <meta name="theme-color" content="#1A1B24">
 
     {# Feed auto-discovery — lets crawlers/readers find new content fast. #}
     <link rel="alternate" type="application/rss+xml" title="{{ SITE_NAME }} — Insights" href="{% url 'insights_feed' %}">
