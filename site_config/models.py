@@ -165,6 +165,12 @@ class OperationalConfiguration(SingletonModel):
         default=True, help_text=_('Allow visitors to submit booking requests.'))
     tools_enabled = models.BooleanField(
         default=True, help_text=_('Allow the free diagnostic tools to run.'))
+    show_tool_diagnostics = models.BooleanField(
+        default=False,
+        help_text=_('Show technical error details on the free-tool progress '
+                    'pages when a scan fails (for debugging). Staff always see '
+                    'them; turn this on to show them to all visitors too, then '
+                    'turn it off again once the issue is solved.'))
     task_poll_interval_ms = models.PositiveIntegerField(
         default=1500, validators=[MinValueValidator(500), MaxValueValidator(15000)],
         help_text=_('How often the status component polls, in milliseconds.'))

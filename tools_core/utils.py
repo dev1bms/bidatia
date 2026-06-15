@@ -2,6 +2,32 @@
 from django.core.cache import cache
 
 
+def diagnostics_visible(request):
+    """Whether a failed run's technical `diagnostic` may be shown on the progress
+    page. Staff always see it; everyone else only when an admin has flipped the
+    OperationalConfiguration.show_tool_diagnostics flag on (off by default, so
+    it's easy to hide again after debugging). Never raises."""
+    if getattr(getattr(request, 'user', None), 'is_staff', False):
+        return True
+    try:
+        from site_config.services import get_operational_config
+        cfg = get_operational_config()
+        return bool(cfg and cfg.show_tool_diagnostics)
+    except Exception:  # noqa: BLE001 — config table missing etc. → hide
+        return False
+
+
+def scrub_secrets(text, *secrets):
+    """Redact known credential values from a diagnostic string before it is
+    stored or shown. The exception text may quote the login/api_key it was
+    given; replace each non-empty secret with '***'. Result is length-capped."""
+    out = str(text)
+    for secret in secrets:
+        if secret and len(str(secret)) >= 4:
+            out = out.replace(str(secret), '***')
+    return out[:500]
+
+
 def rate_limit_exceeded(key, limit, window_seconds):
     """Cache-based fixed-window rate limiter.
 

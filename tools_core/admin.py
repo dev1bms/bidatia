@@ -27,7 +27,8 @@ class ToolRunAdmin(admin.ModelAdmin):
     )
     list_filter = ('tool_slug', 'status')
     search_fields = ('odoo_url', 'odoo_db', 'lead__email')
-    readonly_fields = ('id', 'result_json', 'created_at', 'finished_at', 'expires_at')
+    readonly_fields = ('id', 'result_json', 'error_message', 'diagnostic',
+                       'created_at', 'finished_at', 'expires_at')
     date_hierarchy = 'created_at'
 
 

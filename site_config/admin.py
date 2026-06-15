@@ -133,10 +133,11 @@ class AIConfigurationAdmin(SingletonAdmin):
 @admin.register(OperationalConfiguration)
 class OperationalConfigurationAdmin(SingletonAdmin):
     list_display = ('__str__', 'bookings_enabled', 'tools_enabled',
-                    'task_poll_interval_ms', 'updated_at')
+                    'show_tool_diagnostics', 'task_poll_interval_ms', 'updated_at')
     readonly_fields = ('updated_at',)
     fieldsets = (
-        (_('Feature flags'), {'fields': ('bookings_enabled', 'tools_enabled')}),
+        (_('Feature flags'), {'fields': ('bookings_enabled', 'tools_enabled',
+                                         'show_tool_diagnostics')}),
         (_('Background tasks'), {'fields': ('task_poll_interval_ms', 'long_task_timeout_s')}),
         (None, {'fields': ('updated_at',)}),
     )

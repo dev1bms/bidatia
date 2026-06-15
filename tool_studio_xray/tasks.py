@@ -18,7 +18,7 @@ from tools_core.models import ToolRun
 from tools_core.services.analytics import track
 from tools_core.services.hot_leads import alert_hot_lead
 from tools_core.services.report_service import send_report_email
-from tools_core.utils import clear_run_note, set_run_note
+from tools_core.utils import clear_run_note, scrub_secrets, set_run_note
 
 from .analyzer import analyze
 from .collector import collect
@@ -126,14 +126,19 @@ def run_studio_xray(toolrun_id, odoo_url, odoo_db, login, api_key, language='en'
                           language=language)
 
     except SoftTimeLimitExceeded:
-        _fail(run, TIMEOUT_MESSAGE)
+        _fail(run, TIMEOUT_MESSAGE,
+              diagnostic='SoftTimeLimitExceeded: the scan exceeded its time budget.')
     except ConnectorError as exc:
-        _fail(run, str(exc))  # connector messages are pre-sanitized
+        # Connector messages are pre-sanitized; safe as both the user message
+        # and the diagnostic.
+        _fail(run, str(exc), diagnostic=str(exc))
     except Exception as exc:  # noqa: BLE001
-        # Never let a raw exception text near the DB/logs — it could quote
-        # request internals. Log the type only.
+        # The user sees a safe generic message; the diagnostic keeps the
+        # exception class + message with the known credentials scrubbed out, so
+        # the owner can tell WHAT went wrong without leaking secrets.
         logger.error('studio_xray: run %s failed with %s', run.pk, type(exc).__name__)
-        _fail(run, UNEXPECTED_MESSAGE)
+        detail = scrub_secrets(f'{type(exc).__name__}: {exc}', api_key, login)
+        _fail(run, UNEXPECTED_MESSAGE, diagnostic=detail)
 
 
 def _set_status(run, status):
@@ -150,11 +155,13 @@ def _thinking_note_writer(run_id):
     return write
 
 
-def _fail(run, message):
+def _fail(run, message, diagnostic=''):
     run.status = 'failed'
     run.error_message = message
+    if diagnostic:
+        run.diagnostic = str(diagnostic)[:500]
     run.finished_at = timezone.now()
-    run.save(update_fields=['status', 'error_message', 'finished_at'])
+    run.save(update_fields=['status', 'error_message', 'diagnostic', 'finished_at'])
     logger.info('studio_xray: run %s failed (sanitized message stored)', run.pk)
 
 

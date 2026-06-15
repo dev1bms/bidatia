@@ -219,6 +219,63 @@ class ProgressAndStatusTests(TestCase):
 
 
 @override_settings(ALLOWED_HOSTS=['testserver'])
+class DiagnosticVisibilityTests(TestCase):
+    """The technical `diagnostic` is shown to staff always, and to everyone only
+    when OperationalConfiguration.show_tool_diagnostics is on. Never leaks creds."""
+
+    def _failed_run(self):
+        return ToolRun.objects.create(
+            tool_slug='studio_xray', status='failed',
+            odoo_url='https://x.odoo.com', odoo_db='x',
+            error_message='The scan could not finish.',
+            diagnostic='ConnectionRefusedError: could not reach host')
+
+    def _set_flag(self, value):
+        from django.core.cache import cache
+        from site_config.models import OperationalConfiguration
+        cfg = OperationalConfiguration.load()
+        cfg.show_tool_diagnostics = value
+        cfg.save()
+        cache.clear()  # config is cached; force a fresh read
+
+    def test_anonymous_does_not_see_diagnostic_by_default(self):
+        self._set_flag(False)
+        run = self._failed_run()
+        data = self.client.get(f'/en/tools/studio-xray/run/{run.pk}/status/').json()
+        self.assertNotIn('detail', data)
+        # The friendly error is still shown.
+        self.assertEqual(data['error'], 'The scan could not finish.')
+
+    def test_flag_on_reveals_diagnostic_to_everyone(self):
+        self._set_flag(True)
+        run = self._failed_run()
+        data = self.client.get(f'/en/tools/studio-xray/run/{run.pk}/status/').json()
+        self.assertEqual(data['detail'], 'ConnectionRefusedError: could not reach host')
+
+    def test_staff_always_sees_diagnostic(self):
+        from django.contrib.auth import get_user_model
+        self._set_flag(False)  # off for the public
+        staff = get_user_model().objects.create_user(
+            'owner', 'o@x.co', 'pw', is_staff=True)
+        self.client.force_login(staff)
+        run = self._failed_run()
+        data = self.client.get(f'/en/tools/studio-xray/run/{run.pk}/status/').json()
+        self.assertEqual(data['detail'], 'ConnectionRefusedError: could not reach host')
+
+
+class ScrubSecretsTests(TestCase):
+    def test_known_credentials_are_redacted(self):
+        from tools_core.utils import scrub_secrets
+        out = scrub_secrets(
+            'OdooError: auth failed for admin@acme with key abc123secretkey',
+            'abc123secretkey', 'admin@acme')
+        self.assertNotIn('abc123secretkey', out)
+        self.assertNotIn('admin@acme', out)
+        self.assertIn('OdooError', out)        # the useful type survives
+        self.assertIn('***', out)
+
+
+@override_settings(ALLOWED_HOSTS=['testserver'])
 class ReportViewTests(TestCase):
     def test_report_renders_score_findings_and_cta(self):
         run = make_done_run()

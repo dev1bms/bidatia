@@ -76,6 +76,11 @@ class ToolRun(models.Model):
     result_json = models.JSONField(null=True, blank=True)
     # Sanitized before saving — must never contain credentials or internal paths.
     error_message = models.TextField(blank=True)
+    # Technical reason for a failure (exception class / pre-sanitized connector
+    # message / watchdog note). ALWAYS scrubbed of credentials. Surfaced on the
+    # progress page only to staff, or when the show_tool_diagnostics flag is on
+    # (site_config.OperationalConfiguration) — for debugging, hideable after.
+    diagnostic = models.TextField(blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     finished_at = models.DateTimeField(null=True, blank=True)

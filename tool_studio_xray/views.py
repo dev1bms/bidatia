@@ -15,7 +15,12 @@ from tools_core.models import ReportQuestion, ToolRun
 from tools_core.services.analytics import track
 from tools_core.services.hot_leads import alert_hot_lead
 from tools_core.services.lead_service import capture_lead
-from tools_core.utils import client_ip, get_run_note, rate_limit_exceeded
+from tools_core.utils import (
+    client_ip,
+    diagnostics_visible,
+    get_run_note,
+    rate_limit_exceeded,
+)
 
 from .analyzer import assess_upgrade, build_executive_summary
 from .chat import MAX_QUESTION_CHARS
@@ -153,6 +158,11 @@ def progress(request, run_id):
     steps.append({'label': _('Preparing your report'),
                   'helper': _('Building your results and emailing the link'), 'ai': False})
 
+    # Seed the diagnostic for a run that is ALREADY failed on first paint
+    # (a refresh after failure); live failures arrive via the status poll.
+    detail = (run.diagnostic if (run.status == 'failed' and run.diagnostic
+                                 and diagnostics_visible(request)) else '')
+
     return render(request, 'tool_studio_xray/progress.html', {
         'run': run,
         'status_url': reverse('tool_studio_xray:status', args=[run.pk]),
@@ -160,6 +170,7 @@ def progress(request, run_id):
         'steps': steps,
         'ai_enabled': ai_enabled,
         'ai_step_index': 3 if ai_enabled else -1,
+        'detail': detail,
     })
 
 
@@ -173,6 +184,10 @@ def status(request, run_id):
         'step': PROGRESS_STEPS.index(run.status) if run.status in PROGRESS_STEPS else None,
         'error': run.error_message if run.status == 'failed' else '',
     }
+    # Technical reason, for debugging. Staff always see it; everyone else only
+    # when an admin turned on show_tool_diagnostics. Already credential-scrubbed.
+    if run.status == 'failed' and run.diagnostic and diagnostics_visible(request):
+        payload['detail'] = run.diagnostic
     if run.status == 'ai_insights':
         # Live tail of the model's reasoning trace (empty when unavailable).
         payload['ai_note'] = get_run_note(run.pk)
@@ -191,19 +206,25 @@ def _fail_if_stale(run):
         _mark_run_failed(run, _(
             'The scan could not start — the processing queue appears to be '
             'offline. Please try again later.'
-        ))
+        ), diagnostic='Watchdog: no worker consumed the task within '
+                      f'{int(STALE_PENDING_AFTER.total_seconds() // 60)} min — '
+                      'Celery worker offline, or wrong queue / Redis DB.')
     elif run.status in PROGRESS_STEPS and age > STALE_RUNNING_AFTER:
         _mark_run_failed(run, _(
             'The scan took too long and was stopped. Please try again in a '
             'few minutes.'
-        ))
+        ), diagnostic=f'Watchdog: run stuck at "{run.status}" past '
+                      f'{int(STALE_RUNNING_AFTER.total_seconds() // 60)} min — '
+                      'the worker likely died or hung mid-scan.')
 
 
-def _mark_run_failed(run, message):
+def _mark_run_failed(run, message, diagnostic=''):
     run.status = 'failed'
     run.error_message = message
+    if diagnostic:
+        run.diagnostic = str(diagnostic)[:500]
     run.finished_at = timezone.now()
-    run.save(update_fields=['status', 'error_message', 'finished_at'])
+    run.save(update_fields=['status', 'error_message', 'diagnostic', 'finished_at'])
 
 
 def demo_report(request):

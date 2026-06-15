@@ -16,7 +16,7 @@ from tools_core.models import ToolRun
 from tools_core.services.analytics import track
 from tools_core.services.hot_leads import alert_hot_lead
 from tools_core.services.lead_service import capture_lead
-from tools_core.utils import client_ip, rate_limit_exceeded
+from tools_core.utils import client_ip, diagnostics_visible, rate_limit_exceeded
 
 from .forms import DataRiskRunForm
 from .tasks import run_data_risk_scan
@@ -296,11 +296,14 @@ def progress(request, run_id):
         {'label': _('Scoring migration risk'),
          'helper': _('Deterministic category scores and cleanup priorities')},
     ]
+    detail = (run.diagnostic if (run.status == 'failed' and run.diagnostic
+                                 and diagnostics_visible(request)) else '')
     return render(request, 'tool_data_risk/progress.html', {
         'run': run,
         'steps': steps,
         'status_url': reverse('tool_data_risk:status', args=[run.pk]),
         'report_url': reverse('tool_data_risk:report', args=[run.pk]),
+        'detail': detail,
     })
 
 
@@ -310,18 +313,23 @@ def _fail_if_stale(run):
     if run.status in ('done', 'failed'):
         return
     age = timezone.now() - run.created_at
-    message = None
+    message = diagnostic = None
     if run.status == 'pending' and age > STALE_PENDING_AFTER:
         message = _('The scan could not start — the processing queue appears '
                     'to be offline. Please try again later.')
+        diagnostic = ('Watchdog: no worker consumed the task — Celery worker '
+                      'offline, or wrong queue / Redis DB.')
     elif run.status in PROGRESS_STEPS and age > STALE_RUNNING_AFTER:
         message = _('The scan took too long and was stopped. Please try again '
                     'in a few minutes.')
+        diagnostic = (f'Watchdog: run stuck at "{run.status}" — the worker '
+                      'likely died or hung mid-scan.')
     if message:
         run.status = 'failed'
         run.error_message = message
+        run.diagnostic = diagnostic or ''
         run.finished_at = timezone.now()
-        run.save(update_fields=['status', 'error_message', 'finished_at'])
+        run.save(update_fields=['status', 'error_message', 'diagnostic', 'finished_at'])
 
 
 def status(request, run_id):
@@ -332,6 +340,10 @@ def status(request, run_id):
         'step': PROGRESS_STEPS.index(run.status) if run.status in PROGRESS_STEPS else None,
         'error': run.error_message if run.status == 'failed' else '',
     }
+    # Technical reason for debugging — staff always; others only when the
+    # show_tool_diagnostics flag is on. Credential-scrubbed server-side.
+    if run.status == 'failed' and run.diagnostic and diagnostics_visible(request):
+        payload['detail'] = run.diagnostic
     if run.status == 'done':
         payload['report_url'] = reverse('tool_data_risk:report', args=[run.pk])
     return JsonResponse(payload)

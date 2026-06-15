@@ -17,6 +17,7 @@ from tools_core.connectors import ConnectorError, OdooXmlRpcConnector
 from tools_core.models import ToolRun
 from tools_core.services.analytics import track
 from tools_core.services.hot_leads import alert_hot_lead
+from tools_core.utils import scrub_secrets
 from tools_core.services.report_service import send_report_email
 
 from .analyzer import analyze
@@ -95,12 +96,14 @@ def run_data_risk_scan(toolrun_id, odoo_url, odoo_db, login, api_key,
                           language=language)
 
     except SoftTimeLimitExceeded:
-        _fail(run, TIMEOUT_MESSAGE)
+        _fail(run, TIMEOUT_MESSAGE,
+              diagnostic='SoftTimeLimitExceeded: the scan exceeded its time budget.')
     except ConnectorError as exc:
-        _fail(run, str(exc))  # connector messages are pre-sanitized
-    except Exception as exc:  # noqa: BLE001 — never store raw exception text
+        _fail(run, str(exc), diagnostic=str(exc))  # pre-sanitized
+    except Exception as exc:  # noqa: BLE001
         logger.error('data_risk: run %s failed with %s', run.pk, type(exc).__name__)
-        _fail(run, UNEXPECTED_MESSAGE)
+        detail = scrub_secrets(f'{type(exc).__name__}: {exc}', api_key, login)
+        _fail(run, UNEXPECTED_MESSAGE, diagnostic=detail)
 
 
 def _delta_against_previous(odoo_url, odoo_db, risk):
@@ -170,10 +173,12 @@ def _set_status(run, status):
     run.save(update_fields=['status'])
 
 
-def _fail(run, message):
+def _fail(run, message, diagnostic=''):
     run.status = 'failed'
     run.error_message = message
+    if diagnostic:
+        run.diagnostic = str(diagnostic)[:500]
     run.finished_at = timezone.now()
-    run.save(update_fields=['status', 'error_message', 'finished_at'])
+    run.save(update_fields=['status', 'error_message', 'diagnostic', 'finished_at'])
     track(None, TOOL_SLUG, 'data_risk_failed', run=run)
     logger.info('data_risk: run %s failed (sanitized message stored)', run.pk)
