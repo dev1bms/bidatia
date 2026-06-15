@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Bidatia Business Systems 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-15 08:58+0000\n"
+"POT-Creation-Date: 2026-06-15 10:50+0000\n"
 "PO-Revision-Date: 2026-06-15 00:00+0000\n"
 "Last-Translator: Bidatia Business Systems <hola@bidatia.xyz>\n"
 "Language-Team: Arabic <hola@bidatia.xyz>\n"
@@ -37,68 +37,69 @@ msgstr "ERP وOdoo وبيانات محوكَمة بالذكاء الاصطناع
 msgid "Madrid, Spain"
 msgstr "مدريد، إسبانيا"
 
-#: bidatia/settings.py:433
+#: bidatia/settings.py:454
 msgid "Business Systems · ERP, Data & AI"
 msgstr "Business Systems · ERP والبيانات والذكاء الاصطناعي"
 
-#: bidatia/settings.py:465
+#: bidatia/settings.py:487 templates/admin/base_site.html:28
+#: templates/admin/index.html:14
 msgid "Dashboard"
 msgstr "لوحة التحكم"
 
-#: bidatia/settings.py:467
+#: bidatia/settings.py:489
 msgid "Overview"
 msgstr "نظرة عامة"
 
-#: bidatia/settings.py:471
+#: bidatia/settings.py:493
 msgid "Bookings"
 msgstr "الحجوزات"
 
-#: bidatia/settings.py:473 core/context_processors.py:60
+#: bidatia/settings.py:495 core/context_processors.py:60
 msgid "Consultation requests"
 msgstr "طلبات الاستشارة"
 
-#: bidatia/settings.py:475 core/context_processors.py:62
+#: bidatia/settings.py:497 core/context_processors.py:62
 msgid "Availability slots"
 msgstr "مواعيد الإتاحة"
 
-#: bidatia/settings.py:480 core/context_processors.py:63
+#: bidatia/settings.py:502 core/context_processors.py:63
 msgid "Leads"
 msgstr "العملاء المحتملون"
 
-#: bidatia/settings.py:482
+#: bidatia/settings.py:504
 msgid "Contact messages"
 msgstr "رسائل التواصل"
 
-#: bidatia/settings.py:487
+#: bidatia/settings.py:509
 msgid "Content"
 msgstr "المحتوى"
 
-#: bidatia/settings.py:489 core/context_processors.py:56 services/views.py:35
+#: bidatia/settings.py:511 core/context_processors.py:56 services/views.py:35
 #: templates/core/home.html:218 templates/partials/footer.html:31
 #: templates/partials/navbar.html:25 templates/partials/navbar.html:55
 msgid "Services"
 msgstr "الخدمات"
 
-#: bidatia/settings.py:491 blog/views.py:38 core/context_processors.py:57
+#: bidatia/settings.py:513 blog/views.py:38 core/context_processors.py:57
 #: templates/blog/blog_list.html:4 templates/blog/blog_list.html:11
 #: templates/partials/navbar.html:28 templates/partials/navbar.html:58
 msgid "Insights"
 msgstr "مقالات"
 
-#: bidatia/settings.py:493 core/context_processors.py:58
+#: bidatia/settings.py:515 core/context_processors.py:58
 #: templates/partials/footer.html:36
 msgid "Case studies"
 msgstr "دراسات الحالة"
 
-#: bidatia/settings.py:498
+#: bidatia/settings.py:520
 msgid "Administration"
 msgstr "الإدارة"
 
-#: bidatia/settings.py:500
+#: bidatia/settings.py:522
 msgid "Users"
 msgstr "المستخدمون"
 
-#: bidatia/settings.py:502
+#: bidatia/settings.py:524
 msgid "Groups"
 msgstr "المجموعات"
 
@@ -173,7 +174,7 @@ msgstr "الاسم الكامل"
 msgid "Company name"
 msgstr "اسم الشركة"
 
-#: booking/forms.py:62 templates/admin/index.html:59
+#: booking/forms.py:62 templates/admin/index.html:93
 #: templates/core/contact.html:29
 msgid "Email"
 msgstr "البريد الإلكتروني"
@@ -417,19 +418,14 @@ msgstr ""
 "متاحاً (بتوقيت مدريد)، وأخبرنا عن التحدّي الذي تواجهه في نظام ERP."
 
 #: booking/views.py:213
-#| msgid "No consultation requests yet."
 msgid "Your consultation request has been received by Bidatia."
 msgstr "لقد استلمت Bidatia طلب استشارتك."
 
 #: core/tasks.py:50
-#| msgid ""
-#| "Your message has been received. We typically reply within one business day "
-#| "at the email address you provided."
 msgid "Your message has been received. We will reply within one business day."
 msgstr "لقد استلمنا رسالتك. سنردّ خلال يوم عمل واحد."
 
 #: core/tasks.py:75
-#| msgid "Thanks — your booking request has been received"
 msgid ""
 "Your booking request has been received. We confirm every booking by email."
 msgstr "لقد استلمنا طلب الحجز الخاص بك. نؤكّد كل حجز عبر البريد الإلكتروني."
@@ -558,7 +554,6 @@ msgid "Result"
 msgstr "النتيجة"
 
 #: jobs/admin.py:24
-#| msgid "Ownership & documentation"
 msgid "Ownership & timing"
 msgstr "الملكية والتوقيت"
 
@@ -575,7 +570,6 @@ msgid "Processing"
 msgstr "قيد المعالجة"
 
 #: jobs/models.py:32
-#| msgid "Complexity score"
 msgid "Completed"
 msgstr "اكتملت"
 
@@ -584,7 +578,6 @@ msgid "Failed"
 msgstr "فشلت"
 
 #: jobs/models.py:34
-#| msgid "Cancel"
 msgid "Cancelled"
 msgstr "أُلغيت"
 
@@ -617,7 +610,6 @@ msgid "Completed successfully."
 msgstr "اكتمل بنجاح."
 
 #: jobs/services.py:34
-#| msgid "Something went wrong — please try again."
 msgid "Something went wrong."
 msgstr "حدث خطأ ما."
 
@@ -626,7 +618,6 @@ msgid "This task was cancelled."
 msgstr "أُلغيت هذه المهمة."
 
 #: jobs/services.py:57
-#| msgid "Something went wrong — please try again."
 msgid "Something went wrong. Please try again."
 msgstr "حدث خطأ ما. يُرجى المحاولة مرة أخرى."
 
@@ -643,7 +634,6 @@ msgid "Tell me a bit about your Odoo setup and what you need help with."
 msgstr "أخبرني قليلًا عن إعداد Odoo لديك وما الذي تحتاج المساعدة فيه."
 
 #: leads/views.py:20
-#| msgid "Scanning your data…"
 msgid "Sending your message…"
 msgstr "جارٍ إرسال رسالتك…"
 
@@ -854,7 +844,6 @@ msgid "Send a test email with these settings"
 msgstr "إرسال بريد اختباري بهذه الإعدادات"
 
 #: site_config/admin.py:78
-#| msgid "See a sample report first"
 msgid "Set a test recipient first."
 msgstr "حدّد مستلِم الاختبار أولًا."
 
@@ -863,7 +852,6 @@ msgid "Bidatia — test email"
 msgstr "Bidatia — بريد اختباري"
 
 #: site_config/admin.py:82
-#| msgid "Your email"
 msgid "Test email"
 msgstr "بريد اختباري"
 
@@ -889,7 +877,6 @@ msgid "Addresses"
 msgstr "العناوين"
 
 #: site_config/admin.py:107
-#| msgid "Latest"
 msgid "Last test"
 msgstr "آخر اختبار"
 
@@ -914,7 +901,6 @@ msgid "Feature flags"
 msgstr "مؤشّرات الميزات"
 
 #: site_config/apps.py:8
-#| msgid "Consultation"
 msgid "Configuration"
 msgstr "الإعدادات"
 
@@ -1002,7 +988,6 @@ msgid "email settings"
 msgstr "إعدادات البريد"
 
 #: site_config/models.py:113
-#| msgid "5. Email notifications"
 msgid "Email settings"
 msgstr "إعدادات البريد"
 
@@ -1074,14 +1059,24 @@ msgid "Reference timeout for long background jobs, in seconds."
 msgstr "مهلة مرجعية للمهام الطويلة في الخلفية، بالثواني."
 
 #: site_config/models.py:178 site_config/models.py:179
-#| msgid "Operational flags:"
 msgid "operational settings"
 msgstr "الإعدادات التشغيلية"
 
 #: site_config/models.py:182
-#| msgid "Operational flags:"
 msgid "Operational settings"
 msgstr "الإعدادات التشغيلية"
+
+#: templates/admin/base_site.html:5
+msgid "Django site admin"
+msgstr "إدارة الموقع"
+
+#: templates/admin/base_site.html:24
+msgid "Sections"
+msgstr "الأقسام"
+
+#: templates/admin/base_site.html:49 templates/admin/index.html:36
+msgid "Add"
+msgstr "إضافة"
 
 #: templates/admin/booking/generate_slots.html:7
 msgid "Back to availability slots"
@@ -1161,47 +1156,54 @@ msgstr "إضافة مواعيد في هذا اليوم"
 msgid "click a slot to edit it, or “+” to add slots on a day."
 msgstr "انقر على موعد لتحريره، أو على «+» لإضافة مواعيد في يوم ما."
 
-#: templates/admin/index.html:4
-msgid "Django site admin"
-msgstr "إدارة الموقع"
+#: templates/admin/index.html:24
+#, python-format
+msgid "%(counter)s model"
+msgid_plural "%(counter)s models"
+msgstr[0] "%(counter)s نموذج"
+msgstr[1] "نموذج واحد"
+msgstr[2] "نموذجان"
+msgstr[3] "%(counter)s نماذج"
+msgstr[4] "%(counter)s نموذجًا"
+msgstr[5] "%(counter)s نموذج"
 
-#: templates/admin/index.html:25
+#: templates/admin/index.html:59
 msgid "Recent consultation requests"
 msgstr "أحدث طلبات الاستشارة"
 
-#: templates/admin/index.html:30 templates/admin/index.html:58
+#: templates/admin/index.html:64 templates/admin/index.html:92
 msgid "Name"
 msgstr "الاسم"
 
-#: templates/admin/index.html:31 templates/booking/book_consultation.html:121
+#: templates/admin/index.html:65 templates/booking/book_consultation.html:121
 msgid "Type"
 msgstr "النوع"
 
-#: templates/admin/index.html:32 templates/jobs/status_page.html:10
+#: templates/admin/index.html:66 templates/jobs/status_page.html:10
 msgid "Status"
 msgstr "الحالة"
 
-#: templates/admin/index.html:33 templates/admin/index.html:61
+#: templates/admin/index.html:67 templates/admin/index.html:95
 msgid "Date"
 msgstr "التاريخ"
 
-#: templates/admin/index.html:48
+#: templates/admin/index.html:82
 msgid "No consultation requests yet."
 msgstr "لا توجد طلبات استشارة بعد."
 
-#: templates/admin/index.html:53
+#: templates/admin/index.html:87
 msgid "Recent contact messages"
 msgstr "أحدث رسائل التواصل"
 
-#: templates/admin/index.html:60
+#: templates/admin/index.html:94
 msgid "Handled"
 msgstr "تمت المعالجة"
 
-#: templates/admin/index.html:76
+#: templates/admin/index.html:110
 msgid "No contact messages yet."
 msgstr "لا توجد رسائل تواصل بعد."
 
-#: templates/base.html:333
+#: templates/base.html:343
 msgid "Skip to content"
 msgstr "تخطّي إلى المحتوى"
 
@@ -1726,7 +1728,6 @@ msgstr ""
 "زوّدتنا به."
 
 #: templates/core/contact_success.html:17
-#| msgid "Detecting your database…"
 msgid "Delivering your message…"
 msgstr "جارٍ تسليم رسالتك…"
 
@@ -2551,7 +2552,6 @@ msgid "Live status of your request."
 msgstr "الحالة المباشرة لطلبك."
 
 #: templates/jobs/status_page.html:12
-#| msgid "Your progress"
 msgid "Your request"
 msgstr "طلبك"
 
@@ -3459,7 +3459,6 @@ msgid "Language"
 msgstr "اللغة"
 
 #: templates/partials/task_status.html:18
-#| msgid "Reading your report…"
 msgid "Processing your request…"
 msgstr "جارٍ معالجة طلبك…"
 
@@ -3474,12 +3473,10 @@ msgid "Completed successfully"
 msgstr "اكتمل بنجاح"
 
 #: templates/partials/task_status.html:35
-#| msgid "Content"
 msgid "Continue"
 msgstr "متابعة"
 
 #: templates/partials/task_status.html:44
-#| msgid "Something went wrong — please try again."
 msgid "Something went wrong"
 msgstr "حدث خطأ ما"
 
@@ -4888,8 +4885,8 @@ msgstr "جارٍ نقلك إلى نتائجك…"
 
 #: templates/tool_studio_xray/progress.html:81
 #: templates/tool_studio_xray/progress.html:197
-#: templates/tool_studio_xray/progress.html:198 tool_data_risk/views.py:289
-#: tool_studio_xray/views.py:135
+#: templates/tool_studio_xray/progress.html:198 tool_data_risk/views.py:292
+#: tool_studio_xray/views.py:142
 msgid "Connecting to Odoo"
 msgstr "جارٍ الاتصال بـ Odoo"
 
@@ -4909,15 +4906,15 @@ msgstr "العودة إلى جميع الأدوات"
 msgid "We'll also email the report link to you, so you won't lose it."
 msgstr "سنرسل إليك أيضًا رابط التقرير عبر البريد حتى لا تفقده."
 
-#: templates/tool_studio_xray/progress.html:199 tool_studio_xray/views.py:137
+#: templates/tool_studio_xray/progress.html:199 tool_studio_xray/views.py:144
 msgid "Collecting Studio data"
 msgstr "جارٍ جمع بيانات Studio"
 
-#: templates/tool_studio_xray/progress.html:200 tool_studio_xray/views.py:139
+#: templates/tool_studio_xray/progress.html:200 tool_studio_xray/views.py:146
 msgid "Analyzing customizations"
 msgstr "جارٍ تحليل التخصيصات"
 
-#: templates/tool_studio_xray/progress.html:201 tool_studio_xray/views.py:143
+#: templates/tool_studio_xray/progress.html:201 tool_studio_xray/views.py:150
 msgid "Consulting the AI analyst"
 msgstr "استشارة المحلل الذكي"
 
@@ -4984,19 +4981,19 @@ msgstr "الصورة الكاملة لتخصيصات Studio لديك"
 msgid "scanned"
 msgstr "تم الفحص في"
 
-#: templates/tool_studio_xray/report.html:98 tool_studio_xray/views.py:711
+#: templates/tool_studio_xray/report.html:98 tool_studio_xray/views.py:732
 msgid "Studio fields"
 msgstr "حقول Studio"
 
-#: templates/tool_studio_xray/report.html:102 tool_studio_xray/views.py:716
+#: templates/tool_studio_xray/report.html:102 tool_studio_xray/views.py:737
 msgid "Custom models"
 msgstr "نماذج مخصّصة"
 
-#: templates/tool_studio_xray/report.html:106 tool_studio_xray/views.py:714
+#: templates/tool_studio_xray/report.html:106 tool_studio_xray/views.py:735
 msgid "Automated actions"
 msgstr "إجراءات آلية"
 
-#: templates/tool_studio_xray/report.html:110 tool_studio_xray/views.py:713
+#: templates/tool_studio_xray/report.html:110 tool_studio_xray/views.py:734
 msgid "Studio views"
 msgstr "واجهات Studio"
 
@@ -5757,23 +5754,23 @@ msgid ""
 "empty."
 msgstr "يرجى الموافقة كي نرسل لك التقرير — أو اترك حقل البريد فارغًا."
 
-#: tool_data_risk/views.py:34 tools_core/badge_views.py:25
+#: tool_data_risk/views.py:37 tools_core/badge_views.py:25
 msgid "Low data migration risk"
 msgstr "مخاطر ترحيل بيانات منخفضة"
 
-#: tool_data_risk/views.py:35
+#: tool_data_risk/views.py:38
 msgid "Moderate risk"
 msgstr "مخاطر متوسطة"
 
-#: tool_data_risk/views.py:36
+#: tool_data_risk/views.py:39
 msgid "High risk"
 msgstr "مخاطر عالية"
 
-#: tool_data_risk/views.py:37
+#: tool_data_risk/views.py:40
 msgid "Critical cleanup needed"
 msgstr "مطلوب تنظيف حرج"
 
-#: tool_data_risk/views.py:41
+#: tool_data_risk/views.py:44
 msgid ""
 "Your master data looks largely migration-ready. Review the flagged items "
 "below and keep the habits that got you here."
@@ -5781,7 +5778,7 @@ msgstr ""
 "تبدو بياناتك الرئيسية جاهزة للترحيل إلى حد كبير. راجع البنود المعلَّمة أدناه"
 " وحافظ على العادات التي أوصلتك إلى هنا."
 
-#: tool_data_risk/views.py:42
+#: tool_data_risk/views.py:45
 msgid ""
 "Workable, but several areas will create friction during import and mapping. "
 "Cleaning them before the migration starts is much cheaper than during it."
@@ -5789,7 +5786,7 @@ msgstr ""
 "وضع قابل للعمل، لكن عدة مناطق ستخلق احتكاكًا أثناء الاستيراد والربط. تنظيفها"
 " قبل بدء الترحيل أرخص بكثير من تنظيفها أثناءه."
 
-#: tool_data_risk/views.py:43
+#: tool_data_risk/views.py:46
 msgid ""
 "Multiple data areas carry real migration risk. Plan a cleanup sprint before "
 "committing to a migration timeline."
@@ -5797,7 +5794,7 @@ msgstr ""
 "مناطق بيانات متعددة تحمل مخاطر ترحيل حقيقية. خطط لجولة تنظيف قبل الالتزام "
 "بجدول زمني للترحيل."
 
-#: tool_data_risk/views.py:44
+#: tool_data_risk/views.py:47
 msgid ""
 "This profile matches projects where data issues dominate the migration "
 "budget. A structured cleanup phase should come before any migration work."
@@ -5805,39 +5802,39 @@ msgstr ""
 "يطابق هذا الوضع مشاريع تهيمن فيها مشاكل البيانات على ميزانية الترحيل. ينبغي "
 "أن تسبق مرحلةُ تنظيف منظمة أيَّ عمل ترحيل."
 
-#: tool_data_risk/views.py:48
+#: tool_data_risk/views.py:51
 msgid "Duplicate risk"
 msgstr "مخاطر التكرار"
 
-#: tool_data_risk/views.py:49
+#: tool_data_risk/views.py:52
 msgid "Missing master data"
 msgstr "بيانات رئيسية ناقصة"
 
-#: tool_data_risk/views.py:50
+#: tool_data_risk/views.py:53
 msgid "Relationship & orphan risk"
 msgstr "مخاطر العلاقات والسجلات اليتيمة"
 
-#: tool_data_risk/views.py:51
+#: tool_data_risk/views.py:54
 msgid "Import identifier coverage"
 msgstr "تغطية معرّفات الاستيراد"
 
-#: tool_data_risk/views.py:52
+#: tool_data_risk/views.py:55
 msgid "Configuration & reference data"
 msgstr "الإعدادات والبيانات المرجعية"
 
-#: tool_data_risk/views.py:53
+#: tool_data_risk/views.py:56
 msgid "Attachments & database bloat"
 msgstr "المرفقات وتضخم قاعدة البيانات"
 
-#: tool_data_risk/views.py:54
+#: tool_data_risk/views.py:57
 msgid "Inactive-user ownership"
 msgstr "ملكية مستخدمين معطّلين"
 
-#: tool_data_risk/views.py:55
+#: tool_data_risk/views.py:58
 msgid "Custom / Studio data"
 msgstr "بيانات مخصصة / Studio"
 
-#: tool_data_risk/views.py:59
+#: tool_data_risk/views.py:62
 msgid ""
 "Potential duplicate clusters in partners and products. Ambiguous names also "
 "break many2one matching during import."
@@ -5845,7 +5842,7 @@ msgstr ""
 "مجموعات تكرار محتملة في جهات الاتصال والمنتجات. الأسماء الملتبسة تكسر أيضًا "
 "مطابقة many2one أثناء الاستيراد."
 
-#: tool_data_risk/views.py:60
+#: tool_data_risk/views.py:63
 msgid ""
 "Records missing the fields imports and daily operations rely on: contact "
 "details, VAT numbers, countries, internal references."
@@ -5853,7 +5850,7 @@ msgstr ""
 "سجلات تفتقد الحقول التي يعتمد عليها الاستيراد والعمل اليومي: بيانات التواصل،"
 " والأرقام الضريبية، والدول، والمراجع الداخلية."
 
-#: tool_data_risk/views.py:61
+#: tool_data_risk/views.py:64
 msgid ""
 "Live documents pointing at archived partners, archived products or abandoned"
 " pipelines — mapping hazards during migration."
@@ -5861,7 +5858,7 @@ msgstr ""
 "مستندات حيّة تشير إلى جهات اتصال مؤرشفة أو منتجات مؤرشفة أو خطوط بيع مهجورة "
 "— مخاطر ربط أثناء الترحيل."
 
-#: tool_data_risk/views.py:62
+#: tool_data_risk/views.py:65
 msgid ""
 "External-ID coverage of master data. Missing IDs are normal for UI-created "
 "records, but they make repeat imports and update-imports duplicate-prone."
@@ -5869,7 +5866,7 @@ msgstr ""
 "تغطية المعرّفات الخارجية للبيانات الرئيسية. غيابها طبيعي للسجلات المُنشأة من"
 " الواجهة، لكنه يجعل عمليات إعادة الاستيراد والتحديث عرضة للتكرار."
 
-#: tool_data_risk/views.py:63
+#: tool_data_risk/views.py:66
 msgid ""
 "Reference-data signals worth a look before migrating: currencies, "
 "categories, long-lived draft entries."
@@ -5877,7 +5874,7 @@ msgstr ""
 "إشارات بيانات مرجعية تستحق النظر قبل الترحيل: العملات، والفئات، والقيود "
 "المسوّدة القديمة."
 
-#: tool_data_risk/views.py:64
+#: tool_data_risk/views.py:67
 msgid ""
 "Attachment volume drives database size — and database size drives upgrade, "
 "rehearsal and restore times."
@@ -5885,7 +5882,7 @@ msgstr ""
 "حجم المرفقات يحدد حجم قاعدة البيانات — وحجم القاعدة يحدد أزمنة الترقية "
 "والتجربة والاستعادة."
 
-#: tool_data_risk/views.py:65
+#: tool_data_risk/views.py:68
 msgid ""
 "Active records owned by deactivated users lose their workflows quietly and "
 "confuse assignment after migration."
@@ -5893,7 +5890,7 @@ msgstr ""
 "السجلات النشطة المملوكة لمستخدمين معطّلين تفقد مساراتها بصمت وتربك الإسناد "
 "بعد الترحيل."
 
-#: tool_data_risk/views.py:66
+#: tool_data_risk/views.py:69
 msgid ""
 "Custom (Studio) models holding significant data without stable identifiers —"
 " they will not map themselves."
@@ -5901,169 +5898,169 @@ msgstr ""
 "نماذج مخصصة (Studio) تحوي بيانات كبيرة بلا معرّفات ثابتة — لن تربط نفسها "
 "بنفسها."
 
-#: tool_data_risk/views.py:70
+#: tool_data_risk/views.py:73
 msgid "Duplicates"
 msgstr "التكرارات"
 
-#: tool_data_risk/views.py:71
+#: tool_data_risk/views.py:74
 msgid "Missing data"
 msgstr "بيانات ناقصة"
 
-#: tool_data_risk/views.py:72
+#: tool_data_risk/views.py:75
 msgid "Orphans"
 msgstr "السجلات اليتيمة"
 
-#: tool_data_risk/views.py:73
+#: tool_data_risk/views.py:76
 msgid "Import IDs"
 msgstr "معرّفات الاستيراد"
 
-#: tool_data_risk/views.py:74
+#: tool_data_risk/views.py:77
 msgid "Config"
 msgstr "الإعدادات"
 
-#: tool_data_risk/views.py:75
+#: tool_data_risk/views.py:78
 msgid "Attachments"
 msgstr "المرفقات"
 
-#: tool_data_risk/views.py:76
+#: tool_data_risk/views.py:79
 msgid "Ownership"
 msgstr "الملكية"
 
-#: tool_data_risk/views.py:77
+#: tool_data_risk/views.py:80
 msgid "Custom data"
 msgstr "بيانات مخصصة"
 
-#: tool_data_risk/views.py:81
+#: tool_data_risk/views.py:84
 #, python-format
 msgid "%(n)s sampled contacts share an email with another contact"
 msgstr "%(n)s من جهات الاتصال في العينة تتشارك بريدًا مع جهة أخرى"
 
-#: tool_data_risk/views.py:82
+#: tool_data_risk/views.py:85
 #, python-format
 msgid "%(n)s sampled companies have near-identical names"
 msgstr "%(n)s من الشركات في العينة لها أسماء شبه متطابقة"
 
-#: tool_data_risk/views.py:83
+#: tool_data_risk/views.py:86
 #, python-format
 msgid "%(n)s sampled companies share a VAT number"
 msgstr "%(n)s من الشركات في العينة تتشارك الرقم الضريبي"
 
-#: tool_data_risk/views.py:84
+#: tool_data_risk/views.py:87
 #, python-format
 msgid "%(n)s sampled contacts share a phone number"
 msgstr "%(n)s من جهات الاتصال في العينة تتشارك رقم الهاتف"
 
-#: tool_data_risk/views.py:85
+#: tool_data_risk/views.py:88
 #, python-format
 msgid "%(n)s sampled products share an internal reference"
 msgstr "%(n)s من المنتجات في العينة تتشارك المرجع الداخلي"
 
-#: tool_data_risk/views.py:86
+#: tool_data_risk/views.py:89
 #, python-format
 msgid "%(n)s sampled products share a barcode"
 msgstr "%(n)s من المنتجات في العينة تتشارك الباركود"
 
-#: tool_data_risk/views.py:87
+#: tool_data_risk/views.py:90
 #, python-format
 msgid "%(n)s contacts have no email and no phone"
 msgstr "%(n)s من جهات الاتصال بلا بريد ولا هاتف"
 
-#: tool_data_risk/views.py:88
+#: tool_data_risk/views.py:91
 #, python-format
 msgid "%(n)s companies have no VAT number"
 msgstr "%(n)s من الشركات بلا رقم ضريبي"
 
-#: tool_data_risk/views.py:89
+#: tool_data_risk/views.py:92
 #, python-format
 msgid "%(n)s companies have no country set"
 msgstr "%(n)s من الشركات بلا دولة محددة"
 
-#: tool_data_risk/views.py:90
+#: tool_data_risk/views.py:93
 #, python-format
 msgid "%(n)s products have no internal reference"
 msgstr "%(n)s من المنتجات بلا مرجع داخلي"
 
-#: tool_data_risk/views.py:91
+#: tool_data_risk/views.py:94
 #, python-format
 msgid "%(n)s active products have a zero sales price"
 msgstr "%(n)s من المنتجات النشطة سعر بيعها صفر"
 
-#: tool_data_risk/views.py:92
+#: tool_data_risk/views.py:95
 #, python-format
 msgid "%(n)s contacts look like test/placeholder entries"
 msgstr "%(n)s من جهات الاتصال تبدو سجلات تجريبية أو مؤقتة"
 
-#: tool_data_risk/views.py:93
+#: tool_data_risk/views.py:96
 #, python-format
 msgid "%(n)s open sales orders reference an archived customer"
 msgstr "%(n)s من أوامر البيع المفتوحة تشير إلى عميل مؤرشف"
 
-#: tool_data_risk/views.py:94
+#: tool_data_risk/views.py:97
 #, python-format
 msgid "%(n)s open order lines reference an archived product"
 msgstr "%(n)s من بنود الطلبات المفتوحة تشير إلى منتج مؤرشف"
 
-#: tool_data_risk/views.py:95
+#: tool_data_risk/views.py:98
 #, python-format
 msgid "%(n)s open purchase orders reference an archived vendor"
 msgstr "%(n)s من أوامر الشراء المفتوحة تشير إلى مورّد مؤرشف"
 
-#: tool_data_risk/views.py:96
+#: tool_data_risk/views.py:99
 #, python-format
 msgid "%(n)s open opportunities have no customer and no email"
 msgstr "%(n)s من الفرص المفتوحة بلا عميل وبلا بريد"
 
-#: tool_data_risk/views.py:97
+#: tool_data_risk/views.py:100
 #, python-format
 msgid "%(n)s quotations have been sitting in draft/sent for over a year"
 msgstr "%(n)s من عروض الأسعار قابعة في مسودة/مرسلة منذ أكثر من سنة"
 
-#: tool_data_risk/views.py:98
+#: tool_data_risk/views.py:101
 #, python-format
 msgid "%(n)s master-data records lack a stable External ID"
 msgstr "%(n)s من سجلات البيانات الرئيسية تفتقر إلى معرّف خارجي ثابت"
 
-#: tool_data_risk/views.py:99
+#: tool_data_risk/views.py:102
 #, python-format
 msgid "%(n)s currencies are active for a single-company setup"
 msgstr "%(n)s عملة نشطة في نظام بشركة واحدة"
 
-#: tool_data_risk/views.py:100
+#: tool_data_risk/views.py:103
 #, python-format
 msgid "%(n)s products live in a single (or no) category"
 msgstr "%(n)s من المنتجات تقبع في فئة واحدة (أو بلا فئة)"
 
-#: tool_data_risk/views.py:101
+#: tool_data_risk/views.py:104
 #, python-format
 msgid "%(n)s journal entries have been in draft for over six months"
 msgstr "%(n)s من قيود اليومية في حالة مسودة منذ أكثر من ستة أشهر"
 
-#: tool_data_risk/views.py:102
+#: tool_data_risk/views.py:105
 #, python-format
 msgid "%(n)s attachments are inflating the database"
 msgstr "%(n)s من المرفقات تضخّم قاعدة البيانات"
 
-#: tool_data_risk/views.py:103
+#: tool_data_risk/views.py:106
 #, python-format
 msgid "%(n)s open sales orders belong to deactivated users"
 msgstr "%(n)s من أوامر البيع المفتوحة مملوكة لمستخدمين معطّلين"
 
-#: tool_data_risk/views.py:104
+#: tool_data_risk/views.py:107
 #, python-format
 msgid "%(n)s open opportunities belong to deactivated users"
 msgstr "%(n)s من الفرص المفتوحة مملوكة لمستخدمين معطّلين"
 
-#: tool_data_risk/views.py:105
+#: tool_data_risk/views.py:108
 #, python-format
 msgid "%(n)s contacts are assigned to deactivated salespeople"
 msgstr "%(n)s من جهات الاتصال مسندة إلى مندوبي مبيعات معطّلين"
 
-#: tool_data_risk/views.py:106
+#: tool_data_risk/views.py:109
 #, python-format
 msgid "%(n)s records live in custom models without stable identifiers"
 msgstr "%(n)s من السجلات تعيش في نماذج مخصصة بلا معرّفات ثابتة"
 
-#: tool_data_risk/views.py:111
+#: tool_data_risk/views.py:114
 msgid ""
 "Review duplicate-contact clusters with the built-in merge tool — merge or "
 "mark the survivors before any export."
@@ -6071,7 +6068,7 @@ msgstr ""
 "راجع مجموعات جهات الاتصال المكررة بأداة الدمج المدمجة — وادمج أو حدد السجلات"
 " الباقية قبل أي تصدير."
 
-#: tool_data_risk/views.py:112
+#: tool_data_risk/views.py:115
 msgid ""
 "Normalize company names (one spelling, one legal suffix) so many2one "
 "matching has one candidate per name."
@@ -6079,7 +6076,7 @@ msgstr ""
 "وحّد أسماء الشركات (كتابة واحدة ولاحقة قانونية واحدة) حتى يجد ربط many2one "
 "مرشحًا واحدًا لكل اسم."
 
-#: tool_data_risk/views.py:113
+#: tool_data_risk/views.py:116
 msgid ""
 "Resolve shared VAT numbers first — tax identity duplicates poison invoicing "
 "after migration."
@@ -6087,65 +6084,65 @@ msgstr ""
 "عالج الأرقام الضريبية المشتركة أولًا — تكرار الهوية الضريبية يفسد الفوترة "
 "بعد الترحيل."
 
-#: tool_data_risk/views.py:114
+#: tool_data_risk/views.py:117
 msgid ""
 "Make internal references unique per product — duplicate codes break update-"
 "imports."
 msgstr ""
 "اجعل المرجع الداخلي فريدًا لكل منتج — الرموز المكررة تكسر استيرادات التحديث."
 
-#: tool_data_risk/views.py:115
+#: tool_data_risk/views.py:118
 msgid ""
 "Deduplicate barcodes; scanners and imports both assume they are unique."
 msgstr "أزل تكرار الباركود؛ فالماسحات وعمليات الاستيراد تفترض أنه فريد."
 
-#: tool_data_risk/views.py:116
+#: tool_data_risk/views.py:119
 msgid "Complete or archive contacts that have no email and no phone."
 msgstr "أكمل بيانات جهات الاتصال التي بلا بريد ولا هاتف أو أرشفها."
 
-#: tool_data_risk/views.py:117
+#: tool_data_risk/views.py:120
 msgid "Fill VAT numbers for active companies where invoicing requires them."
 msgstr "أدخل الأرقام الضريبية للشركات النشطة حيث تتطلبها الفوترة."
 
-#: tool_data_risk/views.py:118
+#: tool_data_risk/views.py:121
 msgid ""
 "Assign internal references to active products — they are the natural import "
 "key."
 msgstr "خصص مراجع داخلية للمنتجات النشطة — فهي مفتاح الاستيراد الطبيعي."
 
-#: tool_data_risk/views.py:119
+#: tool_data_risk/views.py:122
 msgid ""
 "Delete or archive test/placeholder records so they never reach the new "
 "system."
 msgstr "احذف السجلات التجريبية أو أرشفها كي لا تصل إلى النظام الجديد أبدًا."
 
-#: tool_data_risk/views.py:120
+#: tool_data_risk/views.py:123
 msgid ""
 "Close or re-point open orders that reference archived customers/vendors."
 msgstr ""
 "أغلق الطلبات المفتوحة المشيرة إلى عملاء/مورّدين مؤرشفين أو أعد توجيهها."
 
-#: tool_data_risk/views.py:121
+#: tool_data_risk/views.py:124
 msgid "Replace archived products on open order lines, or close those orders."
 msgstr ""
 "استبدل المنتجات المؤرشفة في بنود الطلبات المفتوحة أو أغلق تلك الطلبات."
 
-#: tool_data_risk/views.py:122
+#: tool_data_risk/views.py:125
 msgid ""
 "Cancel or archive quotations older than a year — do not migrate a dead "
 "pipeline."
 msgstr "ألغِ عروض الأسعار الأقدم من سنة أو أرشفها — لا ترحّل خط مبيعات ميتًا."
 
-#: tool_data_risk/views.py:123
+#: tool_data_risk/views.py:126
 msgid "Reassign open documents owned by deactivated users to active owners."
 msgstr ""
 "أعد إسناد المستندات المفتوحة المملوكة لمستخدمين معطّلين إلى مالكين نشطين."
 
-#: tool_data_risk/views.py:124
+#: tool_data_risk/views.py:127
 msgid "Reassign customers of deactivated salespeople to active ones."
 msgstr "أعد إسناد عملاء المندوبين المعطّلين إلى مندوبين نشطين."
 
-#: tool_data_risk/views.py:125
+#: tool_data_risk/views.py:128
 msgid ""
 "Use import-compatible exports during the rehearsal so every record gets a "
 "stable External ID for later update-imports."
@@ -6153,7 +6150,7 @@ msgstr ""
 "استخدم التصدير المتوافق مع الاستيراد أثناء التجربة حتى يحصل كل سجل على معرّف"
 " خارجي ثابت لاستيرادات التحديث اللاحقة."
 
-#: tool_data_risk/views.py:126
+#: tool_data_risk/views.py:129
 msgid ""
 "Export custom-model data with External IDs and test-import a small batch "
 "before trusting the mapping."
@@ -6161,7 +6158,7 @@ msgstr ""
 "صدّر بيانات النماذج المخصصة مع معرّفات خارجية واستورد دفعة صغيرة تجريبيًا "
 "قبل الوثوق بالربط."
 
-#: tool_data_risk/views.py:127
+#: tool_data_risk/views.py:130
 msgid ""
 "Decide what attachment history must migrate; consider offloading the rest to"
 " external storage first."
@@ -6169,11 +6166,11 @@ msgstr ""
 "قرر أي سجل من المرفقات يجب ترحيله؛ وفكّر في نقل الباقي إلى تخزين خارجي "
 "أولًا."
 
-#: tool_data_risk/views.py:128
+#: tool_data_risk/views.py:131
 msgid "Post or delete long-lived draft journal entries with your accountant."
 msgstr "رحّل قيود اليومية المسوّدة القديمة أو احذفها بالتنسيق مع محاسبك."
 
-#: tool_data_risk/views.py:132
+#: tool_data_risk/views.py:135
 msgid ""
 "Freeze new test records and agree on one source of truth per master-data "
 "area."
@@ -6181,7 +6178,7 @@ msgstr ""
 "جمّد إنشاء سجلات تجريبية جديدة واتفقوا على مصدر حقيقة واحد لكل منطقة بيانات "
 "رئيسية."
 
-#: tool_data_risk/views.py:133
+#: tool_data_risk/views.py:136
 msgid ""
 "Test-import a small batch (50–100 records) per model and verify relations "
 "resolve to the right targets."
@@ -6189,7 +6186,7 @@ msgstr ""
 "استورد تجريبيًا دفعة صغيرة (50–100 سجل) لكل نموذج وتحقق من أن العلاقات تشير "
 "إلى الأهداف الصحيحة."
 
-#: tool_data_risk/views.py:134
+#: tool_data_risk/views.py:137
 msgid ""
 "Reconcile record counts between systems, then re-run this profiler and "
 "compare duplicate clusters before and after."
@@ -6197,184 +6194,184 @@ msgstr ""
 "طابق أعداد السجلات بين النظامين، ثم أعد تشغيل هذا المحلّل وقارن مجموعات "
 "التكرار قبل وبعد."
 
-#: tool_data_risk/views.py:168
+#: tool_data_risk/views.py:171
 msgid "Business / data owner"
 msgstr "مالك الأعمال / البيانات"
 
-#: tool_data_risk/views.py:169
+#: tool_data_risk/views.py:172
 msgid "Odoo consultant"
 msgstr "مستشار Odoo"
 
-#: tool_data_risk/views.py:170
+#: tool_data_risk/views.py:173
 msgid "Accounting team"
 msgstr "فريق المحاسبة"
 
-#: tool_data_risk/views.py:171
+#: tool_data_risk/views.py:174
 msgid "Operations team"
 msgstr "فريق العمليات"
 
-#: tool_data_risk/views.py:174 tool_odoo_detector/views.py:42
-#: tool_studio_xray/views.py:691
+#: tool_data_risk/views.py:177 tool_odoo_detector/views.py:42
+#: tool_studio_xray/views.py:712
 msgid "High"
 msgstr "مرتفعة"
 
-#: tool_data_risk/views.py:175 tool_odoo_detector/views.py:43
+#: tool_data_risk/views.py:178 tool_odoo_detector/views.py:43
 msgid "Medium"
 msgstr "متوسطة"
 
-#: tool_data_risk/views.py:176 tool_odoo_detector/views.py:44
+#: tool_data_risk/views.py:179 tool_odoo_detector/views.py:44
 msgid "Low"
 msgstr "منخفضة"
 
-#: tool_data_risk/views.py:182
+#: tool_data_risk/views.py:185
 msgid ""
 "Duplicates split history and make name-based import matching ambiguous."
 msgstr "التكرارات تشتت السجل التاريخي وتجعل مطابقة الاستيراد بالاسم ملتبسة."
 
-#: tool_data_risk/views.py:183
+#: tool_data_risk/views.py:186
 msgid ""
 "Incomplete master data fails validations and blocks workflows after import."
 msgstr ""
 "البيانات الرئيسية الناقصة تفشل التحقق وتعطّل مسارات العمل بعد الاستيراد."
 
-#: tool_data_risk/views.py:184
+#: tool_data_risk/views.py:187
 msgid "References to archived records have no clean target in the new system."
 msgstr "الإشارات إلى سجلات مؤرشفة لا تجد هدفًا سليمًا في النظام الجديد."
 
-#: tool_data_risk/views.py:185
+#: tool_data_risk/views.py:188
 msgid ""
 "Without stable identifiers, re-imports create duplicates instead of updates."
 msgstr ""
 "بدون معرّفات ثابتة، تُنشئ عمليات إعادة الاستيراد تكرارات بدل التحديثات."
 
-#: tool_data_risk/views.py:186
+#: tool_data_risk/views.py:189
 msgid "Reference-data noise multiplies mapping decisions during migration."
 msgstr "ضجيج البيانات المرجعية يضاعف قرارات الربط أثناء الترحيل."
 
-#: tool_data_risk/views.py:187
+#: tool_data_risk/views.py:190
 msgid "Every gigabyte migrated is rehearsal and restore time paid repeatedly."
 msgstr "كل غيغابايت يُرحَّل هو وقت تجربة واستعادة تدفعه مرارًا."
 
-#: tool_data_risk/views.py:188
+#: tool_data_risk/views.py:191
 msgid ""
 "Documents owned by deactivated users lose followups and assignments "
 "silently."
 msgstr "مستندات المستخدمين المعطّلين تفقد المتابعات والإسنادات بصمت."
 
-#: tool_data_risk/views.py:189
+#: tool_data_risk/views.py:192
 msgid "Custom-model data maps to nothing unless its identifiers are planned."
 msgstr "بيانات النماذج المخصصة لا تُربط بشيء ما لم تُخطَّط معرّفاتها."
 
-#: tool_data_risk/views.py:192
+#: tool_data_risk/views.py:195
 msgid ""
 "Merged before migration: clean history. After: weeks of reconciliation."
 msgstr "الدمج قبل الترحيل يعني سجلًا نظيفًا؛ وبعده يعني أسابيع من المطابقة."
 
-#: tool_data_risk/views.py:193
+#: tool_data_risk/views.py:196
 msgid "Cheap to complete now; expensive to chase record-by-record at go-live."
 msgstr "إكمالها الآن رخيص؛ وملاحقتها سجلًا سجلًا عند الانطلاق مكلفة."
 
-#: tool_data_risk/views.py:194
+#: tool_data_risk/views.py:197
 msgid "Decide close/re-point now, or the import decides for you — badly."
 msgstr "قرر الإغلاق أو إعادة التوجيه الآن، وإلا قرر الاستيراد عنك — بشكل سيئ."
 
-#: tool_data_risk/views.py:195
+#: tool_data_risk/views.py:198
 msgid "One import-compatible export now makes every later update-import safe."
 msgstr "تصدير واحد متوافق مع الاستيراد الآن يجعل كل استيراد تحديث لاحق آمنًا."
 
-#: tool_data_risk/views.py:196
+#: tool_data_risk/views.py:199
 msgid "A short review now avoids surprise mapping workshops mid-project."
 msgstr "مراجعة قصيرة الآن تجنّبك ورش ربط مفاجئة في منتصف المشروع."
 
-#: tool_data_risk/views.py:197
+#: tool_data_risk/views.py:200
 msgid "Trimming bloat shortens every rehearsal cycle from day one."
 msgstr "تقليص التضخم يقصّر كل دورة تجربة من اليوم الأول."
 
-#: tool_data_risk/views.py:198
+#: tool_data_risk/views.py:201
 msgid "Reassigning now keeps pipelines alive through the cutover."
 msgstr "إعادة الإسناد الآن تُبقي خطوط العمل حيّة عبر مرحلة الانتقال."
 
-#: tool_data_risk/views.py:199
+#: tool_data_risk/views.py:202
 msgid "Plan the export/import path early — it is the least automatable part."
 msgstr "خطط مسار التصدير/الاستيراد مبكرًا — فهو الجزء الأقل قابلية للأتمتة."
 
-#: tool_data_risk/views.py:203
+#: tool_data_risk/views.py:206
 msgid "Who owns customer master data — by name, not by department?"
 msgstr "من يملك بيانات العملاء الرئيسية — بالاسم لا بالقسم؟"
 
-#: tool_data_risk/views.py:204
+#: tool_data_risk/views.py:207
 msgid "Which system is the source of truth for products and prices today?"
 msgstr "أي نظام هو مصدر الحقيقة للمنتجات والأسعار اليوم؟"
 
-#: tool_data_risk/views.py:205
+#: tool_data_risk/views.py:208
 msgid ""
 "Which duplicate clusters should be merged before migration, and who decides "
 "the surviving record?"
 msgstr "أي مجموعات التكرار يجب دمجها قبل الترحيل، ومن يقرر السجل الباقي؟"
 
-#: tool_data_risk/views.py:206
+#: tool_data_risk/views.py:209
 msgid ""
 "How much attachment history does the new system actually need on day one?"
 msgstr "كم يحتاج النظام الجديد فعلًا من أرشيف المرفقات في يومه الأول؟"
 
-#: tool_data_risk/views.py:210
+#: tool_data_risk/views.py:213
 msgid "Duplicate clusters reviewed and merged (contacts, products)."
 msgstr "رُوجعت مجموعات التكرار ودُمجت (جهات الاتصال والمنتجات)."
 
-#: tool_data_risk/views.py:211
+#: tool_data_risk/views.py:214
 msgid "Master data completed: VAT, countries, internal references."
 msgstr "اكتملت البيانات الرئيسية: الأرقام الضريبية والدول والمراجع الداخلية."
 
-#: tool_data_risk/views.py:212
+#: tool_data_risk/views.py:215
 msgid "Open documents re-pointed away from archived records."
 msgstr "أُعيد توجيه المستندات المفتوحة بعيدًا عن السجلات المؤرشفة."
 
-#: tool_data_risk/views.py:213
+#: tool_data_risk/views.py:216
 msgid "Ownership reassigned from deactivated users."
 msgstr "أُعيد إسناد الملكية من المستخدمين المعطّلين."
 
-#: tool_data_risk/views.py:214
+#: tool_data_risk/views.py:217
 msgid "External IDs established through an import-compatible export."
 msgstr "أُنشئت المعرّفات الخارجية عبر تصدير متوافق مع الاستيراد."
 
-#: tool_data_risk/views.py:215
+#: tool_data_risk/views.py:218
 msgid "Rehearsal import of a small batch verified before the real one."
 msgstr "تم التحقق من استيراد تجريبي لدفعة صغيرة قبل الاستيراد الفعلي."
 
-#: tool_data_risk/views.py:248 tool_erp_rescue/views.py:380
-#: tool_studio_xray/views.py:73
+#: tool_data_risk/views.py:251 tool_erp_rescue/views.py:380
+#: tool_studio_xray/views.py:80
 msgid ""
 "You have reached the daily limit for this tool — please try again tomorrow."
 msgstr "لقد بلغت الحد اليومي لهذه الأداة — يرجى المحاولة مجددًا غدًا."
 
-#: tool_data_risk/views.py:270 tool_studio_xray/views.py:110
+#: tool_data_risk/views.py:273 tool_studio_xray/views.py:117
 msgid ""
 "The diagnostic queue is unavailable right now — please try again in a few "
 "minutes."
 msgstr ""
 "قائمة انتظار الفحوصات غير متاحة حاليًا — يرجى المحاولة مرة أخرى بعد دقائق."
 
-#: tool_data_risk/views.py:290 tool_studio_xray/views.py:136
+#: tool_data_risk/views.py:293 tool_studio_xray/views.py:143
 msgid "Opening a secure, read-only session"
 msgstr "فتح جلسة آمنة للقراءة فقط"
 
-#: tool_data_risk/views.py:291
+#: tool_data_risk/views.py:294
 msgid "Counting data signals"
 msgstr "إحصاء إشارات البيانات"
 
-#: tool_data_risk/views.py:292
+#: tool_data_risk/views.py:295
 msgid "Totals, duplicate clusters, archived references — counts, not content"
 msgstr "مجاميع، ومجموعات تكرار، ومراجع مؤرشفة — أعداد لا محتوى"
 
-#: tool_data_risk/views.py:293
+#: tool_data_risk/views.py:296
 msgid "Scoring migration risk"
 msgstr "تقييم مخاطر الترحيل"
 
-#: tool_data_risk/views.py:294
+#: tool_data_risk/views.py:297
 msgid "Deterministic category scores and cleanup priorities"
 msgstr "درجات حتمية لكل فئة وأولويات تنظيف"
 
-#: tool_data_risk/views.py:308 tool_studio_xray/views.py:181
+#: tool_data_risk/views.py:315 tool_studio_xray/views.py:192
 msgid ""
 "The scan could not start — the processing queue appears to be offline. "
 "Please try again later."
@@ -6382,46 +6379,55 @@ msgstr ""
 "تعذّر بدء الفحص — يبدو أن قائمة المعالجة متوقفة حاليًا. يرجى المحاولة مرة "
 "أخرى لاحقًا."
 
-#: tool_data_risk/views.py:411
+#: tool_data_risk/views.py:318 tool_studio_xray/views.py:197
+#| msgid ""
+#| "The diagnostic queue is unavailable right now — please try again in a few "
+#| "minutes."
+msgid ""
+"The scan took too long and was stopped. Please try again in a few minutes."
+msgstr ""
+"استغرق الفحص وقتًا طويلًا فتوقّف. يُرجى المحاولة مرة أخرى بعد بضع دقائق."
+
+#: tool_data_risk/views.py:429
 msgid "Before migration"
 msgstr "قبل الترحيل"
 
-#: tool_data_risk/views.py:412
+#: tool_data_risk/views.py:430
 msgid "During the rehearsal"
 msgstr "أثناء التجربة"
 
-#: tool_data_risk/views.py:413
+#: tool_data_risk/views.py:431
 msgid "After the first test import"
 msgstr "بعد أول استيراد تجريبي"
 
-#: tool_data_risk/views.py:541
+#: tool_data_risk/views.py:559
 msgid "Data risk score"
 msgstr "درجة مخاطر البيانات"
 
-#: tool_data_risk/views.py:542 tool_erp_rescue/views.py:258
+#: tool_data_risk/views.py:560 tool_erp_rescue/views.py:258
 #: tool_erp_rescue/views.py:444
 msgid "Risk level"
 msgstr "مستوى الخطر"
 
-#: tool_data_risk/views.py:548
+#: tool_data_risk/views.py:566
 #, python-format
 msgid "Blocker %(n)s"
 msgstr "المعوّق %(n)s"
 
-#: tool_data_risk/views.py:551
+#: tool_data_risk/views.py:569
 #, python-format
 msgid "A Data Risk Profiler report was shared with you — %(site)s"
 msgstr "تمت مشاركة تقرير محلّل مخاطر البيانات معك — %(site)s"
 
-#: tool_data_risk/views.py:554
+#: tool_data_risk/views.py:572
 msgid "A colleague shared their pre-migration data profile with you"
 msgstr "شارك زميلك معك تحليل بياناته لما قبل الترحيل"
 
-#: tool_data_risk/views.py:557 tool_studio_xray/views.py:531
+#: tool_data_risk/views.py:575 tool_studio_xray/views.py:552
 msgid "Open the full report"
 msgstr "افتح التقرير الكامل"
 
-#: tool_data_risk/views.py:559
+#: tool_data_risk/views.py:577
 msgid ""
 "Reply to this email to book a free 30-minute migration data review with a "
 "consultant."
@@ -6429,23 +6435,23 @@ msgstr ""
 "رد على هذا البريد لحجز مراجعة مجانية لبيانات الترحيل مدتها 30 دقيقة مع "
 "مستشار."
 
-#: tool_data_risk/views.py:576
+#: tool_data_risk/views.py:594
 msgid ""
 "Booking the free migration data review of my Data Risk Profiler results."
 msgstr ""
 "أحجز المراجعة المجانية لبيانات الترحيل لنتائج محلّل مخاطر البيانات الخاصة "
 "بي."
 
-#: tool_data_risk/views.py:578
+#: tool_data_risk/views.py:596
 #, python-format
 msgid "Data risk score: %(score)s/100 — %(level)s"
 msgstr "درجة مخاطر البيانات: %(score)s/100 — %(level)s"
 
-#: tool_data_risk/views.py:583
+#: tool_data_risk/views.py:601
 msgid "Top blockers:"
 msgstr "أبرز المعوّقات:"
 
-#: tool_data_risk/views.py:586 tool_studio_xray/views.py:561
+#: tool_data_risk/views.py:604 tool_studio_xray/views.py:582
 #, python-format
 msgid "Report link: %(url)s"
 msgstr "رابط التقرير: %(url)s"
@@ -6944,7 +6950,7 @@ msgid "Rescue score"
 msgstr "درجة الإنقاذ"
 
 #: tool_erp_rescue/views.py:261 tool_erp_rescue/views.py:446
-#: tool_studio_xray/views.py:519
+#: tool_studio_xray/views.py:540
 #, python-format
 msgid "Risk %(n)s"
 msgstr "الخطر %(n)s"
@@ -7114,7 +7120,7 @@ msgstr "أساسي"
 msgid "Standard"
 msgstr "قياسي"
 
-#: tool_studio_xray/system_map.py:82 tool_studio_xray/views.py:369
+#: tool_studio_xray/system_map.py:82 tool_studio_xray/views.py:390
 msgid "Custom"
 msgstr "مخصص"
 
@@ -7166,112 +7172,112 @@ msgstr[3] "%(n)s واجهات مخصصة"
 msgstr[4] "%(n)s واجهة مخصصة"
 msgstr[5] "%(n)s واجهة مخصصة"
 
-#: tool_studio_xray/views.py:138
+#: tool_studio_xray/views.py:145
 msgid "Reading fields, models, views and automations"
 msgstr "قراءة الحقول والنماذج والواجهات والأتمتة"
 
-#: tool_studio_xray/views.py:140
+#: tool_studio_xray/views.py:147
 msgid "Scoring complexity and spotting upgrade risks"
 msgstr "حساب درجة التعقيد ورصد مخاطر الترقية"
 
-#: tool_studio_xray/views.py:144
+#: tool_studio_xray/views.py:151
 msgid ""
 "A local AI model interprets the findings for your business — this can take "
 "up to a minute"
 msgstr ""
 "نموذج ذكاء اصطناعي محلي يفسّر النتائج لنشاطك التجاري — قد يستغرق هذا دقيقة"
 
-#: tool_studio_xray/views.py:146
+#: tool_studio_xray/views.py:153
 msgid "Preparing your report"
 msgstr "جارٍ تجهيز تقريرك"
 
-#: tool_studio_xray/views.py:147
+#: tool_studio_xray/views.py:154
 msgid "Building your results and emailing the link"
 msgstr "إعداد نتائجك وإرسال الرابط إلى بريدك"
 
-#: tool_studio_xray/views.py:327
+#: tool_studio_xray/views.py:348
 msgid "What is the most urgent risk in my system?"
 msgstr "ما أكثر المخاطر إلحاحًا في نظامي؟"
 
-#: tool_studio_xray/views.py:332
+#: tool_studio_xray/views.py:353
 #, python-format
 msgid "What does having %(n)s custom models mean for us?"
 msgstr "ماذا يعني وجود %(n)s نموذجًا مخصّصًا بالنسبة لنا؟"
 
-#: tool_studio_xray/views.py:335
+#: tool_studio_xray/views.py:356
 msgid "How risky are our custom code server actions?"
 msgstr "ما مدى خطورة إجراءات الخادم البرمجية المخصّصة لدينا؟"
 
-#: tool_studio_xray/views.py:339
+#: tool_studio_xray/views.py:360
 #, python-format
 msgid "Is upgrading to Odoo %(latest)s safe for us right now?"
 msgstr "هل الترقية إلى Odoo %(latest)s آمنة لنا الآن؟"
 
-#: tool_studio_xray/views.py:342
+#: tool_studio_xray/views.py:363
 msgid "What should we fix before our next upgrade?"
 msgstr "ما الذي يجب إصلاحه قبل ترقيتنا القادمة؟"
 
-#: tool_studio_xray/views.py:351
+#: tool_studio_xray/views.py:372
 msgid "Contacts"
 msgstr "جهات الاتصال"
 
-#: tool_studio_xray/views.py:352
+#: tool_studio_xray/views.py:373
 msgid "Sales orders"
 msgstr "أوامر البيع"
 
-#: tool_studio_xray/views.py:353
+#: tool_studio_xray/views.py:374
 msgid "Invoices & journal entries"
 msgstr "الفواتير والقيود المحاسبية"
 
-#: tool_studio_xray/views.py:354
+#: tool_studio_xray/views.py:375
 msgid "Purchase orders"
 msgstr "أوامر الشراء"
 
-#: tool_studio_xray/views.py:355
+#: tool_studio_xray/views.py:376
 msgid "Stock transfers"
 msgstr "التحويلات المخزنية"
 
-#: tool_studio_xray/views.py:356
+#: tool_studio_xray/views.py:377
 msgid "CRM leads"
 msgstr "فرص CRM"
 
-#: tool_studio_xray/views.py:357
+#: tool_studio_xray/views.py:378
 msgid "Project tasks"
 msgstr "مهام المشاريع"
 
-#: tool_studio_xray/views.py:358
+#: tool_studio_xray/views.py:379
 msgid "Manufacturing orders"
 msgstr "أوامر التصنيع"
 
-#: tool_studio_xray/views.py:359
+#: tool_studio_xray/views.py:380
 msgid "Messages & log notes"
 msgstr "الرسائل والملاحظات"
 
-#: tool_studio_xray/views.py:363
+#: tool_studio_xray/views.py:384
 msgid "Critical"
 msgstr "حرج"
 
-#: tool_studio_xray/views.py:364
+#: tool_studio_xray/views.py:385
 msgid "In use"
 msgstr "مستخدم"
 
-#: tool_studio_xray/views.py:365
+#: tool_studio_xray/views.py:386
 msgid "Empty"
 msgstr "فارغ"
 
-#: tool_studio_xray/views.py:370
+#: tool_studio_xray/views.py:391
 msgid "Third-party"
 msgstr "طرف ثالث"
 
-#: tool_studio_xray/views.py:371
+#: tool_studio_xray/views.py:392
 msgid "OCA community"
 msgstr "مجتمع OCA"
 
-#: tool_studio_xray/views.py:372
+#: tool_studio_xray/views.py:393
 msgid "Official"
 msgstr "رسمي"
 
-#: tool_studio_xray/views.py:434
+#: tool_studio_xray/views.py:455
 msgid ""
 "Question limit reached for this report — the rest is exactly what the free "
 "30-minute review is for."
@@ -7279,28 +7285,28 @@ msgstr ""
 "بلغت حد الأسئلة لهذا التقرير — والبقية هي بالضبط ما وُجدت لأجله المراجعة "
 "المجانية لمدة 30 دقيقة."
 
-#: tool_studio_xray/views.py:438
+#: tool_studio_xray/views.py:459
 msgid "A little too fast — give the analyst a moment and try again."
 msgstr "أسرع من اللازم — أمهل المحلل لحظة وحاول مجددًا."
 
-#: tool_studio_xray/views.py:516
+#: tool_studio_xray/views.py:537
 msgid "Complexity score"
 msgstr "درجة التعقيد"
 
-#: tool_studio_xray/views.py:517
+#: tool_studio_xray/views.py:538
 msgid "Estimated effort"
 msgstr "الجهد التقديري"
 
-#: tool_studio_xray/views.py:523
+#: tool_studio_xray/views.py:544
 #, python-format
 msgid "A Studio X-Ray report was shared with you — %(site)s"
 msgstr "تمت مشاركة تقرير Studio X-Ray معك — %(site)s"
 
-#: tool_studio_xray/views.py:526
+#: tool_studio_xray/views.py:547
 msgid "A colleague shared their Odoo Studio X-Ray report with you"
 msgstr "شارك زميلك معك تقرير Studio X-Ray لنظام Odoo لديهم"
 
-#: tool_studio_xray/views.py:527
+#: tool_studio_xray/views.py:548
 msgid ""
 "This read-only scan maps the customizations inside your Odoo and what they "
 "mean for the next upgrade."
@@ -7308,11 +7314,11 @@ msgstr ""
 "هذا فحص للقراءة فقط يرسم خريطة التخصيصات داخل Odoo لديكم وما تعنيه للترقية "
 "القادمة."
 
-#: tool_studio_xray/views.py:529
+#: tool_studio_xray/views.py:550
 msgid "What the scan found"
 msgstr "ما اكتشفه الفحص"
 
-#: tool_studio_xray/views.py:533
+#: tool_studio_xray/views.py:554
 msgid ""
 "Reply to this email to book a free 30-minute review of this report with a "
 "consultant."
@@ -7320,35 +7326,35 @@ msgstr ""
 "رُدّ على هذا البريد لحجز مراجعة مجانية لهذا التقرير مدتها 30 دقيقة مع "
 "مستشار."
 
-#: tool_studio_xray/views.py:556
+#: tool_studio_xray/views.py:577
 msgid "Booking the free 30-minute review of my Studio X-Ray report."
 msgstr "حجز المراجعة المجانية لمدة 30 دقيقة لتقرير Studio X-Ray الخاص بي."
 
-#: tool_studio_xray/views.py:558
+#: tool_studio_xray/views.py:579
 msgid "Suggested agenda:"
 msgstr "الأجندة المقترحة:"
 
-#: tool_studio_xray/views.py:597
+#: tool_studio_xray/views.py:618
 msgid "Walk-through of my Studio X-Ray scan results."
 msgstr "استعراض نتائج فحص Studio X-Ray الخاص بي."
 
-#: tool_studio_xray/views.py:606
+#: tool_studio_xray/views.py:627
 #, python-format
 msgid ""
 "Walk-through of the Studio X-Ray results (score %(score)s/100 — %(band)s)."
 msgstr "استعراض نتائج Studio X-Ray ‏(الدرجة %(score)s/100 — %(band)s)."
 
-#: tool_studio_xray/views.py:610
+#: tool_studio_xray/views.py:631
 #, python-format
 msgid "A rebuilding plan for the %(n)s Studio-created models."
 msgstr "خطة إعادة بناء النماذج المُنشأة بـ Studio وعددها %(n)s."
 
-#: tool_studio_xray/views.py:613
+#: tool_studio_xray/views.py:634
 #, python-format
 msgid "Strategy for the %(n)s custom code server actions."
 msgstr "استراتيجية التعامل مع إجراءات الخادم البرمجية المخصّصة وعددها %(n)s."
 
-#: tool_studio_xray/views.py:617
+#: tool_studio_xray/views.py:638
 #, python-format
 msgid ""
 "The upgrade path from Odoo %(current)s to Odoo %(latest)s and the cleanup it"
@@ -7356,33 +7362,33 @@ msgid ""
 msgstr ""
 "مسار الترقية من Odoo %(current)s إلى Odoo %(latest)s وما يتطلبه من تنظيف."
 
-#: tool_studio_xray/views.py:622
+#: tool_studio_xray/views.py:643
 #, python-format
 msgid "Compatibility check for the %(n)s non-standard modules."
 msgstr "فحص توافق الوحدات غير القياسية وعددها %(n)s."
 
-#: tool_studio_xray/views.py:625
+#: tool_studio_xray/views.py:646
 #, python-format
 msgid "Risk review of the %(n)s Studio fields on core business models."
 msgstr "مراجعة مخاطر حقول Studio على النماذج الأساسية وعددها %(n)s."
 
-#: tool_studio_xray/views.py:633
+#: tool_studio_xray/views.py:654
 msgid "Low complexity"
 msgstr "تعقيد منخفض"
 
-#: tool_studio_xray/views.py:635
+#: tool_studio_xray/views.py:656
 msgid "Moderate complexity"
 msgstr "تعقيد متوسط"
 
-#: tool_studio_xray/views.py:637
+#: tool_studio_xray/views.py:658
 msgid "High complexity"
 msgstr "تعقيد مرتفع"
 
-#: tool_studio_xray/views.py:638
+#: tool_studio_xray/views.py:659
 msgid "Very high complexity"
 msgstr "تعقيد مرتفع جدًا"
 
-#: tool_studio_xray/views.py:647
+#: tool_studio_xray/views.py:668
 #, python-format
 msgid ""
 "%(n)s custom Studio models exist only in this database — they tie you to "
@@ -7391,7 +7397,7 @@ msgstr ""
 "%(n)s نماذج مخصّصة من Studio لا توجد إلا في قاعدة البيانات هذه — وهي تقيّدك "
 "بـ Studio/Enterprise ويجب إعادة بنائها كوحدات برمجية للترحيل بأمان."
 
-#: tool_studio_xray/views.py:650
+#: tool_studio_xray/views.py:671
 #, python-format
 msgid ""
 "%(n)s server actions run Python code stored in the database — outside "
@@ -7400,7 +7406,7 @@ msgstr ""
 "%(n)s من إجراءات الخادم تنفّذ كود Python مخزّنًا في قاعدة البيانات — خارج أي"
 " تحكم بالإصدارات، وسبب متكرر لأعطال صامتة عند الترقية."
 
-#: tool_studio_xray/views.py:653
+#: tool_studio_xray/views.py:674
 #, python-format
 msgid ""
 "You are %(n)s major versions behind the latest Odoo — every skipped version "
@@ -7409,7 +7415,7 @@ msgstr ""
 "أنت متأخر %(n)s إصدارات رئيسية عن أحدث Odoo — وكل إصدار يُتخطّى يزيد جهد "
 "الترحيل ومخاطره."
 
-#: tool_studio_xray/views.py:656
+#: tool_studio_xray/views.py:677
 #, python-format
 msgid ""
 "%(n)s Studio fields sit on core business models (sales, invoicing, "
@@ -7418,7 +7424,7 @@ msgstr ""
 "%(n)s من حقول Studio تقع على النماذج الأساسية للأعمال (المبيعات والفوترة "
 "وجهات الاتصال…) — وهي المصدر الأكثر شيوعًا لتعارضات الترقية."
 
-#: tool_studio_xray/views.py:659
+#: tool_studio_xray/views.py:680
 #, python-format
 msgid ""
 "%(n)s installed modules are not standard Odoo — each one must be verified or"
@@ -7427,7 +7433,7 @@ msgstr ""
 "%(n)s من الوحدات المثبتة ليست من Odoo القياسي — ويجب التحقق من كل منها أو "
 "ترقيتها لإصدارك القادم."
 
-#: tool_studio_xray/views.py:662
+#: tool_studio_xray/views.py:683
 #, python-format
 msgid ""
 "%(n)s fields carry business logic stored in the database — standard upgrades"
@@ -7436,7 +7442,7 @@ msgstr ""
 "%(n)s حقلًا يحمل منطق أعمال مخزّنًا في قاعدة البيانات — والترقيات القياسية "
 "لا ترحّل هذا المنطق."
 
-#: tool_studio_xray/views.py:665
+#: tool_studio_xray/views.py:686
 #, python-format
 msgid ""
 "%(n)s Studio views override standard screens and can conflict on every "
@@ -7444,14 +7450,14 @@ msgid ""
 msgstr ""
 "%(n)s من واجهات Studio تتجاوز الشاشات القياسية وقد تتعارض مع كل تحديث."
 
-#: tool_studio_xray/views.py:667
+#: tool_studio_xray/views.py:688
 #, python-format
 msgid ""
 "%(n)s automated actions are configured in the database and should be "
 "reviewed and documented."
 msgstr "%(n)s إجراءً آليًا مُعدّ في قاعدة البيانات وينبغي مراجعته وتوثيقه."
 
-#: tool_studio_xray/views.py:673
+#: tool_studio_xray/views.py:694
 msgid ""
 "Plan a cleanup project: rebuild the Studio models and database code as a "
 "proper, versioned module before your next upgrade. Bidatia can scope this in"
@@ -7461,7 +7467,7 @@ msgstr ""
 "كوحدة برمجية مُدارة بالإصدارات قبل ترقيتك القادمة. تستطيع Bidatia تحديد نطاق"
 " ذلك في مراجعة مجانية مدتها 30 دقيقة."
 
-#: tool_studio_xray/views.py:677
+#: tool_studio_xray/views.py:698
 msgid ""
 "Schedule a customization cleanup before committing to an upgrade — it "
 "reduces migration cost and risk. Bidatia can prioritize the work with you in"
@@ -7471,7 +7477,7 @@ msgstr ""
 "الترحيل ومخاطره. وتستطيع Bidatia ترتيب أولويات العمل معك في مراجعة مجانية "
 "مدتها 30 دقيقة."
 
-#: tool_studio_xray/views.py:681
+#: tool_studio_xray/views.py:702
 msgid ""
 "A short, targeted review of the flagged items is enough to keep this "
 "installation healthy — Bidatia offers that as a free 30-minute session."
@@ -7479,33 +7485,33 @@ msgstr ""
 "مراجعة قصيرة ومركّزة للعناصر المُشار إليها تكفي للحفاظ على سلامة هذا النظام "
 "— وتقدّمها Bidatia كجلسة مجانية مدتها 30 دقيقة."
 
-#: tool_studio_xray/views.py:684
+#: tool_studio_xray/views.py:705
 msgid ""
 "No significant customization debt detected. A periodic re-scan before each "
 "upgrade keeps it that way."
 msgstr ""
 "لم يُرصد دين تخصيص يُذكر. إعادة الفحص دوريًا قبل كل ترقية تُبقي الوضع كذلك."
 
-#: tool_studio_xray/views.py:689
+#: tool_studio_xray/views.py:710
 msgid "Minimal"
 msgstr "ضئيلة"
 
-#: tool_studio_xray/views.py:690
+#: tool_studio_xray/views.py:711
 msgid "Moderate"
 msgstr "متوسطة"
 
-#: tool_studio_xray/views.py:692
+#: tool_studio_xray/views.py:713
 msgid "Very high"
 msgstr "مرتفعة جدًا"
 
-#: tool_studio_xray/views.py:697
+#: tool_studio_xray/views.py:718
 msgid ""
 "You are on a recent version with limited customization debt — keep scanning "
 "before each upgrade."
 msgstr ""
 "أنت على إصدار حديث مع قدر محدود من ديون التخصيص — واصل الفحص قبل كل ترقية."
 
-#: tool_studio_xray/views.py:700
+#: tool_studio_xray/views.py:721
 msgid ""
 "Plan the next upgrade deliberately: review the flagged customizations first "
 "so the migration stays predictable."
@@ -7513,7 +7519,7 @@ msgstr ""
 "خطّط للترقية القادمة بتأنٍّ: راجع التخصيصات المُشار إليها أولًا لتبقى عملية "
 "الترحيل متوقعة."
 
-#: tool_studio_xray/views.py:703
+#: tool_studio_xray/views.py:724
 msgid ""
 "Expect real migration friction: budget a cleanup phase before the upgrade "
 "project, not during it."
@@ -7521,7 +7527,7 @@ msgstr ""
 "توقّع صعوبة حقيقية في الترحيل: خصّص ميزانية لمرحلة تنظيف قبل مشروع الترقية، "
 "لا أثناءه."
 
-#: tool_studio_xray/views.py:706
+#: tool_studio_xray/views.py:727
 msgid ""
 "Upgrading as-is would be expensive and risky. A staged cleanup-then-migrate "
 "plan is strongly recommended."
@@ -7529,35 +7535,35 @@ msgstr ""
 "الترقية بالوضع الحالي ستكون مكلفة ومحفوفة بالمخاطر. يُنصح بشدة بخطة مرحلية: "
 "التنظيف أولًا ثم الترحيل."
 
-#: tool_studio_xray/views.py:712
+#: tool_studio_xray/views.py:733
 msgid "Computed / related fields"
 msgstr "حقول محسوبة / مرتبطة"
 
-#: tool_studio_xray/views.py:715
+#: tool_studio_xray/views.py:736
 msgid "Code server actions"
 msgstr "إجراءات خادم برمجية"
 
-#: tool_studio_xray/views.py:720
+#: tool_studio_xray/views.py:741
 msgid "Official Odoo"
 msgstr "Odoo الرسمي"
 
-#: tool_studio_xray/views.py:721
+#: tool_studio_xray/views.py:742
 msgid "OCA / Community"
 msgstr "OCA / المجتمع"
 
-#: tool_studio_xray/views.py:722
+#: tool_studio_xray/views.py:743
 msgid "Third-party vendor"
 msgstr "مزوّد خارجي"
 
-#: tool_studio_xray/views.py:723
+#: tool_studio_xray/views.py:744
 msgid "Custom / internal"
 msgstr "مخصّص / داخلي"
 
-#: tool_studio_xray/views.py:730
+#: tool_studio_xray/views.py:751
 msgid "Studio fields on core business models"
 msgstr "حقول Studio على النماذج الأساسية للأعمال"
 
-#: tool_studio_xray/views.py:731
+#: tool_studio_xray/views.py:752
 msgid ""
 "Fields added directly to core models are the most common source of conflicts"
 " and data issues during version upgrades."
@@ -7565,11 +7571,11 @@ msgstr ""
 "الحقول المضافة مباشرةً إلى النماذج الأساسية هي المصدر الأكثر شيوعًا "
 "للتعارضات ومشكلات البيانات أثناء ترقيات الإصدار."
 
-#: tool_studio_xray/views.py:734
+#: tool_studio_xray/views.py:755
 msgid "Computed or related Studio fields"
 msgstr "حقول Studio محسوبة أو مرتبطة"
 
-#: tool_studio_xray/views.py:735
+#: tool_studio_xray/views.py:756
 msgid ""
 "These fields carry business logic stored in the database instead of a module"
 " — standard upgrade paths do not migrate that logic."
@@ -7577,11 +7583,11 @@ msgstr ""
 "تحمل هذه الحقول منطق أعمال مخزّنًا في قاعدة البيانات بدلًا من وحدة برمجية — "
 "ومسارات الترقية القياسية لا ترحّل هذا المنطق."
 
-#: tool_studio_xray/views.py:738
+#: tool_studio_xray/views.py:759
 msgid "Custom models created with Studio"
 msgstr "نماذج مخصّصة أُنشئت بواسطة Studio"
 
-#: tool_studio_xray/views.py:739
+#: tool_studio_xray/views.py:760
 msgid ""
 "Studio (x_) models exist only in this database. Leaving Enterprise, or any "
 "clean rebuild, requires reimplementing them as a proper module."
@@ -7589,11 +7595,11 @@ msgstr ""
 "نماذج Studio ‏(x_) لا توجد إلا في قاعدة البيانات هذه. ومغادرة Enterprise، أو"
 " أي إعادة بناء نظيفة، تتطلب إعادة تنفيذها كوحدة برمجية صحيحة."
 
-#: tool_studio_xray/views.py:742
+#: tool_studio_xray/views.py:763
 msgid "Custom server actions executing Python code from the database"
 msgstr "إجراءات خادم مخصّصة تنفّذ كود Python من قاعدة البيانات"
 
-#: tool_studio_xray/views.py:743
+#: tool_studio_xray/views.py:764
 msgid ""
 "Hand-made code living in database records (module-shipped actions are "
 "excluded): invisible to version control, untested, and a frequent cause of "
@@ -7603,22 +7609,22 @@ msgstr ""
 "الوحدات): خارج أي تحكم بالإصدارات، وغير مُختبر، وسبب متكرر لأعطال صامتة عند "
 "الترقية."
 
-#: tool_studio_xray/views.py:747
+#: tool_studio_xray/views.py:768
 msgid "Studio views inheriting standard views"
 msgstr "واجهات Studio ترث الواجهات القياسية"
 
-#: tool_studio_xray/views.py:748
+#: tool_studio_xray/views.py:769
 msgid ""
 "Inherited view customizations conflict with upstream view changes on every "
 "upgrade."
 msgstr ""
 "تتعارض تخصيصات الواجهات الموروثة مع تغييرات الواجهات الأصلية في كل ترقية."
 
-#: tool_studio_xray/views.py:751
+#: tool_studio_xray/views.py:772
 msgid "Automated actions configured in the database"
 msgstr "إجراءات آلية مُعدّة في قاعدة البيانات"
 
-#: tool_studio_xray/views.py:752
+#: tool_studio_xray/views.py:773
 msgid ""
 "Worth reviewing one by one: automated actions are easy to create and easy to"
 " forget, and their interactions are rarely documented."
@@ -7626,11 +7632,11 @@ msgstr ""
 "تستحق المراجعة واحدةً واحدة: فالإجراءات الآلية سهلة الإنشاء وسهلة النسيان، "
 "ونادرًا ما تكون تفاعلاتها موثّقة."
 
-#: tool_studio_xray/views.py:755
+#: tool_studio_xray/views.py:776
 msgid "Modules that are not standard Odoo"
 msgstr "وحدات ليست من Odoo القياسي"
 
-#: tool_studio_xray/views.py:756
+#: tool_studio_xray/views.py:777
 msgid ""
 "Every community, third-party or custom module must be verified — and often "
 "upgraded or replaced — before each Odoo version migration."
@@ -7638,65 +7644,65 @@ msgstr ""
 "يجب التحقق من كل وحدة مجتمعية أو خارجية أو مخصّصة — وغالبًا ترقيتها أو "
 "استبدالها — قبل كل ترحيل لإصدار Odoo."
 
-#: tool_studio_xray/views.py:761
+#: tool_studio_xray/views.py:782
 msgid "1–3 days"
 msgstr "1–3 أيام"
 
-#: tool_studio_xray/views.py:762
+#: tool_studio_xray/views.py:783
 msgid "4–8 days"
 msgstr "4–8 أيام"
 
-#: tool_studio_xray/views.py:763
+#: tool_studio_xray/views.py:784
 msgid "2–3 weeks"
 msgstr "2–3 أسابيع"
 
-#: tool_studio_xray/views.py:764
+#: tool_studio_xray/views.py:785
 msgid "4+ weeks"
 msgstr "أكثر من 4 أسابيع"
 
-#: tool_studio_xray/views.py:767
+#: tool_studio_xray/views.py:788
 msgid "Indicative estimate — an exact quote requires a code review."
 msgstr "تقدير استرشادي — التسعير الدقيق يتطلب مراجعة للكود."
 
-#: tool_studio_xray/views.py:848
+#: tool_studio_xray/views.py:869
 msgid ""
 "Review every automated action; deactivate and document the unused ones."
 msgstr "راجع كل الإجراءات الآلية؛ وعطّل غير المستخدم منها ووثّقه."
 
-#: tool_studio_xray/views.py:850
+#: tool_studio_xray/views.py:871
 msgid "Export and back up the Python code of all code server actions."
 msgstr ""
 "صدّر كود Python لجميع إجراءات الخادم البرمجية واحتفظ بنسخة احتياطية منه."
 
-#: tool_studio_xray/views.py:851
+#: tool_studio_xray/views.py:872
 msgid "Move database-stored Python code into a versioned, tested module."
 msgstr ""
 "انقل كود Python المخزّن في قاعدة البيانات إلى وحدة برمجية مُدارة بالإصدارات "
 "ومُختبرة."
 
-#: tool_studio_xray/views.py:853
+#: tool_studio_xray/views.py:874
 msgid "Rebuild the Studio-created models as a proper Odoo module."
 msgstr "أعد بناء النماذج المُنشأة بـ Studio كوحدة Odoo برمجية صحيحة."
 
-#: tool_studio_xray/views.py:855
+#: tool_studio_xray/views.py:876
 msgid "Reimplement computed/related Studio fields inside a maintained module."
 msgstr "أعد تنفيذ حقول Studio المحسوبة/المرتبطة داخل وحدة برمجية مُصانة."
 
-#: tool_studio_xray/views.py:857
+#: tool_studio_xray/views.py:878
 msgid ""
 "Re-apply the needed Studio view changes as clean XML inheritance in a "
 "module."
 msgstr ""
 "أعد تطبيق تعديلات واجهات Studio اللازمة كوراثة XML نظيفة داخل وحدة برمجية."
 
-#: tool_studio_xray/views.py:859
+#: tool_studio_xray/views.py:880
 #, python-format
 msgid ""
 "Plan the upgrade path towards Odoo %(v)s and budget the cleanup before "
 "migrating."
 msgstr "خطّط لمسار الترقية نحو Odoo %(v)s وخصّص ميزانية للتنظيف قبل الترحيل."
 
-#: tool_studio_xray/views.py:862
+#: tool_studio_xray/views.py:883
 msgid ""
 "Map every core-model Studio field and decide keep / merge / drop before "
 "migration."
@@ -7704,7 +7710,7 @@ msgstr ""
 "احصر كل حقول Studio على النماذج الأساسية وقرر الإبقاء / الدمج / الحذف قبل "
 "الترحيل."
 
-#: tool_studio_xray/views.py:864
+#: tool_studio_xray/views.py:885
 #, python-format
 msgid ""
 "Verify that your %(n)s non-standard modules are available for the target "
@@ -7712,15 +7718,15 @@ msgid ""
 msgstr ""
 "تحقّق من توفر وحداتك غير القياسية البالغ عددها %(n)s للإصدار المستهدف."
 
-#: tool_studio_xray/views.py:869
+#: tool_studio_xray/views.py:890
 msgid "Quick wins"
 msgstr "مكاسب سريعة"
 
-#: tool_studio_xray/views.py:871
+#: tool_studio_xray/views.py:892
 msgid "Structural work"
 msgstr "أعمال هيكلية"
 
-#: tool_studio_xray/views.py:873
+#: tool_studio_xray/views.py:894
 msgid "Upgrade preparation"
 msgstr "التحضير للترقية"
 

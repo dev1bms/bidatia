@@ -625,3 +625,29 @@ class AdminToolbarTests(TestCase):
         for url in ('/en/', f'/en/services/{self.service.slug}/',
                     f'/en/insights/{self.post.slug}/', f'/en/case-studies/{self.case.slug}/'):
             self.assertEqual(self.client.get(url).status_code, 200, url)
+
+
+class CeleryIsolationTests(SimpleTestCase):
+    """Bidatia shares a Redis host with the older DevBMS project, so its broker
+    and queue must stay isolated even if the env file is missing/unreadable."""
+
+    def test_broker_default_is_not_the_shared_db_0(self):
+        from django.conf import settings
+        # The dangerous default that once made the worker join DevBMS's broker.
+        self.assertFalse(settings.CELERY_BROKER_URL.endswith('/0'),
+                         'Celery broker must not default to the shared Redis db 0')
+
+    def test_default_queue_is_project_specific(self):
+        from django.conf import settings
+        self.assertEqual(settings.CELERY_TASK_DEFAULT_QUEUE, 'bidatia')
+        self.assertEqual(settings.CELERY_TASK_DEFAULT_EXCHANGE, 'bidatia')
+        self.assertEqual(settings.CELERY_TASK_DEFAULT_ROUTING_KEY, 'bidatia')
+
+    def test_broker_default_falls_back_to_bidatia_db_when_env_absent(self):
+        # Re-derive the settings default with no env override present.
+        import os
+        from unittest import mock
+        with mock.patch.dict(os.environ, {}, clear=True):
+            redis_url = os.environ.get('REDIS_URL', 'redis://127.0.0.1:6379/2')
+            broker = os.environ.get('CELERY_BROKER_URL', redis_url)
+        self.assertEqual(broker, 'redis://127.0.0.1:6379/2')

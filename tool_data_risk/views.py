@@ -29,6 +29,9 @@ PROGRESS_STEPS = ('connecting', 'collecting', 'analyzing')
 from datetime import timedelta  # noqa: E402
 
 STALE_PENDING_AFTER = timedelta(minutes=5)
+# Started but stalled mid-scan (worker died/hung) — fail it so the progress page
+# never spins forever. Above the Celery hard limit (CELERY_TASK_TIME_LIMIT=420s).
+STALE_RUNNING_AFTER = timedelta(minutes=10)
 
 LEVEL_LABELS = {
     'low': gettext_lazy('Low data migration risk'),
@@ -301,14 +304,29 @@ def progress(request, run_id):
     })
 
 
-def status(request, run_id):
-    run = get_object_or_404(ToolRun, pk=run_id, tool_slug=TOOL_SLUG)
-    if run.status == 'pending' and timezone.now() - run.created_at > STALE_PENDING_AFTER:
+def _fail_if_stale(run):
+    """Fail a run that was never picked up by a worker, or that started but
+    stalled mid-scan, so the progress page never spins forever."""
+    if run.status in ('done', 'failed'):
+        return
+    age = timezone.now() - run.created_at
+    message = None
+    if run.status == 'pending' and age > STALE_PENDING_AFTER:
+        message = _('The scan could not start — the processing queue appears '
+                    'to be offline. Please try again later.')
+    elif run.status in PROGRESS_STEPS and age > STALE_RUNNING_AFTER:
+        message = _('The scan took too long and was stopped. Please try again '
+                    'in a few minutes.')
+    if message:
         run.status = 'failed'
-        run.error_message = _('The scan could not start — the processing '
-                              'queue appears to be offline. Please try again later.')
+        run.error_message = message
         run.finished_at = timezone.now()
         run.save(update_fields=['status', 'error_message', 'finished_at'])
+
+
+def status(request, run_id):
+    run = get_object_or_404(ToolRun, pk=run_id, tool_slug=TOOL_SLUG)
+    _fail_if_stale(run)
     payload = {
         'status': run.status,
         'step': PROGRESS_STEPS.index(run.status) if run.status in PROGRESS_STEPS else None,

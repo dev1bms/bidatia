@@ -274,7 +274,26 @@ OG_DEFAULT_IMAGE = os.environ.get('OG_DEFAULT_IMAGE', '')
 #      args, kwargs, return values — is ever written to Redis.
 #   2. Workers run at INFO log level; DEBUG-level celery logging can print
 #      task arguments.
-CELERY_BROKER_URL = os.environ.get('REDIS_URL', 'redis://localhost:6379/0')
+# Redis lives on the same host as the older DevBMS project, so Bidatia MUST stay
+# on its own Redis DB and queue. The CODE default is a Bidatia-specific DB (2) —
+# not the generic db 0 — so that a missing/unreadable env file can never make the
+# worker silently join another project's broker (which once made it pick up a
+# DevBMS task). REDIS_URL / CELERY_BROKER_URL still override.
+REDIS_URL = os.environ.get('REDIS_URL', 'redis://127.0.0.1:6379/2')
+CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL', REDIS_URL)
+# Optional result backend, OFF by default: with task_ignore_result below, task
+# args/return values are never written to Redis (tool tasks receive Odoo
+# credentials as arguments). Set CELERY_RESULT_BACKEND only if you need results.
+CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND') or None
+
+# Project-specific queue/exchange/routing key. Even on a shared Redis DB this
+# keeps Bidatia from ever consuming — or handing off — tasks on the generic
+# 'celery' queue used by other projects. The worker (no -Q) consumes this
+# default queue; .delay() and beat publish to it.
+CELERY_TASK_DEFAULT_QUEUE = 'bidatia'
+CELERY_TASK_DEFAULT_EXCHANGE = 'bidatia'
+CELERY_TASK_DEFAULT_ROUTING_KEY = 'bidatia'
+
 # Local development without Redis/worker: set CELERY_TASK_ALWAYS_EAGER=True to
 # run tasks synchronously in the request process. Never enable in production.
 CELERY_TASK_ALWAYS_EAGER = env_bool('CELERY_TASK_ALWAYS_EAGER', False)
@@ -346,7 +365,9 @@ CACHES = {
     'default': {'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'},
     'tools': {
         'BACKEND': 'django.core.cache.backends.redis.RedisCache',
-        'LOCATION': os.environ.get('REDIS_URL', 'redis://localhost:6379/0'),
+        # Same Bidatia-isolated Redis DB as the broker (see REDIS_URL above), so
+        # cache keys never collide with another project sharing this Redis host.
+        'LOCATION': REDIS_URL,
     },
 }
 
@@ -440,21 +461,22 @@ UNFOLD = {
     'STYLES': [
         lambda request: static('admin_custom/admin.css'),
     ],
-    # Bidatia anchor-blue accent (same palette as the public site), as
-    # "R G B" channels. Tailwind blue scale, anchored on #2563eb (blue-600).
+    # Bidatia "Aurora" accent — the SAME indigo the public site uses (#6366f1),
+    # as "R G B" channels, so every admin button/link/active state matches the
+    # site. The fuchsia second accent lives in admin_custom/admin.css.
     'COLORS': {
         'primary': {
-            '50': '239 246 255',
-            '100': '219 234 254',
-            '200': '191 219 254',
-            '300': '147 197 253',
-            '400': '96 165 250',
-            '500': '59 130 246',
-            '600': '37 99 235',
-            '700': '29 78 216',
-            '800': '30 64 175',
-            '900': '30 58 138',
-            '950': '23 37 84',
+            '50': '238 242 255',
+            '100': '224 231 255',
+            '200': '199 210 254',
+            '300': '165 180 252',
+            '400': '129 140 248',
+            '500': '99 102 241',
+            '600': '79 70 229',
+            '700': '67 56 202',
+            '800': '55 48 163',
+            '900': '49 46 129',
+            '950': '30 27 75',
         },
     },
     'SIDEBAR': {

@@ -1,11 +1,20 @@
+from datetime import timedelta
 from unittest import mock
 
 from django.core.cache import cache
 from django.test import TestCase, override_settings
+from django.utils import timezone
 
 from tools_core.models import Lead, ToolRun
 
 LANDING = '/en/tools/studio-xray/'
+
+
+def _backdate(run, minutes):
+    """Push a run's created_at into the past (created_at is auto_now_add, so
+    .update() is the only way to set it)."""
+    ToolRun.objects.filter(pk=run.pk).update(
+        created_at=timezone.now() - timedelta(minutes=minutes))
 
 VALID_POST = {
     'odoo_url': 'https://example.odoo.com',
@@ -179,6 +188,35 @@ class ProgressAndStatusTests(TestCase):
         resp = self.client.get('/en/tools/studio-xray/run/00000000-0000-0000-0000-000000000000/status/')
         self.assertEqual(resp.status_code, 404)
 
+    def test_stale_pending_run_is_marked_failed(self):
+        # Never picked up by a worker (queue down) — must fail, not spin forever.
+        run = ToolRun.objects.create(tool_slug='studio_xray', status='pending',
+                                     odoo_url='https://x.odoo.com', odoo_db='x')
+        _backdate(run, 6)  # > STALE_PENDING_AFTER (5 min)
+        data = self.client.get(f'/en/tools/studio-xray/run/{run.pk}/status/').json()
+        self.assertEqual(data['status'], 'failed')
+        self.assertTrue(data['error'])               # a translated, safe message
+        self.assertNotIn('Traceback', data['error'])
+        run.refresh_from_db()
+        self.assertEqual(run.status, 'failed')
+
+    def test_stale_running_run_is_marked_failed(self):
+        # Worker died/hung mid-scan: stuck at 'connecting' past the running limit.
+        run = ToolRun.objects.create(tool_slug='studio_xray', status='connecting',
+                                     odoo_url='https://x.odoo.com', odoo_db='x')
+        _backdate(run, 11)  # > STALE_RUNNING_AFTER (10 min)
+        data = self.client.get(f'/en/tools/studio-xray/run/{run.pk}/status/').json()
+        self.assertEqual(data['status'], 'failed')
+        self.assertTrue(data['error'])
+
+    def test_recent_running_run_is_not_failed(self):
+        # A genuinely-running scan within the limits must keep going.
+        run = ToolRun.objects.create(tool_slug='studio_xray', status='connecting',
+                                     odoo_url='https://x.odoo.com', odoo_db='x')
+        _backdate(run, 2)
+        data = self.client.get(f'/en/tools/studio-xray/run/{run.pk}/status/').json()
+        self.assertEqual(data['status'], 'connecting')
+
 
 @override_settings(ALLOWED_HOSTS=['testserver'])
 class ReportViewTests(TestCase):
@@ -241,15 +279,25 @@ class StalePendingWatchdogTests(TestCase):
         run.refresh_from_db()
         self.assertEqual(run.status, 'pending')
 
-    def test_in_progress_run_is_never_stale_failed(self):
-        from datetime import timedelta
-        from django.utils import timezone
+    def test_in_progress_run_within_limit_keeps_running(self):
+        # A live scan well under STALE_RUNNING_AFTER must not be touched.
+        run = ToolRun.objects.create(tool_slug='studio_xray', status='collecting',
+                                     odoo_url='https://x.odoo.com', odoo_db='x')
+        ToolRun.objects.filter(pk=run.pk).update(
+            created_at=timezone.now() - timedelta(minutes=2))
+        data = self.client.get(f'/en/tools/studio-xray/run/{run.pk}/status/').json()
+        self.assertEqual(data['status'], 'collecting')
+
+    def test_in_progress_run_stuck_past_limit_is_failed(self):
+        # Worker died mid-scan: a run stuck in-progress well past the Celery
+        # hard limit must fail, not sit at "Connecting to Odoo" forever.
         run = ToolRun.objects.create(tool_slug='studio_xray', status='collecting',
                                      odoo_url='https://x.odoo.com', odoo_db='x')
         ToolRun.objects.filter(pk=run.pk).update(
             created_at=timezone.now() - timedelta(minutes=30))
         data = self.client.get(f'/en/tools/studio-xray/run/{run.pk}/status/').json()
-        self.assertEqual(data['status'], 'collecting')
+        self.assertEqual(data['status'], 'failed')
+        self.assertTrue(data['error'])
 
 
 @override_settings(ALLOWED_HOSTS=['testserver'],

@@ -1,0 +1,61 @@
+{% extends "admin/base.html" %}
+{% load i18n admin_grid %}
+
+{# Mirrors unfold's own base_site so branding/title stay intact… #}
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+    {% include "unfold/helpers/site_branding.html" %}
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% comment %}
+…then adds the Bidatia top navigation bar under the header. The default left
+sidebar is disabled (core.admin.enable_nav_sidebar = False), so this bar is how
+every inner page navigates between apps and models. It is built from
+`available_apps` (present on every admin page) so it always matches the current
+user's permissions. Alpine.js (bundled by unfold) drives the dropdowns; only
+one is open at a time.
+{% endcomment %}
+{% block header %}
+    {% include "unfold/helpers/header.html" %}
+
+    <nav class="bd-topnav" x-data="{ open: null }" aria-label="{% trans 'Sections' %}">
+        <div class="bd-topnav-inner">
+            <a href="{% url 'admin:index' %}" class="bd-topnav-home">
+                <span class="material-symbols-outlined">grid_view</span>
+                <span>{% trans "Dashboard" %}</span>
+            </a>
+            <div class="bd-topnav-apps">
+                {% for app in available_apps %}
+                    <div class="bd-topnav-app" @click.outside="if (open === {{ forloop.counter }}) open = null">
+                        <button type="button" class="bd-topnav-btn" :class="{ 'is-open': open === {{ forloop.counter }} }"
+                                @click="open = (open === {{ forloop.counter }} ? null : {{ forloop.counter }})"
+                                :aria-expanded="open === {{ forloop.counter }}">
+                            <span class="material-symbols-outlined bd-topnav-ico">{% app_icon app.app_label %}</span>
+                            <span class="bd-topnav-label">{{ app.name }}</span>
+                            <span class="material-symbols-outlined bd-caret">expand_more</span>
+                        </button>
+                        <div class="bd-menu" x-show="open === {{ forloop.counter }}" x-cloak x-transition>
+                            {% for model in app.models %}
+                                <div class="bd-menu-row">
+                                    {% if model.admin_url %}
+                                        <a href="{{ model.admin_url }}" class="bd-menu-link">{{ model.name }}</a>
+                                    {% else %}
+                                        <span class="bd-menu-link bd-disabled">{{ model.name }}</span>
+                                    {% endif %}
+                                    {% if model.add_url %}
+                                        <a href="{{ model.add_url }}" class="bd-menu-add" title="{% trans 'Add' %}" aria-label="{% trans 'Add' %}">
+                                            <span class="material-symbols-outlined">add</span>
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </nav>
+{% endblock %}

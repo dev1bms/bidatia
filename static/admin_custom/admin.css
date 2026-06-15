@@ -1,100 +1,172 @@
-/* Bidatia admin dashboard — self-contained styling (no dependency on Unfold's
-   Tailwind purge), brand-blue accents, light + dark aware. */
+/* Bidatia admin — grid dashboard + top-nav, themed to match the public site.
+   Self-contained (no dependency on Unfold's Tailwind purge). All colour comes
+   from CSS variables so the palette is editable in one place; Unfold toggles a
+   `.dark` class on <html>, so a `.dark` block supplies the dark theme. The
+   accent palette mirrors the site's Aurora identity (indigo → fuchsia). */
 
+:root {
+    --bd-bg:        #f7f8fc;
+    --bd-surface:   #ffffff;
+    --bd-surface-2: #eff0f8;
+    --bd-text:      #171821;
+    --bd-muted:     #5b5c6e;
+    --bd-line:      #e2e3ee;
+    --bd-primary:   #6366f1;   /* indigo-500 — same as the site */
+    --bd-primary-600: #4f46e5;
+    --bd-accent:    #d946ef;   /* fuchsia */
+    --bd-grad:      linear-gradient(120deg, #6366f1, #8b5cf6 45%, #d946ef);
+    --bd-card-hover: rgba(99, 102, 241, .10);
+    --bd-shadow:    0 12px 30px -14px rgba(99, 102, 241, .30);
+}
+/* Dark theme (Unfold adds `.dark` on <html>); declared after :root so it wins. */
+.dark {
+    --bd-bg:        #1a1b24;
+    --bd-surface:   #24252f;
+    --bd-surface-2: #1f202a;
+    --bd-text:      #ececf2;
+    --bd-muted:     #aeaec0;
+    --bd-line:      #333446;
+    --bd-primary:   #818cf8;
+    --bd-primary-600: #a5b4fc;
+    --bd-accent:    #ee85fb;
+    --bd-grad:      linear-gradient(120deg, #818cf8, #c4a2ff 45%, #ee85fb);
+    --bd-card-hover: rgba(129, 140, 248, .14);
+    --bd-shadow:    0 16px 38px -18px rgba(0, 0, 0, .65);
+}
+
+[x-cloak] { display: none !important; }
+
+/* Tint the admin canvas to the site background so the chrome feels consistent. */
+#main { background-color: var(--bd-bg) !important; }
+
+/* ── Top navigation bar (replaces the sidebar on every page) ─────────────── */
+.bd-topnav { background: var(--bd-surface); border-bottom: 1px solid var(--bd-line); }
+.bd-topnav-inner {
+    display: flex; align-items: center; flex-wrap: wrap; gap: 0.4rem;
+    padding: 0.5rem 1rem; max-width: 100%;
+}
+.bd-topnav-home {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.45rem 0.75rem; border-radius: 0.6rem;
+    font-size: 0.82rem; font-weight: 700; color: #fff;
+    background: var(--bd-grad); text-decoration: none; white-space: nowrap;
+}
+.bd-topnav-home .material-symbols-outlined { font-size: 18px; }
+.bd-topnav-apps { display: flex; align-items: center; flex-wrap: wrap; gap: 0.1rem; }
+.bd-topnav-app { position: relative; }
+.bd-topnav-btn {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    padding: 0.45rem 0.6rem; border: 0; background: transparent; cursor: pointer;
+    color: var(--bd-text); font-size: 0.8rem; font-weight: 600; border-radius: 0.6rem;
+    white-space: nowrap;
+}
+.bd-topnav-btn:hover, .bd-topnav-btn.is-open { background: var(--bd-surface-2); color: var(--bd-primary-600); }
+.bd-topnav-ico { font-size: 18px; color: var(--bd-primary); }
+.bd-topnav-btn.is-open .bd-topnav-ico { color: var(--bd-primary-600); }
+.bd-caret { font-size: 16px; color: var(--bd-muted); transition: transform 0.15s ease; }
+.bd-topnav-btn.is-open .bd-caret { transform: rotate(180deg); }
+.bd-topnav-app .bd-menu { inset-inline-start: 0; top: calc(100% + 0.35rem); }
+@media (max-width: 640px) { .bd-topnav-label { display: none; } }
+
+/* ── Shared dropdown menu (top-nav + cards) ─────────────────────────────── */
+.bd-menu {
+    position: absolute; z-index: 60; min-width: 230px; padding: 0.4rem;
+    background: var(--bd-surface); border: 1px solid var(--bd-line);
+    border-radius: 0.85rem; box-shadow: var(--bd-shadow);
+}
+.bd-menu-row { display: flex; align-items: center; gap: 0.4rem; border-radius: 0.55rem; }
+.bd-menu-row:hover { background: var(--bd-surface-2); }
+.bd-menu-link {
+    flex: 1; min-width: 0; padding: 0.5rem 0.65rem; border-radius: 0.55rem;
+    color: var(--bd-text); text-decoration: none; font-size: 0.85rem; font-weight: 500;
+}
+.bd-menu-link:hover { color: var(--bd-primary-600); }
+.bd-menu-link.bd-disabled { color: var(--bd-muted); cursor: default; }
+.bd-menu-add {
+    display: inline-flex; align-items: center; gap: 0.2rem;
+    margin-inline-end: 0.3rem; padding: 0.32rem 0.5rem; border-radius: 0.5rem;
+    color: var(--bd-primary-600); font-size: 0.72rem; font-weight: 700; text-decoration: none;
+    white-space: nowrap;
+}
+.bd-menu-add:hover { background: var(--bd-card-hover); }
+.bd-menu-add .material-symbols-outlined { font-size: 16px; }
+
+/* ── App grid (admin index) ─────────────────────────────────────────────── */
+.bd-dash-title {
+    font-size: 1.25rem; font-weight: 800; letter-spacing: -0.01em;
+    color: var(--bd-text); margin: 0 0 1rem;
+}
+.bd-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 0.9rem; margin: 0 0 2rem;
+}
+@media (max-width: 520px) { .bd-grid { grid-template-columns: 1fr; } }
+.bd-card-wrap { position: relative; }
+.bd-card {
+    width: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 0.55rem;
+    padding: 1.1rem 1.15rem; text-align: start; cursor: pointer;
+    background: var(--bd-surface); border: 1px solid var(--bd-line); border-radius: 1rem;
+    transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+}
+.bd-card:hover { transform: translateY(-2px); border-color: var(--bd-primary); box-shadow: var(--bd-shadow); }
+.bd-card.is-open { border-color: var(--bd-primary); }
+.bd-card-icon {
+    width: 48px; height: 48px; display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 0.8rem; color: #fff; background: var(--bd-grad); font-size: 26px;
+}
+.bd-card-name { font-size: 0.98rem; font-weight: 700; color: var(--bd-text); }
+.bd-card-meta { font-size: 0.72rem; color: var(--bd-muted); }
+.bd-card-menu { inset-inline-start: 0; top: calc(100% + 0.4rem); width: max-content; max-width: 280px; }
+
+/* ── KPI cards + recent panels (existing dashboard, now variable-driven) ─── */
 .dbms-dash { margin-bottom: 2rem; }
-
 .dbms-kpi-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.75rem;
-    margin-bottom: 1.5rem;
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem; margin-bottom: 1.5rem;
 }
 @media (min-width: 768px)  { .dbms-kpi-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (min-width: 1280px) { .dbms-kpi-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
-
 .dbms-kpi {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-    padding: 1rem 1.1rem;
-    border-radius: 0.75rem;
-    background: #ffffff;
-    border: 1px solid rgb(226 232 240);
-    text-decoration: none;
-    transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+    display: flex; flex-direction: column; gap: 0.3rem; padding: 1rem 1.1rem;
+    border-radius: 0.75rem; background: var(--bd-surface); border: 1px solid var(--bd-line);
+    text-decoration: none; transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
 }
-.dbms-kpi:hover {
-    border-color: rgb(147 207 253);
-    box-shadow: 0 6px 16px rgba(39, 120, 234, .10);
-    transform: translateY(-1px);
-}
-.dbms-kpi-value { font-size: 1.6rem; font-weight: 800; line-height: 1; color: rgb(13 20 36); }
-.dbms-kpi-title { font-size: 0.72rem; color: rgb(100 116 139); }
+.dbms-kpi:hover { border-color: var(--bd-primary); box-shadow: var(--bd-shadow); transform: translateY(-1px); }
+.dbms-kpi-value { font-size: 1.6rem; font-weight: 800; line-height: 1; color: var(--bd-text); }
+.dbms-kpi-title { font-size: 0.72rem; color: var(--bd-muted); }
 
-.dbms-cols {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    margin-bottom: 2rem;
-}
+.dbms-cols { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-bottom: 2rem; }
 @media (min-width: 1024px) { .dbms-cols { grid-template-columns: 1fr 1fr; } }
-
 .dbms-panel {
-    background: #ffffff;
-    border: 1px solid rgb(226 232 240);
-    border-radius: 0.75rem;
-    padding: 1.1rem 1.25rem;
+    background: var(--bd-surface); border: 1px solid var(--bd-line);
+    border-radius: 0.75rem; padding: 1.1rem 1.25rem;
 }
 .dbms-panel-title {
-    font-size: 0.78rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: rgb(71 85 105);
-    margin: 0 0 0.75rem;
+    font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+    color: var(--bd-muted); margin: 0 0 0.75rem;
 }
-
 .dbms-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
 .dbms-table th {
-    text-align: start;
-    font-weight: 600;
-    color: rgb(100 116 139);
-    padding: 0.35rem 0.4rem;
-    border-bottom: 1px solid rgb(241 245 249);
+    text-align: start; font-weight: 600; color: var(--bd-muted);
+    padding: 0.35rem 0.4rem; border-bottom: 1px solid var(--bd-line);
 }
-.dbms-table td {
-    padding: 0.45rem 0.4rem;
-    border-bottom: 1px solid rgb(241 245 249);
-    color: rgb(30 41 59);
-}
+.dbms-table td { padding: 0.45rem 0.4rem; border-bottom: 1px solid var(--bd-line); color: var(--bd-text); }
 .dbms-table tr:last-child td { border-bottom: 0; }
-.dbms-table a { color: rgb(32 97 216); font-weight: 600; text-decoration: none; }
+.dbms-table a { color: var(--bd-primary-600); font-weight: 600; text-decoration: none; }
 .dbms-table a:hover { text-decoration: underline; }
-.dbms-empty { color: rgb(148 163 184); font-size: 0.85rem; margin: 0; }
+.dbms-empty { color: var(--bd-muted); font-size: 0.85rem; margin: 0; }
 
 .dbms-badge {
-    display: inline-block;
-    padding: 0.1rem 0.55rem;
-    border-radius: 9999px;
-    font-size: 0.68rem;
-    font-weight: 700;
-    background: rgb(241 245 249);
-    color: rgb(71 85 105);
+    display: inline-block; padding: 0.1rem 0.55rem; border-radius: 9999px;
+    font-size: 0.68rem; font-weight: 700; background: var(--bd-surface-2); color: var(--bd-muted);
 }
-.dbms-badge-new       { background: rgb(219 238 254); color: rgb(32 97 216); }
-.dbms-badge-contacted { background: rgb(224 231 255); color: rgb(67 56 202); }
+.dbms-badge-new       { background: rgb(224 231 255); color: rgb(67 56 202); }
+.dbms-badge-contacted { background: rgb(219 234 254); color: rgb(37 99 235); }
 .dbms-badge-scheduled { background: rgb(254 243 199); color: rgb(146 64 14); }
 .dbms-badge-completed { background: rgb(209 250 229); color: rgb(4 120 87); }
 .dbms-badge-cancelled { background: rgb(254 226 226); color: rgb(185 28 28); }
-
-/* Dark mode — Unfold toggles a `.dark` class on the <html> element. */
-.dark .dbms-kpi,
-.dark .dbms-panel { background: rgb(24 24 27); border-color: rgb(39 39 42); }
-.dark .dbms-kpi:hover { border-color: rgb(39 120 234); box-shadow: none; }
-.dark .dbms-kpi-value { color: rgb(244 244 245); }
-.dark .dbms-kpi-title { color: rgb(161 161 170); }
-.dark .dbms-panel-title { color: rgb(161 161 170); }
-.dark .dbms-table td { color: rgb(212 212 216); }
-.dark .dbms-table th { color: rgb(161 161 170); }
-.dark .dbms-table th, .dark .dbms-table td { border-color: rgb(39 39 42); }
-.dark .dbms-table a { color: rgb(147 207 253); }
+.dark .dbms-badge-new       { background: rgba(99,102,241,.20);  color: #c4a2ff; }
+.dark .dbms-badge-contacted { background: rgba(96,165,250,.18);  color: #93a0ff; }
+.dark .dbms-badge-scheduled { background: rgba(245,158,11,.18);  color: #fbbf24; }
+.dark .dbms-badge-completed { background: rgba(16,185,129,.18);  color: #6ee7b7; }
+.dark .dbms-badge-cancelled { background: rgba(239,68,68,.18);   color: #fca5a5; }

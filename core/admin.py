@@ -12,6 +12,12 @@ admin.site.site_header = 'Bidatia'
 admin.site.site_title = 'Bidatia Business Systems'
 admin.site.index_title = 'Dashboard'
 
+# Grid dashboard: the default left sidebar is replaced by a card grid (admin
+# index) + a top navigation bar (templates/admin/base_site.html). Turning the
+# sidebar off here removes it on EVERY admin page via Django's own flag, so no
+# unfold template needs to be forked just to hide it.
+admin.site.enable_nav_sidebar = False
+
 
 @admin.register(EmailLog)
 class EmailLogAdmin(admin.ModelAdmin):

@@ -40,6 +40,13 @@ PROGRESS_STEPS = ('connecting', 'collecting', 'analyzing', 'ai_insights')
 # task simply overwrites this state — the report still gets delivered.
 STALE_PENDING_AFTER = timedelta(minutes=5)
 
+# A run that STARTED (connecting/collecting/…) but never reached done/failed
+# within this window means the worker died or hung mid-scan — otherwise the
+# progress page sits at "Connecting to Odoo" forever. Comfortably above the
+# Celery hard time limit (CELERY_TASK_TIME_LIMIT = 420s) so a slow-but-alive
+# scan is never killed early.
+STALE_RUNNING_AFTER = timedelta(minutes=10)
+
 
 def landing(request):
     if request.method == 'POST':
@@ -175,14 +182,28 @@ def status(request, run_id):
 
 
 def _fail_if_stale(run):
-    if run.status == 'pending' and timezone.now() - run.created_at > STALE_PENDING_AFTER:
-        run.status = 'failed'
-        run.error_message = _(
+    """Never let the progress page spin forever: fail a run that was never
+    picked up by a worker, OR that started but stalled mid-scan."""
+    if run.status in ('done', 'failed'):
+        return
+    age = timezone.now() - run.created_at
+    if run.status == 'pending' and age > STALE_PENDING_AFTER:
+        _mark_run_failed(run, _(
             'The scan could not start — the processing queue appears to be '
             'offline. Please try again later.'
-        )
-        run.finished_at = timezone.now()
-        run.save(update_fields=['status', 'error_message', 'finished_at'])
+        ))
+    elif run.status in PROGRESS_STEPS and age > STALE_RUNNING_AFTER:
+        _mark_run_failed(run, _(
+            'The scan took too long and was stopped. Please try again in a '
+            'few minutes.'
+        ))
+
+
+def _mark_run_failed(run, message):
+    run.status = 'failed'
+    run.error_message = message
+    run.finished_at = timezone.now()
+    run.save(update_fields=['status', 'error_message', 'finished_at'])
 
 
 def demo_report(request):

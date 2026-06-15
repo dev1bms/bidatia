@@ -1,14 +1,47 @@
-{% extends 'admin/base.html' %}
-{% load i18n %}
-
-{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
-
-{% block branding %}
-    {% include "unfold/helpers/site_branding.html" %}
-{% endblock %}
+{% extends "admin/base_site.html" %}
+{% load i18n admin_grid %}
 
 {% block content %}
 <div class="dbms-dash">
+
+    {% comment %}
+    App grid: every app is a card (icon + name). Clicking a card toggles a
+    dropdown of that app's models, each with a changelist link + an "Add"
+    button. One menu open at a time (no overlap). Driven by `app_list` so it
+    always reflects the user's permissions.
+    {% endcomment %}
+    <h1 class="bd-dash-title">{% trans "Dashboard" %}</h1>
+    <div class="bd-grid" x-data="{ open: null }">
+        {% for app in app_list %}
+            <div class="bd-card-wrap">
+                <button type="button" class="bd-card" :class="{ 'is-open': open === {{ forloop.counter }} }"
+                        @click="open = (open === {{ forloop.counter }} ? null : {{ forloop.counter }})"
+                        @click.outside="if (open === {{ forloop.counter }}) open = null"
+                        :aria-expanded="open === {{ forloop.counter }}">
+                    <span class="bd-card-icon material-symbols-outlined">{% app_icon app.app_label %}</span>
+                    <span class="bd-card-name">{{ app.name }}</span>
+                    <span class="bd-card-meta">{% blocktrans count counter=app.models|length %}{{ counter }} model{% plural %}{{ counter }} models{% endblocktrans %}</span>
+                </button>
+                <div class="bd-card-menu bd-menu" x-show="open === {{ forloop.counter }}" x-cloak x-transition>
+                    {% for model in app.models %}
+                        <div class="bd-menu-row">
+                            {% if model.admin_url %}
+                                <a href="{{ model.admin_url }}" class="bd-menu-link">{{ model.name }}</a>
+                            {% else %}
+                                <span class="bd-menu-link bd-disabled">{{ model.name }}</span>
+                            {% endif %}
+                            {% if model.add_url %}
+                                <a href="{{ model.add_url }}" class="bd-menu-add">
+                                    <span class="material-symbols-outlined">add</span>{% trans "Add" %}
+                                </a>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
     {% if dbms_kpis %}
     <div class="dbms-kpi-grid">
         {% for kpi in dbms_kpis %}
@@ -77,13 +110,5 @@
             {% endif %}
         </section>
     </div>
-</div>
-
-{# Default Unfold app list + history, so navigation stays intact. #}
-<div class="flex flex-col lg:flex-row lg:gap-8">
-    <div class="grow">
-        {% include "unfold/helpers/app_list_default.html" %}
-    </div>
-    {% include "unfold/helpers/history.html" %}
 </div>
 {% endblock %}

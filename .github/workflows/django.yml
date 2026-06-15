@@ -168,10 +168,14 @@ jobs:
           sudo -n /usr/bin/systemctl restart bidatia
           sudo -n /usr/bin/systemctl status bidatia --no-pager -l
 
-          # Celery is intentionally NOT restarted yet — we will enable these
-          # once the Redis broker / Celery units are verified in production:
+          # The Celery worker (bidatia-celery-worker.service) now exists on the
+          # server and is REQUIRED for the tools to run. It is not restarted here
+          # yet because that needs a NOPASSWD sudoers entry for it. Uncomment once
+          # `/etc/sudoers.d/bidatia-deploy` also allows the worker unit — restart
+          # it after any change to Celery broker/queue settings so it reloads:
           #   sudo -n /usr/bin/systemctl restart bidatia-celery-worker
           #   sudo -n /usr/bin/systemctl status  bidatia-celery-worker --no-pager -l
+          # (beat is optional — only the daily cleanup/reminder schedule needs it)
           #   sudo -n /usr/bin/systemctl restart bidatia-celery-beat
           #   sudo -n /usr/bin/systemctl status  bidatia-celery-beat --no-pager -l
 
