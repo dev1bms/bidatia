@@ -133,15 +133,22 @@ def _signal_rule(d, x, y, w, h):
 
 
 def _databars(d, x, y, s):
-    """The BidERP data-bars glyph (three ascending bars) inside a square."""
-    pad = int(s * 0.22); bw = int(s * 0.16); gap = int(s * 0.10)
-    base = y + s - pad
-    hs = [int(s * 0.30), int(s * 0.46), int(s * 0.62)]
-    cols = [BRAND_LT, BRAND_LT, TEAL_LT]
-    bx = x + pad
-    for h, c in zip(hs, cols):
-        d.rectangle([bx, base - h, bx + bw, base], fill=c + (255,))
-        bx += bw + gap
+    """The BidERP node-hub glyph: an Odoo core wired to data/BI/AI nodes."""
+    cx, cy = x + s // 2, y + s // 2
+    off = int(s * 0.26)
+    sats = [
+        (cx + off, cy - off, TEAL_LT),   # accent node (AI)
+        (cx + off, cy + off, BRAND_LT),
+        (cx - off, cy,       BRAND_LT),
+    ]
+    lw = max(1, int(s * 0.045))
+    for sx, sy, _c in sats:
+        d.line([(cx, cy), (sx, sy)], fill=BRAND_LT + (210,), width=lw)
+    r = max(2, int(s * 0.085))
+    for sx, sy, c in sats:
+        d.ellipse([sx - r, sy - r, sx + r, sy + r], fill=c + (255,))
+    cr = max(3, int(s * 0.13))
+    d.ellipse([cx - cr, cy - cr, cx + cr, cy + cr], fill=WHITE + (255,))
 
 
 def _brand_furniture(base):

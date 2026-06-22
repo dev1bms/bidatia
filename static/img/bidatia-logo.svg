@@ -1,11 +1,13 @@
 <svg width="260" height="60" viewBox="0 0 260 60" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="BidERP Business Systems">
   <title>BidERP Business Systems</title>
-  <!-- Logo mark: squared ink tile with the data-bars glyph -->
+  <!-- Logo mark: squared ink tile with the node-hub glyph (Odoo core + data/BI/AI nodes) -->
   <rect x="2" y="12" width="40" height="40" fill="#0E0E11"/>
-  <rect x="11" y="32" width="6" height="11" fill="#2dd4bf"/>
-  <rect x="19" y="26" width="6" height="17" fill="#2dd4bf"/>
-  <rect x="27" y="20" width="6" height="23" fill="#f59e0b"/>
+  <path d="M22 32L31 24M22 32L31 40M22 32L13 32" stroke="#a5b4fc" stroke-width="1.8" stroke-linecap="round"/>
+  <circle cx="31" cy="24" r="2.8" fill="#d946ef"/>
+  <circle cx="31" cy="40" r="2.8" fill="#a5b4fc"/>
+  <circle cx="13" cy="32" r="2.8" fill="#a5b4fc"/>
+  <circle cx="22" cy="32" r="4" fill="#ffffff"/>
   <!-- Wordmark -->
   <text x="54" y="35" font-family="'Bricolage Grotesque','Helvetica Neue',sans-serif" font-size="24" font-weight="700" fill="#0E0E11" letter-spacing="-0.5">BidERP</text>
-  <text x="55" y="49" font-family="'IBM Plex Mono',monospace" font-size="9" letter-spacing="2.5" fill="#6b6b73">BUSINESS SYSTEMS</text>
+  <text x="55" y="49" font-family="'IBM Plex Mono',monospace" font-size="9" letter-spacing="2.5" fill="#6b6b73">ODOO EXPERTS</text>
 </svg>

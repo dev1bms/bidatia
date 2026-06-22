@@ -21,7 +21,10 @@
         <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center py-14 lg:py-20">
             <!-- Left: positioning -->
             <div class="lg:col-span-7 reveal">
-                <p class="kicker text-ink/60">{% trans "Odoo · ERP · Data · AI" %}</p>
+                <span class="inline-flex items-center gap-2 rounded-full bg-brand-50 text-brand-700 border border-brand-200 px-3.5 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.1em]">
+                    <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l1.9 5.7L19.6 10l-5.7 1.9L12 17.6l-1.9-5.7L4.4 10l5.7-1.9z"/></svg>
+                    {% trans "Odoo, enhanced by AI" %}
+                </span>
                 <h1 class="mt-5 text-[2.65rem] sm:text-6xl lg:text-[4.5rem] font-bold leading-[0.98] tracking-[-0.03em] text-ink">
                     {% trans "Your ERP shouldn't fight you every day." %}
                     <span class="rgb-text">{% trans "We make it run on data you can trust." %}</span>
@@ -54,59 +57,72 @@
                 </dl>
             </div>
 
-            <!-- Right: BidERP operations data board (instrument panel) -->
+            <!-- Right: Odoo + AI system map (network diagram) -->
             <div class="lg:col-span-5 reveal" style="--d: 120ms">
-                <div class="panel text-canvas">
+                <div class="panel text-canvas overflow-hidden">
                     <div class="flex items-center justify-between px-5 py-3 border-b border-white/10">
-                        <span class="font-mono text-[11px] text-canvas/55 force-ltr">bidatia://operations.board</span>
+                        <span class="font-mono text-[11px] text-canvas/55 force-ltr">odoo://ai.system-map</span>
                         <span class="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-accent-400"><span class="pulse-dot inline-flex h-1.5 w-1.5 rounded-full bg-accent-400"></span>Live</span>
                     </div>
-                    <!-- pipeline strip -->
-                    <div class="grid grid-cols-4 border-b border-white/10 font-mono text-[9px] uppercase tracking-[0.1em] text-center text-canvas/55">
-                        <div class="py-2.5 border-r border-white/10">Capture</div>
-                        <div class="py-2.5 border-r border-white/10">Govern</div>
-                        <div class="py-2.5 border-r border-white/10 text-accent-400">Operate</div>
-                        <div class="py-2.5">Decide</div>
-                    </div>
-                    <div class="p-5">
-                        <!-- throughput bars -->
-                        <div class="flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.1em] text-canvas/45">
-                            <span>{% trans "Throughput" %}</span><span class="force-ltr">last 12 mo</span>
-                        </div>
-                        <svg class="mt-3 w-full h-20" viewBox="0 0 240 64" preserveAspectRatio="none" aria-hidden="true">
-                            <g fill="#818cf8">
-                                <rect x="2" y="40" width="14" height="22"/><rect x="22" y="32" width="14" height="30"/>
-                                <rect x="42" y="36" width="14" height="26"/><rect x="62" y="24" width="14" height="38"/>
-                                <rect x="82" y="28" width="14" height="34"/><rect x="102" y="18" width="14" height="44"/>
+                    <div class="px-4 pt-5 pb-2">
+                        <svg viewBox="0 0 380 300" class="w-full h-auto" fill="none" aria-hidden="true">
+                            <defs>
+                                <linearGradient id="odooCore" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0" stop-color="#6366f1"/><stop offset="0.55" stop-color="#8b5cf6"/><stop offset="1" stop-color="#d946ef"/>
+                                </linearGradient>
+                            </defs>
+                            <!-- connecting flows -->
+                            <g stroke="#a5b4fc" stroke-opacity="0.4" stroke-width="1.6" stroke-linecap="round" class="pipe">
+                                <line x1="190" y1="150" x2="190" y2="52"/>
+                                <line x1="190" y1="150" x2="306" y2="100"/>
+                                <line x1="190" y1="150" x2="306" y2="200"/>
+                                <line x1="190" y1="150" x2="190" y2="248"/>
+                                <line x1="190" y1="150" x2="74" y2="150"/>
                             </g>
-                            <g fill="#d946ef">
-                                <rect x="122" y="22" width="14" height="40"/><rect x="142" y="14" width="14" height="48"/>
-                                <rect x="162" y="16" width="14" height="46"/><rect x="182" y="8" width="14" height="54"/>
-                                <rect x="202" y="6" width="14" height="56"/><rect x="222" y="2" width="14" height="60"/>
+                            <!-- Data warehouse (top) -->
+                            <g>
+                                <rect x="142" y="37" width="96" height="30" rx="8" fill="#ffffff" fill-opacity="0.05" stroke="#ffffff" stroke-opacity="0.13"/>
+                                <circle cx="157" cy="52" r="3" fill="#818cf8"/>
+                                <text x="167" y="56" fill="#c7d2fe" font-size="11" font-family="ui-monospace, monospace">Data WH</text>
                             </g>
+                            <!-- BI / dashboards (top-right) -->
+                            <g>
+                                <rect x="262" y="85" width="106" height="30" rx="8" fill="#ffffff" fill-opacity="0.05" stroke="#ffffff" stroke-opacity="0.13"/>
+                                <circle cx="277" cy="100" r="3" fill="#818cf8"/>
+                                <text x="287" y="104" fill="#c7d2fe" font-size="11" font-family="ui-monospace, monospace">BI · KPIs</text>
+                            </g>
+                            <!-- AI agents (bottom-right, accent) -->
+                            <g>
+                                <rect x="262" y="185" width="106" height="30" rx="8" fill="#d946ef" fill-opacity="0.10" stroke="#d946ef" stroke-opacity="0.45"/>
+                                <circle cx="277" cy="200" r="3" fill="#e879f9"/>
+                                <text x="287" y="204" fill="#f5d0fe" font-size="11" font-family="ui-monospace, monospace">AI agents</text>
+                            </g>
+                            <!-- Payments (bottom) -->
+                            <g>
+                                <rect x="142" y="233" width="96" height="30" rx="8" fill="#ffffff" fill-opacity="0.05" stroke="#ffffff" stroke-opacity="0.13"/>
+                                <circle cx="157" cy="248" r="3" fill="#818cf8"/>
+                                <text x="167" y="252" fill="#c7d2fe" font-size="11" font-family="ui-monospace, monospace">Payments</text>
+                            </g>
+                            <!-- Apps (left) -->
+                            <g>
+                                <rect x="12" y="135" width="88" height="30" rx="8" fill="#ffffff" fill-opacity="0.05" stroke="#ffffff" stroke-opacity="0.13"/>
+                                <circle cx="27" cy="150" r="3" fill="#818cf8"/>
+                                <text x="37" y="154" fill="#c7d2fe" font-size="11" font-family="ui-monospace, monospace">Apps</text>
+                            </g>
+                            <!-- Odoo core (center) -->
+                            <rect x="150" y="127" width="80" height="46" rx="12" fill="url(#odooCore)"/>
+                            <text x="190" y="155" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="700" font-family="'Space Grotesk', sans-serif">Odoo</text>
                         </svg>
-                        <!-- metric cells -->
-                        <div class="mt-5 grid grid-cols-3 border border-white/10 divide-x divide-white/10 text-center">
-                            <div class="py-3">
-                                <p class="font-display text-xl font-bold text-white force-ltr">98.2%</p>
-                                <p class="mt-0.5 font-mono text-[9px] uppercase tracking-[0.08em] text-canvas/45">{% trans "Data quality" %}</p>
-                            </div>
-                            <div class="py-3">
-                                <p class="font-display text-xl font-bold text-white force-ltr">42</p>
-                                <p class="mt-0.5 font-mono text-[9px] uppercase tracking-[0.08em] text-canvas/45">{% trans "Governed KPIs" %}</p>
-                            </div>
-                            <div class="py-3">
-                                <p class="font-display text-xl font-bold text-white force-ltr">7</p>
-                                <p class="mt-0.5 font-mono text-[9px] uppercase tracking-[0.08em] text-canvas/45">{% trans "Sources" %}</p>
-                            </div>
+                    </div>
+                    <div class="px-5 pb-4 flex items-center justify-between gap-3 border-t border-white/10 pt-3">
+                        <div class="flex items-center gap-2 font-mono text-[10px] text-brand-300">
+                            <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l1.9 5.7L19.6 10l-5.7 1.9L12 17.6l-1.9-5.7L4.4 10l5.7-1.9z"/></svg>
+                            {% trans "AI copilot · active" %}
                         </div>
-                        <div class="mt-4 flex items-center gap-2 font-mono text-[10px] text-accent-400">
-                            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                            {% trans "Single source of truth · reconciled" %}
-                        </div>
+                        <span class="font-mono text-[10px] text-accent-400 force-ltr">5 → 1</span>
                     </div>
                 </div>
-                <p class="mt-3 text-center font-mono text-[10px] uppercase tracking-[0.12em] text-ink/35">{% trans "Illustrative operations data board" %}</p>
+                <p class="mt-3 text-center font-mono text-[10px] uppercase tracking-[0.12em] text-ink/35">{% trans "Illustrative Odoo + AI system map" %}</p>
             </div>
         </div>
     </div>
