@@ -225,10 +225,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SITE_NAME = 'BidERP Business Systems'
 # Short brand + division used for the logo lockup in the navbar/footer.
 SITE_BRAND = 'BidERP'
-SITE_DIVISION = 'Business Systems'
+SITE_DIVISION = 'Odoo Experts'
 # Lazy-translated so SEO metadata (title/OG/Twitter) and JSON-LD render in the
 # active language instead of leaking Spanish onto the EN/AR pages.
-SITE_TAGLINE = _('ERP, Odoo & governed data with AI')
+SITE_TAGLINE = _('Odoo tailored to you')
 CONTACT_EMAIL = os.environ.get('CONTACT_EMAIL', 'info@bidatia.xyz')
 CONTACT_WHATSAPP = os.environ.get('CONTACT_WHATSAPP', '+34 911 23 45 67')
 SITE_CITY = _('Madrid, Spain')

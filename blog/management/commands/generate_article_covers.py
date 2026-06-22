@@ -161,7 +161,7 @@ def _brand_furniture(base):
     ty = my + int(3 * SS)
     d.text((tx, ty), 'BidERP', font=wf, fill=WHITE, stroke_width=int(SS), stroke_fill=WHITE)
     sf = _f(12)
-    d.text((tx + int(2 * SS), ty + int(34 * SS)), 'BUSINESS SYSTEMS', font=sf, fill=SLATE)
+    d.text((tx + int(2 * SS), ty + int(34 * SS)), 'ODOO EXPERTS', font=sf, fill=SLATE)
 
     # Neutral tech tag (product/tech terms — language-neutral), bottom-left.
     tag = 'ERP   ·   ODOO   ·   DATA   ·   AI'

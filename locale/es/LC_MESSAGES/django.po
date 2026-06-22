@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BidERP Business Systems 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-22 08:30+0000\n"
+"POT-Creation-Date: 2026-06-22 08:40+0000\n"
 "PO-Revision-Date: 2026-06-15 00:00+0000\n"
 "Last-Translator: BidERP Business Systems <hola@bidatia.xyz>\n"
 "Language-Team: Spanish <hola@bidatia.xyz>\n"
@@ -30,8 +30,8 @@ msgid "Arabic"
 msgstr "Árabe"
 
 #: bidatia/settings.py:231
-msgid "ERP, Odoo & governed data with AI"
-msgstr "ERP, Odoo y datos gobernados con IA"
+msgid "Odoo tailored to you"
+msgstr "Odoo a tu Medida"
 
 #: bidatia/settings.py:234 templates/pages/privacy.html:35
 msgid "Madrid, Spain"
@@ -1908,8 +1908,9 @@ msgstr ""
 " de BidERP. Madrid, España · En remoto en todo el mundo."
 
 #: templates/core/home.html:24
-msgid "ERP · Data governance · AI"
-msgstr "ERP · Gobierno del dato · IA"
+#| msgid "ERP · Data governance · AI"
+msgid "Odoo · ERP · Data · AI"
+msgstr "Odoo · ERP · Datos · IA"
 
 #: templates/core/home.html:26
 msgid "Your ERP shouldn't fight you every day."
@@ -1939,7 +1940,6 @@ msgid "Request an ERP & data assessment"
 msgstr "Solicita una evaluación de ERP y datos"
 
 #: templates/core/home.html:43
-#| msgid "request a consultation"
 msgid "First consultation"
 msgstr "Primera consulta"
 
@@ -1948,7 +1948,6 @@ msgid "ERP evaluation"
 msgstr "Evaluación de ERP"
 
 #: templates/core/home.html:48
-#| msgid "From €49"
 msgid "from €499"
 msgstr "desde 499 €"
 
@@ -8411,6 +8410,9 @@ msgstr ""
 #: tools_core/views.py:156
 msgid "URL, database, login and API key are all required."
 msgstr "La URL, la base de datos, el usuario y la clave API son obligatorios."
+
+#~ msgid "ERP, Odoo & governed data with AI"
+#~ msgstr "ERP, Odoo y datos gobernados con IA"
 
 #~ msgid "Consultation"
 #~ msgstr "Consultoría"
