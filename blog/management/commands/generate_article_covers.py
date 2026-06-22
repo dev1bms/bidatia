@@ -5,7 +5,7 @@ Why this exists
 Article covers must be ORIGINAL and license-safe (no stock photos, no third-party
 brand assets) and visually consistent as one system. Rather than hand-draw six
 files, this command renders them deterministically with Pillow: a deep-navy
-Bidatia-branded canvas with a per-topic abstract motif (workflow / diagnostics /
+BidERP-branded canvas with a per-topic abstract motif (workflow / diagnostics /
 modules / migration / integration / data structure).
 
 Design notes
@@ -13,7 +13,7 @@ Design notes
 * Output is 1200x630 PNG — the right size for article cards, detail hero images
   AND Open Graph / Twitter social cards (one asset, used everywhere).
 * Rendered at 2x and downscaled with LANCZOS, so edges and text are crisp.
-* NO localized text is baked in (only the Bidatia wordmark + a neutral tech tag),
+* NO localized text is baked in (only the BidERP wordmark + a neutral tech tag),
   so the same image is correct on the English, Spanish and Arabic pages.
 * Files land in ``static/img/insights/<slug>.png`` (committed, collected by
   ``collectstatic``, served by WhiteNoise). A shared ``default.png`` is the
@@ -47,7 +47,7 @@ SS = 2                      # supersample factor (render big, downscale = antial
 W2, H2 = W * SS, H * SS
 
 # ── Brand palette (matches tailwind.config in base.html) ──────────────────
-# Bidatia "Ledger" system: near-black ink, deep teal-emerald (brand), warm amber.
+# BidERP "Ledger" system: near-black ink, deep teal-emerald (brand), warm amber.
 INK = (14, 14, 17)          # near-black (#0E0E11)
 NAVY_TOP = (12, 12, 16)
 NAVY_BOT = (19, 19, 25)
@@ -126,14 +126,14 @@ def _background():
 
 
 def _signal_rule(d, x, y, w, h):
-    """A short violet → lime accent rule (the Bidatia signal)."""
+    """A short violet → lime accent rule (the BidERP signal)."""
     half = w // 2
     d.rectangle([x, y, x + half, y + h], fill=BRAND + (235,))
     d.rectangle([x + half, y, x + w, y + h], fill=TEAL_LT + (235,))
 
 
 def _databars(d, x, y, s):
-    """The Bidatia data-bars glyph (three ascending bars) inside a square."""
+    """The BidERP data-bars glyph (three ascending bars) inside a square."""
     pad = int(s * 0.22); bw = int(s * 0.16); gap = int(s * 0.10)
     base = y + s - pad
     hs = [int(s * 0.30), int(s * 0.46), int(s * 0.62)]
@@ -145,7 +145,7 @@ def _databars(d, x, y, s):
 
 
 def _brand_furniture(base):
-    """Bidatia logo mark + wordmark (top-left) and a neutral tech tag (bottom)."""
+    """BidERP logo mark + wordmark (top-left) and a neutral tech tag (bottom)."""
     d = ImageDraw.Draw(base)
     mx, my = int(64 * SS), int(56 * SS)
 
@@ -155,11 +155,11 @@ def _brand_furniture(base):
     d.rectangle([mx, my, mx + s, my + s], outline=(255, 255, 255, 40), width=int(SS))
     _databars(d, mx, my, s)
 
-    # Wordmark: "Bidatia" white + a mono division label.
+    # Wordmark: "BidERP" white + a mono division label.
     wf = _f(30)
     tx = mx + s + int(16 * SS)
     ty = my + int(3 * SS)
-    d.text((tx, ty), 'Bidatia', font=wf, fill=WHITE, stroke_width=int(SS), stroke_fill=WHITE)
+    d.text((tx, ty), 'BidERP', font=wf, fill=WHITE, stroke_width=int(SS), stroke_fill=WHITE)
     sf = _f(12)
     d.text((tx + int(2 * SS), ty + int(34 * SS)), 'BUSINESS SYSTEMS', font=sf, fill=SLATE)
 

@@ -1,4 +1,4 @@
-"""Template helpers for the Bidatia admin grid dashboard.
+"""Template helpers for the BidERP admin grid dashboard.
 
 The admin index renders every app as a card with an icon. Icons are
 **Material Symbols** — already bundled locally by django-unfold

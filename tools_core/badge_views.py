@@ -63,7 +63,7 @@ def badge_verify(request, badge_id):
     svg_url = base + reverse('tools_core:badge_svg', args=[badge.pk])
     embed_snippet = (
         '<a href="%s" target="_blank" rel="noopener">'
-        '<img src="%s" alt="Bidatia ERP Health Snapshot — %s" '
+        '<img src="%s" alt="BidERP ERP Health Snapshot — %s" '
         'width="240" height="56" loading="lazy"></a>'
     ) % (page_url, svg_url, badge.level_code.replace('_', '-'))
 
@@ -76,7 +76,7 @@ def badge_verify(request, badge_id):
         'embed_snippet': embed_snippet,
         'is_new': bool(request.GET.get('new')),
         'meta_description': (
-            'Verification page for a Bidatia ERP Health Snapshot badge — a '
+            'Verification page for a BidERP ERP Health Snapshot badge — a '
             'point-in-time result from a free diagnostic, not a certification.'
         ),
     })

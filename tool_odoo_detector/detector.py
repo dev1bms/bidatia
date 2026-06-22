@@ -25,7 +25,7 @@ logger = logging.getLogger('bidatia.tools')
 
 FETCH_TIMEOUT = 6
 MAX_RESPONSE_BYTES = 262144  # 256 KB is plenty to see <head> + asset tags
-USER_AGENT = 'Bidatia-OdooDetector/1.0 (+https://bidatia.xyz/tools/odoo-detector/)'
+USER_AGENT = 'BidERP-OdooDetector/1.0 (+https://bidatia.xyz/tools/odoo-detector/)'
 
 # Confidence thresholds over the summed signal weights.
 HIGH_SCORE = 7

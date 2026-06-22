@@ -2,7 +2,7 @@
 #
 # push_and_deploy_bidatia.sh — run from your Mac.
 #
-# 1. Validates this is the Bidatia repo, on `main`, with the right remote.
+# 1. Validates this is the BidERP repo, on `main`, with the right remote.
 # 2. Commits (with your confirmation) and pushes to origin/main.
 # 3. Asks for SSH details, copies the server script up, and runs it over an
 #    interactive SSH session (so the server-side prompts work normally).
@@ -17,7 +17,7 @@ EXPECTED_REMOTE="git@github.com:dev1bms/bidatia.git"
 DEFAULT_BRANCH="main"
 DEFAULT_DEPLOY_PATH="/srv/bidatia/app"
 DEFAULT_BIND="127.0.0.1:8020"
-DEFAULT_COMMIT_MSG="Prepare Bidatia production deployment"
+DEFAULT_COMMIT_MSG="Prepare BidERP production deployment"
 
 if [[ -t 1 ]]; then
     B=$'\033[1m'; R=$'\033[0m'; RED=$'\033[31m'; GRN=$'\033[32m'; YEL=$'\033[33m'; BLU=$'\033[34m'
@@ -39,7 +39,7 @@ step "Validating local repository"
 command -v git >/dev/null || die "git is not installed."
 REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null)" || die "Not inside a git repository."
 cd "$REPO_ROOT"
-[[ -f manage.py && -f bidatia/settings.py ]] || die "This does not look like the Bidatia repo (manage.py / bidatia/settings.py missing)."
+[[ -f manage.py && -f bidatia/settings.py ]] || die "This does not look like the BidERP repo (manage.py / bidatia/settings.py missing)."
 ok "Repository root: $REPO_ROOT"
 
 REMOTE_URL="$(git remote get-url origin 2>/dev/null || echo '')"
@@ -141,7 +141,7 @@ info "Git push          : $PUSH_STATUS"
 info "Server            : $SSH_TARGET:$DEPLOY_PATH"
 info "Remote deploy exit: $DEPLOY_RC  ($([[ $DEPLOY_RC -eq 0 ]] && echo success || echo 'see warnings above'))"
 if [[ $DEPLOY_RC -eq 0 ]]; then
-    printf '\n%s\n' "${GRN}${B}Done. Bidatia is deployed. Verify: https://bidatia.xyz/${R}"
+    printf '\n%s\n' "${GRN}${B}Done. BidERP is deployed. Verify: https://bidatia.xyz/${R}"
 else
     printf '\n%s\n' "${YEL}${B}Finished with warnings. Re-read the server output above for next steps.${R}"
 fi

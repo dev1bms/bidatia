@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="240" height="56" viewBox="0 0 240 56" role="img" aria-label="Bidatia ERP Health Snapshot — {{ level_label }}" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="56" viewBox="0 0 240 56" role="img" aria-label="BidERP ERP Health Snapshot — {{ level_label }}" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif">
     <rect x="0.5" y="0.5" width="239" height="55" rx="10" fill="#ffffff" stroke="#e2e8f0"/>
     <rect x="0.5" y="0.5" width="56" height="55" rx="10" fill="#0E0E11"/>
     <rect x="46.5" y="0.5" width="10" height="55" fill="#0E0E11"/>
     <path d="M20 28l6 6 12-12" fill="none" stroke="#d946ef" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="68" y="17" font-size="9" font-weight="600" fill="#64748b" letter-spacing="0.4">Bidatia · ERP HEALTH SNAPSHOT</text>
+    <text x="68" y="17" font-size="9" font-weight="600" fill="#64748b" letter-spacing="0.4">BidERP · ERP HEALTH SNAPSHOT</text>
     <text x="68" y="33" font-size="13" font-weight="700" fill="#0E0E11">{{ level_label }}</text>
     <text x="68" y="47" font-size="9" fill="#94a3b8">{{ tool_label }} · {{ date }}</text>
 </svg>

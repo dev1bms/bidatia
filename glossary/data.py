@@ -714,8 +714,8 @@ TERMS = [
         'slug': 'xml-rpc', 'category': 'integration', 'term': 'XML-RPC',
         'title': {'ar': 'واجهة XML-RPC', 'en': 'XML-RPC'},
         'definition': {
-            'ar': 'الواجهة البرمجية القياسية للتكامل مع Odoo من الخارج: أنظمة أخرى تقرأ السجلات وتكتبها عبرها بنفس قواعد الصلاحيات المطبقة على المستخدمين. أدوات Bidatia تستخدمها للقراءة فقط.',
-            'en': 'Odoo\'s standard external API: other systems read and write records through it under the same permission rules as users. Bidatia tools use it strictly read-only.',
+            'ar': 'الواجهة البرمجية القياسية للتكامل مع Odoo من الخارج: أنظمة أخرى تقرأ السجلات وتكتبها عبرها بنفس قواعد الصلاحيات المطبقة على المستخدمين. أدوات BidERP تستخدمها للقراءة فقط.',
+            'en': 'Odoo\'s standard external API: other systems read and write records through it under the same permission rules as users. BidERP tools use it strictly read-only.',
         },
         'example': {
             'ar': 'متجر إلكتروني خارجي ينشئ أوامر البيع في Odoo تلقائيًا عبر XML-RPC عند كل طلب جديد.',

@@ -13,7 +13,7 @@ def service_list(request):
     context = {
         'services': services,
         'meta_description': _(
-            'Explore Bidatia Odoo and ERP technical services: paid consultations, health checks, '
+            'Explore BidERP Odoo and ERP technical services: paid consultations, health checks, '
             'Studio cleanup, migration assessments, custom module development, integrations and monthly support.'
         ),
     }

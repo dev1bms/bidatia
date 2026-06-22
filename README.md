@@ -1,8 +1,8 @@
-# Bidatia Business Systems — ERP, Odoo & Data Platform
+# BidERP Business Systems — ERP, Odoo & Data Platform
 
-A Django-based commercial website and platform for **Bidatia Business Systems**, the
-ERP and Business Systems division of **Bidatia** (Madrid, Spain) — the firm specializing
-in data, artificial intelligence and data governance. The site presents Bidatia's Odoo /
+A Django-based commercial website and platform for **BidERP Business Systems**, the
+ERP and Business Systems division of **BidERP** (Madrid, Spain) — the firm specializing
+in data, artificial intelligence and data governance. The site presents BidERP's Odoo /
 ERP implementation, modernization, BI, automation, AI-agent and data-governance services,
 and hosts a suite of free Odoo diagnostic tools used as lead magnets.
 
@@ -188,7 +188,7 @@ baked in. For staging/production, override these via environment variables
 | `CONTACT_EMAIL` / `CONTACT_WHATSAPP` | Public contact details shown on the site | `info@bidatia.xyz` / `+34 681 096 066` |
 | `EMAIL_HOST` / `EMAIL_PORT` / `EMAIL_USE_SSL` | SMTP server | `bidatia.xyz` / `465` / `True` |
 | `EMAIL_HOST_USER` / `EMAIL_HOST_PASSWORD` | SMTP auth (**password env-only**) | `info@bidatia.xyz` / *(secret)* |
-| `DEFAULT_FROM_EMAIL` / `SERVER_EMAIL` | From addresses | `Bidatia <info@bidatia.xyz>` |
+| `DEFAULT_FROM_EMAIL` / `SERVER_EMAIL` | From addresses | `BidERP <info@bidatia.xyz>` |
 | `CONTACT_NOTIFICATION_EMAIL` / `CONTACT_NOTIFICATION_CC` | Where form notifications go | `info@bidatia.xyz` / `notificaciones@bidatia.xyz` |
 
 When `DJANGO_DEBUG=False`, production security settings activate automatically
@@ -241,7 +241,7 @@ DJANGO_DEBUG=False DJANGO_SECRET_KEY=... DJANGO_ALLOWED_HOSTS=bidatia.xyz \
 8. **Test SMTP** before going live (sends a real email via your configured server):
    ```bash
    python manage.py shell -c "from django.core.mail import send_mail; \
-   send_mail('Bidatia SMTP test', 'It works.', None, ['info@bidatia.xyz'])"
+   send_mail('BidERP SMTP test', 'It works.', None, ['info@bidatia.xyz'])"
    ```
    Or exercise the full notification path:
    ```bash

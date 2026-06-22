@@ -67,7 +67,7 @@ class ConsultationRequestForm(forms.ModelForm):
             'odoo_version': _('Odoo version'),
             'problem_summary': _('Tell us about your situation'),
             'preferred_datetime': _('Preferred date / time'),
-            'consent': _('I agree that Bidatia may contact me about this request by email, phone or WhatsApp.'),
+            'consent': _('I agree that BidERP may contact me about this request by email, phone or WhatsApp.'),
         }
 
     def clean_consent(self):

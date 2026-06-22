@@ -1,6 +1,6 @@
-# Claude Autonomous Growth Suite Plan — Bidatia Tools
+# Claude Autonomous Growth Suite Plan — BidERP Tools
 
-> Purpose: Give Claude Code a safe, self-managed roadmap to build the next six growth features for Bidatia Tools with minimal interruption from the maintainer.
+> Purpose: Give Claude Code a safe, self-managed roadmap to build the next six growth features for BidERP Tools with minimal interruption from the maintainer.
 >
 > Default target branch: `feature/growth-suite-six-phases`
 >
@@ -10,7 +10,7 @@
 
 ## 0. Mission
 
-Build the next six “outside-the-box” growth features for Bidatia Tools, with high quality, tests, analytics events, i18n, admin visibility where useful, and safe privacy/security boundaries.
+Build the next six “outside-the-box” growth features for BidERP Tools, with high quality, tests, analytics events, i18n, admin visibility where useful, and safe privacy/security boundaries.
 
 The six phases are:
 
@@ -21,7 +21,7 @@ The six phases are:
 5. **Healthy System Badge** — optional embeddable/public verification badge for excellent results.
 6. **Odoo Arabic Glossary** — SEO glossary for Odoo/ERP terms, starting with a strong MVP, not all 300 terms at once.
 
-This is a growth suite, not a rewrite. Reuse existing Bidatia patterns: tools, ToolRun, ToolEvent, EmailLog/unified email, translations, admin, Celery only when needed, rate limits, privacy copy, and existing design language.
+This is a growth suite, not a rewrite. Reuse existing BidERP patterns: tools, ToolRun, ToolEvent, EmailLog/unified email, translations, admin, Celery only when needed, rate limits, privacy copy, and existing design language.
 
 ---
 
@@ -240,7 +240,7 @@ Every phase should preserve this standard:
 
 ## Goal
 
-Build a public micro-tool where a visitor enters a public website URL and Bidatia tells them whether the site **appears to be powered by Odoo**, with confidence and safe evidence.
+Build a public micro-tool where a visitor enters a public website URL and BidERP tells them whether the site **appears to be powered by Odoo**, with confidence and safe evidence.
 
 This is a traffic-entry tool: fast, safe, curious, shareable.
 
@@ -332,7 +332,7 @@ Add ToolEvent events:
 
 ## Expected Result
 
-Bidatia gains a low-friction tool that brings cold visitors into the tools funnel without asking for credentials.
+BidERP gains a low-friction tool that brings cold visitors into the tools funnel without asking for credentials.
 
 ---
 
@@ -474,7 +474,7 @@ Content sections:
 
 ## Expected Result
 
-Bidatia gains SEO landing pages targeting Odoo upgrade intent.
+BidERP gains SEO landing pages targeting Odoo upgrade intent.
 
 ---
 
@@ -556,7 +556,7 @@ weekly_hours = employees * hours_per_employee_per_week
 
 ## Expected Result
 
-Bidatia gets a simple shareable tool that makes ERP pain financially visible and sends visitors into Rescue Check.
+BidERP gets a simple shareable tool that makes ERP pain financially visible and sends visitors into Rescue Check.
 
 ---
 
@@ -587,7 +587,7 @@ Avoid:
 
 Use:
 
-- “Bidatia ERP Health Snapshot”
+- “BidERP ERP Health Snapshot”
 - “Low-risk result”
 - “Verified report link”
 - “Snapshot date”
@@ -631,7 +631,7 @@ On eligible result pages:
 
 ## Expected Result
 
-Bidatia gets a backlink and social-proof mechanism without making risky certification claims.
+BidERP gets a backlink and social-proof mechanism without making risky certification claims.
 
 ---
 
@@ -746,7 +746,7 @@ If no CMS model exists, use fixtures or structured data in code for MVP.
 
 ## Expected Result
 
-Bidatia begins building a defensible Arabic SEO moat around Odoo/ERP terms.
+BidERP begins building a defensible Arabic SEO moat around Odoo/ERP terms.
 
 ---
 

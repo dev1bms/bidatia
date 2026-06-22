@@ -367,7 +367,7 @@ def report(request, run_id):
         'expired': run.is_expired or run.result_json is None,
         'booking_url': settings.TOOLS_BOOKING_URL,
         'meta_description': 'Data Risk Profiler report — pre-migration '
-                            'master-data quality scan by Bidatia.',
+                            'master-data quality scan by BidERP.',
     }
     is_demo = bool(((result or {}).get('meta') or {}).get('demo'))
     if result:

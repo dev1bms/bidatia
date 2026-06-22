@@ -628,7 +628,7 @@ class AdminToolbarTests(TestCase):
 
 
 class CeleryIsolationTests(SimpleTestCase):
-    """Bidatia shares a Redis host with the older DevBMS project, so its broker
+    """BidERP shares a Redis host with the older DevBMS project, so its broker
     and queue must stay isolated even if the env file is missing/unreadable."""
 
     def test_broker_default_is_not_the_shared_db_0(self):

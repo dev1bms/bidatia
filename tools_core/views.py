@@ -100,7 +100,7 @@ def hub(request):
     context = {
         'tools': TOOLS,
         'meta_description': (
-            'Free Odoo diagnostic tools by Bidatia: Studio customization X-Ray, migration '
+            'Free Odoo diagnostic tools by BidERP: Studio customization X-Ray, migration '
             'readiness scanner and more. Read-only, secure, built by Odoo migration engineers.'
         ),
     }

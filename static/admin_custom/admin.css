@@ -1,4 +1,4 @@
-/* Bidatia admin — grid dashboard + top-nav, themed to match the public site.
+/* BidERP admin — grid dashboard + top-nav, themed to match the public site.
    Self-contained (no dependency on Unfold's Tailwind purge). All colour comes
    from CSS variables so the palette is editable in one place; Unfold toggles a
    `.dark` class on <html>, so a `.dark` block supplies the dark theme. The

@@ -1,4 +1,4 @@
-"""Generate the Bidatia brand image assets: Open Graph / social cards and the
+"""Generate the BidERP brand image assets: Open Graph / social cards and the
 favicon / app-icon set — deterministically, with Pillow, so nothing depends on
 external design files or third-party brand assets.
 
@@ -61,7 +61,7 @@ def _social_card(motif, title, subtitle):
 
 
 def _app_icon(size):
-    """A squared Bidatia app icon: ink tile with the data-bars glyph."""
+    """A squared BidERP app icon: ink tile with the data-bars glyph."""
     s = size * SS
     img = Image.new('RGBA', (s, s), (0, 0, 0, 0))
     d = ImageDraw.Draw(img)
@@ -81,7 +81,7 @@ def _app_icon(size):
 
 
 class Command(BaseCommand):
-    help = 'Generate Bidatia Open Graph / social cards and the favicon / app-icon set.'
+    help = 'Generate BidERP Open Graph / social cards and the favicon / app-icon set.'
 
     def handle(self, *args, **options):
         if Image is None:

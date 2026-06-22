@@ -75,7 +75,7 @@ One source of truth for the formula (testable pure Python in
 JS mirror would duplicate the formula for marginal UX gain — skipped per
 "no backend complexity unless needed" read in reverse: no frontend
 complexity either. Inputs are capped so nonsense numbers can't produce
-absurd screenshots under the Bidatia name.
+absurd screenshots under the BidERP name.
 
 ## 2026-06-13 — Phase 5 badge is a tools_core model, snapshotted at creation
 

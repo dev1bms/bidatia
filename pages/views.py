@@ -12,13 +12,13 @@ EOL_TOOL = 'odoo_eol'
 
 def privacy(request):
     return render(request, 'pages/privacy.html', {
-        'meta_description': _('Bidatia privacy policy — how we collect, use and protect your data.'),
+        'meta_description': _('BidERP privacy policy — how we collect, use and protect your data.'),
     })
 
 
 def terms(request):
     return render(request, 'pages/terms.html', {
-        'meta_description': _('Bidatia terms of service — the conditions for using our website and services.'),
+        'meta_description': _('BidERP terms of service — the conditions for using our website and services.'),
     })
 
 

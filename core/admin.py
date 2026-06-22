@@ -8,8 +8,8 @@ from django.utils.html import format_html
 from core.models import EmailLog
 
 # Branding fallback (Unfold also reads UNFOLD['SITE_*'] in settings).
-admin.site.site_header = 'Bidatia'
-admin.site.site_title = 'Bidatia Business Systems'
+admin.site.site_header = 'BidERP'
+admin.site.site_title = 'BidERP Business Systems'
 admin.site.index_title = 'Dashboard'
 
 # Grid dashboard: the default left sidebar is replaced by a card grid (admin

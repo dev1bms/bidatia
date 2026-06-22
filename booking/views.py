@@ -197,7 +197,7 @@ def book_consultation(request):
         'preselect_type': preselect_type if preselect_type in BOOKABLE_CONSULTATION_TYPES else '',
         'booking_timezone': DEFAULT_TIMEZONE,
         'meta_description': _(
-            'Book an Odoo consultation with Bidatia in Madrid: choose a consultation type, '
+            'Book an Odoo consultation with BidERP in Madrid: choose a consultation type, '
             'pick an available time slot (Madrid time), and tell us about your ERP challenge.'
         ),
     }
@@ -210,5 +210,5 @@ def booking_success(request):
     return render(request, 'booking/booking_success.html', {
         'is_paid': is_paid,
         'task_id': task_id,
-        'meta_description': _('Your consultation request has been received by Bidatia.'),
+        'meta_description': _('Your consultation request has been received by BidERP.'),
     })

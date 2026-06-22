@@ -5,11 +5,11 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Bidatia Business Systems 1.0\n"
+"Project-Id-Version: BidERP Business Systems 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-15 13:40+0000\n"
+"POT-Creation-Date: 2026-06-22 08:30+0000\n"
 "PO-Revision-Date: 2026-06-15 00:00+0000\n"
-"Last-Translator: Bidatia Business Systems <hola@bidatia.xyz>\n"
+"Last-Translator: BidERP Business Systems <hola@bidatia.xyz>\n"
 "Language-Team: Spanish <hola@bidatia.xyz>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -106,10 +106,10 @@ msgstr "Grupos"
 #: blog/views.py:17
 msgid ""
 "Practical insights on Odoo, ERP automation, Django integrations and business"
-" technology — written by Bidatia, Madrid."
+" technology — written by BidERP, Madrid."
 msgstr ""
 "Ideas prácticas sobre Odoo, automatización de ERP, integraciones con Django "
-"y tecnología empresarial — por Bidatia, Madrid."
+"y tecnología empresarial — por BidERP, Madrid."
 
 #: blog/views.py:32
 msgid "Edit this insight"
@@ -121,12 +121,11 @@ msgstr "Inicio"
 
 #: blog/views.py:51
 msgid ""
-"Real Odoo and ERP technical projects delivered by Bidatia — audits, "
-"cleanups, migrations, integrations and ongoing support, with measurable "
-"results."
+"Real Odoo and ERP technical projects delivered by BidERP — audits, cleanups,"
+" migrations, integrations and ongoing support, with measurable results."
 msgstr ""
-"Proyectos técnicos reales de Odoo y ERP realizados por Bidatia — auditorías,"
-" limpiezas, migraciones, integraciones y soporte continuo, con resultados "
+"Proyectos técnicos reales de Odoo y ERP realizados por BidERP — auditorías, "
+"limpiezas, migraciones, integraciones y soporte continuo, con resultados "
 "medibles."
 
 #: blog/views.py:62
@@ -212,10 +211,10 @@ msgstr "Fecha / hora preferida"
 
 #: booking/forms.py:70
 msgid ""
-"I agree that Bidatia may contact me about this request by email, phone or "
+"I agree that BidERP may contact me about this request by email, phone or "
 "WhatsApp."
 msgstr ""
-"Acepto que Bidatia me contacte sobre esta solicitud por correo electrónico, "
+"Acepto que BidERP me contacte sobre esta solicitud por correo electrónico, "
 "teléfono o WhatsApp."
 
 #: booking/forms.py:76
@@ -361,7 +360,7 @@ msgstr "Otro / Aún no lo sé"
 msgid "Submitting your booking request…"
 msgstr "Enviando tu solicitud de reserva…"
 
-#: booking/views.py:65 booking/views.py:80
+#: booking/views.py:65 booking/views.py:80 templates/core/home.html:44
 msgid "Free"
 msgstr "Gratis"
 
@@ -425,17 +424,17 @@ msgstr ""
 
 #: booking/views.py:200
 msgid ""
-"Book an Odoo consultation with Bidatia in Madrid: choose a consultation "
-"type, pick an available time slot (Madrid time), and tell us about your ERP "
+"Book an Odoo consultation with BidERP in Madrid: choose a consultation type,"
+" pick an available time slot (Madrid time), and tell us about your ERP "
 "challenge."
 msgstr ""
-"Reserva una consulta de Odoo con Bidatia en Madrid: elige un tipo de "
+"Reserva una consulta de Odoo con BidERP en Madrid: elige un tipo de "
 "consulta, selecciona un horario disponible (hora de Madrid) y cuéntanos tu "
 "reto con el ERP."
 
 #: booking/views.py:213
-msgid "Your consultation request has been received by Bidatia."
-msgstr "Bidatia ha recibido tu solicitud de consulta."
+msgid "Your consultation request has been received by BidERP."
+msgstr "BidERP ha recibido tu solicitud de consulta."
 
 #: core/tasks.py:50
 msgid "Your message has been received. We will reply within one business day."
@@ -450,13 +449,13 @@ msgstr ""
 
 #: core/views.py:17
 msgid ""
-"Bidatia Business Systems implements, modernizes and governs Odoo ERP — "
+"BidERP Business Systems implements, modernizes and governs Odoo ERP — "
 "connected to your data platform, BI dashboards and AI agents. The Business "
-"Systems division of Bidatia, Madrid."
+"Systems division of BidERP, Madrid."
 msgstr ""
-"Bidatia Business Systems implanta, moderniza y gobierna el ERP Odoo, "
+"BidERP Business Systems implanta, moderniza y gobierna el ERP Odoo, "
 "conectado a tu plataforma de datos, tus cuadros de mando de BI y tus agentes"
-" de IA. La división de Business Systems de Bidatia, Madrid."
+" de IA. La división de Business Systems de BidERP, Madrid."
 
 #: core/views.py:27
 msgid "Odoo ERP implementation & custom module development"
@@ -492,12 +491,12 @@ msgstr "Automatización y optimización de flujos de trabajo"
 
 #: core/views.py:37
 msgid ""
-"About Bidatia Business Systems — the ERP and Business Systems division of "
-"Bidatia. A team of engineers bringing data, AI and governance discipline to "
+"About BidERP Business Systems — the ERP and Business Systems division of "
+"BidERP. A team of engineers bringing data, AI and governance discipline to "
 "Odoo and enterprise systems."
 msgstr ""
-"Sobre Bidatia Business Systems, la división de ERP y Business Systems de "
-"Bidatia. Un equipo de ingenieros que aporta la disciplina del dato, la IA y "
+"Sobre BidERP Business Systems, la división de ERP y Business Systems de "
+"BidERP. Un equipo de ingenieros que aporta la disciplina del dato, la IA y "
 "el gobierno del dato a Odoo y a los sistemas empresariales."
 
 #: glossary/views.py:21
@@ -658,17 +657,17 @@ msgstr "Enviando tu mensaje…"
 
 #: leads/views.py:47
 msgid ""
-"Get in touch with Bidatia for Odoo and ERP technical support, custom "
+"Get in touch with BidERP for Odoo and ERP technical support, custom "
 "development or integration projects. Based in Madrid, working with clients "
 "worldwide."
 msgstr ""
-"Ponte en contacto con Bidatia para soporte técnico de Odoo y ERP, desarrollo"
-" a medida o proyectos de integración. Con base en Madrid, trabajando con "
+"Ponte en contacto con BidERP para soporte técnico de Odoo y ERP, desarrollo "
+"a medida o proyectos de integración. Con base en Madrid, trabajando con "
 "clientes de todo el mundo."
 
 #: leads/views.py:58
-msgid "Thank you for contacting Bidatia — we will get back to you shortly."
-msgstr "Gracias por contactar con Bidatia: te responderemos en breve."
+msgid "Thank you for contacting BidERP — we will get back to you shortly."
+msgstr "Gracias por contactar con BidERP: te responderemos en breve."
 
 #: pages/odoo_versions.py:20 templates/pages/odoo_eol_detail.html:34
 #: templates/pages/odoo_eol_index.html:51
@@ -684,18 +683,17 @@ msgstr ""
 "planificación, no como un plazo contractual."
 
 #: pages/views.py:15
-msgid "Bidatia privacy policy — how we collect, use and protect your data."
+msgid "BidERP privacy policy — how we collect, use and protect your data."
 msgstr ""
-"Política de privacidad de Bidatia: cómo recopilamos, usamos y protegemos tus"
-" datos."
+"Política de privacidad de BidERP: cómo recopilamos, usamos y protegemos tus "
+"datos."
 
 #: pages/views.py:21
 msgid ""
-"Bidatia terms of service — the conditions for using our website and "
-"services."
+"BidERP terms of service — the conditions for using our website and services."
 msgstr ""
-"Términos del servicio de Bidatia: las condiciones de uso de nuestro sitio "
-"web y servicios."
+"Términos del servicio de BidERP: las condiciones de uso de nuestro sitio web"
+" y servicios."
 
 #: pages/views.py:33
 msgid ""
@@ -838,12 +836,12 @@ msgstr ""
 
 #: services/views.py:16
 msgid ""
-"Explore Bidatia Odoo and ERP technical services: paid consultations, health "
+"Explore BidERP Odoo and ERP technical services: paid consultations, health "
 "checks, Studio cleanup, migration assessments, custom module development, "
 "integrations and monthly support."
 msgstr ""
-"Descubre los servicios técnicos de Odoo y ERP de Bidatia: consultas de pago,"
-" revisiones de estado, limpieza de Studio, evaluaciones de migración, "
+"Descubre los servicios técnicos de Odoo y ERP de BidERP: consultas de pago, "
+"revisiones de estado, limpieza de Studio, evaluaciones de migración, "
 "desarrollo de módulos a medida, integraciones y soporte mensual."
 
 #: services/views.py:29
@@ -884,8 +882,8 @@ msgid "Set a test recipient first."
 msgstr "Primero define un destinatario de prueba."
 
 #: site_config/admin.py:85
-msgid "Bidatia — test email"
-msgstr "Bidatia — correo de prueba"
+msgid "BidERP — test email"
+msgstr "BidERP — correo de prueba"
 
 #: site_config/admin.py:86
 msgid "Test email"
@@ -1388,11 +1386,11 @@ msgstr "Explora nuestros servicios"
 
 #: templates/blog/blog_list.html:5
 msgid ""
-"Bidatia Insights — original articles on ERP data strategy, Odoo as a data "
+"BidERP Insights — original articles on ERP data strategy, Odoo as a data "
 "platform, BI dashboards, data governance and AI agents for operational "
 "workflows."
 msgstr ""
-"Bidatia Insights: artículos originales sobre estrategia de datos en el ERP, "
+"BidERP Insights: artículos originales sobre estrategia de datos en el ERP, "
 "Odoo como plataforma de datos, cuadros de mando de BI, gobierno del dato y "
 "agentes de IA para procesos operativos."
 
@@ -1477,8 +1475,8 @@ msgstr ""
 
 #: templates/booking/book_consultation.html:104
 #: templates/services/service_detail.html:101
-msgid "Contact Bidatia"
-msgstr "Contacta con Bidatia"
+msgid "Contact BidERP"
+msgstr "Contacta con BidERP"
 
 #: templates/booking/book_consultation.html:128
 msgid "Time"
@@ -1675,12 +1673,12 @@ msgid "Case studies are being prepared — check back soon."
 msgstr "Estamos preparando los casos de éxito; vuelve dentro de poco."
 
 #: templates/core/about.html:4
-msgid "About Bidatia Business Systems — ERP, Data & AI"
-msgstr "Sobre Bidatia Business Systems — ERP, datos e IA"
+msgid "About BidERP Business Systems — ERP, Data & AI"
+msgstr "Sobre BidERP Business Systems — ERP, datos e IA"
 
 #: templates/core/about.html:11
-msgid "About Bidatia Business Systems"
-msgstr "Sobre Bidatia Business Systems"
+msgid "About BidERP Business Systems"
+msgstr "Sobre BidERP Business Systems"
 
 #: templates/core/about.html:13
 msgid "We bring data discipline to the systems your business runs on"
@@ -1690,19 +1688,19 @@ msgstr ""
 
 #: templates/core/about.html:16
 msgid ""
-"Bidatia Business Systems is the ERP and business-systems division of "
-"Bidatia, the Madrid-based firm specializing in data, artificial intelligence"
-" and data governance. We apply that same engineering rigor to Odoo and the "
+"BidERP Business Systems is the ERP and business-systems division of BidERP, "
+"the Madrid-based firm specializing in data, artificial intelligence and data"
+" governance. We apply that same engineering rigor to Odoo and the "
 "operational systems companies depend on every day."
 msgstr ""
-"Bidatia Business Systems es la división de ERP y sistemas de negocio de "
-"Bidatia, la firma de Madrid especializada en datos, inteligencia artificial "
-"y gobierno del dato. Aplicamos ese mismo rigor de ingeniería a Odoo y a los "
+"BidERP Business Systems es la división de ERP y sistemas de negocio de "
+"BidERP, la firma de Madrid especializada en datos, inteligencia artificial y"
+" gobierno del dato. Aplicamos ese mismo rigor de ingeniería a Odoo y a los "
 "sistemas operativos de los que dependen las empresas cada día."
 
 #: templates/core/about.html:24
-msgid "Bidatia: governed data feeding ERP, BI and AI"
-msgstr "Bidatia: datos gobernados que alimentan ERP, BI e IA"
+msgid "BidERP: governed data feeding ERP, BI and AI"
+msgstr "BidERP: datos gobernados que alimentan ERP, BI e IA"
 
 #: templates/core/about.html:56
 msgid "Why this division exists"
@@ -1726,14 +1724,14 @@ msgstr ""
 
 #: templates/core/about.html:66
 msgid ""
-"Bidatia Business Systems exists to close that gap. We combine genuine Odoo expertise\n"
-"                    with the data-governance, BI and AI practices at the core of Bidatia — Python, Django,\n"
+"BidERP Business Systems exists to close that gap. We combine genuine Odoo expertise\n"
+"                    with the data-governance, BI and AI practices at the core of BidERP — Python, Django,\n"
 "                    PostgreSQL, modern data platforms and clean APIs — so that fixes are not just patches, but\n"
 "                    improvements your system, and your data, can keep building on."
 msgstr ""
-"Bidatia Business Systems existe para cerrar esa brecha. Combinamos una "
+"BidERP Business Systems existe para cerrar esa brecha. Combinamos una "
 "experiencia real en Odoo con las prácticas de gobierno del dato, BI e IA que"
-" están en el núcleo de Bidatia —Python, Django, PostgreSQL, plataformas de "
+" están en el núcleo de BidERP —Python, Django, PostgreSQL, plataformas de "
 "datos modernas y APIs limpias— para que las soluciones no sean simples "
 "parches, sino mejoras sobre las que tu sistema, y tus datos, puedan seguir "
 "creciendo."
@@ -1791,24 +1789,24 @@ msgstr ""
 "técnica sénior en sus proyectos de ERP"
 
 #: templates/core/about.html:104
-msgid "Part of Bidatia"
-msgstr "Parte de Bidatia"
+msgid "Part of BidERP"
+msgstr "Parte de BidERP"
 
 #: templates/core/about.html:106
 msgid ""
-"Bidatia helps organizations maximize the value of their data through AI "
+"BidERP helps organizations maximize the value of their data through AI "
 "strategy, generative AI, data platforms, visualization and data governance. "
-"Bidatia Business Systems extends that mission into the operational core of "
+"BidERP Business Systems extends that mission into the operational core of "
 "the business: the ERP. The result is one partner that can take you from raw "
 "operational data to governed processes, reliable reporting and AI that works"
 " in production."
 msgstr ""
-"Bidatia ayuda a las organizaciones a maximizar el valor de sus datos "
-"mediante estrategia de IA, IA generativa, plataformas de datos, "
-"visualización y gobierno del dato. Bidatia Business Systems lleva esa misión"
-" al núcleo operativo del negocio: el ERP. El resultado es un único socio que"
-" puede acompañarte desde los datos operativos en bruto hasta procesos "
-"gobernados, reporting fiable e IA que funciona en producción."
+"BidERP ayuda a las organizaciones a maximizar el valor de sus datos mediante"
+" estrategia de IA, IA generativa, plataformas de datos, visualización y "
+"gobierno del dato. BidERP Business Systems lleva esa misión al núcleo "
+"operativo del negocio: el ERP. El resultado es un único socio que puede "
+"acompañarte desde los datos operativos en bruto hasta procesos gobernados, "
+"reporting fiable e IA que funciona en producción."
 
 #: templates/core/about.html:112
 msgid "Let's see if we're the right fit for you"
@@ -1828,8 +1826,8 @@ msgid "Contact the team"
 msgstr "Contacta con el equipo"
 
 #: templates/core/contact.html:4
-msgid "Contact Bidatia Business Systems — ERP, Data & AI"
-msgstr "Contacto Bidatia Business Systems — ERP, datos e IA"
+msgid "Contact BidERP Business Systems — ERP, Data & AI"
+msgstr "Contacto BidERP Business Systems — ERP, datos e IA"
 
 #: templates/core/contact.html:9 templates/partials/footer.html:53
 msgid "Get in touch"
@@ -1901,13 +1899,13 @@ msgstr "ERP, Odoo y plataformas de datos para empresas"
 
 #: templates/core/home.html:6
 msgid ""
-"Bidatia Business Systems implements, modernizes and governs Odoo ERP — "
+"BidERP Business Systems implements, modernizes and governs Odoo ERP — "
 "connected to your data platform, BI and AI agents. The Business Systems "
-"division of Bidatia. Madrid, Spain · Remote worldwide."
+"division of BidERP. Madrid, Spain · Remote worldwide."
 msgstr ""
-"Bidatia Business Systems implanta, moderniza y gobierna Odoo ERP, conectado "
+"BidERP Business Systems implanta, moderniza y gobierna Odoo ERP, conectado "
 "con tu plataforma de datos, BI y agentes de IA. La división Business Systems"
-" de Bidatia. Madrid, España · En remoto en todo el mundo."
+" de BidERP. Madrid, España · En remoto en todo el mundo."
 
 #: templates/core/home.html:24
 msgid "ERP · Data governance · AI"
@@ -1923,16 +1921,16 @@ msgstr "Haz que funcione con datos en los que confiar."
 
 #: templates/core/home.html:30
 msgid ""
-"Bidatia Business Systems implements, modernizes and governs Odoo ERP for "
+"BidERP Business Systems implements, modernizes and governs Odoo ERP for "
 "companies that take their data seriously — connecting it to your data "
 "platform, your BI dashboards and your AI agents. The same engineering "
-"discipline Bidatia brings to data and AI, now applied to your core business "
+"discipline BidERP brings to data and AI, now applied to your core business "
 "systems."
 msgstr ""
-"Bidatia Business Systems implanta, moderniza y gobierna Odoo ERP para "
+"BidERP Business Systems implanta, moderniza y gobierna Odoo ERP para "
 "empresas que se toman en serio sus datos, conectándolo con tu plataforma de "
 "datos, tus cuadros de mando de BI y tus agentes de IA. La misma disciplina "
-"de ingeniería que Bidatia aplica a los datos y la IA, ahora en el núcleo de "
+"de ingeniería que BidERP aplica a los datos y la IA, ahora en el núcleo de "
 "tus sistemas de negocio."
 
 #: templates/core/home.html:38 templates/partials/cta.html:19
@@ -1941,20 +1939,18 @@ msgid "Request an ERP & data assessment"
 msgstr "Solicita una evaluación de ERP y datos"
 
 #: templates/core/home.html:43
-msgid "Consultation"
-msgstr "Consultoría"
-
-#: templates/core/home.html:44
-msgid "from €90"
-msgstr "desde 90 €"
+#| msgid "request a consultation"
+msgid "First consultation"
+msgstr "Primera consulta"
 
 #: templates/core/home.html:47
-msgid "ERP assessment"
+msgid "ERP evaluation"
 msgstr "Evaluación de ERP"
 
 #: templates/core/home.html:48
-msgid "from €690"
-msgstr "desde 690 €"
+#| msgid "From €49"
+msgid "from €499"
+msgstr "desde 499 €"
 
 #: templates/core/home.html:51
 msgid "First reply"
@@ -1989,8 +1985,8 @@ msgid "Illustrative operations data board"
 msgstr "Panel de datos operativos ilustrativo"
 
 #: templates/core/home.html:122
-msgid "Backed by Bidatia"
-msgstr "Respaldado por Bidatia"
+msgid "Backed by BidERP"
+msgstr "Respaldado por BidERP"
 
 #: templates/core/home.html:123
 msgid "Data, AI &amp; governance expertise"
@@ -2017,8 +2013,8 @@ msgid "Multilingual support"
 msgstr "Atención en varios idiomas"
 
 #: templates/core/home.html:156
-msgid "The Bidatia approach"
-msgstr "El enfoque Bidatia"
+msgid "The BidERP approach"
+msgstr "El enfoque BidERP"
 
 #: templates/core/home.html:158
 msgid "From scattered data to decisions you can act on"
@@ -2424,11 +2420,11 @@ msgstr "«No tenemos equipo de ERP interno y necesitamos un socio fiable.»"
 msgid ""
 "A managed support plan gives you direct access to senior engineers for "
 "fixes, improvements and questions — with the same governance and "
-"documentation standards Bidatia applies to its data platforms."
+"documentation standards BidERP applies to its data platforms."
 msgstr ""
 "Un plan de soporte gestionado te da acceso directo a ingenieros sénior para "
 "correcciones, mejoras y dudas, con los mismos estándares de gobierno y "
-"documentación que Bidatia aplica a sus plataformas de datos."
+"documentación que BidERP aplica a sus plataformas de datos."
 
 #: templates/core/home.html:586
 msgid "Systems &amp; integrations"
@@ -2473,11 +2469,11 @@ msgstr "Explora los servicios de integración"
 
 #: templates/core/home.html:617
 msgid ""
-"Bidatia connecting Odoo to the data warehouse, BI, AI agents, payments, "
+"BidERP connecting Odoo to the data warehouse, BI, AI agents, payments, "
 "logistics and custom apps"
 msgstr ""
-"Bidatia conectando Odoo con el data warehouse, el BI, los agentes de IA, los"
-" pagos, la logística y las aplicaciones a medida"
+"BidERP conectando Odoo con el data warehouse, el BI, los agentes de IA, los "
+"pagos, la logística y las aplicaciones a medida"
 
 #: templates/core/home.html:633
 msgid "Data warehouse"
@@ -2508,8 +2504,8 @@ msgid "core ERP"
 msgstr "núcleo ERP"
 
 #: templates/core/home.html:655
-msgid "Why Bidatia"
-msgstr "Por qué Bidatia"
+msgid "Why BidERP"
+msgstr "Por qué BidERP"
 
 #: templates/core/home.html:657
 msgid "Technical depth, straight talk, and respect for your budget"
@@ -2534,11 +2530,11 @@ msgstr "Gobierno del dato en el ADN"
 
 #: templates/core/home.html:670
 msgid ""
-"As Bidatia's Business Systems division, we treat your ERP data as a governed"
-" asset — not an afterthought."
+"As BidERP's Business Systems division, we treat your ERP data as a governed "
+"asset — not an afterthought."
 msgstr ""
-"Como división Business Systems de Bidatia, tratamos los datos de tu ERP como"
-" un activo gobernado, no como algo secundario."
+"Como división Business Systems de BidERP, tratamos los datos de tu ERP como "
+"un activo gobernado, no como algo secundario."
 
 #: templates/core/home.html:674
 msgid "Clear scope and price up front"
@@ -2669,10 +2665,10 @@ msgstr "Las palabras son el comienzo — tu sistema es la historia real"
 
 #: templates/glossary/index.html:47
 msgid ""
-"The free Bidatia diagnostics turn these concepts into concrete numbers from "
+"The free BidERP diagnostics turn these concepts into concrete numbers from "
 "your own ERP: what was customized, what is risky, and what to fix first."
 msgstr ""
-"Los diagnósticos gratuitos de Bidatia convierten estos conceptos en números "
+"Los diagnósticos gratuitos de BidERP convierten estos conceptos en números "
 "concretos de tu propio ERP: qué se personalizó, qué es arriesgado y qué "
 "arreglar primero."
 
@@ -2941,11 +2937,11 @@ msgstr "Última actualización:"
 
 #: templates/pages/privacy.html:13
 msgid ""
-"This policy explains, in plain language, how Bidatia handles the information"
-" you share through this website. It is a practical first version and may be "
+"This policy explains, in plain language, how BidERP handles the information "
+"you share through this website. It is a practical first version and may be "
 "refined as the business grows."
 msgstr ""
-"Esta política explica, en lenguaje claro, cómo Bidatia gestiona la "
+"Esta política explica, en lenguaje claro, cómo BidERP gestiona la "
 "información que compartes a través de este sitio web. Es una primera versión"
 " práctica y puede actualizarse a medida que el negocio crece."
 
@@ -2955,19 +2951,19 @@ msgstr "1. Quién es responsable de tus datos"
 
 #: templates/pages/privacy.html:23
 msgid ""
-"Bidatia Business Systems is the ERP and Business Systems division of "
-"Bidatia, a company based in Madrid, Spain, specialising in data, artificial "
+"BidERP Business Systems is the ERP and Business Systems division of BidERP, "
+"a company based in Madrid, Spain, specialising in data, artificial "
 "intelligence and data governance. Through this division we provide Odoo and "
 "ERP implementation, modernization, BI, automation and data-governance "
-"services. Bidatia is the party responsible for the personal data collected "
+"services. BidERP is the party responsible for the personal data collected "
 "through this website."
 msgstr ""
-"Bidatia Business Systems es la división de ERP y Business Systems de "
-"Bidatia, una empresa con sede en Madrid, España, especializada en datos, "
-"inteligencia artificial y gobierno del dato. A través de esta división "
-"prestamos servicios de implantación y modernización de Odoo y ERP, BI, "
-"automatización y gobierno del dato. Bidatia es la responsable de los datos "
-"personales recogidos a través de este sitio web."
+"BidERP Business Systems es la división de ERP y Business Systems de BidERP, "
+"una empresa con sede en Madrid, España, especializada en datos, inteligencia"
+" artificial y gobierno del dato. A través de esta división prestamos "
+"servicios de implantación y modernización de Odoo y ERP, BI, automatización "
+"y gobierno del dato. BidERP es la responsable de los datos personales "
+"recogidos a través de este sitio web."
 
 #: templates/pages/privacy.html:31
 msgid "You can reach us at:"
@@ -3102,13 +3098,13 @@ msgstr "5. Notificaciones por correo electrónico"
 msgid ""
 "When you submit a request, the details are saved in our website database and"
 " a notification is sent to our business inbox so we can follow up. A copy "
-"may also be sent to an internal address used by Bidatia for operational "
+"may also be sent to an internal address used by BidERP for operational "
 "follow-up. These notifications are used only to handle your request."
 msgstr ""
 "Cuando envías una solicitud, los datos se guardan en la base de datos de "
 "nuestro sitio web y se envía una notificación a nuestro buzón profesional "
 "para que podamos darle seguimiento. También puede enviarse una copia a una "
-"dirección interna que Bidatia utiliza para el seguimiento operativo. Estas "
+"dirección interna que BidERP utiliza para el seguimiento operativo. Estas "
 "notificaciones se usan únicamente para gestionar tu solicitud."
 
 #: templates/pages/privacy.html:90
@@ -3279,25 +3275,25 @@ msgstr "Términos del servicio"
 
 #: templates/pages/terms.html:13
 msgid ""
-"These terms describe how Bidatia works with clients through this website. "
+"These terms describe how BidERP works with clients through this website. "
 "They are a practical first version written in plain language and may be "
 "refined as the business grows."
 msgstr ""
-"Estos términos describen cómo Bidatia trabaja con sus clientes a través de "
+"Estos términos describen cómo BidERP trabaja con sus clientes a través de "
 "este sitio web. Son una primera versión práctica, redactada en lenguaje "
 "claro, y pueden actualizarse a medida que el negocio crece."
 
 #: templates/pages/terms.html:21
-msgid "1. What Bidatia offers"
-msgstr "1. Qué ofrece Bidatia"
+msgid "1. What BidERP offers"
+msgstr "1. Qué ofrece BidERP"
 
 #: templates/pages/terms.html:22
 msgid ""
-"Bidatia Business Systems is the ERP and Business Systems division of "
-"Bidatia, a company based in Madrid, Spain. We provide:"
+"BidERP Business Systems is the ERP and Business Systems division of BidERP, "
+"a company based in Madrid, Spain. We provide:"
 msgstr ""
-"Bidatia Business Systems es la división de ERP y Business Systems de "
-"Bidatia, una empresa con sede en Madrid, España. Ofrecemos:"
+"BidERP Business Systems es la división de ERP y Business Systems de BidERP, "
+"una empresa con sede en Madrid, España. Ofrecemos:"
 
 #: templates/pages/terms.html:24
 msgid "Odoo and ERP implementation, modernization and consulting"
@@ -3335,13 +3331,13 @@ msgstr "2. La naturaleza de este sitio web"
 msgid ""
 "This is an information and lead-generation website. Submitting a contact or "
 "booking form does not, by itself, create a contract or a guaranteed "
-"engagement. Bookings made through this website are requests until Bidatia "
+"engagement. Bookings made through this website are requests until BidERP "
 "confirms them."
 msgstr ""
 "Este es un sitio web informativo y de captación de clientes. Enviar un "
 "formulario de contacto o de reserva no crea por sí mismo un contrato ni un "
 "compromiso garantizado. Las reservas realizadas a través de este sitio son "
-"solicitudes hasta que Bidatia las confirma."
+"solicitudes hasta que BidERP las confirma."
 
 #: templates/pages/terms.html:46
 msgid "3. Consultations and bookings"
@@ -3365,10 +3361,10 @@ msgstr ""
 
 #: templates/pages/terms.html:50
 msgid ""
-"Bidatia may decline, reschedule or cancel a request when necessary, and will"
-" let you know as early as possible."
+"BidERP may decline, reschedule or cancel a request when necessary, and will "
+"let you know as early as possible."
 msgstr ""
-"Bidatia puede rechazar, reprogramar o cancelar una solicitud cuando sea "
+"BidERP puede rechazar, reprogramar o cancelar una solicitud cuando sea "
 "necesario, y te lo comunicará lo antes posible."
 
 #: templates/pages/terms.html:51
@@ -3476,13 +3472,13 @@ msgstr "8. Ingeniería asistida por IA"
 msgid ""
 "We may use AI tools to assist with analysis, coding, documentation and "
 "productivity. These tools support our work, but the final responsibility for"
-" any deliverable remains with Bidatia. We take care not to expose "
+" any deliverable remains with BidERP. We take care not to expose "
 "confidential client data unnecessarily to third-party tools."
 msgstr ""
 "Podemos utilizar herramientas de IA para apoyar el análisis, la "
 "programación, la documentación y la productividad. Estas herramientas "
 "respaldan nuestro trabajo, pero la responsabilidad final de cualquier "
-"entregable sigue siendo de Bidatia. Procuramos no exponer innecesariamente "
+"entregable sigue siendo de BidERP. Procuramos no exponer innecesariamente "
 "datos confidenciales de los clientes a herramientas de terceros."
 
 #: templates/pages/terms.html:111
@@ -3503,10 +3499,10 @@ msgstr ""
 
 #: templates/pages/terms.html:115
 msgid ""
-"Bidatia may reuse general know-how, patterns and non-confidential experience"
-" gained during the work."
+"BidERP may reuse general know-how, patterns and non-confidential experience "
+"gained during the work."
 msgstr ""
-"Bidatia puede reutilizar los conocimientos generales, los patrones y la "
+"BidERP puede reutilizar los conocimientos generales, los patrones y la "
 "experiencia no confidencial adquiridos durante el trabajo."
 
 #: templates/pages/terms.html:120
@@ -3515,13 +3511,13 @@ msgstr "10. Limitación de responsabilidad"
 
 #: templates/pages/terms.html:122
 msgid ""
-"Bidatia provides professional technical services with care and good-faith "
+"BidERP provides professional technical services with care and good-faith "
 "analysis. We cannot, however, guarantee uninterrupted systems or specific "
 "business outcomes. You should keep your own backups and review changes "
 "before relying on them. Nothing in these terms removes any rights you have "
 "under applicable law."
 msgstr ""
-"Bidatia presta servicios técnicos profesionales con diligencia y con un "
+"BidERP presta servicios técnicos profesionales con diligencia y con un "
 "análisis de buena fe. No obstante, no podemos garantizar sistemas sin "
 "interrupciones ni resultados de negocio concretos. Debes mantener tus "
 "propias copias de seguridad y revisar los cambios antes de confiar en ellos."
@@ -3536,12 +3532,12 @@ msgstr "11. Plataformas de terceros"
 msgid ""
 "Tools and platforms such as Odoo, Django, hosting and email providers, "
 "payment links and third-party APIs have their own terms and conditions. "
-"Bidatia is not responsible for outages, changes or policy decisions made by "
+"BidERP is not responsible for outages, changes or policy decisions made by "
 "these third-party platforms."
 msgstr ""
 "Herramientas y plataformas como Odoo, Django, los proveedores de alojamiento"
 " y de correo electrónico, los enlaces de pago y las API de terceros tienen "
-"sus propios términos y condiciones. Bidatia no se hace responsable de las "
+"sus propios términos y condiciones. BidERP no se hace responsable de las "
 "interrupciones, los cambios o las decisiones de política de estas "
 "plataformas de terceros."
 
@@ -3551,13 +3547,13 @@ msgstr "12. Legislación aplicable"
 
 #: templates/pages/terms.html:145
 msgid ""
-"As Bidatia is based in Madrid, Spain, these terms are intended to be "
-"governed by Spanish law, with the courts of Madrid as the usual place of "
+"As BidERP is based in Madrid, Spain, these terms are intended to be governed"
+" by Spanish law, with the courts of Madrid as the usual place of "
 "jurisdiction. This clause is a practical starting point and should be "
 "reviewed by a legal advisor before full commercial launch."
 msgstr ""
-"Dado que Bidatia tiene su sede en Madrid (España), la intención es que estos"
-" términos se rijan por la legislación española, siendo los tribunales de "
+"Dado que BidERP tiene su sede en Madrid (España), la intención es que estos "
+"términos se rijan por la legislación española, siendo los tribunales de "
 "Madrid el foro habitual de jurisdicción. Esta cláusula es un punto de "
 "partida práctico y debería ser revisada por un asesor legal antes del "
 "lanzamiento comercial definitivo."
@@ -3574,8 +3570,8 @@ msgid "Admin tools"
 msgstr "Herramientas de administración"
 
 #: templates/partials/admin_toolbar.html:16
-msgid "Bidatia admin"
-msgstr "Administración de Bidatia"
+msgid "BidERP admin"
+msgstr "Administración de BidERP"
 
 #: templates/partials/admin_toolbar.html:19
 msgid "Admin dashboard"
@@ -3606,11 +3602,11 @@ msgstr ""
 
 #: templates/partials/footer.html:22
 msgid ""
-"The Business Systems division of Bidatia. We implement, modernize and govern"
-" Odoo ERP — connected to your data platform, your BI and your AI agents — so"
-" your operation runs on information you can trust."
+"The Business Systems division of BidERP. We implement, modernize and govern "
+"Odoo ERP — connected to your data platform, your BI and your AI agents — so "
+"your operation runs on information you can trust."
 msgstr ""
-"La división Business Systems de Bidatia. Implantamos, modernizamos y "
+"La división Business Systems de BidERP. Implantamos, modernizamos y "
 "gobernamos Odoo ERP, conectado con tu plataforma de datos, tu BI y tus "
 "agentes de IA, para que tu operación funcione con información en la que "
 "confiar."
@@ -3633,8 +3629,8 @@ msgid "Company"
 msgstr "Empresa"
 
 #: templates/partials/footer.html:43
-msgid "About Bidatia"
-msgstr "Sobre Bidatia"
+msgid "About BidERP"
+msgstr "Sobre BidERP"
 
 #: templates/partials/footer.html:44
 msgid "Insights & blog"
@@ -3778,12 +3774,12 @@ msgstr "Servicios de ERP, datos e IA"
 #: templates/services/service_list.html:5
 msgid ""
 "Odoo implementation and modernization, ERP + data integration, BI "
-"dashboards, AI agents and data governance — Bidatia's outcome-based services"
-" for data-driven companies."
+"dashboards, AI agents and data governance — BidERP's outcome-based services "
+"for data-driven companies."
 msgstr ""
 "Implantación y modernización de Odoo, integración de ERP y datos, cuadros de"
 " mando de BI, agentes de IA y gobierno del dato: los servicios por "
-"resultados de Bidatia para empresas orientadas a los datos."
+"resultados de BidERP para empresas orientadas a los datos."
 
 #: templates/services/service_list.html:11
 msgid "What we do"
@@ -4951,12 +4947,12 @@ msgstr "Cómo crear una clave API segura de solo lectura (2 minutos)"
 #: templates/tool_studio_xray/landing.html:78
 msgid ""
 "In Odoo, go to Settings → Users & Companies → Users and create a user, e.g. "
-"“Bidatia Audit”. Give it only read access groups (or Internal User and "
-"remove admin rights)."
+"“BidERP Audit”. Give it only read access groups (or Internal User and remove"
+" admin rights)."
 msgstr ""
 "En Odoo, ve a Ajustes → Usuarios y compañías → Usuarios y crea un usuario, "
-"p. ej. «Bidatia Audit». Asígnale solo grupos de acceso de lectura (o Usuario"
-" interno y quítale los permisos de administrador)."
+"p. ej. «BidERP Audit». Asígnale solo grupos de acceso de lectura (o Usuario "
+"interno y quítale los permisos de administrador)."
 
 #: templates/tool_studio_xray/landing.html:79
 msgid "Log in as that user (or use your own user if you prefer)."
@@ -5581,9 +5577,9 @@ msgstr ""
 
 #: templates/tool_studio_xray/report.html:476
 msgid ""
-"Bidatia converts Studio customizations into clean, upgrade-safe modules."
+"BidERP converts Studio customizations into clean, upgrade-safe modules."
 msgstr ""
-"Bidatia convierte las personalizaciones de Studio en módulos limpios y "
+"BidERP convierte las personalizaciones de Studio en módulos limpios y "
 "seguros frente a actualizaciones."
 
 #: templates/tool_studio_xray/report.html:480
@@ -5740,10 +5736,10 @@ msgstr "La agenda de tu revisión gratuita está lista"
 
 #: templates/tool_studio_xray/report.html:748
 msgid ""
-"Bidatia converts Studio customizations into clean, upgrade-safe modules. "
-"Here is what we suggest covering in your free 30-minute review:"
+"BidERP converts Studio customizations into clean, upgrade-safe modules. Here"
+" is what we suggest covering in your free 30-minute review:"
 msgstr ""
-"Bidatia convierte las personalizaciones de Studio en módulos limpios y "
+"BidERP convierte las personalizaciones de Studio en módulos limpios y "
 "seguros frente a actualizaciones. Esto es lo que sugerimos tratar en tu "
 "revisión gratuita de 30 minutos:"
 
@@ -5868,8 +5864,8 @@ msgstr ""
 "herramienta, la fecha y el nombre de la empresa si lo introduces."
 
 #: templates/tools_core/badge_verify.html:4
-msgid "Bidatia ERP Health Snapshot — badge verification"
-msgstr "Bidatia ERP Health Snapshot — verificación de insignia"
+msgid "BidERP ERP Health Snapshot — badge verification"
+msgstr "BidERP ERP Health Snapshot — verificación de insignia"
 
 #: templates/tools_core/badge_verify.html:14
 msgid "This badge has been disabled"
@@ -5909,12 +5905,12 @@ msgstr "Fecha de la instantánea"
 
 #: templates/tools_core/badge_verify.html:46
 msgid ""
-"This badge records a point-in-time result from a free Bidatia diagnostic — a"
-" self-assessment or read-only scan. It is not a security certification, not "
+"This badge records a point-in-time result from a free BidERP diagnostic — a "
+"self-assessment or read-only scan. It is not a security certification, not "
 "an audit and not a guarantee of system health."
 msgstr ""
 "Esta insignia registra un resultado puntual de un diagnóstico gratuito de "
-"Bidatia — una autoevaluación o un escaneo de solo lectura. No es una "
+"BidERP — una autoevaluación o un escaneo de solo lectura. No es una "
 "certificación de seguridad, ni una auditoría, ni una garantía de salud del "
 "sistema."
 
@@ -7956,31 +7952,31 @@ msgstr ""
 #: tool_studio_xray/views.py:718
 msgid ""
 "Plan a cleanup project: rebuild the Studio models and database code as a "
-"proper, versioned module before your next upgrade. Bidatia can scope this in"
-" a free 30-minute review."
+"proper, versioned module before your next upgrade. BidERP can scope this in "
+"a free 30-minute review."
 msgstr ""
 "Planifica un proyecto de limpieza: reconstruye los modelos de Studio y el "
 "código en base de datos como un módulo versionado antes de tu próxima "
-"actualización. Bidatia puede dimensionarlo en una revisión gratuita de 30 "
+"actualización. BidERP puede dimensionarlo en una revisión gratuita de 30 "
 "minutos."
 
 #: tool_studio_xray/views.py:722
 msgid ""
 "Schedule a customization cleanup before committing to an upgrade — it "
-"reduces migration cost and risk. Bidatia can prioritize the work with you in"
-" a free 30-minute review."
+"reduces migration cost and risk. BidERP can prioritize the work with you in "
+"a free 30-minute review."
 msgstr ""
 "Programa una limpieza de personalizaciones antes de comprometerte con una "
-"actualización — reduce el coste y el riesgo de la migración. Bidatia puede "
+"actualización — reduce el coste y el riesgo de la migración. BidERP puede "
 "priorizar el trabajo contigo en una revisión gratuita de 30 minutos."
 
 #: tool_studio_xray/views.py:726
 msgid ""
 "A short, targeted review of the flagged items is enough to keep this "
-"installation healthy — Bidatia offers that as a free 30-minute session."
+"installation healthy — BidERP offers that as a free 30-minute session."
 msgstr ""
 "Una revisión corta y enfocada de los elementos señalados basta para mantener"
-" esta instalación sana — Bidatia la ofrece como sesión gratuita de 30 "
+" esta instalación sana — BidERP la ofrece como sesión gratuita de 30 "
 "minutos."
 
 #: tool_studio_xray/views.py:729
@@ -8415,3 +8411,15 @@ msgstr ""
 #: tools_core/views.py:156
 msgid "URL, database, login and API key are all required."
 msgstr "La URL, la base de datos, el usuario y la clave API son obligatorios."
+
+#~ msgid "Consultation"
+#~ msgstr "Consultoría"
+
+#~ msgid "from €90"
+#~ msgstr "desde 90 €"
+
+#~ msgid "ERP assessment"
+#~ msgstr "Evaluación de ERP"
+
+#~ msgid "from €690"
+#~ msgstr "desde 690 €"

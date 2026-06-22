@@ -14,8 +14,8 @@ def home(request):
         'featured_service': featured_service,
         'case_study': case_study,
         'meta_description': _(
-            'Bidatia Business Systems implements, modernizes and governs Odoo ERP — connected to your '
-            'data platform, BI dashboards and AI agents. The Business Systems division of Bidatia, Madrid.'
+            'BidERP Business Systems implements, modernizes and governs Odoo ERP — connected to your '
+            'data platform, BI dashboards and AI agents. The Business Systems division of BidERP, Madrid.'
         ),
     }
     return render(request, 'core/home.html', context)
@@ -34,7 +34,7 @@ def about(request):
             _('Automation & workflow optimization'),
         ],
         'meta_description': _(
-            'About Bidatia Business Systems — the ERP and Business Systems division of Bidatia. '
+            'About BidERP Business Systems — the ERP and Business Systems division of BidERP. '
             'A team of engineers bringing data, AI and governance discipline to Odoo and enterprise systems.'
         ),
     }

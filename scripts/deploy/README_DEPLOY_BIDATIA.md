@@ -1,4 +1,4 @@
-# Deploying Bidatia Business Systems
+# Deploying BidERP Business Systems
 
 This project deploys to a single Linux server, fully isolated from the unrelated
 **DevBMS** project on the same host. Two complementary paths exist:
@@ -18,7 +18,7 @@ This project deploys to a single Linux server, fully isolated from the unrelated
 | Logs | `/var/log/bidatia` |
 | Django service (systemd) | `bidatia` → gunicorn on `127.0.0.1:8030` |
 | Celery worker (systemd) | `bidatia-celery-worker` |
-| Redis | local on `127.0.0.1:6379`, **Bidatia DB `2`** (see below) |
+| Redis | local on `127.0.0.1:6379`, **BidERP DB `2`** (see below) |
 | Domain | `bidatia.xyz` |
 | Repo | `git@github.com:dev1bms/bidatia.git` |
 
@@ -36,20 +36,20 @@ offline" (it no longer spins forever). Production therefore needs **all** of:
 1. `bidatia.service` (gunicorn) — running.
 2. `bidatia-celery-worker.service` — running:
    `ExecStart=/srv/bidatia/app/.venv/bin/celery -A bidatia worker -l info --concurrency=2`
-   (no `-Q` needed — the worker consumes Bidatia's default queue, see below).
+   (no `-Q` needed — the worker consumes BidERP's default queue, see below).
 3. **Redis** running locally (`redis-cli ping` → `PONG`).
-4. **An isolated Redis DB + queue for Bidatia.** This Redis host is shared with
+4. **An isolated Redis DB + queue for BidERP.** This Redis host is shared with
    the older DevBMS project, so the two MUST NOT share a broker DB or queue:
-   - Redis DB: Bidatia defaults to **db 2** in code (`redis://127.0.0.1:6379/2`).
+   - Redis DB: BidERP defaults to **db 2** in code (`redis://127.0.0.1:6379/2`).
      Keep `REDIS_URL` (and any `CELERY_BROKER_URL`) on a DB number DevBMS does
      not use. The code default is db 2 *precisely so an unreadable env file can
      never make the worker fall back to db 0 and pick up DevBMS tasks.*
    - Queue: settings pin `CELERY_TASK_DEFAULT_QUEUE = "bidatia"` (+ matching
-     exchange/routing key), so even on a shared DB Bidatia never consumes the
+     exchange/routing key), so even on a shared DB BidERP never consumes the
      generic `celery` queue.
 
 Verify: `celery -A bidatia inspect ping` → `celery@host: OK`, and the worker
-log should show `transport: redis://127.0.0.1:6379/2` and only Bidatia tasks
+log should show `transport: redis://127.0.0.1:6379/2` and only BidERP tasks
 (`tool_studio_xray.tasks.run_studio_xray`, `core.tasks.send_lead_notification`, …).
 
 > The systemd unit files live on the server (created during bring-up), **not in
@@ -101,7 +101,7 @@ throwaway secret key).
   user (`/etc/bidatia` mode `750` group `bidatia`, the env file mode `640`
   root:bidatia) — if the worker cannot read it, Celery silently falls back to
   default broker settings. Any value with **spaces or special chars** must be
-  **double-quoted** (e.g. `SITE_NAME="Bidatia Business Systems"`); an unquoted
+  **double-quoted** (e.g. `SITE_NAME="BidERP Business Systems"`); an unquoted
   value breaks `source <file>` in bash. systemd's `EnvironmentFile` and the
   deploy parser strip the quotes.
 

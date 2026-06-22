@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Bidatia ERP Health Snapshot — badge verification" %} | {{ SITE_NAME }}{% endblock %}
+{% block title %}{% trans "BidERP ERP Health Snapshot — badge verification" %} | {{ SITE_NAME }}{% endblock %}
 
 {% block content %}
 <section class="py-16 lg:py-20">
@@ -27,7 +27,7 @@
             <span class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-ink text-accent-400">
                 <svg class="h-7 w-7" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
             </span>
-            <p class="mt-4 font-mono text-xs uppercase tracking-wider text-slate-500">Bidatia · {% trans "ERP Health Snapshot" %}</p>
+            <p class="mt-4 font-mono text-xs uppercase tracking-wider text-slate-500">BidERP · {% trans "ERP Health Snapshot" %}</p>
             <h1 class="mt-2 text-3xl font-extrabold text-ink">{{ level_label }}</h1>
             {% if badge.company_name %}<p class="mt-2 text-lg text-slate-700">{{ badge.company_name }}</p>{% endif %}
 
@@ -43,14 +43,14 @@
             </dl>
 
             <p class="mt-6 text-xs text-slate-400 leading-relaxed">
-                {% trans "This badge records a point-in-time result from a free Bidatia diagnostic — a self-assessment or read-only scan. It is not a security certification, not an audit and not a guarantee of system health." %}
+                {% trans "This badge records a point-in-time result from a free BidERP diagnostic — a self-assessment or read-only scan. It is not a security certification, not an audit and not a guarantee of system health." %}
             </p>
         </div>
 
         <div class="mt-6 rounded-2xl border border-slate-200 bg-white p-6" x-data="badgeEmbed()">
             <h2 class="text-sm font-bold text-ink">{% trans "Badge preview & embed" %}</h2>
             <div class="mt-3 rounded-lg bg-slate-50 border border-slate-100 p-4 flex justify-center">
-                <img src="{% url 'tools_core:badge_svg' badge.pk %}" alt="Bidatia ERP Health Snapshot" width="240" height="56">
+                <img src="{% url 'tools_core:badge_svg' badge.pk %}" alt="BidERP ERP Health Snapshot" width="240" height="56">
             </div>
             <label for="badge-embed" class="mt-4 block text-xs font-semibold text-slate-500">{% trans "Embed code (links back to this verification page)" %}</label>
             <textarea id="badge-embed" readonly rows="3" x-ref="code"

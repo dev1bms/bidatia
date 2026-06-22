@@ -103,20 +103,20 @@ SERVICES = [
             "system. We run implementation as an engineering project: we map your processes, design a clean data "
             "model, configure the Odoo apps you actually need, and migrate your existing data with validation and "
             "deduplication so day one starts on numbers you can trust.\n"
-            "Because Bidatia lives in data and governance, we set up your Odoo so it can feed a warehouse, BI and "
+            "Because BidERP lives in data and governance, we set up your Odoo so it can feed a warehouse, BI and "
             "AI from the start — not as a bolt-on two years later.",
 
             "Un ERP nuevo es la oportunidad de arreglar cómo funciona tu negocio, o de arrastrar el viejo caos a un "
             "sistema nuevo. Abordamos la implantación como un proyecto de ingeniería: mapeamos tus procesos, "
             "diseñamos un modelo de datos limpio, configuramos las apps de Odoo que realmente necesitas y migramos "
             "tus datos con validación y deduplicación, para que el primer día empiece con cifras fiables.\n"
-            "Como Bidatia vive en los datos y el gobierno del dato, dejamos tu Odoo preparado para alimentar un "
+            "Como BidERP vive en los datos y el gobierno del dato, dejamos tu Odoo preparado para alimentar un "
             "almacén de datos, BI e IA desde el principio, no como un añadido dos años después.",
 
             "النظام الجديد فرصة لإصلاح طريقة عمل شركتك، أو فرصة لنقل الفوضى القديمة إلى نظام جديد. ننفّذ التطبيق "
             "كمشروع هندسي: نرسم عملياتك، ونصمّم نموذج بيانات نظيفًا، ونعدّ تطبيقات Odoo التي تحتاجها فعلًا، ونرحّل "
             "بياناتك مع التحقّق وإزالة التكرار، ليبدأ اليوم الأول بأرقام موثوقة.\n"
-            "ولأن Bidatia متخصّصة في البيانات وحوكمتها، نُعدّ Odoo لديك ليغذّي مستودع البيانات وأدوات BI والذكاء "
+            "ولأن BidERP متخصّصة في البيانات وحوكمتها، نُعدّ Odoo لديك ليغذّي مستودع البيانات وأدوات BI والذكاء "
             "الاصطناعي منذ البداية، لا كإضافة بعد عامين."),
         'outcome': L(
             'A live Odoo, tailored to your operation, with clean migrated data and a model built to scale.',
@@ -128,9 +128,9 @@ SERVICES = [
         'is_featured': False,
         'order': 2,
         'meta_description': L(
-            'Odoo ERP implementation by Bidatia: process mapping, clean data model, app configuration and validated data migration, built to feed your BI and AI from day one.',
-            'Implantación de Odoo ERP por Bidatia: mapeo de procesos, modelo de datos limpio, configuración de apps y migración de datos validada, lista para alimentar tu BI e IA desde el primer día.',
-            'تطبيق Odoo ERP من Bidatia: رسم العمليات، ونموذج بيانات نظيف، وإعداد التطبيقات، وترحيل بيانات مُتحقَّق منه، جاهز لتغذية BI والذكاء الاصطناعي منذ اليوم الأول.'),
+            'Odoo ERP implementation by BidERP: process mapping, clean data model, app configuration and validated data migration, built to feed your BI and AI from day one.',
+            'Implantación de Odoo ERP por BidERP: mapeo de procesos, modelo de datos limpio, configuración de apps y migración de datos validada, lista para alimentar tu BI e IA desde el primer día.',
+            'تطبيق Odoo ERP من BidERP: رسم العمليات، ونموذج بيانات نظيف، وإعداد التطبيقات، وترحيل بيانات مُتحقَّق منه، جاهز لتغذية BI والذكاء الاصطناعي منذ اليوم الأول.'),
         'features': [
             L('Process discovery and clean data-model design',
               'Descubrimiento de procesos y diseño de un modelo de datos limpio',
@@ -189,9 +189,9 @@ SERVICES = [
         'is_featured': False,
         'order': 3,
         'meta_description': L(
-            'ERP and data integration by Bidatia: governed ETL and APIs connecting Odoo to your data warehouse, BI and the rest of your stack, with monitoring and documentation.',
-            'Integración de ERP y datos por Bidatia: ETL y APIs gobernados que conectan Odoo con tu almacén de datos, tu BI y el resto de tu stack, con monitorización y documentación.',
-            'تكامل ERP والبيانات من Bidatia: ETL وواجهات برمجية مَحوكمة تربط Odoo بمستودع بياناتك و BI وبقية منظومتك، مع مراقبة وتوثيق.'),
+            'ERP and data integration by BidERP: governed ETL and APIs connecting Odoo to your data warehouse, BI and the rest of your stack, with monitoring and documentation.',
+            'Integración de ERP y datos por BidERP: ETL y APIs gobernados que conectan Odoo con tu almacén de datos, tu BI y el resto de tu stack, con monitorización y documentación.',
+            'تكامل ERP والبيانات من BidERP: ETL وواجهات برمجية مَحوكمة تربط Odoo بمستودع بياناتك و BI وبقية منظومتك، مع مراقبة وتوثيق.'),
         'features': [
             L('Scheduled ETL and real-time API integrations',
               'ETL programado e integraciones de API en tiempo real',
@@ -251,9 +251,9 @@ SERVICES = [
         'is_featured': False,
         'order': 4,
         'meta_description': L(
-            'BI dashboards and management reporting by Bidatia: trustworthy KPIs on top of your Odoo and warehouse data, with a documented metric layer and clear definitions.',
-            'Cuadros de mando de BI e informes de gestión por Bidatia: KPIs fiables sobre tus datos de Odoo y del almacén, con una capa de métricas documentada y definiciones claras.',
-            'لوحات BI وتقارير الإدارة من Bidatia: مؤشّرات موثوقة فوق بيانات Odoo والمستودع، مع طبقة مقاييس موثَّقة وتعريفات واضحة.'),
+            'BI dashboards and management reporting by BidERP: trustworthy KPIs on top of your Odoo and warehouse data, with a documented metric layer and clear definitions.',
+            'Cuadros de mando de BI e informes de gestión por BidERP: KPIs fiables sobre tus datos de Odoo y del almacén, con una capa de métricas documentada y definiciones claras.',
+            'لوحات BI وتقارير الإدارة من BidERP: مؤشّرات موثوقة فوق بيانات Odoo والمستودع، مع طبقة مقاييس موثَّقة وتعريفات واضحة.'),
         'features': [
             L('Management dashboards for sales, margin, cash and operations',
               'Cuadros de mando de gestión para ventas, margen, caja y operaciones',
@@ -289,20 +289,20 @@ SERVICES = [
             "Not every task needs a person, and not every task should be left to a model alone. We design practical "
             "AI agents around real ERP workflows: triaging incoming documents, drafting responses, classifying "
             "records, summarizing cases and flagging anomalies — always with a human approval step where it counts.\n"
-            "Drawing on Bidatia's AI and RAG expertise, every agent is grounded in your own governed data, scoped "
+            "Drawing on BidERP's AI and RAG expertise, every agent is grounded in your own governed data, scoped "
             "to a clear task, logged and auditable. No black boxes deciding your business.",
 
             "No todas las tareas necesitan a una persona, ni todas deben dejarse solo a un modelo. Diseñamos agentes "
             "de IA prácticos sobre flujos reales del ERP: clasificar documentos entrantes, redactar respuestas, "
             "categorizar registros, resumir casos y señalar anomalías, siempre con un paso de aprobación humana "
             "donde importa.\n"
-            "Apoyándonos en la experiencia de Bidatia en IA y RAG, cada agente se basa en tus propios datos "
+            "Apoyándonos en la experiencia de BidERP en IA y RAG, cada agente se basa en tus propios datos "
             "gobernados, se acota a una tarea clara y queda registrado y auditable. Sin cajas negras decidiendo tu negocio.",
 
             "ليست كل مهمّة تحتاج إلى شخص، وليست كل مهمّة يجب تركها لنموذج وحده. نصمّم وكلاء ذكاء اصطناعي عمليين حول "
             "تدفّقات ERP حقيقية: فرز المستندات الواردة، وصياغة الردود، وتصنيف السجلّات، وتلخيص الحالات، ورصد "
             "الشذوذ — دائمًا مع خطوة موافقة بشرية حيث يلزم.\n"
-            "بالاعتماد على خبرة Bidatia في الذكاء الاصطناعي و RAG، يُبنى كل وكيل على بياناتك المَحوكمة، ويُحصَر في "
+            "بالاعتماد على خبرة BidERP في الذكاء الاصطناعي و RAG، يُبنى كل وكيل على بياناتك المَحوكمة، ويُحصَر في "
             "مهمّة واضحة، ويكون مسجَّلًا وقابلًا للتدقيق. بلا صناديق سوداء تقرّر عن عملك."),
         'outcome': L(
             'Less manual busywork, faster cycle times, and AI you can actually trust in production.',
@@ -314,9 +314,9 @@ SERVICES = [
         'is_featured': False,
         'order': 6,
         'meta_description': L(
-            'AI agents for business processes by Bidatia: practical, human-in-the-loop automation grounded in your governed ERP data, scoped, logged and auditable.',
-            'Agentes de IA para procesos de negocio por Bidatia: automatización práctica con supervisión humana, basada en tus datos de ERP gobernados, acotada, registrada y auditable.',
-            'وكلاء ذكاء اصطناعي للعمليات من Bidatia: أتمتة عملية بإشراف بشري، مبنية على بيانات ERP مَحوكمة، محصورة ومسجَّلة وقابلة للتدقيق.'),
+            'AI agents for business processes by BidERP: practical, human-in-the-loop automation grounded in your governed ERP data, scoped, logged and auditable.',
+            'Agentes de IA para procesos de negocio por BidERP: automatización práctica con supervisión humana, basada en tus datos de ERP gobernados, acotada, registrada y auditable.',
+            'وكلاء ذكاء اصطناعي للعمليات من BidERP: أتمتة عملية بإشراف بشري، مبنية على بيانات ERP مَحوكمة، محصورة ومسجَّلة وقابلة للتدقيق.'),
         'features': [
             L('Document triage, drafting, classification and summarization',
               'Clasificación, redacción, categorización y resumen de documentos',
@@ -350,7 +350,7 @@ SERVICES = [
             'اجعل بيانات Odoo و CRM لديك أصلًا مَحوكمًا: ملكية واضحة، وقواعد جودة، وتعريفات، ومصدر حقيقة واحد موثوق.'),
         'description': L(
             "Bad ERP decisions usually start with bad data: duplicate customers, inconsistent product codes, "
-            "empty mandatory fields, three definitions of 'active'. We bring Bidatia's data-governance practice to "
+            "empty mandatory fields, three definitions of 'active'. We bring BidERP's data-governance practice to "
             "your operational systems — defining ownership, data-quality rules, naming standards and validation so "
             "the records people rely on stay clean over time.\n"
             "You get a practical governance framework, quality dashboards that surface issues early, and the "
@@ -358,14 +358,14 @@ SERVICES = [
 
             "Las malas decisiones de ERP suelen empezar con malos datos: clientes duplicados, códigos de producto "
             "inconsistentes, campos obligatorios vacíos, tres definiciones de 'activo'. Llevamos la práctica de "
-            "gobierno del dato de Bidatia a tus sistemas operativos: definimos propiedad, reglas de calidad, "
+            "gobierno del dato de BidERP a tus sistemas operativos: definimos propiedad, reglas de calidad, "
             "estándares de nomenclatura y validaciones para que los registros de los que dependes se mantengan "
             "limpios con el tiempo.\n"
             "Obtienes un marco de gobierno práctico, cuadros de calidad que detectan problemas a tiempo y los "
             "controles para mantener Odoo y tu CRM como una fuente única de verdad, no como un pantano.",
 
             "تبدأ قرارات ERP السيّئة عادةً ببيانات سيّئة: عملاء مكرّرون، ورموز منتجات غير متّسقة، وحقول إلزامية "
-            "فارغة، وثلاثة تعريفات لكلمة 'نشِط'. ننقل ممارسة حوكمة البيانات لدى Bidatia إلى أنظمتك التشغيلية: نحدّد "
+            "فارغة، وثلاثة تعريفات لكلمة 'نشِط'. ننقل ممارسة حوكمة البيانات لدى BidERP إلى أنظمتك التشغيلية: نحدّد "
             "الملكية، وقواعد الجودة، ومعايير التسمية، وعمليات التحقّق ليبقى ما تعتمد عليه من سجلّات نظيفًا مع الوقت.\n"
             "تحصل على إطار حوكمة عملي، ولوحات جودة تكشف المشكلات مبكّرًا، والضوابط للحفاظ على Odoo و CRM كمصدر "
             "حقيقة واحد، لا كمستنقع."),
@@ -379,9 +379,9 @@ SERVICES = [
         'is_featured': False,
         'order': 8,
         'meta_description': L(
-            'Data governance for ERP and CRM by Bidatia: ownership, quality rules, naming standards and validation that keep your Odoo and CRM a trusted single source of truth.',
-            'Gobierno del dato para ERP y CRM por Bidatia: propiedad, reglas de calidad, estándares de nomenclatura y validación que mantienen tu Odoo y CRM como una fuente única de verdad fiable.',
-            'حوكمة البيانات لـ ERP و CRM من Bidatia: ملكية، وقواعد جودة، ومعايير تسمية، وتحقّق تحافظ على Odoo و CRM كمصدر حقيقة واحد موثوق.'),
+            'Data governance for ERP and CRM by BidERP: ownership, quality rules, naming standards and validation that keep your Odoo and CRM a trusted single source of truth.',
+            'Gobierno del dato para ERP y CRM por BidERP: propiedad, reglas de calidad, estándares de nomenclatura y validación que mantienen tu Odoo y CRM como una fuente única de verdad fiable.',
+            'حوكمة البيانات لـ ERP و CRM من BidERP: ملكية، وقواعد جودة، ومعايير تسمية، وتحقّق تحافظ على Odoo و CRM كمصدر حقيقة واحد موثوق.'),
         'features': [
             L('Data ownership, quality rules and naming standards',
               'Propiedad de datos, reglas de calidad y estándares de nomenclatura',
@@ -478,9 +478,9 @@ SERVICES = [
                "Normalmente sí: el acceso de lectura a tu instancia de Odoo (o a una copia reciente o entorno de pruebas) nos permite ofrecerte un informe preciso y basado en evidencias, no en suposiciones.",
                "غالبًا نعم — صلاحية الاطّلاع على نظام Odoo لديك (أو نسخة حديثة أو بيئة اختبار) تتيح لنا تقديم تقرير دقيق مبني على أدلة لا على تخمينات.")),
             (L('What happens after the report?', '¿Qué ocurre después del informe?', 'ماذا يحدث بعد التقرير؟'),
-             L("You're free to act on it yourself, hand it to your existing team, or ask Bidatia to implement the recommended fixes as a follow-up engagement.",
-               "Puedes aplicarlo por tu cuenta, entregárselo a tu equipo o pedir a Bidatia que implemente las correcciones recomendadas como servicio de seguimiento.",
-               "أنت حرّ في تنفيذه بنفسك، أو تسليمه لفريقك الحالي، أو الطلب من Bidatia تنفيذ الإصلاحات الموصى بها كخدمة متابعة.")),
+             L("You're free to act on it yourself, hand it to your existing team, or ask BidERP to implement the recommended fixes as a follow-up engagement.",
+               "Puedes aplicarlo por tu cuenta, entregárselo a tu equipo o pedir a BidERP que implemente las correcciones recomendadas como servicio de seguimiento.",
+               "أنت حرّ في تنفيذه بنفسك، أو تسليمه لفريقك الحالي، أو الطلب من BidERP تنفيذ الإصلاحات الموصى بها كخدمة متابعة.")),
         ],
     },
     {
@@ -528,9 +528,9 @@ SERVICES = [
         'is_featured': False,
         'order': 3,
         'meta_description': L(
-            'Convert fragile Odoo Studio customizations into clean, maintainable custom modules. Bidatia rebuilds your Studio changes as proper, upgrade-safe Odoo code.',
-            'Convierte las personalizaciones frágiles de Odoo Studio en módulos a medida limpios y mantenibles. Bidatia reconstruye tus cambios de Studio como código Odoo seguro ante actualizaciones.',
-            'حوِّل تخصيصات Odoo Studio الهشّة إلى وحدات مخصّصة نظيفة وقابلة للصيانة. يعيد Bidatia بناء تغييرات Studio لديك كشيفرة Odoo آمنة أمام الترقيات.'),
+            'Convert fragile Odoo Studio customizations into clean, maintainable custom modules. BidERP rebuilds your Studio changes as proper, upgrade-safe Odoo code.',
+            'Convierte las personalizaciones frágiles de Odoo Studio en módulos a medida limpios y mantenibles. BidERP reconstruye tus cambios de Studio como código Odoo seguro ante actualizaciones.',
+            'حوِّل تخصيصات Odoo Studio الهشّة إلى وحدات مخصّصة نظيفة وقابلة للصيانة. يعيد BidERP بناء تغييرات Studio لديك كشيفرة Odoo آمنة أمام الترقيات.'),
         'features': [
             L('Full mapping of existing Studio fields, views, automations and reports',
               'Documentación completa de los campos, vistas, automatizaciones e informes actuales de Studio',
@@ -607,9 +607,9 @@ SERVICES = [
         'is_featured': False,
         'order': 4,
         'meta_description': L(
-            'Get an Odoo Migration Assessment: a clear roadmap covering risks, effort estimates and recommendations for upgrading to a newer Odoo version, from Bidatia Madrid.',
-            'Solicita una evaluación de migración de Odoo: una hoja de ruta clara con riesgos, estimación de esfuerzo y recomendaciones para actualizar a una versión más reciente, de Bidatia Madrid.',
-            'اطلب تقييم ترقية Odoo: خارطة طريق واضحة تغطّي المخاطر وتقديرات الجهد والتوصيات للانتقال إلى إصدار أحدث من Odoo، من Bidatia مدريد.'),
+            'Get an Odoo Migration Assessment: a clear roadmap covering risks, effort estimates and recommendations for upgrading to a newer Odoo version, from BidERP Madrid.',
+            'Solicita una evaluación de migración de Odoo: una hoja de ruta clara con riesgos, estimación de esfuerzo y recomendaciones para actualizar a una versión más reciente, de BidERP Madrid.',
+            'اطلب تقييم ترقية Odoo: خارطة طريق واضحة تغطّي المخاطر وتقديرات الجهد والتوصيات للانتقال إلى إصدار أحدث من Odoo، من BidERP مدريد.'),
         'features': [
             L('Review of your current Odoo version, customizations and integrations',
               'Revisión de tu versión actual de Odoo, las personalizaciones y las integraciones',
@@ -629,9 +629,9 @@ SERVICES = [
         ],
         'faqs': [
             (L('Do you also perform the migration itself?', '¿Realizáis también la migración en sí?', 'هل تنفّذون الترقية نفسها أيضًا؟'),
-             L("Yes — the assessment can be followed by a migration engagement scoped on the findings, either fully managed by Bidatia or supporting your existing team.",
-               "Sí: tras la evaluación puede venir un proyecto de migración definido a partir de las conclusiones, gestionado íntegramente por Bidatia o como apoyo a tu equipo.",
-               "نعم — يمكن أن يلي التقييمَ مشروعُ ترقية يُحدَّد نطاقه بناءً على النتائج، سواء بإدارة كاملة من Bidatia أو بدعم فريقك الحالي.")),
+             L("Yes — the assessment can be followed by a migration engagement scoped on the findings, either fully managed by BidERP or supporting your existing team.",
+               "Sí: tras la evaluación puede venir un proyecto de migración definido a partir de las conclusiones, gestionado íntegramente por BidERP o como apoyo a tu equipo.",
+               "نعم — يمكن أن يلي التقييمَ مشروعُ ترقية يُحدَّد نطاقه بناءً على النتائج، سواء بإدارة كاملة من BidERP أو بدعم فريقك الحالي.")),
             (L('What Odoo versions do you support?', '¿Qué versiones de Odoo abarcáis?', 'ما إصدارات Odoo التي تدعمونها؟'),
              L("We work across recent Community and Enterprise versions. Tell us your current version and target version, and we will confirm fit during the initial conversation.",
                "Trabajamos con las versiones recientes de Community y Enterprise. Indícanos tu versión actual y la de destino y confirmaremos la viabilidad en la conversación inicial.",
@@ -684,9 +684,9 @@ SERVICES = [
         'is_featured': False,
         'order': 5,
         'meta_description': L(
-            'Custom Odoo module development by Bidatia: models, views, security, workflows, automations and reports built as clean, maintainable code for your business.',
-            'Desarrollo de módulos a medida para Odoo por Bidatia: modelos, vistas, seguridad, flujos de trabajo, automatizaciones e informes como código limpio y mantenible para tu negocio.',
-            'تطوير وحدات Odoo مخصّصة من Bidatia: نماذج وواجهات وأمان وتدفّقات عمل وأتمتة وتقارير مبنية كشيفرة نظيفة وقابلة للصيانة لعملك.'),
+            'Custom Odoo module development by BidERP: models, views, security, workflows, automations and reports built as clean, maintainable code for your business.',
+            'Desarrollo de módulos a medida para Odoo por BidERP: modelos, vistas, seguridad, flujos de trabajo, automatizaciones e informes como código limpio y mantenible para tu negocio.',
+            'تطوير وحدات Odoo مخصّصة من BidERP: نماذج وواجهات وأمان وتدفّقات عمل وأتمتة وتقارير مبنية كشيفرة نظيفة وقابلة للصيانة لعملك.'),
         'features': [
             L('Requirements mapping and module design before development starts',
               'Definición de requisitos y diseño del módulo antes de empezar a desarrollar',
@@ -706,9 +706,9 @@ SERVICES = [
         ],
         'faqs': [
             (L('Can you work alongside our existing developer or partner?', '¿Podéis trabajar junto a nuestro desarrollador o partner actual?', 'هل يمكنكم العمل بالتوازي مع مطوّرنا أو شريكنا الحالي؟'),
-             L("Yes — Bidatia regularly works alongside in-house teams and partner agencies, including under white-label arrangements where appropriate.",
-               "Sí: Bidatia colabora habitualmente con equipos internos y agencias partner, incluso en modalidad de marca blanca cuando procede.",
-               "نعم — يعمل Bidatia بانتظام إلى جانب الفرق الداخلية ووكالات الشركاء، بما في ذلك ترتيبات العلامة البيضاء عند الاقتضاء.")),
+             L("Yes — BidERP regularly works alongside in-house teams and partner agencies, including under white-label arrangements where appropriate.",
+               "Sí: BidERP colabora habitualmente con equipos internos y agencias partner, incluso en modalidad de marca blanca cuando procede.",
+               "نعم — يعمل BidERP بانتظام إلى جانب الفرق الداخلية ووكالات الشركاء، بما في ذلك ترتيبات العلامة البيضاء عند الاقتضاء.")),
             (L('Do you provide ongoing maintenance for the module?', '¿Ofrecéis mantenimiento continuo del módulo?', 'هل تقدّمون صيانة مستمرة للوحدة؟'),
              L("Yes, either as part of the project agreement or through a Monthly Odoo Support package once the module is live.",
                "Sí, ya sea como parte del acuerdo del proyecto o mediante un paquete de Soporte mensual de Odoo una vez que el módulo esté en producción.",
@@ -763,9 +763,9 @@ SERVICES = [
         'is_featured': False,
         'order': 6,
         'meta_description': L(
-            'Django and Odoo API integrations by Bidatia: connect Odoo with payment providers, shipping platforms, marketplaces and custom systems reliably and securely.',
-            'Integraciones de API entre Django y Odoo por Bidatia: conecta Odoo con pasarelas de pago, plataformas de transporte, marketplaces y sistemas a medida de forma fiable y segura.',
-            'تكاملات API بين Django و Odoo من Bidatia: اربط Odoo بمزوّدي الدفع ومنصّات الشحن والأسواق الإلكترونية والأنظمة المخصّصة بموثوقية وأمان.'),
+            'Django and Odoo API integrations by BidERP: connect Odoo with payment providers, shipping platforms, marketplaces and custom systems reliably and securely.',
+            'Integraciones de API entre Django y Odoo por BidERP: conecta Odoo con pasarelas de pago, plataformas de transporte, marketplaces y sistemas a medida de forma fiable y segura.',
+            'تكاملات API بين Django و Odoo من BidERP: اربط Odoo بمزوّدي الدفع ومنصّات الشحن والأسواق الإلكترونية والأنظمة المخصّصة بموثوقية وأمان.'),
         'features': [
             L('Mapping of data flows and integration requirements between systems',
               'Análisis de los flujos de datos y los requisitos de integración entre sistemas',
@@ -789,9 +789,9 @@ SERVICES = [
                "Se puede integrar la mayoría de plataformas que ofrecen una API; ejemplos habituales son pasarelas de pago, servicios de transporte y logística, marketplaces y sistemas backend a medida en Django u otras tecnologías.",
                "يمكن دمج معظم المنصّات التي توفّر واجهة API — ومن الأمثلة الشائعة مزوّدو الدفع، وخدمات الشحن والخدمات اللوجستية، والأسواق الإلكترونية، وأنظمة Django المخصّصة أو غيرها من الأنظمة الخلفية.")),
             (L('Can you also build the other side of the integration?', '¿Podéis desarrollar también el otro lado de la integración?', 'هل يمكنكم بناء الطرف الآخر من التكامل أيضًا؟'),
-             L("Yes — if the external system is a custom Django application (existing or new), Bidatia can design and build that side too, ensuring both ends are engineered to work well together.",
-               "Sí: si el sistema externo es una aplicación Django a medida (existente o nueva), Bidatia también puede diseñar y construir ese lado, asegurando que ambos extremos encajen bien.",
-               "نعم — إذا كان النظام الخارجي تطبيق Django مخصّصًا (قائمًا أو جديدًا)، يستطيع Bidatia تصميم وبناء ذلك الطرف أيضًا، بما يضمن انسجام الطرفين معًا.")),
+             L("Yes — if the external system is a custom Django application (existing or new), BidERP can design and build that side too, ensuring both ends are engineered to work well together.",
+               "Sí: si el sistema externo es una aplicación Django a medida (existente o nueva), BidERP también puede diseñar y construir ese lado, asegurando que ambos extremos encajen bien.",
+               "نعم — إذا كان النظام الخارجي تطبيق Django مخصّصًا (قائمًا أو جديدًا)، يستطيع BidERP تصميم وبناء ذلك الطرف أيضًا، بما يضمن انسجام الطرفين معًا.")),
             (L('How do you handle ongoing reliability?', '¿Cómo garantizáis la fiabilidad a largo plazo?', 'كيف تضمنون الموثوقية على المدى الطويل؟'),
              L("We design integrations with error handling and monitoring in mind from the start, and offer Monthly Odoo Support for ongoing monitoring and adjustments after go-live.",
                "Diseñamos las integraciones con la gestión de errores y la monitorización en mente desde el principio, y ofrecemos Soporte mensual de Odoo para la supervisión y los ajustes posteriores a la puesta en marcha.",
@@ -841,9 +841,9 @@ SERVICES = [
         'is_featured': False,
         'order': 7,
         'meta_description': L(
-            'Monthly Odoo Support from Bidatia: Starter, Standard and Pro plans with fixed hours, priority support and monthly summaries — a reliable technical partner for your ERP.',
-            'Soporte mensual de Odoo de Bidatia: planes Starter, Standard y Pro con horas fijas, soporte prioritario y resúmenes mensuales, un socio técnico fiable para tu ERP.',
-            'دعم Odoo الشهري من Bidatia: باقات Starter و Standard و Pro بساعات ثابتة ودعم ذي أولوية وملخّصات شهرية — شريك تقني موثوق لنظام ERP لديك.'),
+            'Monthly Odoo Support from BidERP: Starter, Standard and Pro plans with fixed hours, priority support and monthly summaries — a reliable technical partner for your ERP.',
+            'Soporte mensual de Odoo de BidERP: planes Starter, Standard y Pro con horas fijas, soporte prioritario y resúmenes mensuales, un socio técnico fiable para tu ERP.',
+            'دعم Odoo الشهري من BidERP: باقات Starter و Standard و Pro بساعات ثابتة ودعم ذي أولوية وملخّصات شهرية — شريك تقني موثوق لنظام ERP لديك.'),
         'features': [
             L('Starter — €300/month: fixed monthly hours for fixes and small changes',
               'Starter — 300 €/mes: horas mensuales fijas para correcciones y pequeños cambios',
@@ -924,7 +924,7 @@ SERVICES = [
         'meta_description': L(
             'Optimize your Odoo CRM and Sales workflow: cleaner pipeline stages, automated follow-ups and reliable reporting, built around how your team actually sells.',
             'Optimiza el flujo de CRM y Ventas de Odoo: etapas de pipeline más claras, seguimientos automáticos e informes fiables, adaptados a cómo vende tu equipo.',
-            'حسّن سير عمل CRM والمبيعات في Odoo مع Bidatia: مراحل مسار أوضح، ومتابعات آلية، وتقارير مبيعات موثوقة، مضبوطة وفق طريقة بيع فريقك.'),
+            'حسّن سير عمل CRM والمبيعات في Odoo مع BidERP: مراحل مسار أوضح، ومتابعات آلية، وتقارير مبيعات موثوقة، مضبوطة وفق طريقة بيع فريقك.'),
         'features': [
             L('Mapping of your real lead-to-order sales process',
               'Documentación de tu proceso real de venta, del lead al pedido',
@@ -1008,7 +1008,7 @@ SERVICES = [
         'meta_description': L(
             'An Odoo invoicing and accounting process review: cut manual work and reconciliation errors with practical automation. A technical review, not tax advice.',
             'Revisión técnica de procesos de facturación y contabilidad en Odoo: menos trabajo manual y errores de conciliación. No es asesoramiento fiscal.',
-            'مراجعة عمليات المحاسبة والفوترة في Odoo من Bidatia: قلّل العمل اليدوي وأخطاء التسوية عبر الأتمتة وتحسينات الإعداد. مراجعة تقنية وليست استشارة ضريبية.'),
+            'مراجعة عمليات المحاسبة والفوترة في Odoo من BidERP: قلّل العمل اليدوي وأخطاء التسوية عبر الأتمتة وتحسينات الإعداد. مراجعة تقنية وليست استشارة ضريبية.'),
         'features': [
             L('Review of your invoicing, tax and reconciliation workflows in Odoo',
               'Revisión de tus flujos de facturación, impuestos y conciliación en Odoo',
@@ -1091,7 +1091,7 @@ SERVICES = [
         'meta_description': L(
             'Audit and stabilize your Odoo automations: find silently failing automated actions and scheduled jobs, resolve conflicts, and rebuild fragile logic.',
             'Audita y estabiliza las automatizaciones de Odoo: detecta acciones y tareas programadas que fallan en silencio, resuelve conflictos y reconstruye la lógica frágil.',
-            'دقّق وثبّت أتمتة Odoo مع Bidatia: اكتشف الإجراءات الآلية وإجراءات الخادم والمهام المجدوَلة التي تفشل بصمت، وحلّ التعارضات، وأعد بناء المنطق الهشّ.'),
+            'دقّق وثبّت أتمتة Odoo مع BidERP: اكتشف الإجراءات الآلية وإجراءات الخادم والمهام المجدوَلة التي تفشل بصمت، وحلّ التعارضات، وأعد بناء المنطق الهشّ.'),
         'features': [
             L('Full inventory of automated actions, server actions and scheduled jobs',
               'Inventario completo de acciones automatizadas, de servidor y tareas programadas',
@@ -1187,9 +1187,9 @@ CASE_STUDIES = [
             "الأتمتة، وأفاد الفريق الداخلي بأنه شعر بالثقة في إجراء تغييرات صغيرة بنفسه لأول مرة منذ سنوات."),
         'order': 1,
         'meta_description': L(
-            'How Bidatia helped a Spanish distribution company turn five years of fragile Odoo Studio customizations into clean, maintainable custom modules before a major upgrade.',
-            'Cómo Bidatia ayudó a una empresa de distribución española a convertir cinco años de frágiles personalizaciones de Odoo Studio en módulos a medida limpios y mantenibles antes de una gran actualización.',
-            'كيف ساعد Bidatia شركة توزيع إسبانية على تحويل خمس سنوات من تخصيصات Odoo Studio الهشّة إلى وحدات مخصّصة نظيفة وقابلة للصيانة قبل ترقية كبرى.'),
+            'How BidERP helped a Spanish distribution company turn five years of fragile Odoo Studio customizations into clean, maintainable custom modules before a major upgrade.',
+            'Cómo BidERP ayudó a una empresa de distribución española a convertir cinco años de frágiles personalizaciones de Odoo Studio en módulos a medida limpios y mantenibles antes de una gran actualización.',
+            'كيف ساعد BidERP شركة توزيع إسبانية على تحويل خمس سنوات من تخصيصات Odoo Studio الهشّة إلى وحدات مخصّصة نظيفة وقابلة للصيانة قبل ترقية كبرى.'),
     },
     {
         'title': L(
@@ -1237,19 +1237,19 @@ CASE_STUDIES = [
         'results': L(
             "Stock discrepancies and overselling incidents dropped dramatically within the first month. "
             "The retailer's team no longer needed to manually reconcile inventory between systems, freeing "
-            "up hours each week — and Bidatia continues to support the integration through a monthly support plan.",
+            "up hours each week — and BidERP continues to support the integration through a monthly support plan.",
 
             "Los descuadres de stock y los casos de sobreventa se redujeron drásticamente en el primer mes. El "
             "equipo del comercio dejó de tener que cuadrar manualmente el inventario entre sistemas, ahorrando "
-            "horas cada semana, y Bidatia sigue dando soporte a la integración mediante un plan de soporte mensual.",
+            "horas cada semana, y BidERP sigue dando soporte a la integración mediante un plan de soporte mensual.",
 
             "انخفض تفاوت المخزون وحالات البيع الزائد بشكل كبير خلال الشهر الأول. ولم يعد فريق المتجر بحاجة إلى تسوية "
-            "المخزون يدويًا بين النظامين، ما وفّر ساعات كل أسبوع — ويواصل Bidatia دعم التكامل عبر باقة دعم شهري."),
+            "المخزون يدويًا بين النظامين، ما وفّر ساعات كل أسبوع — ويواصل BidERP دعم التكامل عبر باقة دعم شهري."),
         'order': 2,
         'meta_description': L(
-            'A case study on how Bidatia built a real-time Django-Odoo integration for a Gulf-region e-commerce retailer, eliminating overselling and manual inventory reconciliation.',
-            'Un caso de éxito sobre cómo Bidatia construyó una integración Django-Odoo en tiempo real para un comercio electrónico de la región del Golfo, eliminando la sobreventa y el cuadre manual del inventario.',
-            'دراسة حالة حول كيفية بناء Bidatia تكامل Django-Odoo فوريًا لمتجر إلكتروني في منطقة الخليج، ما أنهى البيع الزائد والتسوية اليدوية للمخزون.'),
+            'A case study on how BidERP built a real-time Django-Odoo integration for a Gulf-region e-commerce retailer, eliminating overselling and manual inventory reconciliation.',
+            'Un caso de éxito sobre cómo BidERP construyó una integración Django-Odoo en tiempo real para un comercio electrónico de la región del Golfo, eliminando la sobreventa y el cuadre manual del inventario.',
+            'دراسة حالة حول كيفية بناء BidERP تكامل Django-Odoo فوريًا لمتجر إلكتروني في منطقة الخليج، ما أنهى البيع الزائد والتسوية اليدوية للمخزون.'),
     },
     {
         'title': L('Auditing years of Odoo Studio changes at a freight-forwarding company',
@@ -1318,9 +1318,9 @@ CASE_STUDIES = [
             "خدمات ذات صلة: تنظيف Odoo Studio، وتقييم ترقية Odoo، والفحص الفني لنظام Odoo."),
         'order': 3,
         'meta_description': L(
-            'How Bidatia audited years of Odoo Studio customizations at a freight-forwarding company and prepared a clear, lower-risk path toward a future migration.',
-            'Cómo Bidatia auditó años de personalizaciones de Odoo Studio en una empresa de transporte de mercancías y preparó un camino claro y de menor riesgo hacia una futura migración.',
-            'كيف دقّق Bidatia سنوات من تخصيصات Odoo Studio لدى شركة شحن دولي، وهيّأ مسارًا واضحًا وأقلّ مخاطرة نحو ترقية مستقبلية.'),
+            'How BidERP audited years of Odoo Studio customizations at a freight-forwarding company and prepared a clear, lower-risk path toward a future migration.',
+            'Cómo BidERP auditó años de personalizaciones de Odoo Studio en una empresa de transporte de mercancías y preparó un camino claro y de menor riesgo hacia una futura migración.',
+            'كيف دقّق BidERP سنوات من تخصيصات Odoo Studio لدى شركة شحن دولي، وهيّأ مسارًا واضحًا وأقلّ مخاطرة نحو ترقية مستقبلية.'),
     },
     {
         'title': L('Automating messy Excel cost reports for a logistics team',
@@ -1376,9 +1376,9 @@ CASE_STUDIES = [
             "خدمات ذات صلة: مراجعة الأتمتة وإجراءات الخادم في Odoo، وتكامل Django/Odoo، وأتمتة سير العمل المخصّصة."),
         'order': 4,
         'meta_description': L(
-            'How Bidatia automated changing Excel cost and shipment reports for a logistics team, cutting repetitive manual editing and keeping outputs consistent.',
-            'Cómo Bidatia automatizó los cambiantes informes de costes y envíos en Excel de un equipo de logística, reduciendo la edición manual repetitiva y manteniendo resultados coherentes.',
-            'كيف أتمتت Bidatia تقارير التكاليف والشحنات المتغيّرة على Excel لفريق لوجستي، فقلّلت التحرير اليدوي المتكرّر وحافظت على اتّساق المخرجات.'),
+            'How BidERP automated changing Excel cost and shipment reports for a logistics team, cutting repetitive manual editing and keeping outputs consistent.',
+            'Cómo BidERP automatizó los cambiantes informes de costes y envíos en Excel de un equipo de logística, reduciendo la edición manual repetitiva y manteniendo resultados coherentes.',
+            'كيف أتمتت BidERP تقارير التكاليف والشحنات المتغيّرة على Excel لفريق لوجستي، فقلّلت التحرير اليدوي المتكرّر وحافظت على اتّساق المخرجات.'),
     },
     {
         'title': L('An ERP foundation for a professional training institute',
@@ -1431,9 +1431,9 @@ CASE_STUDIES = [
             "خدمات ذات صلة: تطوير وحدات Odoo مخصّصة، وتحسين سير عمل CRM والمبيعات، ودعم Odoo الشهري."),
         'order': 5,
         'meta_description': L(
-            'How Bidatia gave a professional training institute a structured Odoo ERP for registrations, courses and finance-related tracking, replacing scattered spreadsheets.',
-            'Cómo Bidatia dotó a un instituto de formación profesional de un ERP en Odoo estructurado para inscripciones, cursos y seguimiento financiero, sustituyendo hojas de cálculo dispersas.',
-            'كيف زوّد Bidatia معهد تدريب مهني بنظام Odoo ERP منظَّم للتسجيلات والدورات والمتابعة المالية، بديلًا عن جداول البيانات المتفرّقة.'),
+            'How BidERP gave a professional training institute a structured Odoo ERP for registrations, courses and finance-related tracking, replacing scattered spreadsheets.',
+            'Cómo BidERP dotó a un instituto de formación profesional de un ERP en Odoo estructurado para inscripciones, cursos y seguimiento financiero, sustituyendo hojas de cálculo dispersas.',
+            'كيف زوّد BidERP معهد تدريب مهني بنظام Odoo ERP منظَّم للتسجيلات والدورات والمتابعة المالية، بديلًا عن جداول البيانات المتفرّقة.'),
     },
     {
         'title': L('Bringing structure to operations at a printing and production company',
@@ -1483,9 +1483,9 @@ CASE_STUDIES = [
             "خدمات ذات صلة: الفحص الفني لـ Odoo، وتطوير وحدات مخصّصة، ومراجعة عمليات المحاسبة والفوترة."),
         'order': 6,
         'meta_description': L(
-            'How Bidatia structured operations for a printing and production company in Odoo, centralizing records and making finance-related workflows easier to maintain.',
-            'Cómo Bidatia estructuró en Odoo las operaciones de una empresa de impresión y producción, centralizando registros y facilitando el mantenimiento de los flujos financieros.',
-            'كيف هيكل Bidatia عمليات شركة طباعة وإنتاج في Odoo، فمركز السجلّات وسهّل صيانة التدفّقات المالية.'),
+            'How BidERP structured operations for a printing and production company in Odoo, centralizing records and making finance-related workflows easier to maintain.',
+            'Cómo BidERP estructuró en Odoo las operaciones de una empresa de impresión y producción, centralizando registros y facilitando el mantenimiento de los flujos financieros.',
+            'كيف هيكل BidERP عمليات شركة طباعة وإنتاج في Odoo، فمركز السجلّات وسهّل صيانة التدفّقات المالية.'),
     },
     {
         'title': L('Clearer daily operations for a food-service business',
@@ -1533,9 +1533,9 @@ CASE_STUDIES = [
             "خدمات ذات صلة: أتمتة الأعمال، ومراجعة عمليات Odoo، ودعم Odoo الشهري."),
         'order': 7,
         'meta_description': L(
-            'How Bidatia gave a food-service business clearer daily, weekly and monthly visibility over attendance, deliveries and costs through structured operational reporting.',
-            'Cómo Bidatia dio a un negocio de restauración una visibilidad diaria, semanal y mensual más clara sobre asistencia, repartos y costes mediante informes operativos estructurados.',
-            'كيف منح Bidatia نشاطًا في قطاع المطاعم رؤية يومية وأسبوعية وشهرية أوضح للحضور والتوصيل والتكاليف عبر تقارير تشغيلية منظَّمة.'),
+            'How BidERP gave a food-service business clearer daily, weekly and monthly visibility over attendance, deliveries and costs through structured operational reporting.',
+            'Cómo BidERP dio a un negocio de restauración una visibilidad diaria, semanal y mensual más clara sobre asistencia, repartos y costes mediante informes operativos estructurados.',
+            'كيف منح BidERP نشاطًا في قطاع المطاعم رؤية يومية وأسبوعية وشهرية أوضح للحضور والتوصيل والتكاليف عبر تقارير تشغيلية منظَّمة.'),
     },
     {
         'title': L('A structured records platform for a humanitarian organization',
@@ -1588,9 +1588,9 @@ CASE_STUDIES = [
             "خدمات ذات صلة: تطوير Django/Python، وأتمتة الأعمال، وتصميم تدفّقات البيانات/الـ API."),
         'order': 8,
         'meta_description': L(
-            'How Bidatia built a Django platform for a humanitarian organization to manage sensitive records, dynamic documents, validations and structured exports.',
-            'Cómo Bidatia construyó una plataforma en Django para que una organización humanitaria gestionara registros sensibles, documentos dinámicos, validaciones y exportaciones estructuradas.',
-            'كيف بنى Bidatia منصّة Django لمنظمة إنسانية لإدارة السجلّات الحسّاسة والمستندات الديناميكية وعمليات التحقّق والتصدير المنظَّم.'),
+            'How BidERP built a Django platform for a humanitarian organization to manage sensitive records, dynamic documents, validations and structured exports.',
+            'Cómo BidERP construyó una plataforma en Django para que una organización humanitaria gestionara registros sensibles, documentos dinámicos, validaciones y exportaciones estructuradas.',
+            'كيف بنى BidERP منصّة Django لمنظمة إنسانية لإدارة السجلّات الحسّاسة والمستندات الديناميكية وعمليات التحقّق والتصدير المنظَّم.'),
     },
     {
         'title': L('Planning the technical foundation for a retail e-commerce platform',
@@ -1639,9 +1639,9 @@ CASE_STUDIES = [
             "خدمات ذات صلة: تكامل Django/Odoo، وتكامل الـ API، وأتمتة عمليات التجارة الإلكترونية."),
         'order': 9,
         'meta_description': L(
-            'How Bidatia planned the technical foundation of a retail e-commerce platform — product structure, payments, delivery integration and back-office workflow.',
-            'Cómo Bidatia planificó la base técnica de una plataforma de comercio electrónico: estructura de productos, pagos, integración de reparto y flujo de back-office.',
-            'كيف خطّط Bidatia الأساس التقني لمنصّة تجارة إلكترونية: بنية المنتجات، والمدفوعات، وتكامل التوصيل، وسير المكتب الخلفي.'),
+            'How BidERP planned the technical foundation of a retail e-commerce platform — product structure, payments, delivery integration and back-office workflow.',
+            'Cómo BidERP planificó la base técnica de una plataforma de comercio electrónico: estructura de productos, pagos, integración de reparto y flujo de back-office.',
+            'كيف خطّط BidERP الأساس التقني لمنصّة تجارة إلكترونية: بنية المنتجات، والمدفوعات، وتكامل التوصيل، وسير المكتب الخلفي.'),
     },
     {
         'title': L('Custom invoice tax presentation without breaking Odoo accounting',
@@ -1691,9 +1691,9 @@ CASE_STUDIES = [
             "خدمات ذات صلة: مراجعة عمليات المحاسبة والفوترة، وتطوير وحدات مخصّصة. هذا تخصيص تقني وليس استشارة ضريبية."),
         'order': 10,
         'meta_description': L(
-            'How Bidatia added detailed invoice tax-column presentation in Odoo for accounting review while preserving the standard accounting flow. A technical customization.',
-            'Cómo Bidatia añadió en Odoo una presentación detallada de columnas de impuestos para la revisión contable, preservando el flujo contable estándar. Una personalización técnica.',
-            'كيف أضاف Bidatia في Odoo عرضًا مفصّلًا لأعمدة الضرائب لأغراض المراجعة المحاسبية، مع الحفاظ على تدفّق المحاسبة القياسي. تخصيص تقني.'),
+            'How BidERP added detailed invoice tax-column presentation in Odoo for accounting review while preserving the standard accounting flow. A technical customization.',
+            'Cómo BidERP añadió en Odoo una presentación detallada de columnas de impuestos para la revisión contable, preservando el flujo contable estándar. Una personalización técnica.',
+            'كيف أضاف BidERP في Odoo عرضًا مفصّلًا لأعمدة الضرائب لأغراض المراجعة المحاسبية، مع الحفاظ على تدفّق المحاسبة القياسي. تخصيص تقني.'),
     },
     {
         'title': L('Building an audit and extraction tool for Odoo migration analysis',
@@ -1744,9 +1744,9 @@ CASE_STUDIES = [
             "خدمات ذات صلة: الفحص الفني لـ Odoo، وتقييم ترقية Odoo، وتنظيف Odoo Studio."),
         'order': 11,
         'meta_description': L(
-            'How Bidatia built an Odoo audit and extraction tool that collects technical metadata and produces structured reports to make migration planning faster and safer.',
-            'Cómo Bidatia construyó una herramienta de auditoría y extracción de Odoo que recopila metadatos técnicos y genera informes estructurados para acelerar y asegurar la planificación de migraciones.',
-            'كيف بنى Bidatia أداة تدقيق واستخراج لـ Odoo تجمع البيانات الوصفية التقنية وتنتج تقارير منظَّمة لتسريع تخطيط الترقية وجعله أكثر أمانًا.'),
+            'How BidERP built an Odoo audit and extraction tool that collects technical metadata and produces structured reports to make migration planning faster and safer.',
+            'Cómo BidERP construyó una herramienta de auditoría y extracción de Odoo que recopila metadatos técnicos y genera informes estructurados para acelerar y asegurar la planificación de migraciones.',
+            'كيف بنى BidERP أداة تدقيق واستخراج لـ Odoo تجمع البيانات الوصفية التقنية وتنتج تقارير منظَّمة لتسريع تخطيط الترقية وجعله أكثر أمانًا.'),
     },
     {
         'title': L('A controlled connector for AI-assisted Odoo technical review',
@@ -1800,9 +1800,9 @@ CASE_STUDIES = [
             "خدمات ذات صلة: الهندسة بمساعدة الذكاء الاصطناعي، ودعم Odoo التقني، وتكامل Django/Odoo."),
         'order': 12,
         'meta_description': L(
-            'How Bidatia built a controlled connector enabling AI-assisted Odoo technical review with authentication, allowlisted models and defined, auditable access.',
-            'Cómo Bidatia construyó un conector controlado que habilita la revisión técnica de Odoo asistida por IA con autenticación, modelos en lista blanca y acceso definido y auditable.',
-            'كيف بنى Bidatia موصّلًا مُتحكَّمًا به يُتيح مراجعة Odoo التقنية بمساعدة الذكاء الاصطناعي مع مصادقة ونماذج في القائمة البيضاء ووصول محدّد وقابل للتدقيق.'),
+            'How BidERP built a controlled connector enabling AI-assisted Odoo technical review with authentication, allowlisted models and defined, auditable access.',
+            'Cómo BidERP construyó un conector controlado que habilita la revisión técnica de Odoo asistida por IA con autenticación, modelos en lista blanca y acceso definido y auditable.',
+            'كيف بنى BidERP موصّلًا مُتحكَّمًا به يُتيح مراجعة Odoo التقنية بمساعدة الذكاء الاصطناعي مع مصادقة ونماذج في القائمة البيضاء ووصول محدّد وقابل للتدقيق.'),
     },
 ]
 
@@ -1825,7 +1825,7 @@ BLOG_POSTS = [
             "duplicated, inconsistent records into a shiny new system, you get a shiny new system full of messy "
             "data — plus a team that quietly stops trusting it. A data strategy decides, up front, which sources "
             "are authoritative, what quality rules apply, and how the ERP will feed reporting and AI later.\n"
-            "At Bidatia, ERP and data are not two separate projects. We design the data model, the governance "
+            "At BidERP, ERP and data are not two separate projects. We design the data model, the governance "
             "rules and the integration points alongside the ERP itself — so the system you launch is one you, "
             "and your dashboards, can trust from day one.",
 
@@ -1838,7 +1838,7 @@ BLOG_POSTS = [
             "obtienes un sistema nuevo y reluciente lleno de datos desordenados, y un equipo que deja de confiar "
             "en él en silencio. Una estrategia de datos decide, de antemano, qué fuentes son autoritativas, qué "
             "reglas de calidad se aplican y cómo el ERP alimentará después los informes y la IA.\n"
-            "En Bidatia, el ERP y los datos no son dos proyectos separados. Diseñamos el modelo de datos, las "
+            "En BidERP, el ERP y los datos no son dos proyectos separados. Diseñamos el modelo de datos, las "
             "reglas de gobierno y los puntos de integración junto al propio ERP, para que el sistema que pones en "
             "marcha sea uno en el que tú —y tus cuadros de mando— podáis confiar desde el primer día.",
 
@@ -1849,7 +1849,7 @@ BLOG_POSTS = [
             "متّسقة إلى نظام جديد لامع، حصلت على نظام جديد لامع مليء ببيانات فوضوية — وفريق يتوقّف بهدوء عن الوثوق "
             "به. تحدّد استراتيجية البيانات مسبقًا أي المصادر مرجعية، وأي قواعد جودة تنطبق، وكيف سيغذّي النظام "
             "التقارير والذكاء الاصطناعي لاحقًا.\n"
-            "في Bidatia، ليست ERP والبيانات مشروعين منفصلين. نصمّم نموذج البيانات وقواعد الحوكمة ونقاط التكامل إلى "
+            "في BidERP، ليست ERP والبيانات مشروعين منفصلين. نصمّم نموذج البيانات وقواعد الحوكمة ونقاط التكامل إلى "
             "جانب النظام نفسه، ليكون النظام الذي تُطلقه نظامًا تثق به أنت ولوحاتك منذ اليوم الأول."),
         'meta_description': L(
             'An ERP go-live is really a giant data migration. Why a data strategy — sources, quality rules, ownership and integration — belongs at the start of every ERP project.',
@@ -1873,7 +1873,7 @@ BLOG_POSTS = [
             "Data governance for ERP and CRM is the unglamorous discipline that prevents this. It answers simple "
             "but critical questions: who owns customer data? What makes a record valid? How do we detect and merge "
             "duplicates? What does each KPI actually measure? Done well, it's invisible — things just stay clean.\n"
-            "Bidatia's roots are in data governance, and we bring that discipline to operational systems. We define "
+            "BidERP's roots are in data governance, and we bring that discipline to operational systems. We define "
             "ownership and quality rules, set up validation and de-duplication, and give you dashboards that surface "
             "problems early — so your ERP and CRM stay a single source of truth you can build reporting and AI on.",
 
@@ -1885,7 +1885,7 @@ BLOG_POSTS = [
             "sencillas pero críticas: ¿quién es propietario de los datos de cliente? ¿Qué hace válido a un registro? "
             "¿Cómo detectamos y fusionamos duplicados? ¿Qué mide realmente cada KPI? Bien hecho, es invisible: las "
             "cosas simplemente se mantienen limpias.\n"
-            "Las raíces de Bidatia están en el gobierno del dato, y llevamos esa disciplina a los sistemas "
+            "Las raíces de BidERP están en el gobierno del dato, y llevamos esa disciplina a los sistemas "
             "operativos. Definimos propiedad y reglas de calidad, implantamos validación y deduplicación, y te damos "
             "cuadros de mando que detectan los problemas a tiempo, para que tu ERP y tu CRM sigan siendo una fuente "
             "única de verdad sobre la que construir informes e IA.",
@@ -1896,7 +1896,7 @@ BLOG_POSTS = [
             "حوكمة البيانات لـ ERP و CRM هي الانضباط غير البرّاق الذي يمنع ذلك. تجيب عن أسئلة بسيطة لكنها حاسمة: من "
             "يملك بيانات العملاء؟ وما الذي يجعل السجلّ صالحًا؟ وكيف نكتشف التكرارات وندمجها؟ وماذا يقيس كل مؤشّر "
             "فعلًا؟ وحين تُنفَّذ جيدًا تكون غير مرئية — تبقى الأمور نظيفة وحسب.\n"
-            "جذور Bidatia في حوكمة البيانات، وننقل هذا الانضباط إلى الأنظمة التشغيلية. نحدّد الملكية وقواعد الجودة، "
+            "جذور BidERP في حوكمة البيانات، وننقل هذا الانضباط إلى الأنظمة التشغيلية. نحدّد الملكية وقواعد الجودة، "
             "ونُعِدّ التحقّق وإزالة التكرار، ونمنحك لوحات تكشف المشكلات مبكّرًا، ليبقى ERP و CRM لديك مصدر حقيقة "
             "واحدًا تبني عليه التقارير والذكاء الاصطناعي."),
         'meta_description': L(
@@ -1922,7 +1922,7 @@ BLOG_POSTS = [
             "for review. These are high-volume, low-stakes-per-item tasks where a human still signs off on anything "
             "that matters. Where they hurt: anywhere an unsupervised model posts to your ledger, changes prices, or "
             "makes an irreversible decision on its own.\n"
-            "Bidatia builds AI agents grounded in your own governed data (using RAG), scoped to one clear task, with "
+            "BidERP builds AI agents grounded in your own governed data (using RAG), scoped to one clear task, with "
             "a human approval step where decisions count — and every action logged and auditable. That's the "
             "difference between AI that saves your team hours and AI that creates a cleanup project. Good data "
             "governance, it turns out, is also the foundation for trustworthy AI.",
@@ -1935,7 +1935,7 @@ BLOG_POSTS = [
             "su revisión. Son tareas de gran volumen y bajo riesgo por elemento, en las que una persona sigue "
             "validando lo que importa. Dónde perjudican: allí donde un modelo sin supervisión escribe en tu "
             "contabilidad, cambia precios o toma por su cuenta una decisión irreversible.\n"
-            "Bidatia construye agentes de IA anclados en tus propios datos gobernados (mediante RAG), acotados a una "
+            "BidERP construye agentes de IA anclados en tus propios datos gobernados (mediante RAG), acotados a una "
             "tarea clara, con un paso de aprobación humana donde las decisiones cuentan, y cada acción registrada y "
             "auditable. Esa es la diferencia entre una IA que ahorra horas a tu equipo y una IA que crea un proyecto "
             "de limpieza. Resulta que un buen gobierno del dato es también la base de una IA fiable.",
@@ -1946,7 +1946,7 @@ BLOG_POSTS = [
             "الطويلة، واستخراج حقول منظَّمة من نصّ فوضوي، ورصد الشذوذ للمراجعة. هذه مهامّ عالية الحجم ومنخفضة المخاطر "
             "لكل عنصر، يبقى فيها الإنسان مصادقًا على ما يهمّ. وأين يضرّون: حيثما يكتب نموذج غير مُراقَب في دفترك، أو "
             "يغيّر الأسعار، أو يتّخذ بمفرده قرارًا لا رجعة فيه.\n"
-            "تبني Bidatia وكلاء ذكاء اصطناعي مستندين إلى بياناتك المَحوكمة (عبر RAG)، محصورين في مهمّة واضحة، مع خطوة "
+            "تبني BidERP وكلاء ذكاء اصطناعي مستندين إلى بياناتك المَحوكمة (عبر RAG)، محصورين في مهمّة واضحة، مع خطوة "
             "موافقة بشرية حيث تهمّ القرارات، وكل إجراء مسجَّل وقابل للتدقيق. هذا هو الفرق بين ذكاء اصطناعي يوفّر على "
             "فريقك ساعات وآخر يصنع مشروع تنظيف. وتبيَّن أن حوكمة البيانات الجيدة هي أيضًا أساس الذكاء الاصطناعي الموثوق."),
         'meta_description': L(
@@ -1972,7 +1972,7 @@ BLOG_POSTS = [
             "everyone; and the data is shaped so it can flow cleanly into a warehouse, BI and AI later. When it "
             "isn't, you get a working system that quietly produces unreliable numbers — and every report built on "
             "top inherits the problem.\n"
-            "At Bidatia we implement and modernize Odoo with the downstream in mind from day one. The result is an "
+            "At BidERP we implement and modernize Odoo with the downstream in mind from day one. The result is an "
             "ERP that runs your operation today and feeds trustworthy analytics tomorrow, instead of becoming a "
             "data swamp you have to clean up later.",
 
@@ -1984,7 +1984,7 @@ BLOG_POSTS = [
             "mismo para todos; y los datos se modelan para poder fluir limpios hacia un almacén, BI e IA más "
             "adelante. Cuando no lo es, obtienes un sistema que funciona pero produce cifras poco fiables, y cada "
             "informe construido encima hereda el problema.\n"
-            "En Bidatia implantamos y modernizamos Odoo pensando en lo que viene después desde el primer día. El "
+            "En BidERP implantamos y modernizamos Odoo pensando en lo que viene después desde el primer día. El "
             "resultado es un ERP que opera tu negocio hoy y alimenta una analítica fiable mañana, en lugar de "
             "convertirse en un pantano de datos que toca limpiar más tarde.",
 
@@ -1995,7 +1995,7 @@ BLOG_POSTS = [
             "والحقول الإلزامية إلزامية فعلًا؛ وتعني الحالات الشيء نفسه للجميع؛ وتُشكَّل البيانات لتتدفّق نظيفة إلى "
             "مستودع و BI وذكاء اصطناعي لاحقًا. وحين لا يكون كذلك، تحصل على نظام يعمل لكنه ينتج أرقامًا غير موثوقة، "
             "ويرث كل تقرير فوقه المشكلة.\n"
-            "في Bidatia ننفّذ Odoo ونحدّثه واضعين ما يأتي لاحقًا في الحسبان منذ اليوم الأول. والنتيجة نظام يشغّل "
+            "في BidERP ننفّذ Odoo ونحدّثه واضعين ما يأتي لاحقًا في الحسبان منذ اليوم الأول. والنتيجة نظام يشغّل "
             "عملك اليوم ويغذّي تحليلات موثوقة غدًا، بدل أن يصير مستنقع بيانات تضطر لتنظيفه لاحقًا."),
         'meta_description': L(
             'Your ERP is the largest source of operational data you have. Why designing Odoo as a data platform — clean model, real constraints, analytics-ready — pays off downstream.',
@@ -2019,7 +2019,7 @@ BLOG_POSTS = [
             "next person who has to extend them. One day a field 'disappears', an automation fires twice, and "
             "nobody is sure what is safe to touch. The fix isn't to ban Studio — it's to know when a customization "
             "has earned a proper home: a version-controlled module with tests, documentation and a clear owner.\n"
-            "Bidatia maps what your Studio setup actually does, then rebuilds the parts that matter as clean, "
+            "BidERP maps what your Studio setup actually does, then rebuilds the parts that matter as clean, "
             "upgrade-safe modules — same behavior for users, dramatically less risk for the business. You keep "
             "Studio for what it's good at, and stop betting your operation on clicks nobody can audit.",
 
@@ -2032,7 +2032,7 @@ BLOG_POSTS = [
             "«desaparece», una automatización se dispara dos veces y nadie sabe qué es seguro tocar. La solución no "
             "es prohibir Studio, sino saber cuándo una personalización merece un hogar de verdad: un módulo "
             "versionado, con pruebas, documentación y un responsable claro.\n"
-            "En Bidatia documentamos qué hace realmente tu configuración de Studio y reconstruimos lo importante "
+            "En BidERP documentamos qué hace realmente tu configuración de Studio y reconstruimos lo importante "
             "como módulos limpios y seguros ante actualizaciones: el mismo comportamiento para los usuarios, mucho "
             "menos riesgo para el negocio. Sigues usando Studio para lo que es bueno y dejas de apostar tu "
             "operación a clics que nadie puede auditar.",
@@ -2044,7 +2044,7 @@ BLOG_POSTS = [
             "ليوسّعها. وذات يوم «يختفي» حقل، وتُنفَّذ أتمتة مرتين، ولا أحد متأكّد ممّا يمكن لمسه بأمان. والحل ليس منع "
             "Studio، بل معرفة متى استحقّت التخصيصات بيتًا حقيقيًا: وحدة خاضعة للإصدارات، باختبارات وتوثيق ومسؤول "
             "واضح.\n"
-            "في Bidatia نوثّق ما يفعله إعداد Studio فعلًا، ثم نعيد بناء ما يهمّ كوحدات نظيفة وآمنة أمام الترقيات: "
+            "في BidERP نوثّق ما يفعله إعداد Studio فعلًا، ثم نعيد بناء ما يهمّ كوحدات نظيفة وآمنة أمام الترقيات: "
             "السلوك نفسه للمستخدمين، ومخاطر أقلّ بكثير للنشاط. تبقي Studio لما يُتقنه، وتتوقّف عن المخاطرة بعملك على "
             "نقرات لا يستطيع أحد تدقيقها."),
         'meta_description': L(
@@ -2070,7 +2070,7 @@ BLOG_POSTS = [
             "authoritative, who owns it, and where the single version lives — then putting that data inside a "
             "system that enforces the rules instead of trusting everyone to remember them. Validation replaces "
             "copy-paste; an audit trail replaces 'I think Maria changed it'; one record replaces fifteen tabs.\n"
-            "Bidatia helps teams make that move in stages: we map how the business actually works today, pick the "
+            "BidERP helps teams make that move in stages: we map how the business actually works today, pick the "
             "one or two processes causing the most pain, and structure those first — usually in Odoo, connected to "
             "the data you already trust. Excel stays for what it's great at: quick analysis on top of a single, "
             "reliable source.",
@@ -2085,7 +2085,7 @@ BLOG_POSTS = [
             "sistema que aplique las reglas en lugar de confiar en que todos las recuerden. La validación sustituye "
             "al copia-pega; una traza de auditoría sustituye al «creo que lo cambió María»; un registro sustituye a "
             "quince pestañas.\n"
-            "En Bidatia ayudamos a dar ese paso por fases: mapeamos cómo funciona hoy el negocio, elegimos el "
+            "En BidERP ayudamos a dar ese paso por fases: mapeamos cómo funciona hoy el negocio, elegimos el "
             "proceso o dos que más duelen y los estructuramos primero, normalmente en Odoo, conectados a los datos "
             "en los que ya confías. Excel se queda para lo que hace de maravilla: análisis rápido sobre una fuente "
             "única y fiable.",
@@ -2097,7 +2097,7 @@ BLOG_POSTS = [
             "النسخة الوحيدة، ثم وضع تلك البيانات داخل نظام يفرض القواعد بدل الاعتماد على تذكُّر الجميع لها. يحلّ "
             "التحقّق محلّ النسخ واللصق؛ ويحلّ سجلّ التدقيق محلّ «أظن أن ماريا غيّرته»؛ ويحلّ سجلّ واحد محلّ خمس عشرة "
             "علامة تبويب.\n"
-            "في Bidatia نساعد الفرق على هذه النقلة على مراحل: نرسم كيف يعمل النشاط اليوم، ونختار العملية أو "
+            "في BidERP نساعد الفرق على هذه النقلة على مراحل: نرسم كيف يعمل النشاط اليوم، ونختار العملية أو "
             "العمليتين الأكثر إيلامًا ونهيكلها أولًا، عادةً في Odoo، متّصلة بالبيانات التي تثق بها بالفعل. ويبقى "
             "Excel لما يُبدع فيه: تحليل سريع فوق مصدر واحد موثوق."),
         'meta_description': L(
@@ -2123,7 +2123,7 @@ BLOG_POSTS = [
             "'active customer' and 'margin' are defined once and reused everywhere, so two dashboards can't "
             "disagree. The visualization is the last 10% — the trustworthy 90% is the plumbing and the governance "
             "underneath it.\n"
-            "Bidatia builds dashboards on top of your Odoo and warehouse data with that discipline baked in: "
+            "BidERP builds dashboards on top of your Odoo and warehouse data with that discipline baked in: "
             "documented metrics, traceability back to source, and self-service views so teams answer their own "
             "questions. The outcome is the rarest thing in business reporting — a number nobody argues with.",
 
@@ -2135,7 +2135,7 @@ BLOG_POSTS = [
             "«Ingresos», «cliente activo» y «margen» se definen una vez y se reutilizan en todas partes, así dos "
             "dashboards no pueden contradecirse. La visualización es el último 10 %: el 90 % fiable es la fontanería "
             "y el gobierno del dato que hay debajo.\n"
-            "En Bidatia construimos dashboards sobre tus datos de Odoo y del almacén con esa disciplina integrada: "
+            "En BidERP construimos dashboards sobre tus datos de Odoo y del almacén con esa disciplina integrada: "
             "métricas documentadas, trazabilidad hasta el origen y vistas de autoservicio para que los equipos "
             "respondan sus propias preguntas. El resultado es lo más raro en los informes de empresa: una cifra que "
             "nadie discute.",
@@ -2146,7 +2146,7 @@ BLOG_POSTS = [
             "وتُشكَّل بطبقة مقاييس معرَّفة قبل أن تصل إلى أي رسم. تُعرَّف «الإيراد» و«العميل النشِط» و«الهامش» مرّة "
             "واحدة وتُعاد في كل مكان، فلا تتعارض لوحتان. التمثيل المرئي هو آخر 10٪؛ أما الـ 90٪ الموثوقة فهي السباكة "
             "والحوكمة تحتها.\n"
-            "في Bidatia نبني اللوحات فوق بيانات Odoo والمستودع بهذا الانضباط مدمجًا: مقاييس موثَّقة، وتتبُّع حتى "
+            "في BidERP نبني اللوحات فوق بيانات Odoo والمستودع بهذا الانضباط مدمجًا: مقاييس موثَّقة، وتتبُّع حتى "
             "المصدر، وعروض خدمة ذاتية لتجيب الفرق عن أسئلتها. والنتيجة أندر شيء في تقارير الأعمال: رقم لا يجادل فيه أحد."),
         'meta_description': L(
             'A dashboard is only as trustworthy as the pipeline behind it. How connecting BI to a governed Odoo ERP — with a defined metric layer — produces numbers leadership acts on.',
@@ -2171,7 +2171,7 @@ BLOG_POSTS = [
             "migrate a hollow copy of it, then spend the next year rediscovering rules the hard way, one angry "
             "customer at a time. The work that actually de-risks a migration is the unglamorous part: documenting "
             "how the business really runs before a single record moves.\n"
-            "Bidatia treats migration as a knowledge-capture project first and a data project second. We audit the "
+            "BidERP treats migration as a knowledge-capture project first and a data project second. We audit the "
             "existing system, surface the rules hiding inside customizations and habits, and carry them forward "
             "deliberately into a cleaner Odoo build — so you arrive on the new system with your operation intact, "
             "not amputated.",
@@ -2185,7 +2185,7 @@ BLOG_POSTS = [
             "luego pasas el año siguiente redescubriendo reglas a las malas, un cliente enfadado cada vez. El "
             "trabajo que de verdad reduce el riesgo es la parte poco vistosa: documentar cómo funciona realmente el "
             "negocio antes de mover un solo registro.\n"
-            "En Bidatia tratamos la migración como un proyecto de captura de conocimiento primero y de datos "
+            "En BidERP tratamos la migración como un proyecto de captura de conocimiento primero y de datos "
             "después. Auditamos el sistema actual, sacamos a la luz las reglas escondidas en personalizaciones y "
             "costumbres, y las trasladamos de forma deliberada a un Odoo más limpio, para que llegues al nuevo "
             "sistema con tu operación intacta, no amputada.",
@@ -2196,7 +2196,7 @@ BLOG_POSTS = [
             "إن نقلت البيانات دون التقاط تلك المعرفة، فأنت لا ترحّل عملك، بل نسخة جوفاء منه، ثم تقضي العام التالي في "
             "إعادة اكتشاف القواعد بالطريقة الصعبة، عميلًا غاضبًا تلو الآخر. والعمل الذي يقلّل المخاطر فعلًا هو الجزء "
             "غير البرّاق: توثيق كيف يعمل النشاط حقًا قبل نقل سجلّ واحد.\n"
-            "في Bidatia نعامل الترحيل كمشروع التقاط معرفة أولًا، ومشروع بيانات ثانيًا. ندقّق النظام الحالي، ونُظهِر "
+            "في BidERP نعامل الترحيل كمشروع التقاط معرفة أولًا، ومشروع بيانات ثانيًا. ندقّق النظام الحالي، ونُظهِر "
             "القواعد المختبئة في التخصيصات والعادات، وننقلها بوعي إلى بناء Odoo أنظف، لتصل إلى النظام الجديد وعملك "
             "سليم، لا مبتور."),
         'meta_description': L(
@@ -2222,7 +2222,7 @@ BLOG_POSTS = [
             "owned, well-defined), your core processes are explicit rather than tribal knowledge, and you've "
             "identified tasks that are high-volume, lower-stakes-per-item, and easy to keep a human in the loop on. "
             "Get those right and AI becomes a force multiplier; skip them and it becomes a liability with good PR.\n"
-            "Bidatia helps companies get ready in the right order: govern the data, structure the process in Odoo, "
+            "BidERP helps companies get ready in the right order: govern the data, structure the process in Odoo, "
             "then introduce AI agents that are grounded in your own information, scoped to a clear task, and "
             "logged so every action is auditable. The result is automation you can actually trust in production — "
             "because you built the foundation before the hype.",
@@ -2236,7 +2236,7 @@ BLOG_POSTS = [
             "conocimiento tribal, y has identificado tareas de gran volumen, bajo riesgo por elemento y fáciles de "
             "supervisar por una persona. Hazlo bien y la IA multiplica fuerzas; sáltatelo y se convierte en un "
             "pasivo con buena prensa.\n"
-            "En Bidatia ayudamos a las empresas a prepararse en el orden correcto: gobernar los datos, estructurar "
+            "En BidERP ayudamos a las empresas a prepararse en el orden correcto: gobernar los datos, estructurar "
             "el proceso en Odoo y luego introducir agentes de IA anclados en tu propia información, acotados a una "
             "tarea clara y registrados para que cada acción sea auditable. El resultado es una automatización en la "
             "que puedes confiar en producción, porque construiste los cimientos antes que el hype.",
@@ -2247,7 +2247,7 @@ BLOG_POSTS = [
             "تأتي الجاهزية قبل النماذج. وهذا يعني ثلاثة أمور تبدو مملّة: بياناتك مَحوكمة (نظيفة، ومملوكة، وواضحة "
             "التعريف)، وعملياتك الأساسية صريحة لا معرفة قبلية، وقد حدّدت مهامّ عالية الحجم ومنخفضة المخاطر لكل عنصر "
             "ويسهل إبقاء إنسان في مسارها. أتقن ذلك يصبح الذكاء الاصطناعي مضاعِف قوة؛ تجاهله يصبح عبئًا بدعاية جيّدة.\n"
-            "في Bidatia نساعد الشركات على الاستعداد بالترتيب الصحيح: حوكمة البيانات، وهيكلة العملية في Odoo، ثم "
+            "في BidERP نساعد الشركات على الاستعداد بالترتيب الصحيح: حوكمة البيانات، وهيكلة العملية في Odoo، ثم "
             "إدخال وكلاء ذكاء اصطناعي مستندين إلى معلوماتك، ومحصورين في مهمّة واضحة، ومسجَّلين ليكون كل إجراء قابلًا "
             "للتدقيق. والنتيجة أتمتة يمكنك الوثوق بها في الإنتاج، لأنك بنيت الأساس قبل الضجيج."),
         'meta_description': L(
@@ -2287,7 +2287,7 @@ def expand(data, translatable):
 
 
 class Command(BaseCommand):
-    help = 'Seed the database with English/Spanish/Arabic demo content for Bidatia.'
+    help = 'Seed the database with English/Spanish/Arabic demo content for BidERP.'
 
     def handle(self, *args, **options):
         self.seed_services()

@@ -1,10 +1,10 @@
-# Celery worker for the Bidatia free tools.
+# Celery worker for the BidERP free tools.
 # Install:  sudo cp deploy/systemd/bidatia-celery-worker.service /etc/systemd/system/
 #           sudo systemctl daemon-reload && sudo systemctl enable --now bidatia-celery-worker
 # Adjust User/Group/paths to match the server (same user that runs gunicorn).
 
 [Unit]
-Description=Bidatia Celery worker
+Description=BidERP Celery worker
 After=network.target redis-server.service
 Requires=redis-server.service
 

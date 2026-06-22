@@ -173,7 +173,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-# Spanish is the default/main language (Bidatia's primary audience).
+# Spanish is the default/main language (BidERP's primary audience).
 # English and Arabic are also offered. Visiting "/" redirects to the visitor's
 # browser language, falling back to Spanish.
 LANGUAGE_CODE = 'es'
@@ -222,9 +222,9 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Business contact info (used across templates via core.context_processors)
-SITE_NAME = 'Bidatia Business Systems'
+SITE_NAME = 'BidERP Business Systems'
 # Short brand + division used for the logo lockup in the navbar/footer.
-SITE_BRAND = 'Bidatia'
+SITE_BRAND = 'BidERP'
 SITE_DIVISION = 'Business Systems'
 # Lazy-translated so SEO metadata (title/OG/Twitter) and JSON-LD render in the
 # active language instead of leaking Spanish onto the EN/AR pages.
@@ -250,7 +250,7 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', 'info@bidatia.xyz')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
 EMAIL_TIMEOUT = int(os.environ.get('EMAIL_TIMEOUT', '20'))
 
-DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'Bidatia Business Systems <info@bidatia.xyz>')
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'BidERP Business Systems <info@bidatia.xyz>')
 SERVER_EMAIL = os.environ.get('SERVER_EMAIL', 'info@bidatia.xyz')
 
 # Where contact/booking notifications are sent (To) and copied (Cc).
@@ -274,8 +274,8 @@ OG_DEFAULT_IMAGE = os.environ.get('OG_DEFAULT_IMAGE', '')
 #      args, kwargs, return values — is ever written to Redis.
 #   2. Workers run at INFO log level; DEBUG-level celery logging can print
 #      task arguments.
-# Redis lives on the same host as the older DevBMS project, so Bidatia MUST stay
-# on its own Redis DB and queue. The CODE default is a Bidatia-specific DB (2) —
+# Redis lives on the same host as the older DevBMS project, so BidERP MUST stay
+# on its own Redis DB and queue. The CODE default is a BidERP-specific DB (2) —
 # not the generic db 0 — so that a missing/unreadable env file can never make the
 # worker silently join another project's broker (which once made it pick up a
 # DevBMS task). REDIS_URL / CELERY_BROKER_URL still override.
@@ -287,7 +287,7 @@ CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL', REDIS_URL)
 CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND') or None
 
 # Project-specific queue/exchange/routing key. Even on a shared Redis DB this
-# keeps Bidatia from ever consuming — or handing off — tasks on the generic
+# keeps BidERP from ever consuming — or handing off — tasks on the generic
 # 'celery' queue used by other projects. The worker (no -Q) consumes this
 # default queue; .delay() and beat publish to it.
 CELERY_TASK_DEFAULT_QUEUE = 'bidatia'
@@ -365,7 +365,7 @@ CACHES = {
     'default': {'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'},
     'tools': {
         'BACKEND': 'django.core.cache.backends.redis.RedisCache',
-        # Same Bidatia-isolated Redis DB as the broker (see REDIS_URL above), so
+        # Same BidERP-isolated Redis DB as the broker (see REDIS_URL above), so
         # cache keys never collide with another project sharing this Redis host.
         'LOCATION': REDIS_URL,
     },
@@ -376,7 +376,7 @@ CACHES = {
 # to visitors. Hosting platforms capture stderr; adjust handlers in production.
 # Production 500s are emailed to ADMINS (AdminEmailHandler is a no-op when
 # DEBUG is on, and a failed alert email never breaks the request itself).
-ADMINS = [('Bidatia Business Systems', addr) for addr in
+ADMINS = [('BidERP Business Systems', addr) for addr in
           env_list('DJANGO_ADMINS', CONTACT_NOTIFICATION_EMAIL)]
 
 # Hot-lead alerts (instant internal emails when a tool surfaces a strong
@@ -449,8 +449,8 @@ if not DEBUG:
 # Branding, brand-blue accent palette, a lightweight business dashboard and a
 # workflow-oriented sidebar. No CDN: Unfold ships its own static assets.
 UNFOLD = {
-    'SITE_TITLE': 'Bidatia Business Systems',
-    'SITE_HEADER': 'Bidatia',
+    'SITE_TITLE': 'BidERP Business Systems',
+    'SITE_HEADER': 'BidERP',
     'SITE_SUBHEADER': _('Business Systems · ERP, Data & AI'),
     'SITE_URL': '/',
     'SITE_SYMBOL': 'database',  # Material Symbol used as the logo mark
@@ -461,7 +461,7 @@ UNFOLD = {
     'STYLES': [
         lambda request: static('admin_custom/admin.css'),
     ],
-    # Bidatia "Aurora" accent — the SAME indigo the public site uses (#6366f1),
+    # BidERP "Aurora" accent — the SAME indigo the public site uses (#6366f1),
     # as "R G B" channels, so every admin button/link/active state matches the
     # site. The fuchsia second accent lives in admin_custom/admin.css.
     'COLORS': {

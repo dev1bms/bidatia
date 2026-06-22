@@ -50,7 +50,7 @@ class SendEmailServiceTests(TestCase):
     def test_unified_template_used_for_html(self):
         log = send_email(to='x@example.com', subject='s', category='system',
                          heading='H', paragraphs=['P'])
-        self.assertIn('Bidatia', log.html_body)                  # header brand
+        self.assertIn('BidERP', log.html_body)                  # header brand
         self.assertIn('ERP · Odoo · Django', log.html_body)     # header tagline
         self.assertIn('role="presentation"', log.html_body)     # email-safe tables
         self.assertIn('mailto:', log.html_body)                 # footer contact

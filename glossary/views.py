@@ -78,7 +78,7 @@ def term_detail(request, slug):
                 'description': data['definition'],
                 'inDefinedTermSet': {
                     '@type': 'DefinedTermSet',
-                    'name': 'Bidatia Odoo Glossary',
+                    'name': 'BidERP Odoo Glossary',
                 },
             }),
             json_ld(breadcrumb_ld(request, [

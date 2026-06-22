@@ -3,7 +3,7 @@
 Security model (Phase 1 plan §5):
 - HTTPS-only target URLs; http allowed only for private hosts while DEBUG.
 - SSRF protection: hostnames are resolved up front and private/reserved
-  ranges rejected, so the tools cannot probe the Bidatia internal network.
+  ranges rejected, so the tools cannot probe the BidERP internal network.
 - Hard whitelist of read-only ORM methods — there is no generic execute().
 - Credentials live only in this object's memory for the duration of a run;
   they are never logged, persisted or echoed back in error messages.

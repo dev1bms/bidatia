@@ -14,7 +14,7 @@ WEEKS_PER_YEAR = 52
 MONTHS_PER_YEAR = 12
 
 # Sanity caps — generous, but they keep nonsense inputs from producing
-# absurd shareable numbers under the Bidatia name.
+# absurd shareable numbers under the BidERP name.
 MAX_EMPLOYEES = 10000
 MAX_HOURS_PER_EMPLOYEE = 80          # per week
 MAX_TOTAL_WEEKLY_HOURS = 400000      # 10k people x 40h

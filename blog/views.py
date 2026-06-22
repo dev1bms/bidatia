@@ -15,7 +15,7 @@ def blog_list(request):
         'posts': posts,
         'meta_description': _(
             'Practical insights on Odoo, ERP automation, Django integrations and business '
-            'technology — written by Bidatia, Madrid.'
+            'technology — written by BidERP, Madrid.'
         ),
     }
     return render(request, 'blog/blog_list.html', context)
@@ -48,7 +48,7 @@ def case_study_list(request):
     context = {
         'case_studies': case_studies,
         'meta_description': _(
-            'Real Odoo and ERP technical projects delivered by Bidatia — audits, cleanups, '
+            'Real Odoo and ERP technical projects delivered by BidERP — audits, cleanups, '
             'migrations, integrations and ongoing support, with measurable results.'
         ),
     }

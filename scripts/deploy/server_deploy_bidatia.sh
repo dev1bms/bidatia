@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# server_deploy_bidatia.sh — Bidatia Business Systems server-side deployment.
+# server_deploy_bidatia.sh — BidERP Business Systems server-side deployment.
 #
 # Runs ON THE PRODUCTION SERVER, as a sudo-capable admin user. It deploys the
 # Django app into an isolated layout owned by the `bidatia` system user and
@@ -261,7 +261,7 @@ EMAIL_PORT=${EPORT}
 EMAIL_USE_SSL=True
 EMAIL_HOST_USER=${EUSER}
 EMAIL_HOST_PASSWORD="${EPASS}"
-DEFAULT_FROM_EMAIL="Bidatia Business Systems <${EUSER}>"
+DEFAULT_FROM_EMAIL="BidERP Business Systems <${EUSER}>"
 SERVER_EMAIL=${EUSER}
 CONTACT_NOTIFICATION_EMAIL=${EUSER}
 EOF
@@ -276,7 +276,7 @@ EOF
 
     TMP_ENV="$(mktemp)"; chmod 600 "$TMP_ENV"
     cat > "$TMP_ENV" <<EOF
-# Bidatia Business Systems — production environment (systemd EnvironmentFile).
+# BidERP Business Systems — production environment (systemd EnvironmentFile).
 # Generated $(date -u +%Y-%m-%dT%H:%M:%SZ). Owner root:${APP_GROUP}, mode 640.
 # NEVER commit this file or print its contents.
 DJANGO_DEBUG=False
@@ -359,7 +359,7 @@ write_unit() { # write_unit <name> <content>; returns 0 if changed
 }
 
 WEB_UNIT="[Unit]
-Description=Bidatia Business Systems — Gunicorn (Django WSGI)
+Description=BidERP Business Systems — Gunicorn (Django WSGI)
 After=network.target
 
 [Service]
@@ -380,7 +380,7 @@ write_unit bidatia "$WEB_UNIT" || true
 
 if $ENABLE_CELERY; then
     WORKER_UNIT="[Unit]
-Description=Bidatia — Celery worker
+Description=BidERP — Celery worker
 After=network.target
 Wants=redis-server.service
 
@@ -399,7 +399,7 @@ PrivateTmp=true
 [Install]
 WantedBy=multi-user.target"
     BEAT_UNIT="[Unit]
-Description=Bidatia — Celery beat scheduler
+Description=BidERP — Celery beat scheduler
 After=network.target
 Wants=redis-server.service
 
@@ -440,7 +440,7 @@ done
 # ── 8. sudoers (least-privilege restart for the bidatia user / CI) ──────────
 step "Passwordless restart permission for '$APP_USER'"
 SUDOERS_FILE="/etc/sudoers.d/bidatia-deploy"
-SUDOERS_CONTENT="# Allow the '$APP_USER' user (and CI deploys) to restart Bidatia services only.
+SUDOERS_CONTENT="# Allow the '$APP_USER' user (and CI deploys) to restart BidERP services only.
 $APP_USER ALL=(root) NOPASSWD: $SYSTEMCTL restart bidatia, $SYSTEMCTL status bidatia, $SYSTEMCTL restart bidatia-celery-worker, $SYSTEMCTL status bidatia-celery-worker, $SYSTEMCTL restart bidatia-celery-beat, $SYSTEMCTL status bidatia-celery-beat"
 if sudo -l -U "$APP_USER" 2>/dev/null | grep -q "restart bidatia"; then
     ok "'$APP_USER' already has the needed NOPASSWD systemctl rights."
@@ -490,10 +490,10 @@ else
         warn "A DevBMS cloudflared config is present — it will NOT be touched."
     fi
     if sudo test -f "$BIDATIA_CF_YML" || systemctl list-unit-files 2>/dev/null | grep -q "^$BIDATIA_CF_SVC"; then
-        ok "A Bidatia tunnel config/service already exists."
+        ok "A BidERP tunnel config/service already exists."
         SUM_CF="$(systemctl is-active "$BIDATIA_CF_SVC" 2>/dev/null || echo 'present (inactive)')"
     else
-        warn "No Bidatia tunnel found. A tunnel needs Cloudflare auth (cannot be fully automated here)."
+        warn "No BidERP tunnel found. A tunnel needs Cloudflare auth (cannot be fully automated here)."
         info "Manual one-time steps (run as a user logged into Cloudflare):"
         info "  cloudflared tunnel login"
         info "  cloudflared tunnel create bidatia          # note the Tunnel UUID + credentials json"
@@ -521,7 +521,7 @@ EOF
                 TMP_SVC="$(mktemp)"
                 cat > "$TMP_SVC" <<EOF
 [Unit]
-Description=Cloudflare Tunnel for Bidatia (bidatia.xyz)
+Description=Cloudflare Tunnel for BidERP (bidatia.xyz)
 After=network.target
 
 [Service]
@@ -575,7 +575,7 @@ else
 fi
 
 if [[ "$SUM_HEALTH" == OK* ]]; then
-    printf '\n%s\n' "${GRN}${B}Bidatia deployment finished. The app is live on $BIND_ADDR.${R}"
+    printf '\n%s\n' "${GRN}${B}BidERP deployment finished. The app is live on $BIND_ADDR.${R}"
     exit 0
 else
     printf '\n%s\n' "${YEL}${B}Deployment finished with warnings — review the health check above.${R}"

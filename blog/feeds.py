@@ -49,10 +49,10 @@ class _PinnedFeed(Feed):
 
 class LatestInsightsFeed(_PinnedFeed):
     """RSS 2.0 feed of the most recent published insight articles."""
-    title = 'Bidatia Insights'
+    title = 'BidERP Insights'
     description = (
         'Practical articles on Odoo, ERP automation, Django integrations and '
-        'business technology from Bidatia, Madrid.'
+        'business technology from BidERP, Madrid.'
     )
     list_url_name = 'blog:blog_list'
     feed_url_name = 'insights_feed'
@@ -82,9 +82,9 @@ class LatestInsightsAtomFeed(LatestInsightsFeed):
 
 class LatestCaseStudiesFeed(_PinnedFeed):
     """RSS 2.0 feed of the most recent published case studies."""
-    title = 'Bidatia Case Studies'
+    title = 'BidERP Case Studies'
     description = (
-        'Recent Odoo and ERP technical case studies delivered by Bidatia — '
+        'Recent Odoo and ERP technical case studies delivered by BidERP — '
         'audits, migrations, integrations and ongoing support.'
     )
     list_url_name = 'case_studies:case_study_list'

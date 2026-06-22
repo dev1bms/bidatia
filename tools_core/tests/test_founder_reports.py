@@ -168,7 +168,7 @@ class FounderReportTaskTests(TestCase):
         self.assertEqual(EmailLog.objects.filter(category='founder_daily').count(), 1)
         log = EmailLog.objects.get(category='founder_daily')
         self.assertEqual(log.recipient_email, settings.FOUNDER_REPORT_RECIPIENTS[0])
-        self.assertIn('Bidatia Daily Report', log.subject)
+        self.assertIn('BidERP Daily Report', log.subject)
         self.assertTrue(log.metadata['period'].startswith('founder_daily_summary:'))
         # second run for the same period: skipped, no duplicate row
         self.assertEqual(send_founder_daily_report(), 'skipped')

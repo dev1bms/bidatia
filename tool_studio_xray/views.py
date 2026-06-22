@@ -250,7 +250,7 @@ def report(request, run_id):
         'run': run,
         'expired': run.is_expired or run.result_json is None,
         'booking_url': settings.TOOLS_BOOKING_URL,
-        'meta_description': 'Studio X-Ray report — Odoo Studio customization audit by Bidatia.',
+        'meta_description': 'Studio X-Ray report — Odoo Studio customization audit by BidERP.',
     }
     if result:
         analysis = result.get('analysis') or {}
@@ -716,15 +716,15 @@ RISK_LINES = {
 NEXT_STEP_LINES = {
     'rebuild': gettext_lazy(
         'Plan a cleanup project: rebuild the Studio models and database code as a '
-        'proper, versioned module before your next upgrade. Bidatia can scope this '
+        'proper, versioned module before your next upgrade. BidERP can scope this '
         'in a free 30-minute review.'),
     'cleanup_before_upgrade': gettext_lazy(
         'Schedule a customization cleanup before committing to an upgrade — it '
-        'reduces migration cost and risk. Bidatia can prioritize the work with you '
+        'reduces migration cost and risk. BidERP can prioritize the work with you '
         'in a free 30-minute review.'),
     'targeted_review': gettext_lazy(
         'A short, targeted review of the flagged items is enough to keep this '
-        'installation healthy — Bidatia offers that as a free 30-minute session.'),
+        'installation healthy — BidERP offers that as a free 30-minute session.'),
     'healthy': gettext_lazy(
         'No significant customization debt detected. A periodic re-scan before '
         'each upgrade keeps it that way.'),

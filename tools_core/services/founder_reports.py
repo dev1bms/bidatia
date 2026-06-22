@@ -179,7 +179,7 @@ def build_daily_report(now=None):
 
     return {
         'period_key': 'founder_daily_summary:%s' % now.date().isoformat(),
-        'subject': 'Bidatia Daily Report — %s' % now.date().isoformat(),
+        'subject': 'BidERP Daily Report — %s' % now.date().isoformat(),
         'heading': 'Your tools, last 24 hours',
         'rows': rows,
         'paragraphs': paragraphs or ['A quiet day — the counts are below.'],
@@ -353,7 +353,7 @@ def build_monthly_report(today=None):
 
     return {
         'period_key': 'founder_monthly_summary:%s' % first_prev.strftime('%Y-%m'),
-        'subject': 'Bidatia Monthly Growth Report — %s' % month_label,
+        'subject': 'BidERP Monthly Growth Report — %s' % month_label,
         'heading': 'Your tools funnel — %s' % month_label,
         'rows': rows,
         'paragraphs': paragraphs or ['A quiet month — the counts are below.'],

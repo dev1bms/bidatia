@@ -273,7 +273,7 @@ def send_founder_weekly_summary():
 
     log = send_email(
         to=settings.CONTACT_NOTIFICATION_EMAIL,
-        subject='Bidatia Tools — weekly funnel summary',
+        subject='BidERP Tools — weekly funnel summary',
         category='founder_weekly',
         heading='Your tools funnel, last 7 days',
         paragraphs=paragraphs or ['A quiet week — the counts are below.'],

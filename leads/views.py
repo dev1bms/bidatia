@@ -44,7 +44,7 @@ def contact(request):
     context = {
         'form': form,
         'meta_description': _(
-            'Get in touch with Bidatia for Odoo and ERP technical support, custom development '
+            'Get in touch with BidERP for Odoo and ERP technical support, custom development '
             'or integration projects. Based in Madrid, working with clients worldwide.'
         ),
     }
@@ -55,6 +55,6 @@ def contact_success(request):
     # One-shot: the task id is consumed so a refresh doesn't re-poll forever.
     task_id = request.session.pop('contact_task_id', None)
     return render(request, 'core/contact_success.html', {
-        'meta_description': _('Thank you for contacting Bidatia — we will get back to you shortly.'),
+        'meta_description': _('Thank you for contacting BidERP — we will get back to you shortly.'),
         'task_id': task_id,
     })

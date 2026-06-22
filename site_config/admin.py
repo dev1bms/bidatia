@@ -82,7 +82,7 @@ def send_test_email(modeladmin, request, queryset):
             request, _('Set a test recipient first.'), level=messages.WARNING)
         return
     log = send_email(
-        to=to, subject=str(_('Bidatia — test email')), category='system',
+        to=to, subject=str(_('BidERP — test email')), category='system',
         heading=str(_('Test email')),
         paragraphs=[str(_('This confirms your email settings are working.'))])
     cfg.last_test_status = log.status
